@@ -8,7 +8,7 @@ footerIcon = "https://cdn.discordapp.com/emojis/562502263399251968.png?v=1"
 docLink = "https://docs.google.com/document/d/1DFeQrzvIgG6XaRa4fw2hULfGLmlLuIRpkZ2hY8FMsW8/edit"
 prefix = "?"
 imgPath = "Images/"
-embedColor = 11957467
+embedColor = 10170673
 client = discord.Client()
 statTree = ET.parse('stats.xml')
 cmdTree = ET.parse('commands.xml')
