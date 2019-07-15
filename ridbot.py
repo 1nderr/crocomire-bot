@@ -6,6 +6,11 @@ import xml.etree.ElementTree as ET
 token = "REDACTED"
 footerIcon = "https://cdn.discordapp.com/emojis/562502263399251968.png?v=1"
 docLink = "https://docs.google.com/document/d/1DFeQrzvIgG6XaRa4fw2hULfGLmlLuIRpkZ2hY8FMsW8/edit"
+labLink = "https://docs.google.com/spreadsheets/d/1dnxndTKxjMVKTl0v8YYUnY1X80lgOOFK17OAw2BwVpI/edit?usp=sharing"
+guideLink = "https://docs.google.com/document/d/1GTCGcJzEWrv4REbv3PfwiWmceZU8NbZhoJCgmb-JAs8/edit?usp=sharing"
+vodLink = "https://www.youtube.com/playlist?list=PL7Ejy0uNwbLPkbY79HJwH--6kbkPL6Z9F"
+cbLink = ""
+opLink = "https://streamable.com/zj6gz"
 prefix = "?"
 imgPath = "Images/"
 embedColor = 10170673
@@ -80,7 +85,17 @@ def GetHelpMessage():
 def GetDocMessage():
     title = "__Ridleycord Documentation__"
     embed = discord.Embed(title=title, color=embedColor)
-    embed.add_field(name="Link to the Doc:", value=docLink)
+    embed.add_field(name="Ultimate Ridley Resource Doc:", value=docLink)
+    embed.add_field(name="Ridley Master Lab Doc:", value=labLink)
+    embed.add_field(name="An in-Depth Guide to Ridley:", value=guideLink)
+    return embed
+
+# Generates and returns the embedded Ridleycord vods message
+def GetVodMessage():
+    title = "__Ridley Vods__"
+    embed = discord.Embed(title=title, color=embedColor)
+    embed.add_field(name="Ridley Tournament VODs:", value=vodLink)
+    embed.add_field(name="Ridleycord Crew Battle VODs:", value=cbLink)
     return embed
 
 # Changes the bot's presence when ready
@@ -104,9 +119,12 @@ async def on_message(message):
     if command == prefix + "help":
         helpEmbed = GetHelpMessage()
         await message.author.send(embed=helpEmbed)
-    elif command == prefix + "docs" or command == prefix + "doc":
+    elif command == prefix + "docs":
         docEmbed = GetDocMessage()
         await message.channel.send(embed=docEmbed)
+    elif command == prefix + "vods":
+        vodEmbed = GetVodMessage()
+        await message.channel.send(embed=vodEmbed)
     elif command == prefix + "viz":
         if len(msg) == 1:
             await message.channel.send("Bruh say a move after the command. Ex: `?stats nair`")
