@@ -9,7 +9,7 @@ docLink = "https://docs.google.com/document/d/1DFeQrzvIgG6XaRa4fw2hULfGLmlLuIRpk
 labLink = "https://docs.google.com/spreadsheets/d/1dnxndTKxjMVKTl0v8YYUnY1X80lgOOFK17OAw2BwVpI/edit?usp=sharing"
 guideLink = "https://docs.google.com/document/d/1GTCGcJzEWrv4REbv3PfwiWmceZU8NbZhoJCgmb-JAs8/edit?usp=sharing"
 vodLink = "https://www.youtube.com/playlist?list=PL7Ejy0uNwbLPkbY79HJwH--6kbkPL6Z9F"
-cbLink = ""
+cbLink = "https://www.youtube.com/watch?v=UOtIefuhsAI&list=PLssLy8lTPzI65HcUX_K_6ox9sOtjv79Na"
 opLink = "https://streamable.com/zj6gz"
 prefix = "?"
 imgPath = "Images/"
@@ -98,6 +98,12 @@ def GetVodMessage():
     embed.add_field(name="Ridleycord Crew Battle VODs:", value=cbLink)
     return embed
 
+def GetOPMessage():
+    title = "__Ridley Vods__"
+    embed = discord.Embed(title=title, color=embedColor)
+    embed.add_field(name="Ridleycord Anime Opening:", value=opLink)
+    return embed
+
 # Changes the bot's presence when ready
 @client.event
 async def on_ready():
@@ -125,6 +131,9 @@ async def on_message(message):
     elif command == prefix + "vods":
         vodEmbed = GetVodMessage()
         await message.channel.send(embed=vodEmbed)
+    elif command == prefix + "op":
+        opEmbed = GetOPMessage()
+        await message.channel.send(embed=opEmbed)
     elif command == prefix + "viz":
         if len(msg) == 1:
             await message.channel.send("Bruh say a move after the command. Ex: `?stats nair`")
