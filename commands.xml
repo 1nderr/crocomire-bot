@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<commands>
+    <cmd1 name="?doc or ?docs">Links the Ridleycord Doc.</cmd1>
+    <cmd2 name="?help">Sends the user a list of commands.</cmd2>
+    <cmd3 name="?stats [move]">Displays an embedded message with a given move's stats.</cmd3>
+    <cmd4 name="?viz [move]">Displays an image of a given move.</cmd4>
+</commands>

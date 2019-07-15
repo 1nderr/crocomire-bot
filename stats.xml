@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<stats>
+    <ridley name="Ridley's Stats">
+        <jumps name="Jumps">3</jumps>
+        <weight name="Weight">107 (11-15th)</weight>
+        <runSpeed name="Run Speed">2.2 (9-10th)</runSpeed>
+        <walkSpeed name="Walk Speed">1.1 (48th)</walkSpeed>
+        <airSpeed name="Air Speed">1.05 (41-44th)</airSpeed>
+        <airAccel name="Air Acceleration">0.07 (46-49th)</airAccel>
+        <fallSpeed name="Fall Speed">1.78</fallSpeed>
+        <gravity name="Gravity">0.09</gravity>
+        <fhTime name="Full Hop Air Time">51</fhTime>
+        <shTime name="Short Hop Air Time">35</shTime>
+    </ridley>
+    <jab name="Jab">
+        <active name="Hitbox Active">4</active>
+        <faf name="Jab 1 FAF">24</faf>
+        <dmg1 name="Jab 1 DMG">2.4</dmg1>
+        <faf2 name="Jab 2 FAF">27</faf2>
+        <dmg2 name="Jab 2 DMG">1.8</dmg2>
+        <faf3 name="Gentlemen FAF">36</faf3>
+        <dmg3 name="Gentlemen DMG">10.2</dmg3>
+        <faf4 name="Rapid FAF">46</faf4>
+        <dmg4 name="Rapid DMG">12.4</dmg4>
+        <kill1 name="Gentlemen Kill %">160</kill1>
+        <kill2 name="Rapid Kill %">&gt;470 (They start falling out)</kill2>
+    </jab>
+    <ftilt name="Forward Tilt">
+        <active name="Hitbox Active">10-11</active>
+        <faf name="FAF">33</faf>
+        <dmg1 name="Sour Spot DMG">12.0</dmg1>
+        <dmg2 name="Sweet Spot DMG">15.6</dmg2>
+        <kill1 name="Sour Spot Kill %">182</kill1>
+        <kill2 name="Sweet Spot Kill %">133</kill2>
+    </ftilt>
+    <dtilt name="Down Tilt">
+        <active name="Hitbox Active">9-11</active>
+        <faf name="FAF">31</faf>
+        <dmg1 name="Sour Spot DMG">7.2</dmg1>
+        <dmg2 name="Sweet Spot DMG">10.8</dmg2>
+        <kill1 name="Sour Spot Kill %">254</kill1>
+        <kill2 name="Sweet Spot Kill %">179</kill2>
+    </dtilt>
+    <utilt name="Up Tilt">
+        <active name="Hitbox Active">8-12</active>
+        <invuln1 name="Invul Head and Arms">8-9</invuln1>
+        <invuln1 name="Invul Wings">8-12</invuln1>
+        <faf name="FAF">30</faf>
+        <dmg1 name="Sour Spot DMG">8.4</dmg1>
+        <dmg2 name="Sweet Spot DMG">10.8</dmg2>
+        <kill1 name="Sour Spot Kill %">163</kill1>
+        <kill2 name="Sweet Spot Kill %">160</kill2>
+    </utilt>
+    <forwardtilt name="Forward Tilt">
+        <active name="Hitbox Active">10-11</active>
+        <faf name="FAF">33</faf>
+        <dmg1 name="Sour Spot DMG">12.0</dmg1>
+        <dmg2 name="Sweet Spot DMG">15.6</dmg2>
+        <kill1 name="Sour Spot Kill %">182</kill1>
+        <kill2 name="Sweet Spot Kill %">133</kill2>
+    </forwardtilt>
+    <downtilt name="Down Tilt">
+        <active name="Hitbox Active">9-11</active>
+        <faf name="FAF">31</faf>
+        <dmg1 name="Sour Spot DMG">7.2</dmg1>
+        <dmg2 name="Sweet Spot DMG">10.8</dmg2>
+        <kill1 name="Sour Spot Kill %">254</kill1>
+        <kill2 name="Sweet Spot Kill %">179</kill2>
+    </downtilt>
+    <uptilt name="Up Tilt">
+        <active name="Hitbox Active">8-12</active>
+        <invuln1 name="Invul Head and Arms">8-9</invuln1>
+        <invuln1 name="Invul Wings">8-12</invuln1>
+        <faf name="FAF">30</faf>
+        <dmg1 name="Sour Spot DMG">8.4</dmg1>
+        <dmg2 name="Sweet Spot DMG">10.8</dmg2>
+        <kill1 name="Sour Spot Kill %">163</kill1>
+        <kill2 name="Sweet Spot Kill %">160</kill2>
+    </uptilt>
+    <dash name="Dash Attack">
+        <active name="Hitbox Active">12-13</active>
+        <faf name="FAF">40</faf>
+        <dmg1 name="DMG">14.4</dmg1>
+        <kill1 name="Kill %">134</kill1>
+    </dash>
+    <dashattack name="Dash Attack">
+        <active name="Hitbox Active">12-13</active>
+        <faf name="FAF">40</faf>
+        <dmg1 name="DMG">14.4</dmg1>
+        <kill1 name="Kill %">134</kill1>
+    </dashattack>
+    <da name="Dash Attack">
+        <active name="Hitbox Active">12-13</active>
+        <faf name="FAF">40</faf>
+        <dmg1 name="DMG">14.4</dmg1>
+        <kill1 name="Kill %">134</kill1>
+    </da>
+    <fsmash name="Forward Smash">
+        <active name="Hitbox Active">18-21</active>
+        <faf name="FAF">54</faf>
+        <dmg1 name="No Charge DMG">24.0</dmg1>
+        <dmg2 name="Full Charge DMG">33.0</dmg2>
+        <kill1 name="No Charge Kill %">65.0</kill1>
+        <kill2 name="Full Charge Kill %">35.0</kill2>
+    </fsmash>
+    <dsmash name="Down Smash">
+        <active name="Hitbox Active">24-27</active>
+        <faf name="FAF">58</faf>
+        <dmg1 name="No Charge DMG">19.2</dmg1>
+        <dmg2 name="Full Charge DMG">26.8</dmg2>
+        <kill1 name="No Charge Kill %">100.0</kill1>
+        <kill2 name="Full Charge Kill %">63.0</kill2>
+    </dsmash>
+    <forwardsmash name="Forward Smash">
+        <active name="Hitbox Active">18-21</active>
+        <faf name="FAF">54</faf>
+        <dmg1 name="No Charge DMG">24.0</dmg1>
+        <dmg2 name="Full Charge DMG">33.0</dmg2>
+        <kill1 name="No Charge Kill %">65.0</kill1>
+        <kill2 name="Full Charge Kill %">35.0</kill2>
+    </forwardsmash>
+    <downsmash name="Down Smash">
+        <active name="Hitbox Active">24-27</active>
+        <faf name="FAF">58</faf>
+        <dmg1 name="No Charge DMG">19.2</dmg1>
+        <dmg2 name="Full Charge DMG">26.8</dmg2>
+        <kill1 name="No Charge Kill %">100.0</kill1>
+        <kill2 name="Full Charge Kill %">63.0</kill2>
+    </downsmash>
+    <usmash name="Up Smash">
+        <active name="Hitbox Active">12-16</active>
+        <intang name="Intagibility">12-16 (Leg he attacks with)</intang>
+        <faf name="FAF">48</faf>
+        <dmg1 name="No Charge DMG">20.4</dmg1>
+        <dmg2 name="Full Charge DMG">28.5</dmg2>
+        <kill1 name="No Charge Kill %">104.0</kill1>
+        <kill2 name="Full Charge Kill %">66.0</kill2>
+    </usmash>
+    <upsmash name="Up Smash">
+        <active name="Hitbox Active">12-16</active>
+        <intang name="Intagibility">12-16 (Leg he attacks with)</intang>
+        <faf name="FAF">48</faf>
+        <dmg1 name="No Charge DMG">20.4</dmg1>
+        <dmg2 name="Full Charge DMG">28.5</dmg2>
+        <kill1 name="No Charge Kill %">104.0</kill1>
+        <kill2 name="Full Charge Kill %">66.0</kill2>
+    </upsmash>
+    <nair name="Neutral Air">
+        <active name="Hitbox Active">8-20</active>
+        <faf name="FAF">40</faf>
+        <landing name="Landing Lag">12</landing>
+        <auto name="Auto Cancel">1-2 28+</auto>
+        <dmg1 name="SH/FH Sour DMG">9.1 / 10.8</dmg1>
+        <dmg2 name="SH/FH Sweet DMG">12.2 / 14.4</dmg2>
+        <dmg3 name="SH/FH Late DMG">5.1 / 6.0</dmg3>
+        <shKill name="SH/FH Kill %">185.0 / 183.0</shKill>
+    </nair>
+    <fair name="Forward Air">
+        <active name="Hitbox Active">10, 13, 16</active>
+        <faf name="FAF">42</faf>
+        <landing name="Landing Lag">16</landing>
+        <auto name="Auto Cancel">1-2 43+</auto>
+        <dmg1 name="SH/FH No Sweet DMG">11.2 / 13.2</dmg1>
+        <dmg2 name="SH/FH Sweet DMG">17.3 / 20.4</dmg2>
+        <shKill name="SH/FH Kill %">185.0 / 183.0</shKill>
+    </fair>
+    <bair name="Back Air">
+        <active name="Hitbox Active">10-12</active>
+        <faf name="FAF">44</faf>
+        <landing name="Landing Lag">17</landing>
+        <auto name="Auto Cancel">38+</auto>
+        <dmg1 name="SH/FH DMG">15.3 / 18.0</dmg1>
+        <shKill name="SH/FH Kill %">116.0 / 113.0</shKill>
+    </bair>
+    <neutralair name="Neutral Air">
+        <active name="Hitbox Active">8-20</active>
+        <faf name="FAF">40</faf>
+        <landing name="Landing Lag">12</landing>
+        <auto name="Auto Cancel">1-2 28+</auto>
+        <dmg1 name="SH/FH Sour DMG">9.1 / 10.8</dmg1>
+        <dmg2 name="SH/FH Sweet DMG">12.2 / 14.4</dmg2>
+        <dmg3 name="SH/FH Late DMG">5.1 / 6.0</dmg3>
+        <shKill name="SH/FH Kill %">185.0 / 183.0</shKill>
+    </neutralair>
+    <forwardair name="Forward Air">
+        <active name="Hitbox Active">10, 13, 16</active>
+        <faf name="FAF">42</faf>
+        <landing name="Landing Lag">16</landing>
+        <auto name="Auto Cancel">1-2 43+</auto>
+        <dmg1 name="SH/FH No Sweet DMG">11.2 / 13.2</dmg1>
+        <dmg2 name="SH/FH Sweet DMG">17.3 / 20.4</dmg2>
+        <shKill name="SH/FH Kill %">185.0 / 183.0</shKill>
+    </forwardair>
+    <backair name="Back Air">
+        <active name="Hitbox Active">10-12</active>
+        <faf name="FAF">44</faf>
+        <landing name="Landing Lag">17</landing>
+        <auto name="Auto Cancel">38+</auto>
+        <dmg1 name="SH/FH DMG">15.3 / 18.0</dmg1>
+        <shKill name="SH/FH Kill %">116.0 / 113.0</shKill>
+    </backair>
+    <uair name="Up Air">
+        <active name="Hitbox Active">11-13</active>
+        <faf name="FAF">40</faf>
+        <landing name="Landing Lag">14</landing>
+        <auto name="Auto Cancel">1-3 35+</auto>
+        <dmg1 name="SH/FH Sour DMG">12.2 / 14.4</dmg1>
+        <dmg2 name="SH/FH Sweet DMG">14.2 / 16.8</dmg2>
+        <shKill name="FH Kill %">142.0 (Sweet Spot, Ground Level)</shKill>
+    </uair>
+    <upair name="Up Air">
+        <active name="Hitbox Active">11-13</active>
+        <faf name="FAF">40</faf>
+        <landing name="Landing Lag">14</landing>
+        <auto name="Auto Cancel">1-3 35+</auto>
+        <dmg1 name="SH/FH Sour DMG">12.2 / 14.4</dmg1>
+        <dmg2 name="SH/FH Sweet DMG">14.2 / 16.8</dmg2>
+        <shKill name="FH Kill %">142.0 (Sweet Spot, Ground Level)</shKill>
+    </upair>
+    <dair name="Down Air">
+        <active name="Hitbox Active">11-40</active>
+        <active name="Spike Active">11-18</active>
+        <faf name="FAF">56</faf>
+        <landing name="Landing Lag">32</landing>
+        <auto name="Auto Cancel">1-3 50+</auto>
+        <dmg1 name="SH/FH Clean DMG">14.2 / 16.8</dmg1>
+        <dmg2 name="SH/FH Late DMG">12.2 / 14.4</dmg2>
+        <shKill name="SH/FH Late Kill %">134.0 / 132.0</shKill>
+    </dair>
+    <downair name="Down Air">
+        <active name="Hitbox Active">11-40</active>
+        <active name="Spike Active">11-18</active>
+        <faf name="FAF">56</faf>
+        <landing name="Landing Lag">32</landing>
+        <auto name="Auto Cancel">1-3 50+</auto>
+        <dmg1 name="SH/FH Clean DMG">14.2 / 16.8</dmg1>
+        <dmg2 name="SH/FH Late DMG">12.2 / 14.4</dmg2>
+        <shKill name="SH/FH Late Kill %">134.0 / 132.0</shKill>
+    </downair>
+    <neutralb name="Neutral Special">
+        <max name="Max Plasma Balls">5</max>
+        <lag name="Face Punch Lag">56</lag>
+        <shot1 name="No Charge Shot On">29</shot1>
+        <shot2 name="Full Charge Shot On">56, 64, 72, 80, 88</shot2>
+        <faf1 name="No Charge FAF">56</faf1>
+        <faf2 name="Full Charge FAF">105</faf2>
+        <dmg1 name="No Charge Base DMG">4.5 / 3.5 (late)</dmg1>
+        <dmg2 name="Full Charge Base DMG">5.6 / 4.4 (late)</dmg2>
+        <link name="Use the link below because there's a TON of data!">https://docs.google.com/spreadsheets/d/1udaSlt3obpNcNr8_emK9SmTOGR-U61j6AbFCr_Kqns4/edit#gid=0</link>
+    </neutralb>
+    <neutralspecial name="Neutral Special">
+        <max name="Max Plasma Balls">5</max>
+        <lag name="Face Punch Lag">56</lag>
+        <shot1 name="No Charge Shot On">29</shot1>
+        <shot2 name="Full Charge Shot On">56, 64, 72, 80, 88</shot2>
+        <faf1 name="No Charge FAF">56</faf1>
+        <faf2 name="Full Charge FAF">105</faf2>
+        <dmg1 name="No Charge Base DMG">4.5 / 3.5 (late)</dmg1>
+        <dmg2 name="Full Charge Base DMG">5.6 / 4.4 (late)</dmg2>
+        <link name="Use the link below because there's a TON of data!">https://docs.google.com/spreadsheets/d/1udaSlt3obpNcNr8_emK9SmTOGR-U61j6AbFCr_Kqns4/edit#gid=0</link>
+    </neutralspecial>
+    <plasma name="Neutral Special">
+        <max name="Max Plasma Balls">5</max>
+        <lag name="Face Punch Lag">56</lag>
+        <shot1 name="No Charge Shot On">29</shot1>
+        <shot2 name="Full Charge Shot On">56, 64, 72, 80, 88</shot2>
+        <faf1 name="No Charge FAF">56</faf1>
+        <faf2 name="Full Charge FAF">105</faf2>
+        <dmg1 name="No Charge Base DMG">4.5 / 3.5 (late)</dmg1>
+        <dmg2 name="Full Charge Base DMG">5.6 / 4.4 (late)</dmg2>
+        <link name="Use the link below because there's a TON of data!">https://docs.google.com/spreadsheets/d/1udaSlt3obpNcNr8_emK9SmTOGR-U61j6AbFCr_Kqns4/edit#gid=0</link>
+    </plasma>
+    <sideb name="Side Special">
+        <active name="Hitbox Active">22-34</active>
+        <faf name="FAF">79</faf>
+        <afaf name="Aerial FAF">61</afaf>
+        <dmg1 name="Slam DMG">4.8</dmg1>
+        <dmg2 name="DMG per 4 Frames">2.4</dmg2>
+        <dmg3 name="On Release DMG">8.4</dmg3>
+        <dmg4 name="Wall Throw DMG">14.4</dmg4>
+        <kill1 name="No/Full Drag No DI Kill %">124.0 / 117.0</kill1>
+        <kill2 name="No/Full Drag DI Kill %">152.0 / 148.0</kill2>
+    </sideb>
+    <sidespecial name="Side Special">
+        <active name="Hitbox Active">22-34</active>
+        <faf name="FAF">79</faf>
+        <afaf name="Aerial FAF">61</afaf>
+        <dmg1 name="Slam DMG">4.8</dmg1>
+        <dmg2 name="DMG per 4 Frames">2.4</dmg2>
+        <dmg3 name="On Release DMG">8.4</dmg3>
+        <dmg4 name="Wall Throw DMG">14.4</dmg4>
+        <kill1 name="No/Full Drag No DI Kill %">124.0 / 117.0</kill1>
+        <kill2 name="No/Full Drag DI Kill %">152.0 / 148.0</kill2>
+    </sidespecial>
+    <spr name="Side Special">
+        <active name="Hitbox Active">22-34</active>
+        <faf name="FAF">79</faf>
+        <afaf name="Aerial FAF">61</afaf>
+        <dmg1 name="Slam DMG">4.8</dmg1>
+        <dmg2 name="DMG per 4 Frames">2.4</dmg2>
+        <dmg3 name="On Release DMG">8.4</dmg3>
+        <dmg4 name="Wall Throw DMG">14.4</dmg4>
+        <kill1 name="No/Full Drag No DI Kill %">124.0 / 117.0</kill1>
+        <kill2 name="No/Full Drag DI Kill %">152.0 / 148.0</kill2>
+    </spr>
+    <downb name="Down Special">
+        <active name="Hitbox Active">30-31</active>
+        <faf name="FAF">68</faf>
+        <dmg1 name="Sour DMG">6.0</dmg1>
+        <dmg1 name="Sweet DMG">60.0</dmg1>
+        <adv name="Frame Advantage">-11</adv>
+    </downb>
+    <downspecial name="Down Special">
+        <active name="Hitbox Active">30-31</active>
+        <faf name="FAF">68</faf>
+        <dmg1 name="Sour DMG">6.0</dmg1>
+        <dmg1 name="Sweet DMG">60.0</dmg1>
+        <adv name="Frame Advantage">-11</adv>
+    </downspecial>
+    <skewer name="Down Special">
+        <active name="Hitbox Active">30-31</active>
+        <faf name="FAF">68</faf>
+        <dmg1 name="Sour DMG">6.0</dmg1>
+        <dmg1 name="Sweet DMG">60.0</dmg1>
+        <adv name="Frame Advantage">-11</adv>
+    </skewer>
+    <upb name="Up Special">
+        <active1 name="Hitbox Active Up">37-60</active1>
+        <active2 name="Hitbox Active Sideways">39-58</active2>
+        <active3 name="Hitbox Active Down">40-62</active3>
+        <lag name="Landing Lag (Down Only)">35</lag>
+        <dmg1 name="DMG Up">21.6</dmg1>
+        <dmg2 name="DMG Sideways">19.2</dmg2>
+        <dmg3 name="DMG Down">18.0 / 6.0 (Landing Hitbox)</dmg3>
+        <shKill1 name="Kill % Up">149.0</shKill1>
+        <shKill2 name="Kill % Forwards">100.0</shKill2>
+        <shKill3 name="Kill % Backwards">123.0</shKill3>
+        <shKill4 name="Kill % Down">142.0</shKill4>
+    </upb>
+    <upspecial name="Up Special">
+        <active1 name="Hitbox Active Up">37-60</active1>
+        <active2 name="Hitbox Active Sideways">39-58</active2>
+        <active3 name="Hitbox Active Down">40-62</active3>
+        <lag name="Landing Lag (Down Only)">35</lag>
+        <dmg1 name="DMG Up">21.6</dmg1>
+        <dmg2 name="DMG Sideways">19.2</dmg2>
+        <dmg3 name="DMG Down">18.0 / 6.0 (Landing Hitbox)</dmg3>
+        <shKill1 name="Kill % Up">149.0</shKill1>
+        <shKill2 name="Kill % Forwards">100.0</shKill2>
+        <shKill3 name="Kill % Backwards">123.0</shKill3>
+        <shKill4 name="Kill % Down">142.0</shKill4>
+    </upspecial>
+    <recovery name="Up Special">
+        <active1 name="Hitbox Active Up">37-60</active1>
+        <active2 name="Hitbox Active Sideways">39-58</active2>
+        <active3 name="Hitbox Active Down">40-62</active3>
+        <lag name="Landing Lag (Down Only)">35</lag>
+        <dmg1 name="DMG Up">21.6</dmg1>
+        <dmg2 name="DMG Sideways">19.2</dmg2>
+        <dmg3 name="DMG Down">18.0 / 6.0 (Landing Hitbox)</dmg3>
+        <shKill1 name="Kill % Up">149.0</shKill1>
+        <shKill2 name="Kill % Forwards">100.0</shKill2>
+        <shKill3 name="Kill % Backwards">123.0</shKill3>
+        <shKill4 name="Kill % Down">142.0</shKill4>
+    </recovery>
+    <wingblitz name="Up Special">
+        <active1 name="Hitbox Active Up">37-60</active1>
+        <active2 name="Hitbox Active Sideways">39-58</active2>
+        <active3 name="Hitbox Active Down">40-62</active3>
+        <lag name="Landing Lag (Down Only)">35</lag>
+        <dmg1 name="DMG Up">21.6</dmg1>
+        <dmg2 name="DMG Sideways">19.2</dmg2>
+        <dmg3 name="DMG Down">18.0 / 6.0 (Landing Hitbox)</dmg3>
+        <shKill1 name="Kill % Up">149.0</shKill1>
+        <shKill2 name="Kill % Forwards">100.0</shKill2>
+        <shKill3 name="Kill % Backwards">123.0</shKill3>
+        <shKill4 name="Kill % Down">142.0</shKill4>
+    </wingblitz>
+    <fthrow name="Forward Throw">
+        <active name="Thrown On">13</active>
+        <faf name="FAF">38</faf>
+        <dmg1 name="DMG">10.8</dmg1>
+    </fthrow>
+    <bthrow name="Back Throw">
+        <active name="Thrown On">18</active>
+        <faf name="FAF">46</faf>
+        <dmg1 name="DMG">13.2</dmg1>
+        <kill1 name="No DI Default Kill %">187.0</kill1>
+        <kill2 name="No DI Edge Kill %">152.0</kill2>
+        <kill3 name="DI Edge Kill %">196.0</kill3>
+    </bthrow>
+    <uthrow name="Up Throw">
+        <active name="Thrown On">19</active>
+        <faf name="FAF">44</faf>
+        <dmg1 name="DMG">14.4</dmg1>
+        <kill1 name="No DI Kill %">193.0</kill1>
+        <kill2 name="DI Kill %">197.0</kill2>
+    </uthrow>
+    <upthrow name="Up Throw">
+        <active name="Thrown On">19</active>
+        <faf name="FAF">44</faf>
+        <dmg1 name="DMG">14.4</dmg1>
+        <kill1 name="No DI Kill %">193.0</kill1>
+        <kill2 name="DI Kill %">197.0</kill2>
+    </upthrow>
+    <dthrow name="Down Throw">
+        <active name="Thrown On">22</active>
+        <faf name="FAF">36</faf>
+        <dmg1 name="DMG">8.4</dmg1>
+        <kill1 name="No DI Default Kill %">181.0</kill1>
+        <kill2 name="DI Neutral Getup Kill %">206.0</kill2>
+        <kill2 name="DI-ing for Fthrow (in) %">176.0</kill2>
+    </dthrow>
+    <forwardthrow name="Forward Throw">
+        <active name="Thrown On">13</active>
+        <faf name="FAF">38</faf>
+        <dmg1 name="DMG">10.8</dmg1>
+    </forwardthrow>
+    <backthrow name="Back Throw">
+        <active name="Thrown On">18</active>
+        <faf name="FAF">46</faf>
+        <dmg1 name="DMG">13.2</dmg1>
+        <kill1 name="No DI Default Kill %">187.0</kill1>
+        <kill2 name="No DI Edge Kill %">152.0</kill2>
+        <kill3 name="DI Edge Kill %">196.0</kill3>
+    </backthrow>
+    <downthrow name="Down Throw">
+        <active name="Thrown On">22</active>
+        <faf name="FAF">36</faf>
+        <dmg1 name="DMG">8.4</dmg1>
+        <kill1 name="No DI Default Kill %">181.0</kill1>
+        <kill2 name="DI Neutral Getup Kill %">206.0</kill2>
+        <kill2 name="DI-ing for Fthrow (in) %">176.0</kill2>
+    </downthrow>
+</stats>

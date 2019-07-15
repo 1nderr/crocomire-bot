@@ -1,0 +1,123 @@
+#!/usr/bin/env python3
+import discord
+import xml.etree.ElementTree as ET
+
+# GLOBALS
+token = "REDACTED"
+footerIcon = "https://cdn.discordapp.com/emojis/562502263399251968.png?v=1"
+docLink = "https://docs.google.com/document/d/1DFeQrzvIgG6XaRa4fw2hULfGLmlLuIRpkZ2hY8FMsW8/edit"
+prefix = "?"
+imgPath = "Images/"
+embedColor = 11957467
+client = discord.Client()
+statTree = ET.parse('stats.xml')
+cmdTree = ET.parse('commands.xml')
+
+moveset = {
+    "fair":"Fair.png", "fsmash":"Fsmash.png", "ftilt":"Ftilt.png", "fthrow":"fthrow.png",
+    "bair":"Bair.png", "bthrow":"bthrow.png",
+    "dair":"Dair.png", "dsmash":"Dsmash.png", "dtilt":"Dtilt.png", "dthrow":"dthrow.png",
+    "upair":"Uair.png", "upsmash":"Upsmash.png", "uptilt":"Uptilt.png", "upthrow":"uthrow.png",
+    "nair":"Nair.png", "neutralair":"Nair.png", "jab":"Jab.png", "ridley":"ridley.png",
+    "uair":"Uair.png", "usmash":"Upsmash.png", "uthrow":'uthrow.png', "utilt":"Uptilt.png",
+    "dash":"Dash.png", "dashattack":"Dash.png", "da":"Dash.png",
+    "downb":"Skewer.png", "sideb":"Space_Pirate_Rush.png", "neutralb":"Plasma.png", "upb":"upB.png",
+    "skewer":"Skewer.png", "spr":"Space_Pirate_Rush.png", "plasma":"Plasma.png", "recovery":"upB.png", "wingblitz":"upB.png",
+    "forwardair":"Fair.png", "forwardsmash":"Fsmash.png", "forwardtilt":"Ftilt.png", "forwardthrow":"fthrow.png",
+    "backair":"Bair.png", "backthrow":"backthrow.png",
+    "downair":"Dair.png", "downsmash":"Dsmash.png", "downtilt":"Dtilt.png", "downthrow":"dthrow.png",
+    "downspecial":"Skewer.png", "sidespecial":"Space_Pirate_Rush.png", "neutralspecial":"Plasma.png", "upspecial":"upB.png"
+}
+
+# Sets the given embed's thumbnail to a local URL to set a local thumbnail image
+def CreateEmbedImage(embed, filename):
+    imgURL = "attachment://" + "img.png"
+    embed.set_image(url=imgURL)
+    f = discord.File(filename, "img.png")
+    return f
+
+# Sets the given embed's thumbnail to a local URL to set a local thumbnail image
+def CreateEmbedThumbnail(embed, filename):
+    imgURL = "attachment://" + "img.png"
+    embed.set_thumbnail(url=imgURL)
+    f = discord.File(filename, "img.png")
+    return f
+
+# Generates an embedded message from the given xml root
+def CreateXMLEmbed(title, inline, root, nameAttribute):
+    embed = discord.Embed(title=title, color=embedColor)
+    for node in root:
+        fieldName = node.get(nameAttribute)
+        embed.add_field(name=fieldName, value=node.text, inline=inline)
+    return embed
+
+# Returns the image of the given move
+def GetVizMessage(move):
+    if move in list(moveset.keys()):
+        embed = discord.Embed(color=embedColor)
+        filename = imgPath + moveset[move]
+        f = CreateEmbedImage(embed, filename)
+        return embed, f
+
+# Returns the embedded stat message and image of the given move
+def GetStatMessage(move):
+    statRoot = statTree.getroot()
+    statNode = statRoot.find(move)
+    title = "__" + statNode.get("name") + "__"
+    filename = imgPath + moveset[move]
+    embed = CreateXMLEmbed(title, True, statNode, "name")
+    f = CreateEmbedThumbnail(embed, filename)
+    return embed, f
+
+# Generates and returns the embedded help message
+def GetHelpMessage():
+    title = "__Ridley Stats Commands__"
+    cmdRoot = cmdTree.getroot()
+    embed = CreateXMLEmbed(title, False, cmdRoot, "name")
+    return embed
+
+# Generates and returns the embedded Ridleycord docs message
+def GetDocMessage():
+    title = "__Ridleycord Documentation__"
+    embed = discord.Embed(title=title, color=embedColor)
+    embed.add_field(name="Link to the Doc:", value=docLink)
+    return embed
+
+# Changes the bot's presence when ready
+@client.event
+async def on_ready():
+    await client.change_presence(activity=discord.Game(name="Type %shelp" % prefix))
+
+# Waits for events
+@client.event
+async def on_message(message):  
+    if message.author == client.user:
+        return
+
+    try:
+        msg = message.content.split()
+        command = msg[0]
+        move = "".join(msg[1:]).lower()
+    except IndexError:
+        return
+
+    if command == prefix + "help":
+        helpEmbed = GetHelpMessage()
+        await message.author.send(embed=helpEmbed)
+    elif command == prefix + "docs" or command == prefix + "doc":
+        docEmbed = GetDocMessage()
+        await message.channel.send(embed=docEmbed)
+    elif command == prefix + "viz":
+        if len(msg) == 1:
+            await message.channel.send("Bruh say a move after the command. Ex: `?stats nair`")
+            return
+        vizEmbed, image = GetVizMessage(move)
+        await message.channel.send(embed=vizEmbed, file=image)
+    elif command == prefix + "stats":
+        if len(msg) == 1:
+            await message.channel.send("Bruh say a move after the command. Ex: `?stats nair`")
+            return
+        statEmbed, image = GetStatMessage(move)
+        await message.channel.send(embed=statEmbed, file=image)
+
+client.run(token)
