@@ -4,6 +4,7 @@ import xml.etree.ElementTree as ET
 
 # GLOBALS
 token = "REDACTED"
+#token = "REDACTED" #Test Bot Token
 footerIcon = "https://cdn.discordapp.com/emojis/562502263399251968.png?v=1"
 docLink = "https://docs.google.com/document/d/1DFeQrzvIgG6XaRa4fw2hULfGLmlLuIRpkZ2hY8FMsW8/edit"
 labLink = "https://docs.google.com/spreadsheets/d/1dnxndTKxjMVKTl0v8YYUnY1X80lgOOFK17OAw2BwVpI/edit?usp=sharing"
