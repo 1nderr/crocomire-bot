@@ -62,7 +62,6 @@ def GetVizMessage(move):
 
 # Generates and returns an embedded resource/link message
 def GetEmbedMessage(embedName, inline):
-	print(embedName)
 	embedNode = embedRoot.find(embedName)
 	title = "__" + embedNode.get("name") + "__"
 	filename = imgPath + moveset[embedName]
