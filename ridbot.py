@@ -13,23 +13,6 @@ client = discord.Client()
 embedTree = ET.parse('embeds.xml')
 embedRoot = embedTree.getroot()
 
-moveset = {
-	"fair":"Fair.png", "fsmash":"Fsmash.png", "ftilt":"Ftilt.png", "fthrow":"fthrow.png",
-	"bair":"Bair.png", "bthrow":"bthrow.png",
-	"dair":"Dair.png", "dsmash":"Dsmash.png", "dtilt":"Dtilt.png", "dthrow":"dthrow.png",
-	"upair":"Uair.png", "upsmash":"Upsmash.png", "uptilt":"Uptilt.png", "upthrow":"uthrow.png",
-	"nair":"Nair.png", "neutralair":"Nair.png", "jab":"Jab.png", "ridley":"ridley.png",
-	"uair":"Uair.png", "usmash":"Upsmash.png", "uthrow":'uthrow.png', "utilt":"Uptilt.png",
-	"dash":"Dash.png", "dashattack":"Dash.png", "da":"Dash.png",
-	"downb":"Skewer.png", "sideb":"Space_Pirate_Rush.png", "neutralb":"Plasma.png", "upb":"upB.png",
-	"skewer":"Skewer.png", "spr":"Space_Pirate_Rush.png", "plasma":"Plasma.png", "recovery":"upB.png", "wingblitz":"upB.png",
-	"forwardair":"Fair.png", "forwardsmash":"Fsmash.png", "forwardtilt":"Ftilt.png", "forwardthrow":"fthrow.png",
-	"backair":"Bair.png", "backthrow":"backthrow.png",
-	"downair":"Dair.png", "downsmash":"Dsmash.png", "downtilt":"Dtilt.png", "downthrow":"dthrow.png",
-	"downspecial":"Skewer.png", "sidespecial":"Space_Pirate_Rush.png", "neutralspecial":"Plasma.png", "upspecial":"upB.png",
-	"vods":"vods.png", "op":"op.png", "social":"social.png", "docs":"docs.png", "help":"croc.png"
-}
-
 # Sets the given embed's thumbnail to a local URL to set a local thumbnail image
 def CreateEmbedImage(embed, filename):
 	imgURL = "attachment://" + "img.png"
@@ -54,17 +37,17 @@ def CreateXMLEmbed(title, inline, root, nameAttribute):
 
 # Returns the image of the given move
 def GetVizMessage(move):
-	if move in list(moveset.keys()):
-		embed = discord.Embed(color=embedColor)
-		filename = imgPath + moveset[move]
-		f = CreateEmbedImage(embed, filename)
-		return embed, f
+	embedNode = embedRoot.find(move)
+	embed = discord.Embed(color=embedColor)
+	filename = imgPath + embedNode.get("image")
+	f = CreateEmbedImage(embed, filename)
+	return embed, f
 
 # Generates and returns an embedded resource/link message
 def GetEmbedMessage(embedName, inline):
 	embedNode = embedRoot.find(embedName)
 	title = "__" + embedNode.get("name") + "__"
-	filename = imgPath + moveset[embedName]
+	filename = imgPath + embedNode.get("image")
 	embed = CreateXMLEmbed(title, inline, embedNode, "name")
 	f = CreateEmbedThumbnail(embed, filename)
 	return embed, f
