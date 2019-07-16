@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "./ridbot.py", line 163, in <module>
+    client.run(token)
+  File "/home/pi/.local/lib/python3.7/site-packages/discord/client.py", line 595, in run
+    _cleanup_loop(loop)
+  File "/home/pi/.local/lib/python3.7/site-packages/discord/client.py", line 92, in _cleanup_loop
+    _cancel_tasks(loop)
+  File "/home/pi/.local/lib/python3.7/site-packages/discord/client.py", line 77, in _cancel_tasks
+    loop.run_until_complete(asyncio.gather(*tasks, loop=loop, return_exceptions=True))
+  File "/usr/lib/python3.7/asyncio/base_events.py", line 582, in run_until_complete
+    raise RuntimeError('Event loop stopped before Future completed.')
+RuntimeError: Event loop stopped before Future completed.
