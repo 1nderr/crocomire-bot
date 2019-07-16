@@ -1,19 +1,17 @@
-#!/usr/bin/env python3
 import discord
 import xml.etree.ElementTree as ET
 
 # GLOBALS
-token = "REDACTED"
-#token = "REDACTED" #Test Bot Token
+#token = "REDACTED"
+token = "REDACTED" #Test Bot Token
 footerIcon = "https://cdn.discordapp.com/emojis/562502263399251968.png?v=1"
 prefix = "?"
 imgPath = "Images/"
+textCmds = ["op", "social", "help", "vods", "docs"]
 embedColor = 10170673
-resourceCmds = ["docs", "vods", "op", "social"]
 client = discord.Client()
-statTree = ET.parse('stats.xml')
-cmdTree = ET.parse('commands.xml')
-linkTree = ET.parse('links.xml')
+embedTree = ET.parse('embeds.xml')
+embedRoot = embedTree.getroot()
 
 moveset = {
 	"fair":"Fair.png", "fsmash":"Fsmash.png", "ftilt":"Ftilt.png", "fthrow":"fthrow.png",
@@ -28,7 +26,8 @@ moveset = {
 	"forwardair":"Fair.png", "forwardsmash":"Fsmash.png", "forwardtilt":"Ftilt.png", "forwardthrow":"fthrow.png",
 	"backair":"Bair.png", "backthrow":"backthrow.png",
 	"downair":"Dair.png", "downsmash":"Dsmash.png", "downtilt":"Dtilt.png", "downthrow":"dthrow.png",
-	"downspecial":"Skewer.png", "sidespecial":"Space_Pirate_Rush.png", "neutralspecial":"Plasma.png", "upspecial":"upB.png"
+	"downspecial":"Skewer.png", "sidespecial":"Space_Pirate_Rush.png", "neutralspecial":"Plasma.png", "upspecial":"upB.png",
+	"vods":"vods.png", "op":"op.png", "social":"social.png", "docs":"docs.png", "help":"croc.png"
 }
 
 # Sets the given embed's thumbnail to a local URL to set a local thumbnail image
@@ -61,30 +60,15 @@ def GetVizMessage(move):
 		f = CreateEmbedImage(embed, filename)
 		return embed, f
 
-# Returns the embedded stat message and image of the given move
-def GetStatMessage(move):
-	statRoot = statTree.getroot()
-	statNode = statRoot.find(move)
-	title = "__" + statNode.get("name") + "__"
-	filename = imgPath + moveset[move]
-	embed = CreateXMLEmbed(title, True, statNode, "name")
+# Generates and returns an embedded resource/link message
+def GetEmbedMessage(embedName, inline):
+	print(embedName)
+	embedNode = embedRoot.find(embedName)
+	title = "__" + embedNode.get("name") + "__"
+	filename = imgPath + moveset[embedName]
+	embed = CreateXMLEmbed(title, inline, embedNode, "name")
 	f = CreateEmbedThumbnail(embed, filename)
 	return embed, f
-
-# Generates and returns the embedded help message
-def GetHelpMessage():
-	title = "__Ridley Stats Commands__"
-	cmdRoot = cmdTree.getroot()
-	embed = CreateXMLEmbed(title, False, cmdRoot, "name")
-	return embed
-
-# Generates and returns an embedded resource/link message
-def GetResourceMessage(resourceName):
-	linkRoot = linkTree.getroot()
-	linkNode = linkRoot.find(resourceName)
-	title = "__" + linkNode.get("name") + "__"
-	embed = CreateXMLEmbed(title, False, linkNode, "name")
-	return embed
 
 # Changes the bot's presence when ready
 @client.event
@@ -101,28 +85,28 @@ async def on_message(message):
 		msg = message.content.split()
 		givenPre = msg[0][0]
 		command = msg[0][1:].lower()
-		move = "".join(msg[1:]).lower()
+		if command == "stats" or command == "viz":
+			move = "".join(msg[1:]).lower()
+			if move == "":
+				await message.channel.send("Bruh say a move after the command. Ex: `?%s nair`" % command)
 	except IndexError:
 		return
 
 	if givenPre == prefix:
-		if command == "help":
-			embed = GetHelpMessage()
-			await message.author.send(embed=embed)
-		elif command in resourceCmds:
-			embed = GetResourceMessage(command)
-			await message.channel.send(embed=embed)
-		elif command == "viz":
-			if len(msg) == 1:
-				await message.channel.send("Bruh say a move after the command. Ex: `?stats nair`")
-				return
+		if command == "viz":
 			embed, image = GetVizMessage(move)
-			await message.channel.send(embed=embed, file=image)
-		elif command == "stats":
-			if len(msg) == 1:
-				await message.channel.send("Bruh say a move after the command. Ex: `?stats nair`")
-				return
-			embed, image = GetStatMessage(move)
+		else:
+			if command == "stats":
+				embedName = move
+				inline = True
+			elif command in textCmds:
+				embedName = command
+				inline = False
+			embed, image = GetEmbedMessage(embedName, inline)
+
+		if command == "help":
+			await message.author.send(embed=embed, file=image)
+		else:
 			await message.channel.send(embed=embed, file=image)
 
 client.run(token)
