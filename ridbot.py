@@ -1,8 +1,8 @@
 import discord
 import xml.etree.ElementTree as ET
 
-token = "REDACTED"
-#token = "REDACTED" #Test Bot Token
+#token = "REDACTED"
+token = "REDACTED" #Test Bot Token
 prefix = "?"
 imgPath = "Images/"
 textCmds = ["op", "social", "help", "vods", "docs"]
@@ -64,9 +64,9 @@ async def on_message(message):
 		return
 
 	if char1 == prefix:
-		if command == "viz":
+		if command == "viz" and move not in textCmds:
 			embed, attach = GetEmbedMessage(move, "image", False, False)
-		elif command == "stats":
+		elif command == "stats" and move not in textCmds:
 			embed, attach = GetEmbedMessage(move, "text", True, True)
 		elif command in textCmds:
 			embed, attach = GetEmbedMessage(command, "text", False, True)
