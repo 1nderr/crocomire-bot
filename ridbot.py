@@ -6,10 +6,29 @@ token = "REDACTED" #Test Bot Token
 prefix = "?"
 imgPath = "Images/"
 textCmds = ["op", "social", "help", "vods", "docs"]
+moveset = {}
 embedColor = 10170673
 client = discord.Client()
 embedTree = ET.parse('embeds.xml')
 embedRoot = embedTree.getroot()
+
+def ParseSynonyms():
+	tree = ET.parse('moveset.xml')
+	root = tree.getroot()
+	for move in root:
+		synonyms = []
+		for synonym in move:
+			synonyms.append(synonym.text)
+		moveset[move.tag] = synonyms
+
+def TranslateMove(move):
+	moveList = list(moveset.keys())
+	if move in moveList:
+		return move
+	for i in moveList:
+		if move in moveset[i]:
+			return i
+	return "Invalid Move"
 
 def EmbedAttachment(embed, filename, attachType):
 	imgURL = "attachment://" + "img.png"
@@ -60,6 +79,12 @@ async def on_message(message):
 			move = "".join(msg[1:]).lower()
 			if move == "":
 				await message.channel.send("Bruh say a move after the command. Ex: `?%s nair`" % command)
+				return
+			else:
+				move = TranslateMove(move)
+				if move == "Invalid Move":
+					await message.channel.send("Bruh I don't recognize that move.")
+					return
 	except IndexError:
 		return
 
@@ -76,4 +101,5 @@ async def on_message(message):
 		else:
 			await message.channel.send(embed=embed, file=attach)
 
+ParseSynonyms()
 client.run(token)
