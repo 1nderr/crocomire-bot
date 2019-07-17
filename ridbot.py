@@ -1,8 +1,8 @@
 import discord
 import xml.etree.ElementTree as ET
 
-#token = "REDACTED"
-token = "REDACTED" #Test Bot Token
+token = "REDACTED"
+#token = "REDACTED" #Test Bot Token
 prefix = "?"
 imgPath = "Images/"
 textCmds = ["op", "social", "help", "vods", "docs"]
@@ -45,7 +45,7 @@ def GetEmbedMessage(embedName, embedType, inline, thumbnail):
 
 @client.event
 async def on_ready():
-	await client.change_presence(activity=discord.Game(name="Type %shelp" % prefix))
+	await client.change_presence(activity=discord.Game(name="Bruh, Type %shelp" % prefix))
 
 @client.event
 async def on_message(message):  
@@ -70,7 +70,7 @@ async def on_message(message):
 			embed, attach = GetEmbedMessage(move, "text", True, True)
 		elif command in textCmds:
 			embed, attach = GetEmbedMessage(command, "text", False, True)
-
+		
 		if command == "help":
 			await message.author.send(embed=embed, file=attach)
 		else:
