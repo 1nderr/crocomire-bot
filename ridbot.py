@@ -1,8 +1,10 @@
 import discord
 import xml.etree.ElementTree as ET
 
-#token = "REDACTED"
-token = "REDACTED" #Test Bot Token
+#tokenFile = open("test", "r")
+tokenFile = open("token", "r")
+token = tokenFile.read().strip()
+tokenFile.close()
 prefix = "?"
 imgPath = "Images/"
 textCmds = ["op", "social", "help", "vods", "docs"]

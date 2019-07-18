@@ -77,7 +77,10 @@
         <syn>upsmash</syn>
         <syn>upwardsmash</syn>
     </usmash>
-    <grab></grab>
+    <grab>
+        <syn>dashgrab</syn>
+        <syn>pivotgrab</syn>
+    </grab>
     <fthrow>
         <syn>forwardthrow</syn>
     </fthrow>
