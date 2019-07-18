@@ -3,8 +3,8 @@ import xml.etree.ElementTree as ET
 from os import listdir
 from random import choice, seed
 
-tokenFile = open("test", "r")
-#tokenFile = open("token", "r")
+#tokenFile = open("test", "r")
+tokenFile = open("token", "r")
 token = tokenFile.read().strip()
 tokenFile.close()
 prefix = "?"
