@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <moves>
+    <ridley></ridley>
     <fair>
         <syn>forwardair</syn>
         <syn>forwardaerial</syn>
