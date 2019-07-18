@@ -7,7 +7,7 @@ token = tokenFile.read().strip()
 tokenFile.close()
 prefix = "?"
 imgPath = "Images/"
-textCmds = ["op", "social", "help", "vods", "docs"]
+textCmds = ["op", "social", "help", "vods", "docs", "levels"]
 moveset = {}
 embedColor = 10170673
 client = discord.Client()
@@ -97,6 +97,8 @@ async def on_message(message):
 			embed, attach = GetEmbedMessage(move, "text", True, True)
 		elif command in textCmds:
 			embed, attach = GetEmbedMessage(command, "text", False, True)
+		else:
+			return
 		
 		if command == "help":
 			await message.author.send(embed=embed, file=attach)

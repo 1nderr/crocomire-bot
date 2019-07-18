@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <embeds>
+    <levels name="Ridleycord Mario Maker 2 Levels" image="mariomaker.png">
+        <field name="Level Spreadsheet">https://docs.google.com/spreadsheets/d/1lSQUpZnJ0WKFmnLqvlNNWp3qxuWZuSHlYb0Sctwneuk/edit#gid=0</field>
+    </levels>
     <help name="Ridley Stats Commands" image="croc.png">
         <field name="?docs">Links the Ridleycord resources, lab, and guide docs.</field>
         <field name="?help">Sends the user a list of commands.</field>
+        <field name="?levels">Links the Ridleycord Mario Maker 2 level spreadsheet.</field>
         <field name="?op">Links the Ridleycord anime opening.</field>
         <field name="?stats [move]">Displays an embedded message with a given move's stats. (Including Ridley's stats and taunts)</field>
         <field name="?social">Links the Ridleycord social media.</field>
