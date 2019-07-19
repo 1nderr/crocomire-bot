@@ -27,8 +27,8 @@
         <field name="Streamable">https://streamable.com/zj6gz</field>
     </op>
     <social name="Ridleycord Social Media" image="social.png">
-        <field name="Twitter">https://www.youtube.com/channel/UCPTi_HYm1_96rpIVgXQEeEA</field>
-        <field name="YouTube">https://twitter.com/RidleyDiscord</field>
+        <field name="Twitter">https://twitter.com/RidleyDiscord</field>
+        <field name="YouTube">https://www.youtube.com/channel/UCPTi_HYm1_96rpIVgXQEeEA</field>
     </social>
     <ridley name="Ridley's Stats" image="ridley.png">
         <field name="Jumps">3</field>
