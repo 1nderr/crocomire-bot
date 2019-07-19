@@ -84,6 +84,8 @@ async def on_message(message):
 	try:
 		msg = message.content.split()
 		char1 = msg[0][0]
+		if char1 != prefix:
+			return
 		command = msg[0][1:].lower()
 		if command == "stats" or command == "viz":
 			move = "".join(msg[1:]).lower()
@@ -98,21 +100,20 @@ async def on_message(message):
 	except IndexError:
 		return
 
-	if char1 == prefix:
-		if command == "viz":
-			embed, attach = GetImageMessage(move)
-		elif command == "stats":
-			embed, attach = GetEmbedMessage(move, True, True)
-		elif command in textCmds:
-			embed, attach = GetEmbedMessage(command, False, True)
-		elif command in imgCmds:
-			embed, attach = GetImageMessage(command)
-		else:
-			return
-		if command == "help":
-			await message.author.send(embed=embed, file=attach)
-		else:
-			await message.channel.send(embed=embed, file=attach)
+	if command == "viz":
+		embed, attach = GetImageMessage(move)
+	elif command == "stats":
+		embed, attach = GetEmbedMessage(move, True, True)
+	elif command in textCmds:
+		embed, attach = GetEmbedMessage(command, False, True)
+	elif command in imgCmds:
+		embed, attach = GetImageMessage(command)
+	else:
+		return
+	if command == "help":
+		await message.author.send(embed=embed, file=attach)
+	else:
+		await message.channel.send(embed=embed, file=attach)
 
 ParseSynonyms()
 client.run(token)
