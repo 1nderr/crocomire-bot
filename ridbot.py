@@ -74,7 +74,7 @@ def GetImageMessage(command):
 
 @client.event
 async def on_ready():
-	await client.change_presence(activity=discord.Game(name="Bruh, Type %shelp" % prefix))
+	await client.change_presence(status=discord.Status.do_not_disturb, activity=discord.Game(name="Bruh, Type %shelp" % prefix))
 
 @client.event
 async def on_message(message):  

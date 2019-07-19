@@ -3,7 +3,9 @@
     <ridley></ridley>
     <fair>
         <syn>forwardair</syn>
+        <syn>forwardsair</syn>
         <syn>forwardaerial</syn>
+        <syn>forwardsaerial</syn>
     </fair>
     <nair>
         <syn>neutralair</syn>
@@ -13,11 +15,15 @@
         <syn>downair</syn>
         <syn>downaerial</syn>
         <syn>downwardair</syn>
+        <syn>downwardsair</syn>
         <syn>downwardaerial</syn>
+        <syn>downwardsaerial</syn>
     </dair>
     <bair>
         <syn>backair</syn>
         <syn>backaerial</syn>
+        <syn>backwardsair</syn>
+        <syn>backwardsaerial</syn>
         <syn>backwardaerial</syn>
         <syn>backwardair</syn>
     </bair>
@@ -25,19 +31,24 @@
         <syn>upair</syn>
         <syn>upaerial</syn>
         <syn>upwardaerial</syn>
+        <syn>upwardsaerial</syn>
+        <syn>upwardsair</syn>
         <syn>upwardair</syn>
     </uair>
     <jab></jab>
     <ftilt>
         <syn>forwardtilt</syn>
+        <syn>forwardstilt</syn>
     </ftilt>
     <dtilt>
         <syn>downtilt</syn>
         <syn>downwardtilt</syn>
+        <syn>downwardstilt</syn>
     </dtilt>
     <utilt>
         <syn>uptilt</syn>
         <syn>upwardtilt</syn>
+        <syn>upwardstilt</syn>
     </utilt>
     <dash>
         <syn>dashattack</syn>
@@ -46,67 +57,93 @@
     <neutralb>
         <syn>plasma</syn>
         <syn>neutralspecial</syn>
+        <syn>nspecial</syn>
+        <syn>nb</syn>
     </neutralb>
     <sideb>
         <syn>sidespecial</syn>
+        <syn>sspecial</syn>
+        <syn>sidewayspecial</syn>
         <syn>sidewaysspecial</syn>
         <syn>rush</syn>
         <syn>spacepiraterush</syn>
         <syn>spr</syn>
+        <syn>sb</syn>
     </sideb>
     <upb>
         <syn>uppecial</syn>
         <syn>upwardb</syn>
+        <syn>upwardsb</syn>
         <syn>upwardspecial</syn>
+        <syn>upwardsspecial</syn>
         <syn>wingblitz</syn>
         <syn>recovery</syn>
+        <syn>ub</syn>
+        <syn>uspecial</syn>
     </upb>
     <downb>
         <syn>downspecial</syn>
         <syn>downwardb</syn>
+        <syn>downwardsb</syn>
         <syn>downwardspecial</syn>
+        <syn>downwardsspecial</syn>
         <syn>skewer</syn>
+        <syn>dspecial</syn>
     </downb>
     <fsmash>
         <syn>forwardsmash</syn>
+        <syn>forwardssmash</syn>
     </fsmash>
     <dsmash>
         <syn>downsmash</syn>
         <syn>downwardsmash</syn>
+        <syn>downwardssmash</syn>
     </dsmash>
     <usmash>
         <syn>upsmash</syn>
         <syn>upwardsmash</syn>
+        <syn>upwardssmash</syn>
     </usmash>
     <grab>
         <syn>dashgrab</syn>
         <syn>pivotgrab</syn>
+        <syn>standinggrab</syn>
+        <syn>dgrab</syn>
+        <syn>sgrab</syn>
+        <syn>pgrab</syn>
     </grab>
     <fthrow>
         <syn>forwardthrow</syn>
+        <syn>forwardsthrow</syn>
     </fthrow>
     <dthrow>
         <syn>downthrow</syn>
         <syn>downwardthrow</syn>
+        <syn>downwardsthrow</syn>
     </dthrow>
     <uthrow>
         <syn>upthrow</syn>
         <syn>upwardthrow</syn>
+        <syn>upwardsthrow</syn>
     </uthrow>
     <bthrow>
         <syn>backthrow</syn>
         <syn>backwardthrow</syn>
+        <syn>backwardsthrow</syn>
     </bthrow>
     <dtaunt>
         <syn>downtaunt</syn>
         <syn>downwardtaunt</syn>
+        <syn>downwardstaunt</syn>
     </dtaunt>
     <utaunt>
         <syn>uptaunt</syn>
         <syn>upwardtaunt</syn>
+        <syn>upwardstaunt</syn>
     </utaunt>
     <sidetaunt>
-        <syn>sidetaunt</syn>
+        <syn>sidewaytaunt</syn>
         <syn>sidewaystaunt</syn>
+        <syn>staunt</syn>
     </sidetaunt>
 </moves>
