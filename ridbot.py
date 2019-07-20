@@ -10,6 +10,7 @@ tokenFile.close()
 prefix = "?"
 imgPath = "Images/"
 memePath = "Memes/"
+crocEmote = "<:Crocomire:583880666970718224>"
 textCmds = ["op", "social", "help", "vods", "docs", "levels"]
 imgCmds = ["meme"]
 moveset = {}
@@ -90,12 +91,12 @@ async def on_message(message):
 		if command == "stats" or command == "viz":
 			move = "".join(msg[1:]).lower()
 			if move == "":
-				await message.channel.send("Bruh say a move after the command. Ex: `?%s nair`" % command)
+				await message.channel.send("Bruh say a move after the command. Ex: `?%s nair` %s" % (command, crocEmote))
 				return
 			else:
 				move = TranslateMove(move)
 				if move == "Invalid Move":
-					await message.channel.send("Bruh I don't recognize that move.")
+					await message.channel.send("Bruh I don't recognize that move %s" % crocEmote)
 					return
 	except IndexError:
 		return
@@ -108,12 +109,16 @@ async def on_message(message):
 		embed, attach = GetEmbedMessage(command, False, True)
 	elif command in imgCmds:
 		embed, attach = GetImageMessage(command)
+	elif command == "bruh":
+		await message.channel.send("Bruh %s" % crocEmote)
+		return
 	else:
 		return
 	if command == "help":
 		await message.author.send(embed=embed, file=attach)
 	else:
 		await message.channel.send(embed=embed, file=attach)
+	return
 
 ParseSynonyms()
 client.run(token)
