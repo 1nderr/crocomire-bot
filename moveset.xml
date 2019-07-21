@@ -148,4 +148,19 @@
         <syn>sidewaystaunt</syn>
         <syn>staunt</syn>
     </sidetaunt>
+    <roll>
+        <syn>spotdodge</syn>
+        <syn>forwardroll</syn>
+        <syn>forwardsroll</syn>
+        <syn>froll</syn>
+        <syn>backwardsroll</syn>
+        <syn>backwardroll</syn>
+        <syn>broll</syn>
+        <syn>backroll</syn>
+    </roll>
+    <airdodge>
+        <syn>directionalairdodge</syn>
+        <syn>ad</syn>
+        <syn>dad</syn>
+    </airdodge>
 </moves>

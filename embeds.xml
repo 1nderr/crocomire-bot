@@ -245,4 +245,20 @@
     <sidetaunt name="Side Taunt" image="sidetaunt.png">
         <field name="Usage">Use side taunt to flex on the kid whose parents just got eaten.</field>
     </sidetaunt>
+    <roll name="Roll and Spot Dodge" image="spotdodge.jpg">
+        <field name="Spot Dodge Invul">3-18</field>
+        <field name="Spot Dodge FAF">29</field>
+        <field name="Forward Roll Invul">4-16</field>
+        <field name="Forward Roll FAF">33</field>
+        <field name="Back Roll Invul">5-17</field>
+        <field name="Back Roll FAF">38</field>
+    </roll>
+    <airdodge name="Air Dodge" image="airdodge.jpg">
+        <field name="Neutral Invul">3-31</field>
+        <field name="Neutral FAF">47</field>
+        <field name="Directional Invul">3-22</field>
+        <field name="Sideways FAF">79</field>
+        <field name="Up FAF">104</field>
+        <field name="Down FAF">65</field>
+    </airdodge>
 </embeds>
