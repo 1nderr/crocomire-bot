@@ -5,6 +5,7 @@
     </levels>
     <help name="Ridley Stats Commands" image="croc.png">
         <field name="?docs">Links the Ridleycord resources, lab, and guide docs.</field>
+        <field name="?bruh">Says Bruh.</field>
         <field name="?help">Sends the user a list of commands.</field>
         <field name="?levels">Links the Ridleycord Mario Maker 2 level spreadsheet.</field>
         <field name="?meme">Sends a random Ridleycord meme.</field>
@@ -104,8 +105,8 @@
         <field name="Full Charge Kill %">63.0</field>
     </dsmash>
     <usmash name="Up Smash" image="usmash.png">
-        <field name="Hitbox Active">?????</field>
-        <field name="Intagibility">12-16 (Leg he attacks with)</field>
+        <field name="Hitbox Active">12-17</field>
+        <field name="Intagibility">12-17 (Attack Leg)</field>
         <field name="FAF">48</field>
         <field name="No Charge DMG">20.4</field>
         <field name="Full Charge DMG">28.5</field>
@@ -234,7 +235,7 @@
         <field name="Dash Active">11-13</field>
         <field name="Dash FAF">43</field>
         <field name="Pivot Active">12-14</field>
-        <field name="Pivtor FAF">40</field>
+        <field name="Pivot FAF">40</field>
     </grab>
     <dtaunt name="Down Taunt" image="dtaunt.png">
         <field name="Usage">Use down taunt in between nairs to do max damage and assert your dominance.</field>
