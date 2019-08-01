@@ -104,13 +104,13 @@
         <field name="Full Charge Kill %">63.0</field>
     </dsmash>
     <usmash name="Up Smash" image="usmash.png">
-        <field name="Hitbox Active">?????</field>
+        <field name="Hitbox Active">12-16</field>
         <field name="Intagibility">12-16 (Leg he attacks with)</field>
         <field name="FAF">48</field>
         <field name="No Charge DMG">20.4</field>
         <field name="Full Charge DMG">28.5</field>
-        <field name="No Charge Kill %">101.0</field>
-        <field name="Full Charge Kill %">63.0</field>
+        <field name="No Charge Kill %">104.0</field>
+        <field name="Full Charge Kill %">66.0</field>
     </usmash>
     <nair name="Neutral Air" image="nair.png">
         <field name="Hitbox Active">8-20</field>
@@ -136,8 +136,8 @@
         <field name="FAF">44</field>
         <field name="Landing Lag">17</field>
         <field name="Auto Cancel">38+</field>
-        <field name="SH/FH DMG">16.3 / 19.2</field>
-        <field name="SH/FH Kill %">108.0 / 105.0</field>
+        <field name="SH/FH DMG">15.3 / 18.0</field>
+        <field name="SH/FH Kill %">116.0 / 113.0</field>
     </bair>
     <uair name="Up Air" image="uair.png">
         <field name="Hitbox Active">11-13</field>
@@ -177,8 +177,8 @@
         <field name="DMG per 4 Frames">2.4</field>
         <field name="On Release DMG">8.4</field>
         <field name="Wall Throw DMG">14.4</field>
-        <field name="No/Full Drag No DI Kill %">105.0 / 96.0</field>
-        <field name="No/Full Drag DI Kill %">133.0 / 131.0</field>
+        <field name="No/Full Drag No DI Kill %">124.0 / 117.0</field>
+        <field name="No/Full Drag DI Kill %">152.0 / 148.0</field>
     </sideb>
     <downb name="Skewer" image="skewer.png">
         <field name="Hitbox Active">30-31</field>
@@ -188,9 +188,9 @@
         <field name="Frame Advantage">-11</field>
     </downb>
     <upb name="Wing Blitz" image="wingblitz.png">
-        <field name="Hitbox Active Up">34-57</field>
-        <field name="Hitbox Active Sideways">36-55</field>
-        <field name="Hitbox Active Down">37-59</field>
+        <field name="Hitbox Active Up">37-60</field>
+        <field name="Hitbox Active Sideways">39-58</field>
+        <field name="Hitbox Active Down">40-62</field>
         <field name="Landing Lag (Down Only)">35</field>
         <field name="DMG Up">21.6</field>
         <field name="DMG Sideways">19.2</field>

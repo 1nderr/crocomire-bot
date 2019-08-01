@@ -103,10 +103,13 @@ async def on_message(message):
 
 	if command == "viz":
 		embed, attach = GetImageMessage(move)
-		embed.set_footer(text="📝Patch 3.1.0")
+		if move == "uair":
+			embed.set_footer(text="📝Patch 3.1.0")
+		else:
+			embed.set_footer(text="📝Patch 4.0.0")
 	elif command == "stats":
 		embed, attach = GetEmbedMessage(move, True, True)
-		embed.set_footer(text="📝Patch 3.1.0")
+		embed.set_footer(text="📝Patch 4.0.0")
 	elif command in textCmds:
 		embed, attach = GetEmbedMessage(command, False, True)
 	elif command in imgCmds:
