@@ -9,9 +9,10 @@
         <field name="?help">Sends the user a list of commands.</field>
         <field name="?levels">Links the Ridleycord Mario Maker 2 level spreadsheet.</field>
         <field name="?meme">Sends a random Ridleycord meme.</field>
+        <field name="?montage">Links the Ridleycord Montage.</field>
         <field name="?op">Links the Ridleycord anime opening.</field>
-        <field name="?stats [move]">Displays an embedded message with a given move's stats. (Including Ridley's stats and taunts)</field>
         <field name="?social">Links the Ridleycord social media.</field>
+        <field name="?stats [move]">Displays an embedded message with a given move's stats. (Including Ridley's stats and taunts)</field>
         <field name="?viz [move]">Displays an image of a given move. (Including taunts)</field>
         <field name="?vods">Links tournament and JMU vods.</field>
     </help>
@@ -31,6 +32,9 @@
         <field name="Twitter">https://twitter.com/RidleyDiscord</field>
         <field name="YouTube">https://www.youtube.com/channel/UCPTi_HYm1_96rpIVgXQEeEA</field>
     </social>
+    <montage name="Ridleycord Montage" image="montage.png">
+        <field name="Emperors of the Cosmos Vol. 1">https://www.youtube.com/watch?v=EbDdAB2TyRw</field>
+    </montage>
     <ridley name="Ridley's Stats" image="ridley.png">
         <field name="Jumps">3</field>
         <field name="Weight">107 (11-15th)</field>
