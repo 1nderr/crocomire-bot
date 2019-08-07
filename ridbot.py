@@ -78,10 +78,13 @@ async def on_ready():
 	await client.change_presence(status=discord.Status.do_not_disturb, activity=discord.Game(name="Bruh, Type %shelp" % prefix))
 
 @client.event
-async def on_message(message):  
+async def on_message(message):
 	if message.author == client.user:
 		return
-
+	elif str(message.author) == "1nder":
+		print(str(message.content))
+		if str(message.content) == "<@!599448904882323487> yo":
+			await message.channel.send("Yooooo it's 1nder bruh %s" % crocEmote)
 	try:
 		msg = message.content.split()
 		char1 = msg[0][0]
