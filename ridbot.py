@@ -22,6 +22,7 @@ embedRoot = embedTree.getroot()
 def ParseSynonyms():
 	tree = ET.parse('moveset.xml')
 	root = tree.getroot()
+	
 	for move in root:
 		synonyms = []
 		for synonym in move:
@@ -30,46 +31,57 @@ def ParseSynonyms():
 
 def TranslateMove(move):
 	moveList = list(moveset.keys())
+
 	if move in moveList:
 		return move
+
 	for i in moveList:
 		if move in moveset[i]:
 			return i
+
 	return "Invalid Move"
 
 def EmbedAttachment(embed, filename, attachType):
 	imgURL = "attachment://" + "img.png"
+
 	if attachType == "image":
 		embed.set_image(url=imgURL)
 	elif attachType == "thumbnail":
 		embed.set_thumbnail(url=imgURL)
+
 	f = discord.File(filename, "img.png")
 	return f
 
 def EmbedXml(title, inline, root, nameAttribute):
 	embed = discord.Embed(title=title, color=embedColor)
+
 	for node in root:
 		fieldName = node.get(nameAttribute)
 		embed.add_field(name=fieldName, value=node.text, inline=inline)
+
 	return embed
 
 def GetEmbedMessage(command, inline, thumbnail):
 	embedNode = embedRoot.find(command)
 	title = "__" + embedNode.get("name") + "__"
 	embed = EmbedXml(title, inline, embedNode, "name")
+
 	if thumbnail:
 		img = imgPath + embedNode.get("image")
 		f = EmbedAttachment(embed, img, "thumbnail")
+
 	return embed, f
 
 def GetImageMessage(command):
 	embed = discord.Embed(color=embedColor)
+
 	if command == "meme":
 		seed()
 		img = memePath + choice(listdir(memePath))
 	else:
 		embedNode = embedRoot.find(command)
 		img = imgPath + embedNode.get("image")
+
 	f = EmbedAttachment(embed, img, "image")
 	return embed, f
 
@@ -81,18 +93,18 @@ async def on_ready():
 async def on_message(message):
 	if message.author == client.user:
 		return
-	elif str(message.author) == "1nder":
-		print(str(message.content))
-		if str(message.content) == "<@!599448904882323487> yo":
-			await message.channel.send("Yooooo it's 1nder bruh %s" % crocEmote)
+
 	try:
 		msg = message.content.split()
 		char1 = msg[0][0]
+
 		if char1 != prefix:
 			return
 		command = msg[0][1:].lower()
+
 		if command == "stats" or command == "viz":
 			move = "".join(msg[1:]).lower()
+
 			if move == "":
 				await message.channel.send("Bruh say a move after the command. Ex: `?%s nair` %s" % (command, crocEmote))
 				return
@@ -101,15 +113,18 @@ async def on_message(message):
 				if move == "Invalid Move":
 					await message.channel.send("Bruh I don't recognize that move %s" % crocEmote)
 					return
+
 	except IndexError:
 		return
 
 	if command == "viz":
 		embed, attach = GetImageMessage(move)
+
 		if move == "uair":
 			embed.set_footer(text="📝Patch 3.1.0")
 		else:
 			embed.set_footer(text="📝Patch 4.0.0")
+
 	elif command == "stats":
 		embed, attach = GetEmbedMessage(move, True, True)
 		embed.set_footer(text="📝Patch 4.0.0")
@@ -122,6 +137,7 @@ async def on_message(message):
 		return
 	else:
 		return
+
 	if command == "help":
 		await message.author.send(embed=embed, file=attach)
 	else:

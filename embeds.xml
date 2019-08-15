@@ -196,10 +196,10 @@
         <field name="Hitbox Active Up">34-57</field>
         <field name="Hitbox Active Sideways">36-55</field>
         <field name="Hitbox Active Down">37-59</field>
-        <field name="Landing Lag (Down Only)">35</field>
+        <field name="Landing Lag (Down)">35</field>
         <field name="DMG Up">21.6</field>
         <field name="DMG Sideways">19.2</field>
-        <field name="DMG Down">18.0 / 6.0 (Landing Hitbox)</field>
+        <field name="DMG Down">18.0 / 6.0 (Landing)</field>
         <field name="Kill % Up">149.0</field>
         <field name="Kill % Forwards">100.0</field>
         <field name="Kill % Backwards">123.0</field>
@@ -209,6 +209,10 @@
         <field name="Thrown On">13</field>
         <field name="FAF">38</field>
         <field name="DMG">10.8</field>
+        <field name="No DI Default Pos">219.0</field>
+        <field name="No DI Neutral Getup">181.0</field>
+        <field name="DI Neutral Getup">214.0</field>
+        <field name="DI for Dthrow">178.0</field>
     </fthrow>
     <bthrow name="Back Throw" image="bthrow.png">
         <field name="Thrown On">18</field>
@@ -231,7 +235,7 @@
         <field name="DMG">8.4</field>
         <field name="No DI Default Kill %">181.0</field>
         <field name="DI Neutral Getup Kill %">206.0</field>
-        <field name="DI-ing for Fthrow (in) %">176.0</field>
+        <field name="DI Fthrow (in) %">176.0</field>
     </dthrow>
     <grab name="Grab" image="grab.png">
         <field name="Standing Active">8-10</field>
@@ -266,4 +270,14 @@
         <field name="Up FAF">104</field>
         <field name="Down FAF">65</field>
     </airdodge>
+    <oos name="OOS Frames" image="oos.png">
+        <field name="Grab">8</field>
+        <field name="Grab Post Shield Stun">12</field>
+        <field name="Nair">11</field>
+        <field name="Fair / Bair">13</field>
+        <field name="Dair">14</field>
+        <field name="Ftilt">21</field>
+        <field name="Dtilt">20</field>
+        <field name="Jab">15</field>
+    </oos>
 </embeds>
