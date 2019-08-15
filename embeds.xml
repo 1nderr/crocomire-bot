@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <embeds>
+    <muchart image="muchart.png"></muchart>
     <levels name="Ridleycord Mario Maker 2 Levels" image="mariomaker.png">
         <field name="Level Spreadsheet">https://docs.google.com/spreadsheets/d/1lSQUpZnJ0WKFmnLqvlNNWp3qxuWZuSHlYb0Sctwneuk/edit#gid=0</field>
     </levels>
@@ -10,6 +11,7 @@
         <field name="?levels">Links the Ridleycord Mario Maker 2 level spreadsheet.</field>
         <field name="?meme">Sends a random Ridleycord meme.</field>
         <field name="?montage">Links the Ridleycord Montage.</field>
+        <field name="?muchart">Displays the community MU chart.</field>
         <field name="?op">Links the Ridleycord anime opening.</field>
         <field name="?social">Links the Ridleycord social media.</field>
         <field name="?stats [move]">Displays an embedded message with a given move's stats. (Including Ridley's stats and taunts)</field>

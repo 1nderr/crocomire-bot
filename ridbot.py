@@ -3,8 +3,8 @@ import xml.etree.ElementTree as ET
 from os import listdir
 from random import choice, seed
 
-#tokenFile = open("test", "r")
-tokenFile = open("token", "r")
+tokenFile = open("test", "r")
+#tokenFile = open("token", "r")
 token = tokenFile.read().strip()
 tokenFile.close()
 prefix = "?"
@@ -12,7 +12,7 @@ imgPath = "Images/"
 memePath = "Memes/"
 crocEmote = "<:Crocomire:583880666970718224>"
 textCmds = ["op", "social", "help", "vods", "docs", "levels", "montage"]
-imgCmds = ["meme"]
+imgCmds = ["meme", "muchart"]
 moveset = {}
 embedColor = 10170673
 client = discord.Client()
