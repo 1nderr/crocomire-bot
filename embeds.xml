@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <embeds>
-    <muchart image="muchart.png"></muchart>
+    <changes name="Recent Ridley Changes" image="surprised.png">
+        <field name="Up Smash:">Hitbox duration increased from 12-16 to 12-17 and KBG increased 76 to 78. Can also hit more characters in the front.</field>
+        <field name="Bair:">Damage increased from 15 to 16.</field>
+        <field name="Dair:">Can no longer stall in the air.</field>
+        <field name="Uair:">Hitbox size increased.</field>
+        <field name="Wing Blitz:">Start up decreased on all directions by 3 frames. The travel speed was also increased.</field>
+        <field name="Space Pirate Rush:">Throw knock back increased from 83 to 90. It kills around 20% earlier now. Also, jump cancel FAF decreased from 41 > 38 (air and ground).</field>
+    </changes>
+    <muchart image="muchart.png" link="https://forms.gle/SEW7o42nTnXJEniV9"></muchart>
     <levels name="Ridleycord Mario Maker 2 Levels" image="mariomaker.png">
         <field name="Level Spreadsheet">https://docs.google.com/spreadsheets/d/1lSQUpZnJ0WKFmnLqvlNNWp3qxuWZuSHlYb0Sctwneuk/edit#gid=0</field>
     </levels>
     <help name="Ridley Stats Commands" image="croc.png">
         <field name="?docs">Links the Ridleycord resources, lab, and guide docs.</field>
         <field name="?bruh">Says Bruh.</field>
+        <field name="?changes">Displays Ridley's latest changes. (See more patches in the In-Depth Ridley Guide)</field>
         <field name="?help">Sends the user a list of commands.</field>
         <field name="?levels">Links the Ridleycord Mario Maker 2 level spreadsheet.</field>
         <field name="?meme">Sends a random Ridleycord meme.</field>

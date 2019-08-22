@@ -3,15 +3,15 @@ import xml.etree.ElementTree as ET
 from os import listdir
 from random import choice, seed
 
-tokenFile = open("test", "r")
-#tokenFile = open("token", "r")
+#tokenFile = open("test", "r")
+tokenFile = open("token", "r")
 token = tokenFile.read().strip()
 tokenFile.close()
 prefix = "?"
 imgPath = "Images/"
 memePath = "Memes/"
 crocEmote = "<:Crocomire:583880666970718224>"
-textCmds = ["op", "social", "help", "vods", "docs", "levels", "montage"]
+textCmds = ["op", "social", "help", "vods", "docs", "levels", "montage", "changes"]
 imgCmds = ["meme", "muchart"]
 moveset = {}
 embedColor = 10170673
@@ -81,6 +81,9 @@ def GetImageMessage(command):
 	else:
 		embedNode = embedRoot.find(command)
 		img = imgPath + embedNode.get("image")
+
+		if command == "muchart": 
+			embed.add_field(name="Vote Here:", value=embedNode.get("link"), inline=False)
 
 	f = EmbedAttachment(embed, img, "image")
 	return embed, f
