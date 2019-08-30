@@ -123,11 +123,7 @@ async def on_message(message):
 
 	if command == "viz":
 		embed, attach = GetImageMessage(move)
-
-		if move == "uair":
-			embed.set_footer(text="📝Patch 3.1.0")
-		else:
-			embed.set_footer(text=patch)
+		embed.set_footer(text=patch + " - Hitboxes by @EyeDonutz")
 
 	elif command == "stats":
 		embed, attach = GetEmbedMessage(move, True, True)

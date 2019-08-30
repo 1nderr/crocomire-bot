@@ -114,6 +114,7 @@
         <syn>dgrab</syn>
         <syn>sgrab</syn>
         <syn>pgrab</syn>
+        <syn>pummel</syn>
     </grab>
     <fthrow>
         <syn>forwardthrow</syn>

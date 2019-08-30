@@ -248,13 +248,16 @@
         <field name="DI Neutral Getup Kill %">206.0</field>
         <field name="DI Fthrow (in) %">176.0</field>
     </dthrow>
-    <grab name="Grab" image="grab.gif">
+    <grab name="Grabs and Pummel" image="grab.gif">
         <field name="Standing Active">8-10</field>
         <field name="Standing FAF">35</field>
         <field name="Dash Active">11-13</field>
         <field name="Dash FAF">43</field>
         <field name="Pivot Active">12-14</field>
         <field name="Pivot FAF">40</field>
+        <field name="Pummel Active">???</field>
+        <field name="Pummel FAF">22</field>
+        <field name="Pummel DMG">1.9</field>
     </grab>
     <dtaunt name="Down Taunt" image="dtaunt.png">
         <field name="Usage">Use down taunt in between nairs to do max damage and assert your dominance.</field>
