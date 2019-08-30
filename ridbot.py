@@ -11,6 +11,7 @@ prefix = "?"
 imgPath = "Images/"
 memePath = "Memes/"
 crocEmote = "<:Crocomire:583880666970718224>"
+patch = "📝Patch 4.0.0"
 textCmds = ["op", "social", "help", "vods", "docs", "levels", "montage", "changes"]
 imgCmds = ["meme", "muchart"]
 moveset = {}
@@ -42,21 +43,21 @@ def TranslateMove(move):
 	return "Invalid Move"
 
 def EmbedAttachment(embed, filename, attachType):
-	imgURL = "attachment://" + "img.png"
+	imgURL = "attachment://" + "img.gif"
 
-	if attachType == "image":
-		embed.set_image(url=imgURL)
-	elif attachType == "thumbnail":
+	if attachType == "thumbnail":
 		embed.set_thumbnail(url=imgURL)
+	elif attachType == "image":
+		embed.set_image(url=imgURL)
 
-	f = discord.File(filename, "img.png")
+	f = discord.File(filename, "img.gif")
 	return f
 
-def EmbedXml(title, inline, root, nameAttribute):
+def EmbedXml(title, inline, root, name):
 	embed = discord.Embed(title=title, color=embedColor)
 
 	for node in root:
-		fieldName = node.get(nameAttribute)
+		fieldName = node.get(name)
 		embed.add_field(name=fieldName, value=node.text, inline=inline)
 
 	return embed
@@ -65,6 +66,7 @@ def GetEmbedMessage(command, inline, thumbnail):
 	embedNode = embedRoot.find(command)
 	title = "__" + embedNode.get("name") + "__"
 	embed = EmbedXml(title, inline, embedNode, "name")
+	f = None
 
 	if thumbnail:
 		img = imgPath + embedNode.get("image")
@@ -74,7 +76,6 @@ def GetEmbedMessage(command, inline, thumbnail):
 
 def GetImageMessage(command):
 	embed = discord.Embed(color=embedColor)
-
 	if command == "meme":
 		seed()
 		img = memePath + choice(listdir(memePath))
@@ -96,7 +97,7 @@ async def on_ready():
 async def on_message(message):
 	if message.author == client.user:
 		return
-
+	
 	try:
 		msg = message.content.split()
 		char1 = msg[0][0]
@@ -126,11 +127,11 @@ async def on_message(message):
 		if move == "uair":
 			embed.set_footer(text="📝Patch 3.1.0")
 		else:
-			embed.set_footer(text="📝Patch 4.0.0")
+			embed.set_footer(text=patch)
 
 	elif command == "stats":
 		embed, attach = GetEmbedMessage(move, True, True)
-		embed.set_footer(text="📝Patch 4.0.0")
+		embed.set_footer(text=patch)
 	elif command in textCmds:
 		embed, attach = GetEmbedMessage(command, False, True)
 	elif command in imgCmds:

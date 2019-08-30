@@ -58,7 +58,7 @@
         <field name="Full Hop Air Time">51</field>
         <field name="Short Hop Air Time">35</field>
     </ridley>
-    <jab name="Jab" image="jab.png">
+    <jab name="Jab" image="jab.gif">
         <field name="Hitbox Active">4</field>
         <field name="Jab 1 FAF">24</field>
         <field name="Jab 1 DMG">2.4</field>
@@ -71,7 +71,7 @@
         <field name="Gentlemen Kill %">160</field>
         <field name="Rapid Kill %">&gt;470 (They start falling out)</field>
     </jab>
-    <ftilt name="Forward Tilt" image="ftilt.png">
+    <ftilt name="Forward Tilt" image="ftilt.gif">
         <field name="Hitbox Active">10-11</field>
         <field name="FAF">33</field>
         <field name="Sour Spot DMG">12.0</field>
@@ -79,7 +79,7 @@
         <field name="Sour Spot Kill %">182</field>
         <field name="Sweet Spot Kill %">133</field>
     </ftilt>
-    <dtilt name="Down Tilt" image="dtilt.png">
+    <dtilt name="Down Tilt" image="dtilt.gif">
         <field name="Hitbox Active">9-11</field>
         <field name="FAF">31</field>
         <field name="Sour Spot DMG">7.2</field>
@@ -87,7 +87,7 @@
         <field name="Sour Spot Kill %">254</field>
         <field name="Sweet Spot Kill %">179</field>
     </dtilt>
-    <utilt name="Up Tilt" image="utilt.png">
+    <utilt name="Up Tilt" image="utilt.gif">
         <field name="Hitbox Active">8-12</field>
         <field name="Invul Head and Arms">8-9</field>
         <field name="Invul Wings">8-12</field>
@@ -97,13 +97,13 @@
         <field name="Sour Spot Kill %">163</field>
         <field name="Sweet Spot Kill %">160</field>
     </utilt>
-    <dash name="Dash Attack" image="dash.png">
+    <dash name="Dash Attack" image="dash.gif">
         <field name="Hitbox Active">12-13</field>
         <field name="FAF">40</field>
         <field name="DMG">14.4</field>
         <field name="Kill %">134</field>
     </dash>
-    <fsmash name="Forward Smash" image="fsmash.png">
+    <fsmash name="Forward Smash" image="fsmash.gif">
         <field name="Hitbox Active">18-21</field>
         <field name="FAF">54</field>
         <field name="No Charge DMG">24.0</field>
@@ -111,7 +111,7 @@
         <field name="No Charge Kill %">65.0</field>
         <field name="Full Charge Kill %">35.0</field>
     </fsmash>
-    <dsmash name="Down Smash" image="dsmash.png">
+    <dsmash name="Down Smash" image="dsmash.gif">
         <field name="Hitbox Active">24-27</field>
         <field name="FAF">58</field>
         <field name="No Charge DMG">19.2</field>
@@ -119,7 +119,7 @@
         <field name="No Charge Kill %">100.0</field>
         <field name="Full Charge Kill %">63.0</field>
     </dsmash>
-    <usmash name="Up Smash" image="usmash.png">
+    <usmash name="Up Smash" image="usmash.gif">
         <field name="Hitbox Active">12-17</field>
         <field name="Intagibility">12-17 (Attack Leg)</field>
         <field name="FAF">48</field>
@@ -128,7 +128,7 @@
         <field name="No Charge Kill %">101.0</field>
         <field name="Full Charge Kill %">63.0</field>
     </usmash>
-    <nair name="Neutral Air" image="nair.png">
+    <nair name="Neutral Air" image="nair.gif">
         <field name="Hitbox Active">8-20</field>
         <field name="FAF">40</field>
         <field name="Landing Lag">12</field>
@@ -138,7 +138,7 @@
         <field name="SH/FH Late DMG">5.1 / 6.0</field>
         <field name="SH/FH Kill %">185.0 / 183.0</field>
     </nair>
-    <fair name="Forward Air" image="fair.png">
+    <fair name="Forward Air" image="fair.gif">
         <field name="Hitbox Active">10, 13, 16</field>
         <field name="FAF">42</field>
         <field name="Landing Lag">16</field>
@@ -147,7 +147,7 @@
         <field name="SH/FH Sweet DMG">17.3 / 20.4</field>
         <field name="SH/FH Kill %">185.0 / 183.0</field>
     </fair>
-    <bair name="Back Air" image="bair.png">
+    <bair name="Back Air" image="bair.gif">
         <field name="Hitbox Active">10-12</field>
         <field name="FAF">44</field>
         <field name="Landing Lag">17</field>
@@ -155,7 +155,7 @@
         <field name="SH/FH DMG">16.3 / 19.2</field>
         <field name="SH/FH Kill %">108.0 / 105.0</field>
     </bair>
-    <uair name="Up Air" image="uair.png">
+    <uair name="Up Air" image="uair.gif">
         <field name="Hitbox Active">11-13</field>
         <field name="FAF">40</field>
         <field name="Landing Lag">14</field>
@@ -164,7 +164,7 @@
         <field name="SH/FH Sweet DMG">14.2 / 16.8</field>
         <field name="FH Kill %">142.0 (Sweet Spot, Ground Level)</field>
     </uair>
-    <dair name="Down Air" image="dair.png">
+    <dair name="Down Air" image="dair.gif">
         <field name="Hitbox Active">11-40</field>
         <field name="Spike Active">11-18</field>
         <field name="FAF">56</field>
@@ -185,7 +185,7 @@
         <field name="Full Charge Base DMG">5.6 / 4.4 (late)</field>
         <field name="Use the link below because there's a TON of data!">https://docs.google.com/spreadsheets/d/1udaSlt3obpNcNr8_emK9SmTOGR-U61j6AbFCr_Kqns4/edit#gid=0</field>
     </neutralb>
-    <sideb name="Space Pirate Rush" image="spr.png">
+    <sideb name="Space Pirate Rush" image="spr.gif">
         <field name="Hitbox Active">22-34</field>
         <field name="FAF">79</field>
         <field name="Aerial FAF">61</field>
@@ -196,14 +196,14 @@
         <field name="No/Full Drag No DI Kill %">105.0 / 96.0</field>
         <field name="No/Full Drag DI Kill %">133.0 / 131.0</field>
     </sideb>
-    <downb name="Skewer" image="skewer.png">
+    <downb name="Skewer" image="skewer.gif">
         <field name="Hitbox Active">30-31</field>
         <field name="FAF">68</field>
         <field name="Sour DMG">6.0</field>
         <field name="Sweet DMG">60.0</field>
         <field name="Frame Advantage">-11</field>
     </downb>
-    <upb name="Wing Blitz" image="wingblitz.png">
+    <upb name="Wing Blitz" image="upb.gif">
         <field name="Hitbox Active Up">34-57</field>
         <field name="Hitbox Active Sideways">36-55</field>
         <field name="Hitbox Active Down">37-59</field>
@@ -248,7 +248,7 @@
         <field name="DI Neutral Getup Kill %">206.0</field>
         <field name="DI Fthrow (in) %">176.0</field>
     </dthrow>
-    <grab name="Grab" image="grab.png">
+    <grab name="Grab" image="grab.gif">
         <field name="Standing Active">8-10</field>
         <field name="Standing FAF">35</field>
         <field name="Dash Active">11-13</field>

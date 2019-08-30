@@ -107,6 +107,7 @@
         <syn>upwardssmash</syn>
     </usmash>
     <grab>
+        <syn>grabs</syn>
         <syn>dashgrab</syn>
         <syn>pivotgrab</syn>
         <syn>standinggrab</syn>
