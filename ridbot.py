@@ -1,46 +1,36 @@
 import discord
-import xml.etree.ElementTree as ET
 from os import listdir
 from random import choice, seed
+from yaml import safe_load as yamlLoad
 
-#tokenFile = open("test", "r")
-tokenFile = open("token", "r")
-token = tokenFile.read().strip()
-tokenFile.close()
 prefix = "?"
 imgPath = "Images/"
 memePath = "Memes/"
 crocEmote = "<:Crocomire:583880666970718224>"
-patch = "📝Patch 4.0.0"
-textCmds = ["op", "social", "help", "vods", "docs", "levels", "montage", "changes"]
-imgCmds = ["meme", "muchart"]
-moveset = {}
+patch = "📝Patch 5.0.0"
 embedColor = 10170673
-client = discord.Client()
-embedTree = ET.parse('embeds.xml')
-embedRoot = embedTree.getroot()
 
-def ParseSynonyms():
-	tree = ET.parse('moveset.xml')
-	root = tree.getroot()
-	
-	for move in root:
-		synonyms = []
-		for synonym in move:
-			synonyms.append(synonym.text)
-		moveset[move.tag] = synonyms
+synData = yamlLoad(open("synonyms.yml"))
+cmdData = yamlLoad(open("commands.yml"))
+cmds = cmdData["cmds"]
+
+client = discord.Client()
+tokenFile = open("test", "r")
+token = tokenFile.read().strip()
+tokenFile.close()
+
 
 def TranslateMove(move):
-	moveList = list(moveset.keys())
-
+	moveList = list(synData.keys())
 	if move in moveList:
 		return move
 
 	for i in moveList:
-		if move in moveset[i]:
+		if move in synData[i]:
 			return i
 
 	return "Invalid Move"
+
 
 def EmbedAttachment(embed, filename, attachType):
 	imgURL = "attachment://" + "img.gif"
@@ -53,45 +43,51 @@ def EmbedAttachment(embed, filename, attachType):
 	f = discord.File(filename, "img.gif")
 	return f
 
-def EmbedXml(title, inline, root, name):
-	embed = discord.Embed(title=title, color=embedColor)
 
-	for node in root:
-		fieldName = node.get(name)
-		embed.add_field(name=fieldName, value=node.text, inline=inline)
+def CreateEmbed(cmd, inline):
+	embedData = cmdData[cmd]
+	title = "__" + embedData["title"] + "__"
+	fields = embedData["fields"]
+	embed = discord.Embed(title=title, color=embedColor)
+	
+	for i in fields.keys():
+		embed.add_field(name=i, value=fields[i], inline=inline)
 
 	return embed
 
-def GetEmbedMessage(command, inline, thumbnail):
-	embedNode = embedRoot.find(command)
-	title = "__" + embedNode.get("name") + "__"
-	embed = EmbedXml(title, inline, embedNode, "name")
+
+def GetEmbedMessage(cmd, inline, thumbnail):
+	embed = CreateEmbed(cmd, inline)
 	f = None
 
 	if thumbnail:
-		img = imgPath + embedNode.get("image")
-		f = EmbedAttachment(embed, img, "thumbnail")
+		filename = imgPath + cmdData[cmd]["image"]
+		f = EmbedAttachment(embed, filename, "thumbnail")
 
 	return embed, f
 
-def GetImageMessage(command):
+
+def GetImageMessage(cmd):
 	embed = discord.Embed(color=embedColor)
-	if command == "meme":
+
+	if cmd == "meme":
 		seed()
 		img = memePath + choice(listdir(memePath))
 	else:
-		embedNode = embedRoot.find(command)
-		img = imgPath + embedNode.get("image")
+		img = imgPath + cmdData[cmd]["image"]
 
-		if command == "muchart": 
-			embed.add_field(name="Vote Here:", value=embedNode.get("link"), inline=False)
+		if cmd == "muchart":
+			survey = cmdData[cmd]["link"]
+			embed.add_field(name="Vote Here:", value=survey, inline=False)
 
 	f = EmbedAttachment(embed, img, "image")
 	return embed, f
 
+
 @client.event
 async def on_ready():
 	await client.change_presence(status=discord.Status.do_not_disturb, activity=discord.Game(name="Bruh, Type %shelp" % prefix))
+
 
 @client.event
 async def on_message(message):
@@ -104,13 +100,14 @@ async def on_message(message):
 
 		if char1 != prefix:
 			return
-		command = msg[0][1:].lower()
 
-		if command == "stats" or command == "viz":
+		cmd = msg[0][1:].lower()
+
+		if cmd == "stats" or cmd == "viz":
 			move = "".join(msg[1:]).lower()
 
 			if move == "":
-				await message.channel.send("Bruh say a move after the command. Ex: `?%s nair` %s" % (command, crocEmote))
+				await message.channel.send("Bruh say a move after the cmd. Ex: `?%s nair` %s" % (cmd, crocEmote))
 				return
 			else:
 				move = TranslateMove(move)
@@ -121,28 +118,26 @@ async def on_message(message):
 	except IndexError:
 		return
 
-	if command == "viz":
+	if cmd == "viz":
 		embed, attach = GetImageMessage(move)
 		embed.set_footer(text=patch + " - Hitboxes by @EyeDonutz")
-
-	elif command == "stats":
+	elif cmd == "stats":
 		embed, attach = GetEmbedMessage(move, True, True)
 		embed.set_footer(text=patch)
-	elif command in textCmds:
-		embed, attach = GetEmbedMessage(command, False, True)
-	elif command in imgCmds:
-		embed, attach = GetImageMessage(command)
-	elif command == "bruh":
+	elif cmd in cmds["text"]:
+		embed, attach = GetEmbedMessage(cmd, False, True)
+	elif cmd in cmds["img"]:
+		embed, attach = GetImageMessage(cmd)
+	elif cmd == "bruh":
 		await message.channel.send("Bruh %s" % crocEmote)
 		return
 	else:
 		return
 
-	if command == "help":
+	if cmd == "help":
 		await message.author.send(embed=embed, file=attach)
 	else:
 		await message.channel.send(embed=embed, file=attach)
 	return
 
-ParseSynonyms()
 client.run(token)
