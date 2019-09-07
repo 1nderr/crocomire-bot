@@ -15,7 +15,7 @@ cmdData = yamlLoad(open("commands.yml"))
 cmds = cmdData["cmds"]
 
 client = discord.Client()
-tokenFile = open("test", "r")
+tokenFile = open("token", "r")
 token = tokenFile.read().strip()
 tokenFile.close()
 

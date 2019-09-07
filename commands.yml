@@ -335,7 +335,7 @@ bthrow:
 
 uthrow:
   title: Up Throw
-  image: uthrow.png
+  image: uthrow.gif
   fields:
       Thrown On: 19
       FAF: 44
