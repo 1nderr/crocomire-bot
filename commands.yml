@@ -258,7 +258,7 @@ dair:
 
 neutralb:
   title: Plasma
-  image: plasma.png
+  image: plasma.gif
   fields:
       Max Plasma Balls: 5
       Face Punch Lag: 56
@@ -410,7 +410,7 @@ airdodge:
 
 oos:
   title: OOS Frames
-  image: oos.png
+  image: oos.gif
   fields:
       Grab: 8
       Grab Post Shield Stun: 12
