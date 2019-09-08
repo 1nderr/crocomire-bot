@@ -98,6 +98,10 @@ downb:
 fsmash:
   - forwardsmash
   - forwardssmash
+  - sidesmash
+  - sidewayssmash
+  - sidewaysmash
+  - ssmash
 
 dsmash:
   - downsmash

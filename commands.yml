@@ -312,7 +312,7 @@ upb:
 
 fthrow:
   title: Forward Throw
-  image: fthrow.png
+  image: fthrow.gif
   fields:
       Thrown On: 13
       FAF: 38
@@ -324,7 +324,7 @@ fthrow:
 
 bthrow:
   title: Back Throw
-  image: bthrow.png
+  image: bthrow.gif
   fields:
       Thrown On: 18
       FAF: 46
@@ -345,7 +345,7 @@ uthrow:
 
 dthrow:
   title: Down Throw
-  image: dthrow.png
+  image: dthrow.gif
   fields:
       Thrown On: 22
       FAF: 36
@@ -370,25 +370,25 @@ grab:
 
 dtaunt:
   title: Down Taunt
-  image: dtaunt.png
+  image: dtaunt.gif
   fields:
       Usage: Use down taunt in between nairs to do max damage and assert your dominance.
 
 utaunt:
   title: Up Taunt
-  image: utaunt.png
+  image: utaunt.gif
   fields:
       Usage: Use up taunt when you die because of your shitty recovery REEEEEEEEEEEEE.
 
 sidetaunt:
   title: Side Taunt
-  image: sidetaunt.png
+  image: staunt.gif
   fields:
       Usage: Use side taunt to flex on the kid whose parents just got eaten.
 
 roll:
   title: Roll and Spot Dodge
-  image: spotdodge.jpg
+  image: spotdodge.gif
   fields:
       Spot Dodge Invul: 3-18
       Spot Dodge FAF: 29
@@ -399,7 +399,7 @@ roll:
 
 airdodge:
   title: Air Dodge
-  image: airdodge.jpg
+  image: airdodge.gif
   fields:
       Neutral Invul: 3-31
       Neutral FAF: 47
