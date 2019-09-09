@@ -4,6 +4,9 @@ ridley:
 jab:
   - jab
 
+parry:
+  - parry
+
 fair:
   - forwardair
   - forwardsair
@@ -175,3 +178,20 @@ airdodge:
 
 oos:
   - outofshield
+
+getup:
+  - getupattack
+  - getupatk
+  - ledge
+  - ledgehang
+  - ledgegetup
+  - ledgegetupattack
+  - ledgegetupatk
+  - ledgeattack
+  - ledgeatk
+  - trip
+  - tripgetup
+  - tripgetupattack
+  - tripgetupatk
+  - tripattack
+  - tripatk

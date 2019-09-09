@@ -421,3 +421,17 @@ oos:
       Dtilt: 20
       Jab: 15
       Up Smash: 12
+
+getup:
+  title: Getup Attacks
+  image: getup.gif
+  fields:
+    Getup DMG: 8.8
+    Ledge DMG: 12.6
+    Trip DMG: 6.3
+  
+parry:
+  title: Parry
+  image: parry.gif
+  fields:
+    Parry Stats: Bruh honestly, idk why you're looking for parry stats they're all the same <:Crocomire:583880666970718224> 
