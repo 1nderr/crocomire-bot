@@ -7,8 +7,8 @@ prefix = "?"
 imgPath = "Images/"
 memePath = "Memes/"
 crocEmote = "<:Crocomire:583880666970718224>"
-patch = "📝Patch 5.0.0"
-embedColor = 10170673
+#embedColor = 10170673 
+embedColor = 8454348
 
 synData = yamlLoad(open("synonyms.yml"))
 cmdData = yamlLoad(open("commands.yml"))
@@ -93,7 +93,7 @@ async def on_ready():
 async def on_message(message):
 	if message.author == client.user:
 		return
-	
+
 	try:
 		msg = message.content.split()
 		char1 = msg[0][0]
@@ -120,20 +120,22 @@ async def on_message(message):
 
 	if cmd == "viz":
 		embed, attach = GetImageMessage(move)
-		embed.set_footer(text=patch + " - Hitboxes by @EyeDonutz")
 	elif cmd == "stats":
 		embed, attach = GetEmbedMessage(move, True, True)
-		embed.set_footer(text=patch)
 	elif cmd in cmds["text"]:
 		embed, attach = GetEmbedMessage(cmd, False, True)
 	elif cmd in cmds["img"]:
 		embed, attach = GetImageMessage(cmd)
 	elif cmd == "bruh":
-		await message.channel.send("Bruh %s" % crocEmote)
+		await message.channel.send("sp00ky Bruh %s" % crocEmote)
+		return
+	elif cmd == "spook" or cmd == "sp00k":
+		await message.channel.send("sp00k %s" % crocEmote)
 		return
 	else:
 		return
-
+	if cmd != "dab":
+		embed.set_footer(text="Hitboxes by EyeDonutz | Icon by Gekigami | Bot by 1nder")
 	if cmd == "help":
 		await message.author.send(embed=embed, file=attach)
 	else:

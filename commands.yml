@@ -2,6 +2,7 @@ cmds:
   img:
     - meme
     - muchart
+    - dab
   text:
     - op
     - social
@@ -32,6 +33,9 @@ levels:
   image: mariomaker.png
   fields:
       Level Spreadsheet: https://docs.google.com/spreadsheets/d/1lSQUpZnJ0WKFmnLqvlNNWp3qxuWZuSHlYb0Sctwneuk/edit#gid=0
+
+dab:
+  image: dab.gif
 
 help:
   title: Ridley Stats Commands
@@ -65,7 +69,7 @@ vods:
   image: vods.png
   fields:
       Tournament VODs: https://www.youtube.com/playlist?list=PL7Ejy0uNwbLPkbY79HJwH--6kbkPL6Z9F
-      Crew Battle VODs: https://www.youtube.com/watch?v=UOtIefuhsAI&list=PLssLy8lTPzI65HcUX_K_6ox9sOtjv79Na
+      Crew Battle VODs: https://www.youtube.com/playlist?list=PLssLy8lTPzI65HcUX_K_6ox9sOtjv79Na
 
 op:
   title: Ridleycord Anime Opening
