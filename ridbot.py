@@ -7,6 +7,7 @@ prefix = "?"
 imgPath = "Images/"
 memePath = "Memes/"
 crocEmote = "<:Crocomire:583880666970718224>"
+dootEmote = "<:doot:628485652408696846>"
 #embedColor = 10170673 
 embedColor = 8454348
 
@@ -130,7 +131,10 @@ async def on_message(message):
 		await message.channel.send("sp00ky Bruh %s" % crocEmote)
 		return
 	elif cmd == "spook" or cmd == "sp00k":
-		await message.channel.send("sp00k %s" % crocEmote)
+		await message.channel.send("sp00k %s" % dootEmote)
+		return
+	elif cmd == "doot":
+		await message.channel.send("doot %s\n%s doot" % (dootEmote, dootEmote))
 		return
 	else:
 		return
