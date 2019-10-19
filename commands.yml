@@ -111,14 +111,18 @@ jab:
   fields:
       Hitbox Active: 4
       Jab 1 FAF: 24
-      Jab 1 DMG: 2.4
       Jab 2 FAF: 27
-      Jab 2 DMG: 1.8
-      Gentlemen FAF: 36
-      Gentlemen DMG: 10.2
+      Jab 3 FAF: 36
       Rapid FAF: 46
+      Jab 1 Shield Adv: -16
+      Jab 2 Shield Adv: -18
+      Jab 3 Shield Adv: -25
+      Rapid Shield Adv: -38
+      Jab 1 DMG: 2.4
+      Jab 2 DMG: 1.8
+      Jab 3 DMG: 10.2
       Rapid DMG: 12.4
-      Gentlemen Kill %: 160
+      Jab 3 Kill %: 160
       Rapid Kill %: ">470 (They start falling out)"
 
 ftilt:
@@ -127,10 +131,12 @@ ftilt:
   fields:
       Hitbox Active: 10-11
       FAF: 33
-      Sour Spot DMG: 12.0
-      Sweet Spot DMG: 15.6
-      Sour Spot Kill %: 182
-      Sweet Spot Kill %: 133
+      Sour Shield Adv: -12
+      Sweet Shield Adv: -10
+      Sour DMG: 12.0
+      Sweet DMG: 15.6
+      Sour Kill %: 182
+      Sweet Kill %: 133
 
 dtilt:
   title: Down Tilt
@@ -138,10 +144,12 @@ dtilt:
   fields:
       Hitbox Active: 9-11
       FAF: 31
-      Sour Spot DMG: 7.2
-      Sweet Spot DMG: 10.8
-      Sour Spot Kill %: 254
-      Sweet Spot Kill %: 179
+      Sour Shield Adv: -17
+      Sweet Shield Adv: -15
+      Sour DMG: 7.2
+      Sweet DMG: 10.8
+      Sour Kill %: 254
+      Sweet Kill %: 179
 
 utilt:
   title: Up Tilt
@@ -151,10 +159,12 @@ utilt:
       Invul Head and Arms: 8-9
       Invul Wings: 8-12
       FAF: 30
-      Sour Spot DMG: 8.4
-      Sweet Spot DMG: 10.8
-      Sour Spot Kill %: 163
-      Sweet Spot Kill %: 160
+      Sour Shield Adv: -14
+      Sweet Shield Adv: -11
+      Sour DMG: 8.4
+      Sweet DMG: 10.8
+      Sour Kill %: 163
+      Sweet Kill %: 160
 
 dash:
   title: Dash Attack
@@ -162,6 +172,7 @@ dash:
   fields:
       Hitbox Active: 12-13
       FAF: 40
+      Shield Adv: -15
       DMG: 14.4
       Kill %: 134
 
@@ -171,6 +182,7 @@ fsmash:
   fields:
       Hitbox Active: 18-21
       FAF: 54
+      Shield Adv: -21
       No Charge DMG: 24.0
       Full Charge DMG: 33.0
       No Charge Kill %: 65.0
@@ -182,6 +194,7 @@ dsmash:
   fields:
       Hitbox Active: 24-27
       FAF: 58
+      Shield Adv: -24
       No Charge DMG: 19.2
       Full Charge DMG: 26.8
       No Charge Kill %: 100.0
@@ -194,6 +207,7 @@ usmash:
       Hitbox Active: 12-17
       Intagibility: 12-17 (Attack Leg)
       FAF: 48
+      Shield Adv: -23
       No Charge DMG: 20.4
       Full Charge DMG: 28.5
       No Charge Kill %: 101.0
@@ -207,6 +221,8 @@ nair:
       FAF: 40
       Landing Lag: 12
       Auto Cancel: 1-2 28+
+      Early/Late Sour Shield Adv: -22 / -18
+      Early/Late Sweet Shield Adv: -19 / -16
       SH/FH Sour DMG: 9.1 / 10.8
       SH/FH Sweet DMG: 12.2 / 14.4
       SH/FH Late DMG: 5.1 / 6.0
@@ -220,6 +236,8 @@ fair:
       FAF: 42
       Landing Lag: 16
       Auto Cancel: 1-2 43+
+      Sour Shield Adv: -29 / -26 / -22
+      Sweet Shield Adv: -28 / -25 / -22
       SH/FH No Sweet DMG: 11.2 / 13.2
       SH/FH Sweet DMG: 17.3 / 20.4
       SH/FH Kill %: 185.0 / 183.0
@@ -230,6 +248,7 @@ bair:
   fields:
       Hitbox Active: 10-12
       FAF: 44
+      Shield Adv: -26
       Landing Lag: 17
       Auto Cancel: 38+
       SH/FH DMG: 16.3 / 19.2
@@ -243,6 +262,8 @@ uair:
       FAF: 40
       Landing Lag: 14
       Auto Cancel: 1-3 35+
+      Sour Shield Adv: -23
+      Sweet Shield Adv: -23
       SH/FH Sour DMG: 12.2 / 14.4
       SH/FH Sweet DMG: 14.2 / 16.8
       FH Kill %: 142.0 (Sweet Spot, Ground Level)
@@ -256,6 +277,8 @@ dair:
       FAF: 56
       Landing Lag: 32
       Auto Cancel: 1-3 50+
+      Sour Shield Adv: -31
+      Sweet Shield Adv: -39
       SH/FH Clean DMG: 14.2 / 16.8
       SH/FH Late DMG: 12.2 / 14.4
       SH/FH Late Kill %: 134.0 / 132.0
@@ -294,9 +317,10 @@ downb:
   fields:
       Hitbox Active: 30-31
       FAF: 68
+      Shield Adv: -32
+      Hit Adv: -4
       Sour DMG: 6.0
       Sweet DMG: 60.0
-      Frame Advantage: -11
 
 upb:
   title: Wing Blitz
