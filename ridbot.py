@@ -7,10 +7,7 @@ prefix = "?"
 imgPath = "Images/"
 memePath = "Memes/"
 crocEmote = "<:Crocomire:583880666970718224>"
-dootEmote = "<:doot:628485652408696846>"
-lulEmote = "<:OMEGALUL:594241750210707465>"
-#embedColor = 10170673 
-embedColor = 8454348
+embedColor = 10170673 
 
 synData = yamlLoad(open("synonyms.yml"))
 cmdData = yamlLoad(open("commands.yml"))
@@ -129,18 +126,7 @@ async def on_message(message):
 	elif cmd in cmds["img"]:
 		embed, attach = GetImageMessage(cmd)
 	elif cmd == "bruh":
-		await message.channel.send("sp00ky Bruh %s" % crocEmote)
-		return
-	elif cmd == "spook" or cmd == "sp00k" or cmd == "spooky" or cmd == "sp00ky":
-		await message.channel.send("sp00k %s" % dootEmote)
-		return
-	elif cmd == "doot":
-		await message.channel.send("doot %s\n%s doot" % (dootEmote, dootEmote))
-		return
-	elif cmd == "eggy":
-		await message.channel.send("my mom said you're bad at smash eggy")
-		return
-	else:
+		await message.channel.send("Bruh %s" % crocEmote)
 		return
 	if cmd == "help":
 		embed.set_footer(text="Credits: Hitboxes by EyeDonutz | Icon by Gekigami | Bot by 1nder")
