@@ -2,8 +2,7 @@ cmds:
   img:
     - meme
     - muchart
-    - dab
-  text:
+  embed:
     - op
     - social
     - help
@@ -12,6 +11,11 @@ cmds:
     - levels
     - montage
     - changes
+  text:
+    - bruh
+
+bruh: 
+  text: Bruh <:Crocomire:583880666970718224>
 
 changes:
   title: Recent Ridley Changes
@@ -33,9 +37,6 @@ levels:
   image: mariomaker.png
   fields:
       Level Spreadsheet: https://docs.google.com/spreadsheets/d/1lSQUpZnJ0WKFmnLqvlNNWp3qxuWZuSHlYb0Sctwneuk/edit#gid=0
-
-dab:
-  image: dab.gif
 
 help:
   title: Ridley Stats Commands
@@ -295,7 +296,7 @@ neutralb:
       Full Charge FAF: 105
       No Charge Base DMG: 4.5 / 3.5 (late)
       Full Charge Base DMG: 5.6 / 4.4 (late)
-      Use the link below because there's a TON of data!: https://docs.google.com/spreadsheets/d/1udaSlt3obpNcNr8_emK9SmTOGR-U61j6AbFCr_Kqns4/edit#gid=0
+      #Use the link below because there's a TON of data!: https://docs.google.com/spreadsheets/d/1udaSlt3obpNcNr8_emK9SmTOGR-U61j6AbFCr_Kqns4/edit#gid=0
 
 sideb:
   title: Space Pirate Rush

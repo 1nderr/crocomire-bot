@@ -7,9 +7,14 @@ prefix = "?"
 imgPath = "Images/"
 memePath = "Memes/"
 crocEmote = "<:Crocomire:583880666970718224>"
-embedColor = 10170673 
+embedColor = 10170673
+creditsMsg = "Credits: Hitboxes by EyeDonutz | Icon by Gekigami | Bot by 1nder"
 
+# Dictionary with a "main" move name as the key and synonyms for the move as the values.
+# Keeps the move name consistent while allowing for multiple ways to refer to a move. Example: nair = neutral air
 synData = yamlLoad(open("synonyms.yml"))
+
+# Dictionary with command name as the key and the command attributes (title, text, image, etc.) as the values.
 cmdData = yamlLoad(open("commands.yml"))
 cmds = cmdData["cmds"]
 
@@ -18,7 +23,8 @@ tokenFile = open("token", "r")
 token = tokenFile.read().strip()
 tokenFile.close()
 
-
+# Takes a move and translates it based on the synonyms dictionary.
+# Returns "Invalid Move" if the move does not exist and returns the root move name if the move is a synonym.
 def TranslateMove(move):
 	moveList = list(synData.keys())
 	if move in moveList:
@@ -31,9 +37,13 @@ def TranslateMove(move):
 	return "Invalid Move"
 
 
-def EmbedAttachment(embed, filename, attachType):
+# Takes an embed, file name, and option to declare the attachment as a thumbnail or image.
+# Returns a file object that can be attached to an embedded message.
+def CreateEmbedAttachment(embed, filename, attachType):
+	# This assures the image is uploaded as a gif file.
 	imgURL = "attachment://" + "img.gif"
 
+	# This sets the url of the image the message will use. 
 	if attachType == "thumbnail":
 		embed.set_thumbnail(url=imgURL)
 	elif attachType == "image":
@@ -43,30 +53,26 @@ def EmbedAttachment(embed, filename, attachType):
 	return f
 
 
-def CreateEmbed(cmd, inline):
+# Takes in an embed and option for inline or stacked embed text.
+# Returns an embeded message object with the given command's text and thumbnail.
+def CreateTextEmbed(cmd, inline):
 	embedData = cmdData[cmd]
 	title = "__" + embedData["title"] + "__"
 	fields = embedData["fields"]
 	embed = discord.Embed(title=title, color=embedColor)
-	
+
 	for i in fields.keys():
 		embed.add_field(name=i, value=fields[i], inline=inline)
 
-	return embed
-
-
-def GetEmbedMessage(cmd, inline, thumbnail):
-	embed = CreateEmbed(cmd, inline)
-	f = None
-
-	if thumbnail:
-		filename = imgPath + cmdData[cmd]["image"]
-		f = EmbedAttachment(embed, filename, "thumbnail")
+	filename = imgPath + cmdData[cmd]["image"]
+	f = CreateEmbedAttachment(embed, filename, "thumbnail")
 
 	return embed, f
 
 
-def GetImageMessage(cmd):
+# Takes in a cmd name.
+# Returns an embed object and image file.
+def CreateImageEmbed(cmd):
 	embed = discord.Embed(color=embedColor)
 
 	if cmd == "meme":
@@ -79,10 +85,11 @@ def GetImageMessage(cmd):
 			survey = cmdData[cmd]["link"]
 			embed.add_field(name="Vote Here:", value=survey, inline=False)
 
-	f = EmbedAttachment(embed, img, "image")
+	f = CreateEmbedAttachment(embed, img, "image")
 	return embed, f
 
 
+# Sets the bots status on start up.
 @client.event
 async def on_ready():
 	await client.change_presence(status=discord.Status.do_not_disturb, activity=discord.Game(name="Bruh, Type %shelp" % prefix))
@@ -118,18 +125,18 @@ async def on_message(message):
 		return
 
 	if cmd == "viz":
-		embed, attach = GetImageMessage(move)
+		embed, attach = CreateImageEmbed(move)
 	elif cmd == "stats":
-		embed, attach = GetEmbedMessage(move, True, True)
-	elif cmd in cmds["text"]:
-		embed, attach = GetEmbedMessage(cmd, False, True)
+		embed, attach = CreateTextEmbed(move, True)
+	elif cmd in cmds["embed"]:
+		embed, attach = CreateTextEmbed(cmd, False)
 	elif cmd in cmds["img"]:
-		embed, attach = GetImageMessage(cmd)
-	elif cmd == "bruh":
-		await message.channel.send("Bruh %s" % crocEmote)
-		return
-	if cmd == "help":
-		embed.set_footer(text="Credits: Hitboxes by EyeDonutz | Icon by Gekigami | Bot by 1nder")
+		embed, attach = CreateImageEmbed(cmd)
+
+	if cmd in cmds["text"]:
+		await message.channel.send(cmdData[cmd]["text"])
+	elif cmd == "help":
+		embed.set_footer(text=creditsMsg)
 		await message.author.send(embed=embed, file=attach)
 	else:
 		await message.channel.send(embed=embed, file=attach)
