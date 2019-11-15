@@ -91,6 +91,12 @@ montage:
   fields:
       Emperors of the Cosmos Vol. 1: https://www.youtube.com/watch?v=EbDdAB2TyRw
 
+
+
+###-------------------------STAT COMMANDS-------------------------###
+
+
+
 ridley:
   title: Ridley's Stats
   image: ridley.png
@@ -103,14 +109,14 @@ ridley:
       Air Acceleration: 0.07 (46-49th)
       Fall Speed: 1.78
       Gravity: 0.09
-      Full Hop Air Time: 51
-      Short Hop Air Time: 35
+      FH Air Time: 51
+      SH Air Time: 35
 
 jab:
   title: Jab
   image: jab.gif
   fields:
-      Hitbox Active: 4
+      Frames: 4
       Jab 1 FAF: 24
       Jab 2 FAF: 27
       Jab 3 FAF: 36
@@ -130,7 +136,7 @@ ftilt:
   title: Forward Tilt
   image: ftilt.gif
   fields:
-      Hitbox Active: 10-11
+      Frames: 10-11
       FAF: 33
       Sour Shield Adv: -12
       Sweet Shield Adv: -10
@@ -143,7 +149,7 @@ dtilt:
   title: Down Tilt
   image: dtilt.gif
   fields:
-      Hitbox Active: 9-11
+      Frames: 9-11
       FAF: 31
       Sour Shield Adv: -17
       Sweet Shield Adv: -15
@@ -156,7 +162,7 @@ utilt:
   title: Up Tilt
   image: utilt.gif
   fields:
-      Hitbox Active: 8-12
+      Frames: 8-12
       Invul Head and Arms: 8-9
       Invul Wings: 8-12
       FAF: 30
@@ -171,7 +177,7 @@ dash:
   title: Dash Attack
   image: dash.gif
   fields:
-      Hitbox Active: 12-13
+      Frames: 12-13
       FAF: 40
       Shield Adv: -15
       DMG: 14.4
@@ -181,7 +187,7 @@ fsmash:
   title: Forward Smash
   image: fsmash.gif
   fields:
-      Hitbox Active: 18-21
+      Frames: 18-21
       FAF: 54
       Shield Adv: -21
       No Charge DMG: 24.0
@@ -193,7 +199,7 @@ dsmash:
   title: Down Smash
   image: dsmash.gif
   fields:
-      Hitbox Active: 24-27
+      Frames: 24-27
       FAF: 58
       Shield Adv: -24
       No Charge DMG: 19.2
@@ -205,7 +211,7 @@ usmash:
   title: Up Smash
   image: usmash.gif
   fields:
-      Hitbox Active: 12-17
+      Frames: 12-17
       Intagibility: 12-17 (Attack Leg)
       FAF: 48
       Shield Adv: -23
@@ -218,7 +224,7 @@ nair:
   title: Neutral Air
   image: nair.gif
   fields:
-      Hitbox Active: 8-20
+      Frames: 8-20
       FAF: 40
       Landing Lag: 12
       Auto Cancel: 1-2 28+
@@ -233,7 +239,7 @@ fair:
   title: Forward Air
   image: fair.gif
   fields:
-      Hitbox Active: 10, 13, 16
+      Frames: 10, 13, 16
       FAF: 42
       Landing Lag: 16
       Auto Cancel: 1-2 43+
@@ -247,7 +253,7 @@ bair:
   title: Back Air
   image: bair.gif
   fields:
-      Hitbox Active: 10-12
+      Frames: 10-12
       FAF: 44
       Shield Adv: -26
       Landing Lag: 17
@@ -259,7 +265,7 @@ uair:
   title: Up Air
   image: uair.gif
   fields:
-      Hitbox Active: 11-13
+      Frames: 11-13
       FAF: 40
       Landing Lag: 14
       Auto Cancel: 1-3 35+
@@ -273,8 +279,8 @@ dair:
   title: Down Air
   image: dair.gif
   fields:
-      Hitbox Active: 11-40
-      Spike Active: 11-18
+      Frames: 11-40
+      Spike: 11-18
       FAF: 56
       Landing Lag: 32
       Auto Cancel: 1-3 50+
@@ -296,13 +302,12 @@ neutralb:
       Full Charge FAF: 105
       No Charge Base DMG: 4.5 / 3.5 (late)
       Full Charge Base DMG: 5.6 / 4.4 (late)
-      #Use the link below because there's a TON of data!: https://docs.google.com/spreadsheets/d/1udaSlt3obpNcNr8_emK9SmTOGR-U61j6AbFCr_Kqns4/edit#gid=0
 
 sideb:
   title: Space Pirate Rush
   image: spr.gif
   fields:
-      Hitbox Active: 22-34
+      Frames: 22-34
       FAF: 79
       Aerial FAF: 61
       Slam DMG: 4.8
@@ -316,7 +321,7 @@ downb:
   title: Skewer
   image: skewer.gif
   fields:
-      Hitbox Active: 30-31
+      Frames: 30-31
       FAF: 68
       Shield Adv: -32
       Hit Adv: -4
@@ -327,9 +332,9 @@ upb:
   title: Wing Blitz
   image: upb.gif
   fields:
-      Hitbox Active Up: 34-57
-      Hitbox Active Sideways: 36-55
-      Hitbox Active Down: 37-59
+      Frames Up: 34-57
+      Frames Sideways: 36-55
+      Frames Down: 37-59
       Landing Lag (Down): 35
       DMG Up: 21.6
       DMG Sideways: 19.2
@@ -407,7 +412,7 @@ utaunt:
   title: Up Taunt
   image: utaunt.gif
   fields:
-      Usage: Use up taunt when you die because of your shitty recovery REEEEEEEEEEEEE.
+      Usage: Use up taunt to make your opponents ears bleed <:RidRoar:644722014749327390>.
 
 sidetaunt:
   title: Side Taunt

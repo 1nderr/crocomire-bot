@@ -16,7 +16,11 @@ synData = yamlLoad(open("synonyms.yml"))
 
 # Dictionary with command name as the key and the command attributes (title, text, image, etc.) as the values.
 cmdData = yamlLoad(open("commands.yml"))
-cmds = cmdData["cmds"]
+
+# Lists of commands by response type.
+imgCmds = cmdData["cmds"]["img"]
+embedCmds = cmdData["cmds"]["embed"]
+textCmds = cmdData["cmds"]["text"]
 
 client = discord.Client()
 tokenFile = open("token", "r")
@@ -56,13 +60,15 @@ def CreateEmbedAttachment(embed, filename, attachType):
 # Takes in an embed and option for inline or stacked embed text.
 # Returns an embeded message object with the given command's text and thumbnail.
 def CreateTextEmbed(cmd, inline):
-	embedData = cmdData[cmd]
-	title = "__" + embedData["title"] + "__"
-	fields = embedData["fields"]
+	title = "__" + cmdData[cmd]["title"] + "__"
+	fields = cmdData[cmd]["fields"]
 	embed = discord.Embed(title=title, color=embedColor)
 
 	for i in fields.keys():
 		embed.add_field(name=i, value=fields[i], inline=inline)
+
+	if len(fields.keys()) % 3 != 0 and cmd not in embedCmds:
+		embed.add_field(name="‏‏‎‏‏‎ ‎", value="‏‏‎‏‏‎ ‎", inline=inline)
 
 	filename = imgPath + cmdData[cmd]["image"]
 	f = CreateEmbedAttachment(embed, filename, "thumbnail")
@@ -128,12 +134,12 @@ async def on_message(message):
 		embed, attach = CreateImageEmbed(move)
 	elif cmd == "stats":
 		embed, attach = CreateTextEmbed(move, True)
-	elif cmd in cmds["embed"]:
+	elif cmd in embedCmds:
 		embed, attach = CreateTextEmbed(cmd, False)
-	elif cmd in cmds["img"]:
+	elif cmd in imgCmds:
 		embed, attach = CreateImageEmbed(cmd)
 
-	if cmd in cmds["text"]:
+	if cmd in textCmds:
 		await message.channel.send(cmdData[cmd]["text"])
 	elif cmd == "help":
 		embed.set_footer(text=creditsMsg)
