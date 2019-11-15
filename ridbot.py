@@ -1,4 +1,5 @@
 import discord
+import asyncio
 from os import listdir
 from random import choice, seed
 from yaml import safe_load as yamlLoad
@@ -7,6 +8,7 @@ prefix = "?"
 imgPath = "Images/"
 memePath = "Memes/"
 crocEmote = "<:Crocomire:583880666970718224>"
+reactEmote = "🔴"
 embedColor = 10170673
 creditsMsg = "Credits: Hitboxes by EyeDonutz | Icon by Gekigami | Bot by 1nder"
 
@@ -27,6 +29,7 @@ tokenFile = open("token", "r")
 token = tokenFile.read().strip()
 tokenFile.close()
 
+
 # Takes a move and translates it based on the synonyms dictionary.
 # Returns "Invalid Move" if the move does not exist and returns the root move name if the move is a synonym.
 def TranslateMove(move):
@@ -41,20 +44,19 @@ def TranslateMove(move):
 	return "Invalid Move"
 
 
-# Takes an embed, file name, and option to declare the attachment as a thumbnail or image.
-# Returns a file object that can be attached to an embedded message.
-def CreateEmbedAttachment(embed, filename, attachType):
-	# This assures the image is uploaded as a gif file.
-	imgURL = "attachment://" + "img.gif"
-
-	# This sets the url of the image the message will use. 
-	if attachType == "thumbnail":
-		embed.set_thumbnail(url=imgURL)
-	elif attachType == "image":
-		embed.set_image(url=imgURL)
-
-	f = discord.File(filename, "img.gif")
-	return f
+# Generates an embedded message to send to the user.
+async def GetEmbed(cmd, move):
+	if cmd == "viz":
+		embed, attach = CreateImageEmbed(move)
+		embed.set_footer(text="React with %s to see the stats." % reactEmote)
+	elif cmd == "stats":
+		embed, attach = CreateTextEmbed(move, True)
+		embed.set_footer(text="React with %s to see the hitbox." % reactEmote)
+	elif cmd in embedCmds:
+		embed, attach = CreateTextEmbed(cmd, False)
+	elif cmd in imgCmds:
+		embed, attach = CreateImageEmbed(cmd)
+	return embed, attach
 
 
 # Takes in an embed and option for inline or stacked embed text.
@@ -95,6 +97,54 @@ def CreateImageEmbed(cmd):
 	return embed, f
 
 
+# Takes an embed, file name, and option to declare the attachment as a thumbnail or image.
+# Returns a file object that can be attached to an embedded message.
+def CreateEmbedAttachment(embed, filename, attachType):
+	# This assures the image is uploaded as a gif file.
+	imgURL = "attachment://" + "img.gif"
+
+	# This sets the url of the image the message will use. 
+	if attachType == "thumbnail":
+		embed.set_thumbnail(url=imgURL)
+	elif attachType == "image":
+		embed.set_image(url=imgURL)
+
+	f = discord.File(filename, "img.gif")
+	return f
+
+
+# Sends an embedded message based on the user's request.
+async def SendEmbed(cmd, embed, attach, req):
+	if cmd == "help":
+		embed.set_footer(text=creditsMsg)
+		resp = await req.author.send(embed=embed, file=attach)
+	else:
+		resp = await req.channel.send(embed=embed, file=attach)
+	return resp
+
+
+# Waits for a reaction on stats or viz and then sends the opposite command if the message is reacted to.
+async def WaitForReaction(cmd, move, msg, chan):
+	await msg.add_reaction(reactEmote)
+
+	try:
+		await client.wait_for('reaction_add', timeout=60.0, check=CheckReaction)
+
+		if cmd == "stats":
+			embed, attach = CreateImageEmbed(move)
+		elif cmd == "viz":
+			embed, attach = CreateTextEmbed(move, True)
+
+		await chan.send(embed=embed, file=attach)
+	except asyncio.TimeoutError:
+		return
+
+
+# Checks if the reaction to a message matches the indicated emoji.
+def CheckReaction(reaction, user):
+	return str(reaction.emoji) == reactEmote and user != client.user
+
+
 # Sets the bots status on start up.
 @client.event
 async def on_ready():
@@ -102,12 +152,13 @@ async def on_ready():
 
 
 @client.event
-async def on_message(message):
-	if message.author == client.user:
+async def on_message(req):
+	if req.author == client.user:
 		return
 
+	# Parses the message for the command.
 	try:
-		msg = message.content.split()
+		msg = req.content.split()
 		char1 = msg[0][0]
 
 		if char1 != prefix:
@@ -115,37 +166,32 @@ async def on_message(message):
 
 		cmd = msg[0][1:].lower()
 
-		if cmd == "stats" or cmd == "viz":
-			move = "".join(msg[1:]).lower()
-
-			if move == "":
-				await message.channel.send("Bruh say a move after the cmd. Ex: `?%s nair` %s" % (cmd, crocEmote))
-				return
-			else:
-				move = TranslateMove(move)
-				if move == "Invalid Move":
-					await message.channel.send("Bruh I don't recognize that move %s" % crocEmote)
-					return
-
 	except IndexError:
 		return
 
-	if cmd == "viz":
-		embed, attach = CreateImageEmbed(move)
-	elif cmd == "stats":
-		embed, attach = CreateTextEmbed(move, True)
-	elif cmd in embedCmds:
-		embed, attach = CreateTextEmbed(cmd, False)
-	elif cmd in imgCmds:
-		embed, attach = CreateImageEmbed(cmd)
+	# Parses the move name.
+	move = None
+	if cmd == "stats" or cmd == "viz":
+		move = "".join(msg[1:]).lower()
 
+		if move == "":
+			await req.channel.send("Bruh say a move after the cmd. Ex: `?%s nair` %s" % (cmd, crocEmote))
+			return
+		else:
+			move = TranslateMove(move)
+			if move == "Invalid Move":
+				await req.channel.send("Bruh I don't recognize that move %s" % crocEmote)
+				return
+
+	# Sends the message response.
 	if cmd in textCmds:
-		await message.channel.send(cmdData[cmd]["text"])
-	elif cmd == "help":
-		embed.set_footer(text=creditsMsg)
-		await message.author.send(embed=embed, file=attach)
+		await req.channel.send(cmdData[cmd]["text"])
 	else:
-		await message.channel.send(embed=embed, file=attach)
-	return
+		embed, attach = await GetEmbed(cmd, move)
+		resp = await SendEmbed(cmd, embed, attach, req)
+		
+		# Adds reaction to stats or viz message.
+		if cmd == "stats" or cmd == "viz":
+			await WaitForReaction(cmd, move, resp, req.channel)
 
 client.run(token)

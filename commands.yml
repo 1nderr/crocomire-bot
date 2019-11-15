@@ -412,7 +412,7 @@ utaunt:
   title: Up Taunt
   image: utaunt.gif
   fields:
-      Usage: Use up taunt to make your opponents ears bleed <:RidRoar:644722014749327390>.
+      Usage: Use up taunt to make your opponents ears bleed <:RidRoar:562498128255647745>
 
 sidetaunt:
   title: Side Taunt
@@ -468,4 +468,4 @@ parry:
   title: Parry
   image: parry.gif
   fields:
-    Parry Stats: Bruh honestly, idk why you're looking for parry stats they're all the same <:Crocomire:583880666970718224> 
+    Parry Joke: Bruh honestly, idk why you're looking for parry stats they're all the same <:Crocomire:583880666970718224> 
