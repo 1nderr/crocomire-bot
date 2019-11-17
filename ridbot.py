@@ -1,5 +1,5 @@
 import discord
-import asyncio
+from asyncio import TimeoutError
 from os import listdir
 from random import choice, seed
 from yaml import safe_load as yamlLoad
@@ -12,6 +12,8 @@ reactEmote = "🔴"
 embedColor = 10170673
 creditsMsg = "Credits: Hitboxes by EyeDonutz | Icon by Gekigami | Bot by 1nder"
 moveError = "Bruh I don't recognize the move \"%s\" %s"
+reactMsg = "Press %s within the next 60s to see the %s. (Sender Only)"
+reactTime = 60.0
 
 # Dictionary with a "main" move name as the key and synonyms for the move as the values.
 # Keeps the move name consistent while allowing for multiple ways to refer to a move. Example: nair = neutral air
@@ -50,12 +52,10 @@ def TranslateMove(move):
 async def GetEmbed(cmd, move):
     if cmd == "viz":
         embed, attach = CreateImageEmbed(move)
-        embed.set_footer(
-            text="React with %s to see the stats. (Sender Only)" % reactEmote)
+        embed.set_footer(text=reactMsg % (reactEmote, "stats"))
     elif cmd == "stats":
         embed, attach = CreateTextEmbed(move, True)
-        embed.set_footer(
-            text="React with %s to see the hitbox. (Sender Only)" % reactEmote)
+        embed.set_footer(text=reactMsg % (reactEmote, "hitbox"))
     elif cmd in embedCmds:
         embed, attach = CreateTextEmbed(cmd, False)
     elif cmd in imgCmds:
@@ -128,24 +128,39 @@ async def SendEmbed(cmd, embed, attach, req):
 
 
 # Waits for a reaction on stats or viz and then sends the opposite command if the message is reacted to.
-async def WaitForReaction(cmd, move, msg, req):
-    await msg.add_reaction(reactEmote)
+async def WaitForReaction(cmd, move, resp, req):
+    await resp.add_reaction(reactEmote)
 
     try:
         # Checks if the reaction to a message matches the indicated emoji.
         def CheckReaction(reaction, user):
             return str(reaction.emoji) == reactEmote and user == req.author
 
-        await client.wait_for('reaction_add', timeout=60.0, check=CheckReaction)
+        
+        # This logic here is to make sure each message is treated as 1 message when the client waits for a reaction.
+        # When its waiting, it waits for a reaction on ANY message, which means that multiple messages can be
+        # sent if a single message is reacted to when there are multiple messages in the cache.
+        # Until the bot waits for over 60 seconds or until the reaction count for the specific message is greater
+        # than one, it will continue to wait. Before, this resulted in a bug where if you did two stats cmds
+        # and reacted to one of them, it would send the follow up message to both messages instead of just the
+        # one that was reacted to.
+        while True:
+            await client.wait_for('reaction_add', timeout=reactTime, check=CheckReaction)
 
-        if cmd == "stats":
-            embed, attach = CreateImageEmbed(move)
-        elif cmd == "viz":
-            embed, attach = CreateTextEmbed(move, True)
+            # Updates the response sent earlier with the newly added reactions.
+            resp = await req.channel.fetch_message(resp.id)
 
-        await req.channel.send(embed=embed, file=attach)
+            # Makes sure the response being reacted to isn't some other message from before.
+            if resp.reactions[0].count > 1:
+                if cmd == "stats":
+                    embed, attach = CreateImageEmbed(move)
+                elif cmd == "viz":
+                    embed, attach = CreateTextEmbed(move, True)
 
-    except asyncio.TimeoutError:
+                await req.channel.send(embed=embed, file=attach)
+                break
+        
+    except TimeoutError:
         return
 
 
