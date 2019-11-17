@@ -136,14 +136,8 @@ async def WaitForReaction(cmd, move, resp, req):
         def CheckReaction(reaction, user):
             return str(reaction.emoji) == reactEmote and user == req.author
 
-        
-        # This logic here is to make sure each message is treated as 1 message when the client waits for a reaction.
-        # When its waiting, it waits for a reaction on ANY message, which means that multiple messages can be
-        # sent if a single message is reacted to when there are multiple messages in the cache.
-        # Until the bot waits for over 60 seconds or until the reaction count for the specific message is greater
-        # than one, it will continue to wait. Before, this resulted in a bug where if you did two stats cmds
-        # and reacted to one of them, it would send the follow up message to both messages instead of just the
-        # one that was reacted to.
+        # This loop prevents a bug where if you did two stats cmds and reacted to one of them, 
+        # it would send the follow up message to both messages instead of the one that was reacted to.
         while True:
             await client.wait_for('reaction_add', timeout=reactTime, check=CheckReaction)
 
