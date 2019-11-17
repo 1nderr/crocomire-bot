@@ -2,6 +2,7 @@ cmds:
   img:
     - meme
     - muchart
+    - petrus
   embed:
     - op
     - social
@@ -11,10 +12,12 @@ cmds:
     - levels
     - montage
     - changes
+    - stats
+    - viz
   text:
     - bruh
 
-bruh: 
+bruh:
   text: Bruh <:Crocomire:583880666970718224>
 
 changes:
@@ -36,425 +39,421 @@ levels:
   title: Ridleycord Mario Maker 2 Levels
   image: mariomaker.png
   fields:
-      Level Spreadsheet: https://docs.google.com/spreadsheets/d/1lSQUpZnJ0WKFmnLqvlNNWp3qxuWZuSHlYb0Sctwneuk/edit#gid=0
+    Level Spreadsheet: https://docs.google.com/spreadsheets/d/1lSQUpZnJ0WKFmnLqvlNNWp3qxuWZuSHlYb0Sctwneuk/edit#gid=0
 
 help:
   title: Ridley Stats Commands
   image: croc.png
   fields:
-      Prefix: "?"
-      docs: Links the Ridleycord resources, lab, and guide docs.
-      bruh: Says Bruh.
-      changes: Displays Ridley's latest changes. (See more patches in the In-Depth Ridley Guide)
-      help: Sends the user a list of commands.
-      levels: Links the Ridleycord Mario Maker 2 level spreadsheet.
-      meme: Sends a random Ridleycord meme.
-      montage: Links the Ridleycord Montage.
-      muchart: Displays the community MU chart.
-      op: Links the Ridleycord anime opening.
-      social: Links the Ridleycord social media.
-      stats [move]: Displays an embedded message with a given move's stats. (Including Ridley's stats and taunts)
-      viz [move]: Displays an image of a given move. (Including taunts)
-      vods: Links tournament and JMU vods.
+    Prefix: "?"
+    docs: Links the Ridleycord resources, lab, and guide docs.
+    bruh: Says Bruh.
+    changes: Displays Ridley's latest changes. (See more patches in the In-Depth Ridley Guide)
+    help: Sends the user a list of commands.
+    levels: Links the Ridleycord Mario Maker 2 level spreadsheet.
+    meme: Sends a random Ridleycord meme.
+    montage: Links the Ridleycord Montage.
+    muchart: Displays the community MU chart.
+    op: Links the Ridleycord anime opening.
+    social: Links the Ridleycord social media.
+    stats [move]: Displays an embedded message with a given move's stats. (Including Ridley's stats and taunts)
+    viz [move]: Displays an image of a given move. (Including taunts)
+    vods: Links tournament and JMU vods.
 
 docs:
   title: Ridleycord Documentation
   image: docs.png
   fields:
-      Ultimate Ridley Resource Doc: https://docs.google.com/document/d/1DFeQrzvIgG6XaRa4fw2hULfGLmlLuIRpkZ2hY8FMsW8/edit
-      Ridley Master Lab Doc: https://docs.google.com/spreadsheets/d/1dnxndTKxjMVKTl0v8YYUnY1X80lgOOFK17OAw2BwVpI/edit?usp=sharing
-      An in-Depth Guide to Ridley: https://docs.google.com/document/d/1GTCGcJzEWrv4REbv3PfwiWmceZU8NbZhoJCgmb-JAs8/edit?usp=sharing
+    Ultimate Ridley Resource Doc: https://docs.google.com/document/d/1DFeQrzvIgG6XaRa4fw2hULfGLmlLuIRpkZ2hY8FMsW8/edit
+    Ridley Master Lab Doc: https://docs.google.com/spreadsheets/d/1dnxndTKxjMVKTl0v8YYUnY1X80lgOOFK17OAw2BwVpI/edit?usp=sharing
+    An in-Depth Guide to Ridley: https://docs.google.com/document/d/1GTCGcJzEWrv4REbv3PfwiWmceZU8NbZhoJCgmb-JAs8/edit?usp=sharing
 
 vods:
   title: Ridley Vods
   image: vods.png
   fields:
-      Tournament VODs: https://www.youtube.com/playlist?list=PL7Ejy0uNwbLPkbY79HJwH--6kbkPL6Z9F
-      Crew Battle VODs: https://www.youtube.com/playlist?list=PLssLy8lTPzI65HcUX_K_6ox9sOtjv79Na
+    Tournament VODs: https://www.youtube.com/playlist?list=PL7Ejy0uNwbLPkbY79HJwH--6kbkPL6Z9F
+    Crew Battle VODs: https://www.youtube.com/playlist?list=PLssLy8lTPzI65HcUX_K_6ox9sOtjv79Na
 
 op:
   title: Ridleycord Anime Opening
   image: op.png
   fields:
-      Streamable: https://streamable.com/zj6gz
+    Streamable: https://streamable.com/zj6gz
 
 social:
   title: Ridleycord Social Media
   image: social.png
   fields:
-      Twitter: https://twitter.com/RidleyDiscord
-      YouTube: https://www.youtube.com/channel/UCPTi_HYm1_96rpIVgXQEeEA
+    Twitter: https://twitter.com/RidleyDiscord
+    YouTube: https://www.youtube.com/channel/UCPTi_HYm1_96rpIVgXQEeEA
 
 montage:
   title: Ridleycord Montage
   image: montage.png
   fields:
-      Emperors of the Cosmos Vol. 1: https://www.youtube.com/watch?v=EbDdAB2TyRw
-
-
+    Emperors of the Cosmos Vol. 1: https://www.youtube.com/watch?v=EbDdAB2TyRw
 
 ###-------------------------STAT COMMANDS-------------------------###
-
-
 
 ridley:
   title: Ridley's Stats
   image: ridley.png
   fields:
-      Jumps: 3
-      Weight: 107 (11-15th)
-      Run Speed: 2.2 (9-10th)
-      Walk Speed: 1.1 (48th)
-      Air Speed: 1.05 (41-44th)
-      Air Acceleration: 0.07 (46-49th)
-      Fall Speed: 1.78
-      Gravity: 0.09
-      FH Air Time: 51
-      SH Air Time: 35
+    Jumps: 3
+    Weight: 107 (11-15th)
+    Run Speed: 2.2 (9-10th)
+    Walk Speed: 1.1 (48th)
+    Air Speed: 1.05 (41-44th)
+    Air Acceleration: 0.07 (46-49th)
+    Fall Speed: 1.78
+    Gravity: 0.09
+    FH Air Time: 51
+    SH Air Time: 35
 
 jab:
   title: Jab
   image: jab.gif
   fields:
-      Frames: 4
-      Jab 1 FAF: 24
-      Jab 2 FAF: 27
-      Jab 3 FAF: 36
-      Rapid FAF: 46
-      Jab 1 Shield Adv: -16
-      Jab 2 Shield Adv: -18
-      Jab 3 Shield Adv: -25
-      Rapid Shield Adv: -38
-      Jab 1 DMG: 2.4
-      Jab 2 DMG: 1.8
-      Jab 3 DMG: 10.2
-      Rapid DMG: 12.4
-      Jab 3 Kill %: 160
-      Rapid Kill %: ">470 (They start falling out)"
+    Frames: 4
+    Jab 1 FAF: 24
+    Jab 2 FAF: 27
+    Jab 3 FAF: 36
+    Rapid FAF: 46
+    Jab 1 Shield Adv: -16
+    Jab 2 Shield Adv: -18
+    Jab 3 Shield Adv: -25
+    Rapid Shield Adv: -38
+    Jab 1 DMG: 2.4
+    Jab 2 DMG: 1.8
+    Jab 3 DMG: 10.2
+    Rapid DMG: 12.4
+    Jab 3 Kill %: 160
+    Rapid Kill %: ">470 (They start falling out)"
 
 ftilt:
   title: Forward Tilt
   image: ftilt.gif
   fields:
-      Frames: 10-11
-      FAF: 33
-      Sour Shield Adv: -12
-      Sweet Shield Adv: -10
-      Sour DMG: 12.0
-      Sweet DMG: 15.6
-      Sour Kill %: 182
-      Sweet Kill %: 133
+    Frames: 10-11
+    FAF: 33
+    Sour Shield Adv: -12
+    Sweet Shield Adv: -10
+    Sour DMG: 12.0
+    Sweet DMG: 15.6
+    Sour Kill %: 182
+    Sweet Kill %: 133
 
 dtilt:
   title: Down Tilt
   image: dtilt.gif
   fields:
-      Frames: 9-11
-      FAF: 31
-      Sour Shield Adv: -17
-      Sweet Shield Adv: -15
-      Sour DMG: 7.2
-      Sweet DMG: 10.8
-      Sour Kill %: 254
-      Sweet Kill %: 179
+    Frames: 9-11
+    FAF: 31
+    Sour Shield Adv: -17
+    Sweet Shield Adv: -15
+    Sour DMG: 7.2
+    Sweet DMG: 10.8
+    Sour Kill %: 254
+    Sweet Kill %: 179
 
 utilt:
   title: Up Tilt
   image: utilt.gif
   fields:
-      Frames: 8-12
-      Invul Head and Arms: 8-9
-      Invul Wings: 8-12
-      FAF: 30
-      Sour Shield Adv: -14
-      Sweet Shield Adv: -11
-      Sour DMG: 8.4
-      Sweet DMG: 10.8
-      Sour Kill %: 163
-      Sweet Kill %: 160
+    Frames: 8-12
+    Invul Head and Arms: 8-9
+    Invul Wings: 8-12
+    FAF: 30
+    Sour Shield Adv: -14
+    Sweet Shield Adv: -11
+    Sour DMG: 8.4
+    Sweet DMG: 10.8
+    Sour Kill %: 163
+    Sweet Kill %: 160
 
 dash:
   title: Dash Attack
   image: dash.gif
   fields:
-      Frames: 12-13
-      FAF: 40
-      Shield Adv: -15
-      DMG: 14.4
-      Kill %: 134
+    Frames: 12-13
+    FAF: 40
+    Shield Adv: -15
+    DMG: 14.4
+    Kill %: 134
 
 fsmash:
   title: Forward Smash
   image: fsmash.gif
   fields:
-      Frames: 18-21
-      FAF: 54
-      Shield Adv: -21
-      No Charge DMG: 24.0
-      Full Charge DMG: 33.0
-      No Charge Kill %: 65.0
-      Full Charge Kill %: 35.0
+    Frames: 18-21
+    FAF: 54
+    Shield Adv: -21
+    No Charge DMG: 24.0
+    Full Charge DMG: 33.0
+    No Charge Kill %: 65.0
+    Full Charge Kill %: 35.0
 
 dsmash:
   title: Down Smash
   image: dsmash.gif
   fields:
-      Frames: 24-27
-      FAF: 58
-      Shield Adv: -24
-      No Charge DMG: 19.2
-      Full Charge DMG: 26.8
-      No Charge Kill %: 100.0
-      Full Charge Kill %: 63.0
+    Frames: 24-27
+    FAF: 58
+    Shield Adv: -24
+    No Charge DMG: 19.2
+    Full Charge DMG: 26.8
+    No Charge Kill %: 100.0
+    Full Charge Kill %: 63.0
 
 usmash:
   title: Up Smash
   image: usmash.gif
   fields:
-      Frames: 12-17
-      Intagibility: 12-17 (Attack Leg)
-      FAF: 48
-      Shield Adv: -23
-      No Charge DMG: 20.4
-      Full Charge DMG: 28.5
-      No Charge Kill %: 101.0
-      Full Charge Kill %: 63.0
+    Frames: 12-17
+    Intagibility: 12-17 (Attack Leg)
+    FAF: 48
+    Shield Adv: -23
+    No Charge DMG: 20.4
+    Full Charge DMG: 28.5
+    No Charge Kill %: 101.0
+    Full Charge Kill %: 63.0
 
 nair:
   title: Neutral Air
   image: nair.gif
   fields:
-      Frames: 8-20
-      FAF: 40
-      Landing Lag: 12
-      Auto Cancel: 1-2 28+
-      Early/Late Sour Shield Adv: -22 / -18
-      Early/Late Sweet Shield Adv: -19 / -16
-      SH/FH Sour DMG: 9.1 / 10.8
-      SH/FH Sweet DMG: 12.2 / 14.4
-      SH/FH Late DMG: 5.1 / 6.0
-      SH/FH Kill %: 185.0 / 183.0
+    Frames: 8-20
+    FAF: 40
+    Landing Lag: 12
+    Auto Cancel: 1-2 28+
+    Early/Late Sour Shield Adv: -22 / -18
+    Early/Late Sweet Shield Adv: -19 / -16
+    SH/FH Sour DMG: 9.1 / 10.8
+    SH/FH Sweet DMG: 12.2 / 14.4
+    SH/FH Late DMG: 5.1 / 6.0
+    SH/FH Kill %: 185.0 / 183.0
 
 fair:
   title: Forward Air
   image: fair.gif
   fields:
-      Frames: 10, 13, 16
-      FAF: 42
-      Landing Lag: 16
-      Auto Cancel: 1-2 43+
-      Sour Shield Adv: -29 / -26 / -22
-      Sweet Shield Adv: -28 / -25 / -22
-      SH/FH No Sweet DMG: 11.2 / 13.2
-      SH/FH Sweet DMG: 17.3 / 20.4
-      SH/FH Kill %: 185.0 / 183.0
+    Frames: 10, 13, 16
+    FAF: 42
+    Landing Lag: 16
+    Auto Cancel: 1-2 43+
+    Sour Shield Adv: -29 / -26 / -22
+    Sweet Shield Adv: -28 / -25 / -22
+    SH/FH No Sweet DMG: 11.2 / 13.2
+    SH/FH Sweet DMG: 17.3 / 20.4
+    SH/FH Kill %: 185.0 / 183.0
 
 bair:
   title: Back Air
   image: bair.gif
   fields:
-      Frames: 10-12
-      FAF: 44
-      Shield Adv: -26
-      Landing Lag: 17
-      Auto Cancel: 38+
-      SH/FH DMG: 16.3 / 19.2
-      SH/FH Kill %: 108.0 / 105.0
+    Frames: 10-12
+    FAF: 44
+    Shield Adv: -26
+    Landing Lag: 17
+    Auto Cancel: 38+
+    SH/FH DMG: 16.3 / 19.2
+    SH/FH Kill %: 108.0 / 105.0
 
 uair:
   title: Up Air
   image: uair.gif
   fields:
-      Frames: 11-13
-      FAF: 40
-      Landing Lag: 14
-      Auto Cancel: 1-3 35+
-      Sour Shield Adv: -23
-      Sweet Shield Adv: -23
-      SH/FH Sour DMG: 12.2 / 14.4
-      SH/FH Sweet DMG: 14.2 / 16.8
-      FH Kill %: 142.0 (Sweet Spot, Ground Level)
+    Frames: 11-13
+    FAF: 40
+    Landing Lag: 14
+    Auto Cancel: 1-3 35+
+    Sour Shield Adv: -23
+    Sweet Shield Adv: -23
+    SH/FH Sour DMG: 12.2 / 14.4
+    SH/FH Sweet DMG: 14.2 / 16.8
+    FH Kill %: 142.0 (Sweet Spot, Ground Level)
 
 dair:
   title: Down Air
   image: dair.gif
   fields:
-      Frames: 11-40
-      Spike: 11-18
-      FAF: 56
-      Landing Lag: 32
-      Auto Cancel: 1-3 50+
-      Sour Shield Adv: -31
-      Sweet Shield Adv: -39
-      SH/FH Clean DMG: 14.2 / 16.8
-      SH/FH Late DMG: 12.2 / 14.4
-      SH/FH Late Kill %: 134.0 / 132.0
+    Frames: 11-40
+    Spike: 11-18
+    FAF: 56
+    Landing Lag: 32
+    Auto Cancel: 1-3 50+
+    Sour Shield Adv: -31
+    Sweet Shield Adv: -39
+    SH/FH Clean DMG: 14.2 / 16.8
+    SH/FH Late DMG: 12.2 / 14.4
+    SH/FH Late Kill %: 134.0 / 132.0
 
 neutralb:
   title: Plasma
   image: plasma.gif
   fields:
-      Max Plasma Balls: 5
-      Face Punch Lag: 56
-      No Charge Shot On: 29
-      Full Charge Shot On: 56, 64, 72, 80, 88
-      No Charge FAF: 56
-      Full Charge FAF: 105
-      No Charge Base DMG: 4.5 / 3.5 (late)
-      Full Charge Base DMG: 5.6 / 4.4 (late)
+    Max Plasma Balls: 5
+    Face Punch Lag: 56
+    No Charge Shot On: 29
+    Full Charge Shot On: 56, 64, 72, 80, 88
+    No Charge FAF: 56
+    Full Charge FAF: 105
+    No Charge Base DMG: 4.5 / 3.5 (late)
+    Full Charge Base DMG: 5.6 / 4.4 (late)
 
 sideb:
   title: Space Pirate Rush
   image: spr.gif
   fields:
-      Frames: 22-34
-      FAF: 79
-      Aerial FAF: 61
-      Slam DMG: 4.8
-      DMG per 4 Frames: 2.4
-      On Release DMG: 8.4
-      Wall Throw DMG: 14.4
-      No/Full Drag No DI Kill %: 105.0 / 96.0
-      No/Full Drag DI Kill %: 133.0 / 131.0
+    Frames: 22-34
+    FAF: 79
+    Aerial FAF: 61
+    Slam DMG: 4.8
+    DMG per 4 Frames: 2.4
+    On Release DMG: 8.4
+    Wall Throw DMG: 14.4
+    No/Full Drag No DI Kill %: 105.0 / 96.0
+    No/Full Drag DI Kill %: 133.0 / 131.0
 
 downb:
   title: Skewer
   image: skewer.gif
   fields:
-      Frames: 30-31
-      FAF: 68
-      Shield Adv: -32
-      Hit Adv: -4
-      Sour DMG: 6.0
-      Sweet DMG: 60.0
+    Frames: 30-31
+    FAF: 68
+    Shield Adv: -32
+    Hit Adv: -4
+    Sour DMG: 6.0
+    Sweet DMG: 60.0
 
 upb:
   title: Wing Blitz
   image: upb.gif
   fields:
-      Frames Up: 34-57
-      Frames Sideways: 36-55
-      Frames Down: 37-59
-      Landing Lag (Down): 35
-      DMG Up: 21.6
-      DMG Sideways: 19.2
-      DMG Down: 18.0 / 6.0 (Landing)
-      Kill % Up: 149.0
-      Kill % Forwards: 100.0
-      Kill % Backwards: 123.0
-      Kill % Down: 142.0
+    Frames Up: 34-57
+    Frames Sideways: 36-55
+    Frames Down: 37-59
+    Landing Lag (Down): 35
+    DMG Up: 21.6
+    DMG Sideways: 19.2
+    DMG Down: 18.0 / 6.0 (Landing)
+    Kill % Up: 149.0
+    Kill % Forwards: 100.0
+    Kill % Backwards: 123.0
+    Kill % Down: 142.0
 
 fthrow:
   title: Forward Throw
   image: fthrow.gif
   fields:
-      Thrown On: 13
-      FAF: 38
-      DMG: 10.8
-      No DI Default Pos: 219.0
-      No DI Neutral Getup: 181.0
-      DI Neutral Getup: 214.0
-      DI for Dthrow: 178.0
+    Thrown On: 13
+    FAF: 38
+    DMG: 10.8
+    No DI Default Pos: 219.0
+    No DI Neutral Getup: 181.0
+    DI Neutral Getup: 214.0
+    DI for Dthrow: 178.0
 
 bthrow:
   title: Back Throw
   image: bthrow.gif
   fields:
-      Thrown On: 18
-      FAF: 46
-      DMG: 13.2
-      No DI Default Kill %: 187.0
-      No DI Edge Kill %: 152.0
-      DI Edge Kill %: 196.0
+    Thrown On: 18
+    FAF: 46
+    DMG: 13.2
+    No DI Default Kill %: 187.0
+    No DI Edge Kill %: 152.0
+    DI Edge Kill %: 196.0
 
 uthrow:
   title: Up Throw
   image: uthrow.gif
   fields:
-      Thrown On: 19
-      FAF: 44
-      DMG: 14.4
-      No DI Kill %: 193.0
-      DI Kill %: 197.0
+    Thrown On: 19
+    FAF: 44
+    DMG: 14.4
+    No DI Kill %: 193.0
+    DI Kill %: 197.0
 
 dthrow:
   title: Down Throw
   image: dthrow.gif
   fields:
-      Thrown On: 22
-      FAF: 36
-      DMG: 8.4
-      No DI Default Kill %: 181.0
-      DI Neutral Getup Kill %: 206.0
-      DI Fthrow (in) %: 176.0
+    Thrown On: 22
+    FAF: 36
+    DMG: 8.4
+    No DI Default Kill %: 181.0
+    DI Neutral Getup Kill %: 206.0
+    DI Fthrow (in) %: 176.0
 
 grab:
   title: Grabs and Pummel
   image: grab.gif
   fields:
-      Standing Active: 8-10
-      Standing FAF: 35
-      Dash Active: 11-13
-      Dash FAF: 43
-      Pivot Active: 12-14
-      Pivot FAF: 40
-      Pummel Active: "??"
-      Pummel FAF: 22
-      Pummel DMG: 1.9
+    Standing Active: 8-10
+    Standing FAF: 35
+    Dash Active: 11-13
+    Dash FAF: 43
+    Pivot Active: 12-14
+    Pivot FAF: 40
+    Pummel Active: "??"
+    Pummel FAF: 22
+    Pummel DMG: 1.9
 
 dtaunt:
   title: Down Taunt
   image: dtaunt.gif
   fields:
-      Usage: Use down taunt in between nairs to do max damage and assert your dominance.
+    Usage: Use down taunt in between nairs to do max damage and assert your dominance.
 
 utaunt:
   title: Up Taunt
   image: utaunt.gif
   fields:
-      Usage: Use up taunt to make your opponents ears bleed <:RidRoar:562498128255647745>
+    Usage: Use up taunt to make your opponents ears bleed <:RidRoar:562498128255647745>
 
 sidetaunt:
   title: Side Taunt
   image: staunt.gif
   fields:
-      Usage: Use side taunt to flex on the kid whose parents just got eaten.
+    Usage: Use side taunt to flex on the kid whose parents just got eaten.
 
 roll:
   title: Roll and Spot Dodge
   image: spotdodge.gif
   fields:
-      Spot Dodge Invul: 3-18
-      Spot Dodge FAF: 29
-      Forward Roll Invul: 4-16
-      Forward Roll FAF: 33
-      Back Roll Invul: 5-17
-      Back Roll FAF: 38
+    Spot Dodge Invul: 3-18
+    Spot Dodge FAF: 29
+    Forward Roll Invul: 4-16
+    Forward Roll FAF: 33
+    Back Roll Invul: 5-17
+    Back Roll FAF: 38
 
 airdodge:
   title: Air Dodge
   image: airdodge.gif
   fields:
-      Neutral Invul: 3-31
-      Neutral FAF: 47
-      Directional Invul: 3-22
-      Sideways FAF: 79
-      Up FAF: 104
-      Down FAF: 65
+    Neutral Invul: 3-31
+    Neutral FAF: 47
+    Directional Invul: 3-22
+    Sideways FAF: 79
+    Up FAF: 104
+    Down FAF: 65
 
 oos:
   title: OOS Frames
   image: oos.gif
   fields:
-      Grab: 8
-      Grab Post Shield Stun: 12
-      Nair: 11
-      Fair / Bair: 13
-      Dair: 14
-      Ftilt: 21
-      Dtilt: 20
-      Jab: 15
-      Up Smash: 12
+    Grab: 8
+    Grab Post Shield Stun: 12
+    Nair: 11
+    Fair / Bair: 13
+    Dair: 14
+    Ftilt: 21
+    Dtilt: 20
+    Jab: 15
+    Up Smash: 12
 
 getup:
   title: Getup Attacks
@@ -463,9 +462,9 @@ getup:
     Getup DMG: 8.8
     Ledge DMG: 12.6
     Trip DMG: 6.3
-  
+
 parry:
   title: Parry
   image: parry.gif
   fields:
-    Parry Joke: Bruh honestly, idk why you're looking for parry stats they're all the same <:Crocomire:583880666970718224> 
+    Parry Joke: Bruh honestly, idk why you're looking for parry stats they're all the same <:Crocomire:583880666970718224>
