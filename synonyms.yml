@@ -2,7 +2,17 @@ ridley:
   - ridley
 
 jab:
-  - jab
+  - jab1
+  - jabone
+
+jab2:
+  - jabtwo
+
+jab3:
+  - jabthree
+
+jab4:
+  - jabfour
 
 parry:
   - parry
@@ -116,14 +126,17 @@ usmash:
   - upwardsmash
   - upwardssmash
 
-grab:
-  - grabs
-  - dashgrab
-  - pivotgrab
-  - standinggrab
-  - dgrab
+standinggrab:
+  - grab
   - sgrab
+
+dashgrab:
+  - dgrab
+
+pivotgrab:
   - pgrab
+
+pummel:
   - pummel
 
 fthrow:
@@ -182,6 +195,8 @@ oos:
 getup:
   - getupattack
   - getupatk
+
+ledgeattack:
   - ledge
   - ledgehang
   - ledgegetup
@@ -189,9 +204,10 @@ getup:
   - ledgegetupatk
   - ledgeattack
   - ledgeatk
+
+tripattack:
   - trip
   - tripgetup
   - tripgetupattack
   - tripgetupatk
-  - tripattack
   - tripatk

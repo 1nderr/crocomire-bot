@@ -174,8 +174,7 @@ async def on_message(req):
     if not msg:
         return
 
-    char1 = msg[0][0]
-    if char1 != prefix:
+    if msg[0][0] != prefix:
         return
 
     cmd = msg[0][1:].lower()

@@ -2,7 +2,6 @@ cmds:
   img:
     - meme
     - muchart
-    - petrus
   embed:
     - op
     - social
@@ -112,30 +111,48 @@ ridley:
     SH Air Time: 35
 
 jab:
-  title: Jab
-  image: jab.gif
+  title: Jab 1
+  image: jab1.gif
   fields:
-    Frames: 4
-    Jab 1 FAF: 24
-    Jab 2 FAF: 27
-    Jab 3 FAF: 36
-    Rapid FAF: 46
-    Jab 1 Shield Adv: -16
-    Jab 2 Shield Adv: -18
-    Jab 3 Shield Adv: -25
-    Rapid Shield Adv: -38
-    Jab 1 DMG: 2.4
-    Jab 2 DMG: 1.8
-    Jab 3 DMG: 10.2
-    Rapid DMG: 12.4
-    Jab 3 Kill %: 160
-    Rapid Kill %: ">470 (They start falling out)"
+    Active: 4
+    FAF: 24
+    Shield Adv: -16
+    DMG: 2.4
+
+jab2:
+  title: Jab 2
+  image: jab2.gif
+  fields:
+    Active: 4
+    FAF: 27
+    Shield Adv: -18
+    DMG: 1.8
+
+jab3:
+  title: Jab 3
+  image: jab3.gif
+  fields:
+    Active: 4
+    FAF: 36
+    Shield Adv: -25
+    DMG: 10.2
+    Kill %: 160
+
+jab4:
+  title: Jab 4
+  image: jab4.gif
+  fields:
+    Active: 4
+    FAF: 46
+    Adv: -38
+    DMG: 12.4
+    Kill %: ">470 (They start falling out)"
 
 ftilt:
   title: Forward Tilt
   image: ftilt.gif
   fields:
-    Frames: 10-11
+    Active: 10-11
     FAF: 33
     Sour Shield Adv: -12
     Sweet Shield Adv: -10
@@ -148,7 +165,7 @@ dtilt:
   title: Down Tilt
   image: dtilt.gif
   fields:
-    Frames: 9-11
+    Active: 9-11
     FAF: 31
     Sour Shield Adv: -17
     Sweet Shield Adv: -15
@@ -161,7 +178,7 @@ utilt:
   title: Up Tilt
   image: utilt.gif
   fields:
-    Frames: 8-12
+    Active: 8-12
     Invul Head and Arms: 8-9
     Invul Wings: 8-12
     FAF: 30
@@ -176,7 +193,7 @@ dash:
   title: Dash Attack
   image: dash.gif
   fields:
-    Frames: 12-13
+    Active: 12-13
     FAF: 40
     Shield Adv: -15
     DMG: 14.4
@@ -186,7 +203,7 @@ fsmash:
   title: Forward Smash
   image: fsmash.gif
   fields:
-    Frames: 18-21
+    Active: 18-21
     FAF: 54
     Shield Adv: -21
     No Charge DMG: 24.0
@@ -198,7 +215,7 @@ dsmash:
   title: Down Smash
   image: dsmash.gif
   fields:
-    Frames: 24-27
+    Active: 24-27
     FAF: 58
     Shield Adv: -24
     No Charge DMG: 19.2
@@ -210,7 +227,7 @@ usmash:
   title: Up Smash
   image: usmash.gif
   fields:
-    Frames: 12-17
+    Active: 12-17
     Intagibility: 12-17 (Attack Leg)
     FAF: 48
     Shield Adv: -23
@@ -223,7 +240,7 @@ nair:
   title: Neutral Air
   image: nair.gif
   fields:
-    Frames: 8-20
+    Active: 8-20
     FAF: 40
     Landing Lag: 12
     Auto Cancel: 1-2 28+
@@ -238,7 +255,7 @@ fair:
   title: Forward Air
   image: fair.gif
   fields:
-    Frames: 10, 13, 16
+    Active: 10, 13, 16
     FAF: 42
     Landing Lag: 16
     Auto Cancel: 1-2 43+
@@ -252,7 +269,7 @@ bair:
   title: Back Air
   image: bair.gif
   fields:
-    Frames: 10-12
+    Active: 10-12
     FAF: 44
     Shield Adv: -26
     Landing Lag: 17
@@ -264,7 +281,7 @@ uair:
   title: Up Air
   image: uair.gif
   fields:
-    Frames: 11-13
+    Active: 11-13
     FAF: 40
     Landing Lag: 14
     Auto Cancel: 1-3 35+
@@ -278,7 +295,7 @@ dair:
   title: Down Air
   image: dair.gif
   fields:
-    Frames: 11-40
+    Active: 11-40
     Spike: 11-18
     FAF: 56
     Landing Lag: 32
@@ -306,11 +323,11 @@ sideb:
   title: Space Pirate Rush
   image: spr.gif
   fields:
-    Frames: 22-34
+    Active: 22-34
     FAF: 79
     Aerial FAF: 61
     Slam DMG: 4.8
-    DMG per 4 Frames: 2.4
+    DMG per 4 Active: 2.4
     On Release DMG: 8.4
     Wall Throw DMG: 14.4
     No/Full Drag No DI Kill %: 105.0 / 96.0
@@ -320,7 +337,7 @@ downb:
   title: Skewer
   image: skewer.gif
   fields:
-    Frames: 30-31
+    Active: 30-31
     FAF: 68
     Shield Adv: -32
     Hit Adv: -4
@@ -331,9 +348,9 @@ upb:
   title: Wing Blitz
   image: upb.gif
   fields:
-    Frames Up: 34-57
-    Frames Sideways: 36-55
-    Frames Down: 37-59
+    Active Up: 34-57
+    Active Sideways: 36-55
+    Active Down: 37-59
     Landing Lag (Down): 35
     DMG Up: 21.6
     DMG Sideways: 19.2
@@ -387,16 +404,31 @@ dthrow:
     DI Neutral Getup Kill %: 206.0
     DI Fthrow (in) %: 176.0
 
-grab:
-  title: Grabs and Pummel
-  image: grab.gif
+standinggrab:
+  title: Standing Grab
+  image: grabStanding.gif
   fields:
-    Standing Active: 8-10
-    Standing FAF: 35
+    Active: 8-10
+    FAF: 35
+
+dashgrab:
+  title: Dash Grab
+  image: grabDash.gif
+  fields:
     Dash Active: 11-13
     Dash FAF: 43
+
+pivotgrab:
+  title: Pivot grab
+  image: grabPivot.gif
+  fields:
     Pivot Active: 12-14
     Pivot FAF: 40
+
+pummel:
+  title: Pummel
+  image: pummel.gif
+  fields:
     Pummel Active: "??"
     Pummel FAF: 22
     Pummel DMG: 1.9
@@ -442,7 +474,7 @@ airdodge:
     Down FAF: 65
 
 oos:
-  title: OOS Frames
+  title: OOS Active
   image: oos.gif
   fields:
     Grab: 8
@@ -456,12 +488,22 @@ oos:
     Up Smash: 12
 
 getup:
-  title: Getup Attacks
-  image: getup.gif
+  title: Getup Attack
+  image: getupattack(up).gif
   fields:
-    Getup DMG: 8.8
-    Ledge DMG: 12.6
-    Trip DMG: 6.3
+    DMG: 8.8
+
+ledgeattack:
+  title: Ledge Attack
+  image: ledgeattack.gif
+  fields:
+    DMG: 12.6
+
+tripattack:
+  title: Trip Attack
+  image: tripattack.gif
+  fields:
+    DMG: 6.3
 
 parry:
   title: Parry
