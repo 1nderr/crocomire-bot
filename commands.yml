@@ -94,10 +94,9 @@ montage:
     Emperors of the Cosmos Vol. 1: https://www.youtube.com/watch?v=EbDdAB2TyRw
 
 ###-------------------------STAT COMMANDS-------------------------###
-
 ridley:
   title: Ridley's Stats
-  image: ridley.png
+  image: hurtbox.png
   fields:
     Jumps: 3
     Weight: 107 (11-15th)
@@ -114,7 +113,7 @@ jab:
   title: Jab 1
   image: jab1.gif
   fields:
-    Active: 4
+    Active: 4-5
     FAF: 24
     Shield Adv: -16
     DMG: 2.4
@@ -123,7 +122,7 @@ jab2:
   title: Jab 2
   image: jab2.gif
   fields:
-    Active: 4
+    Active: 5-6
     FAF: 27
     Shield Adv: -18
     DMG: 1.8
@@ -132,21 +131,27 @@ jab3:
   title: Jab 3
   image: jab3.gif
   fields:
-    Active: 4
+    Active: 4-5
     FAF: 36
     Shield Adv: -25
-    DMG: 10.2
+    DMG: 6.0
     Kill %: 160
 
-jab4:
-  title: Jab 4
-  image: jab4.gif
+rapidjab:
+  title: Rapid Jab
+  image: rapidJab.gif
   fields:
-    Active: 4
-    FAF: 46
+    Active: 4, 7, 10
+    DMG: 0.8 (per hit)
+
+jabfinisher:
+  title: Rapid Jab Finisher
+  image: jabFinish.gif
+  fields:
+    Active:
     Adv: -38
-    DMG: 12.4
-    Kill %: ">470 (They start falling out)"
+    DMG: 2.4
+    Kill %: 577
 
 ftilt:
   title: Forward Tilt
@@ -308,7 +313,7 @@ dair:
 
 neutralb:
   title: Plasma
-  image: plasma.gif
+  image: neutralb.gif
   fields:
     Max Plasma Balls: 5
     Face Punch Lag: 56
@@ -321,7 +326,7 @@ neutralb:
 
 sideb:
   title: Space Pirate Rush
-  image: spr.gif
+  image: sideb.gif
   fields:
     Active: 22-34
     FAF: 79
@@ -335,7 +340,7 @@ sideb:
 
 downb:
   title: Skewer
-  image: skewer.gif
+  image: downb.gif
   fields:
     Active: 30-31
     FAF: 68
@@ -415,23 +420,23 @@ dashgrab:
   title: Dash Grab
   image: grabDash.gif
   fields:
-    Active: 11-13
-    FAF: 43
+    Dash Active: 11-13
+    Dash FAF: 43
 
 pivotgrab:
   title: Pivot grab
   image: grabPivot.gif
   fields:
-    Active: 12-14
-    FAF: 40
+    Pivot Active: 12-14
+    Pivot FAF: 40
 
 pummel:
   title: Pummel
   image: pummel.gif
   fields:
-    Active: "??"
-    FAF: 22
-    DMG: 1.9
+    Pummel Active: "??"
+    Pummel FAF: 22
+    Pummel DMG: 1.9
 
 dtaunt:
   title: Down Taunt
@@ -489,7 +494,7 @@ oos:
 
 getup:
   title: Getup Attack
-  image: getupattack(up).gif
+  image: getupattack.gif
   fields:
     DMG: 8.8
 
@@ -510,3 +515,4 @@ parry:
   image: parry.gif
   fields:
     Parry Joke: Bruh honestly, idk why you're looking for parry stats they're all the same <:Crocomire:583880666970718224>
+
