@@ -16,6 +16,10 @@ rapidjab:
   - multihitjab
   - multiplehitjab
   - rapid
+  - jabrapid
+  - jabmulti
+  - jabmultihit
+  - jabmultiplehitjab
 
 jabfinisher:
   - jabfinish

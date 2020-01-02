@@ -77,8 +77,8 @@ def CreateTextEmbed(cmd, inline):
         embed.add_field(name="‏‏‎‏‏‎ ‎", value="‏‏‎‏‏‎ ‎", inline=inline)
 
     filename = imgPath + cmdData[cmd]["image"]
-    f = CreateEmbedAttachment(embed, filename, "thumbnail")
-
+    #f = CreateEmbedAttachment(embed, filename, "thumbnail")
+    f = None
     return embed, f
 
 
@@ -166,6 +166,14 @@ async def on_ready():
 
 @client.event
 async def on_message(req):
+    # x = False
+    # for r in req.author.roles:
+    #     if r.id == 585552258976972860:
+    #         x = True
+
+    # if x == False:
+    #     return
+
     if req.author == client.user:
         return
 
