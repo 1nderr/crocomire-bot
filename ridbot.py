@@ -172,19 +172,21 @@ async def on_message(req):
             if not actualMatching:
                 await req.channel.send(hBoxError % move)
                 return
+            elif len(actualMatching) == 1:
+                move = actualMatching[0]
+            else:
+                resp = await req.channel.send(matchMsg % s)
 
-            resp = await req.channel.send(matchMsg % s)
+                for i in range(len(actualMatching)):
+                    await resp.add_reaction(nums[i])
 
-            for i in range(len(actualMatching)):
-                await resp.add_reaction(nums[i])
+                n = await WaitForReaction(req, resp)
+                if n == -1:
+                    return
 
-            n = await WaitForReaction(req, resp)
-            if n == -1:
-                return
+                move = actualMatching[n]
 
-            move = actualMatching[n]
-
-            await resp.delete()
+                await resp.delete()
     else:
         # Dictionary with command name as the key and the command attributes (title, text, image, etc.) as the values.
         cmdData = yamlLoad(open("commands.yml"))
