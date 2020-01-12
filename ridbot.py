@@ -18,7 +18,7 @@ matchMsg = "There are multiple hitboxes for this move. React with the hitbox you
 nums = ['1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣', '9️⃣']
 
 client = discord.Client()
-tokenFile = open("test", "r")
+tokenFile = open("token", "r")
 token = tokenFile.read().strip()
 tokenFile.close()
 
@@ -58,13 +58,24 @@ def CreateTextEmbed(cmdData, cmd, inline):
 
 
 # Takes in a cmd name.
-# Returns an embed object and image file.
+# Returns an embed object
 def CreateImageEmbed(cmdData):
     try:
         imgURL = cmdData["image"]
     except KeyError:
         return False
     embed = discord.Embed(title=cmdData["title"] ,color=embedColor)
+    embed.set_image(url=imgURL)
+    return embed
+
+
+# Returns an embed object containing a random meme
+def CreateMemeEmbed():
+    seed()
+    memes = open("memes", "r")
+    memeURLs = memes.readlines()
+    imgURL = choice(memeURLs)
+    embed = discord.Embed(color=embedColor)
     embed.set_image(url=imgURL)
     return embed
 
@@ -98,10 +109,6 @@ async def WaitForReaction(req, resp):
 
 @client.event
 async def on_message(req):
-    textCmds = []
-    imgCmds = []
-    embedCmds = []
-
     if req.author == client.user:
         return
 
@@ -182,18 +189,17 @@ async def on_message(req):
         # Dictionary with command name as the key and the command attributes (title, text, image, etc.) as the values.
         cmdData = yamlLoad(open("commands.yml"))
 
-        # Lists of commands by response type.
-        imgCmds = cmdData["cmds"]["img"]
-        embedCmds = cmdData["cmds"]["embed"]
-        textCmds = cmdData["cmds"]["text"]
-
     # Sends the message response.
-    if cmd in textCmds:
-        await req.channel.send(cmdData[cmd]["text"])
+    if cmd == "bruh":
+        await req.channel.send("Bruh %s" % crocEmote)
         return
-    # elif cmd in imgCmds:
-    # elif cmd in embedCmds:
-    # elif cmd == "help":
+    elif cmd == "meme":
+        embed = CreateMemeEmbed()
+    elif cmd in cmdData.keys():
+        embed = CreateTextEmbed(cmdData[cmd], cmd, False)
+        if cmd == "help":
+            await req.author.send(embed=embed)
+            return
     elif cmd == "viz":
         embed = CreateImageEmbed(cmdData[move])
         if embed == False:
