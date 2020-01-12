@@ -8,13 +8,12 @@ prefix = "?"
 charPath = "../SmashStats/characters/%s/commands.yml"
 crocEmote = "<:Crocomire:583880666970718224>"
 embedColor = 10170673
-moveError1 = "The move **%s** does not exist."
-moveError2 = "This character does not have the move **%s**."
-charError1 = "The character **%s** doesn't exist."
-charError2 = "The character **%s** has no data yet."
-hBoxError = "**%s** does not have a hitbox graphic."
-statError = "**%s** does not have stats yet"
-matchMsg = "There are multiple hitboxes for this move. React with the hitbox you would like (Sender Only):\n```%s```"
+moveError1 = "The move **%s** does not exist bruh %s"
+charError1 = "The character **%s** doesn't exist bruh %s"
+charError2 = "The character **%s** has no data yet bruh %s"
+hBoxError = "**%s** does not have a hitbox graphic bruh %s"
+statError = "**%s** does not have stats yet bruh %s"
+matchMsg = "There are multiple hitboxes for this move bruh %s. React with the hitbox you would like (Sender Only):\n```%s```"
 nums = ['1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣', '9️⃣']
 
 client = discord.Client()
@@ -129,14 +128,14 @@ async def on_message(req):
         tempChar = char
         char = Translate(char, "charSynonyms.yml")
         if char == "Invalid":
-            await req.channel.send(charError1 % tempChar)
+            await req.channel.send(charError1 % (tempChar, crocEmote))
             return
 
         # Dictionary with command name as the key and the command attributes (title, text, image, etc.) as the values.
         cmdData = yamlLoad(open(charPath % char))
 
         if cmdData == None:
-            await req.channel.send(charError2 % char)
+            await req.channel.send(charError2 % (char, crocEmote))
             return
 
         # Parses the move name.
@@ -147,12 +146,8 @@ async def on_message(req):
                 tempMove = move
                 move = Translate(move, "moveSynonyms.yml")
                 if move == "Invalid":
-                    await req.channel.send(moveError1 % tempMove)
+                    await req.channel.send(moveError1 % (tempMove, crocEmote))
                     return
-
-        if move not in list(cmdData.keys()):
-            await req.channel.send(moveError2 % tempMove)
-            return
 
         # Checks if the move has multiple hitboxes
         matching = [i for i in cmdData.keys() if move in i]
@@ -170,12 +165,12 @@ async def on_message(req):
                 s += ("\n %d. %s" % (i+1 ,m))
 
             if not actualMatching:
-                await req.channel.send(hBoxError % move)
+                await req.channel.send(hBoxError % (move, crocEmote))
                 return
             elif len(actualMatching) == 1:
                 move = actualMatching[0]
             else:
-                resp = await req.channel.send(matchMsg % s)
+                resp = await req.channel.send(matchMsg % (crocEmote, s))
 
                 for i in range(len(actualMatching)):
                     await resp.add_reaction(nums[i])
@@ -205,12 +200,12 @@ async def on_message(req):
     elif cmd == "viz":
         embed = CreateImageEmbed(cmdData[move])
         if embed == False:
-            await req.channel.send(hBoxError % cmdData[move]["title"])
+            await req.channel.send(hBoxError % (cmdData[move]["title"], crocEmote))
             return
     elif cmd == "stats":
         embed = CreateTextEmbed(cmdData[move], cmd, True)
         if embed == False:
-            await req.channel.send(statError % cmdData[move]["title"])
+            await req.channel.send(statError % (cmdData[move]["title"], crocEmote))
             return
     else:
         return
