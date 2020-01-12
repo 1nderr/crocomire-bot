@@ -1,22 +1,3 @@
-cmds:
-  img:
-    - meme
-    - muchart
-  embed:
-    - op
-    - social
-    - help
-    - vods
-    - docs
-    - levels
-    - montage
-    - changes
-  text:
-    - bruh
-
-bruh:
-  text: Bruh <:Crocomire:583880666970718224>
-
 changes:
   title: Recent Ridley Changes
   image: surprised.png
@@ -28,10 +9,6 @@ changes:
     Wing Blitz: Start up decreased on all directions by 3 frames. The travel speed was also increased.
     Space Pirate Rush: Throw knock back increased from 83 to 90. It kills around 20% earlier now. Also, jump cancel FAF decreased from 41 > 38 (air and ground).
 
-muchart:
-  image: muchart.png
-  link: https://forms.gle/SEW7o42nTnXJEniV9
-
 levels:
   title: Ridleycord Mario Maker 2 Levels
   image: mariomaker.png
@@ -39,7 +16,7 @@ levels:
     Level Spreadsheet: https://docs.google.com/spreadsheets/d/1lSQUpZnJ0WKFmnLqvlNNWp3qxuWZuSHlYb0Sctwneuk/edit#gid=0
 
 help:
-  title: Ridley Stats Commands
+  title: Crocomire Bot Commands
   image: croc.png
   fields:
     Prefix: "?"
@@ -50,11 +27,10 @@ help:
     levels: Links the Ridleycord Mario Maker 2 level spreadsheet.
     meme: Sends a random Ridleycord meme.
     montage: Links the Ridleycord Montage.
-    muchart: Displays the community MU chart.
     op: Links the Ridleycord anime opening.
     social: Links the Ridleycord social media.
-    stats [move]: Displays an embedded message with a given move's stats. (Including Ridley's stats and taunts)
-    viz [move]: Displays an image of a given move. (Including taunts)
+    stats [character] [move]: Displays an embedded message with a given move's stats. (Including Ridley's stats and taunts)
+    viz [character] [move]: Displays an image of a given move. (Including taunts)
     vods: Links tournament and JMU vods.
 
 docs:
