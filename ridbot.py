@@ -5,7 +5,7 @@ from random import choice, seed
 from yaml import safe_load as yamlLoad
 
 prefix = "?"
-charPath = "../SmashStats/characters/%s/commands.yml"
+charPath = "../SmashStats/characters/%s.yml"
 crocEmote = "<:Crocomire:583880666970718224>"
 embedColor = 10170673
 moveError1 = "The move **%s** does not exist bruh %s"
