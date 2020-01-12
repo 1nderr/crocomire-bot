@@ -1,0 +1,221 @@
+ike:
+  title: Ike
+  image: hurtbox.png
+  fields:
+  
+airdodge:
+  title: Airdodge
+  fields:
+
+bair:
+  title: Back Air
+  image: https://ultimateframedata.com/hitboxes/ike/IkeBAir.gif
+  fields:
+
+bthrow:
+  title: Back Throw
+  image: https://ultimateframedata.com/hitboxes/ike/IkeBThrow.gif
+  fields:
+
+dair:
+  title: Down Air
+  image: https://ultimateframedata.com/hitboxes/ike/IkeDAir.gif
+  fields:
+
+dashattack:
+  title: Dash Attack
+  image: https://ultimateframedata.com/hitboxes/ike/IkeDashAttack.gif
+  fields:
+
+dsmash:
+  title: Down Smash
+  image: https://ultimateframedata.com/hitboxes/ike/IkeDSmash.gif
+  fields:
+
+dtaunt:
+  title: Down Taunt
+
+dthrow:
+  title: Down Throw
+  image: https://ultimateframedata.com/hitboxes/ike/IkeDThrow.gif
+  fields:
+
+dtilt:
+  title: Down Tilt
+  image: https://ultimateframedata.com/hitboxes/ike/IkeDTilt.gif
+  fields:
+
+fair:
+  title: Forward Air
+  image: https://ultimateframedata.com/hitboxes/ike/IkeFAir.gif
+  fields:
+
+fsmash:
+  title: Forward Smash
+  image: https://ultimateframedata.com/hitboxes/ike/IkeFSmash.gif
+  fields:
+
+fthrow:
+  title: Forward Throw
+  image: https://ultimateframedata.com/hitboxes/ike/IkeFThrow.gif
+  fields:
+
+ftilt:
+  title: Forward Tilt 
+  image: https://ultimateframedata.com/hitboxes/ike/IkeFTilt.gif
+  fields:
+
+ftilt2:
+  title: Forward Tilt Down
+  image: https://ultimateframedata.com/hitboxes/ike/IkeFTiltUp.gif
+  fields:
+
+ftilt3:
+  title: Forward Tilt Up
+  image: https://ultimateframedata.com/hitboxes/ike/IkeFTiltUp.gif
+  fields:
+
+getupattack: 
+  title: Getup Attack
+  fields:
+
+grabdash:
+  title: Dash Grab
+  image: https://ultimateframedata.com/hitboxes/ike/IkeDashGrab.gif
+  fields:
+
+grabpivot:
+  title: Pivot Grab
+  image: https://ultimateframedata.com/hitboxes/ike/IkePivotGrab.gif
+  fields:
+
+grabstanding:
+  title: Standing Gif
+  image: https://ultimateframedata.com/hitboxes/ike/IkeGrab.gif
+  fields:
+
+jab:
+  title: Jab 1
+  image: https://ultimateframedata.com/hitboxes/ike/IkeJab1.gif
+  fields:
+
+jab2:
+  title: Jab 2
+  image: https://ultimateframedata.com/hitboxes/ike/IkeJab2.gif
+  fields:
+
+jab3:
+  title: Jab 3
+  image: https://ultimateframedata.com/hitboxes/ike/IkeJab3.gif
+  fields:
+
+ledgeattack:
+  title: Ledge Attack
+  fields:
+
+nair:
+  title: Neutral Air
+  image: https://ultimateframedata.com/hitboxes/ike/IkeNAir.gif
+  fields:
+
+oos:
+  title: Out of Shield Options
+  fields:
+
+nspecial:
+  title: Eruption (No Charge)
+  image: https://ultimateframedata.com/hitboxes/ike/IkeEruption.gif
+  fields:
+
+nspecial2:
+  title: Eruption (Mid Charge)
+  image: https://ultimateframedata.com/hitboxes/ike/IkeEruptionMid.gif
+  fields:
+
+nspecial3:
+  title: Eruption (Max Charge)
+  image: https://ultimateframedata.com/hitboxes/ike/IkeEruptionMax.gif
+  fields:
+
+pummel:
+  title: Pummel
+  image: https://ultimateframedata.com/hitboxes/ike/IkePummel.gif
+  fields:
+
+roll:
+  title: Rolls
+  fields:
+
+dspecial:
+  title: Counter
+  image: https://ultimateframedata.com/hitboxes/ike/IkeCounter.gif
+  fields:
+
+dspecial2:
+  title: Counter Attack
+  image: https://ultimateframedata.com/hitboxes/ike/IkeCounterHit.gif
+  fields:
+
+spotdodge:
+  title: Spot Dodge
+  fields:
+
+sspecial:
+  title: Quickdraw
+  image: https://ultimateframedata.com/hitboxes/ike/IkeQuickDraw.gif
+  fields:
+
+staunt:
+  title: Side Taunt
+
+tripattack:
+  title: Trip Getup Attack
+  fields:
+
+uair:
+  title: Up Air
+  image: https://ultimateframedata.com/hitboxes/ike/IkeUAir.gif
+  fields:
+
+uspecial:
+  title: Aether (Ground)
+  image: https://ultimateframedata.com/hitboxes/ike/IkeAetherG.gif
+  fields:
+
+uspecial2:
+  title: Aether (Air)
+  image: https://ultimateframedata.com/hitboxes/ike/IkeAetherA.gif
+  fields:
+
+uspecial3:
+  title: Aether (Falling)
+  image: https://ultimateframedata.com/hitboxes/ike/IkeAetherFall.gif
+  fields:
+
+uspecial4:
+  title: Aether (Landing)
+  image: https://ultimateframedata.com/hitboxes/ike/IkeAetherLanding.gif
+  fields:
+
+uspecial5:
+  title: Aether (Sword)
+  image: https://ultimateframedata.com/hitboxes/ike/IkeAetherSword.gif
+  fields:
+
+usmash:
+  title: Up Smash
+  image: https://ultimateframedata.com/hitboxes/ike/IkeUSmash.gif
+  fields:
+
+utaunt:
+  title: Up Taunt
+
+uthrow:
+  title: Up Throw
+  image: https://ultimateframedata.com/hitboxes/ike/IkeUThrow.gif
+  fields:
+
+utilt:
+  title: Up Tilt
+  image: https://ultimateframedata.com/hitboxes/ike/IkeUTilt.gif
+  fields:

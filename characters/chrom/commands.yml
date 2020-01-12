@@ -1,0 +1,233 @@
+chrom:
+  title: Chrom
+  image: hurtbox.png
+  fields:
+
+airdodge:
+  title: Airdodge
+  fields:
+
+bair:
+  title: Back Air
+  image: https://ultimateframedata.com/hitboxes/chrom/ChromBAir.gif
+  fields:
+
+bthrow:
+  title: Back Throw
+  image: https://ultimateframedata.com/hitboxes/chrom/ChromBThrow.gif
+  fields:
+
+dair:
+  title: Down Air
+  image: https://ultimateframedata.com/hitboxes/chrom/ChromDAir.gif
+  fields:
+
+dashattack:
+  title: Dash Attack
+  image: https://ultimateframedata.com/hitboxes/chrom/ChromDashAttack.gif
+  fields:
+
+dsmash:
+  title: Down Smash
+  image: https://ultimateframedata.com/hitboxes/chrom/ChromDSmash.gif
+  fields:
+
+dtaunt:
+  title: Down Taunt
+  image: dtaunt.gif
+  fields:
+
+dthrow:
+  title: Down Throw
+  image: https://ultimateframedata.com/hitboxes/chrom/ChromDThrow.gif
+  fields:
+
+dtilt:
+  title: Down Tilt
+  image: https://ultimateframedata.com/hitboxes/chrom/ChromDTilt.gif
+  fields:
+
+fair:
+  title: Forward Air
+  image: https://ultimateframedata.com/hitboxes/chrom/ChromFAir.gif
+  fields:
+
+fsmash:
+  title: Forward Smash
+  image: https://ultimateframedata.com/hitboxes/chrom/ChromFSmash.gif
+  fields:
+
+fthrow:
+  title: Forward Throw
+  image: https://ultimateframedata.com/hitboxes/chrom/ChromFThrow.gif
+  fields:
+
+ftilt:
+  title: Forward Tilt
+  image: https://ultimateframedata.com/hitboxes/chrom/ChromFTilt.gif
+  fields:
+
+getupattack: 
+  title: Getup Attack
+  fields:
+
+grabdash:
+  title: Dash Grab
+  image: https://ultimateframedata.com/hitboxes/chrom/ChromDashGrab.gif
+  fields:
+
+grabpivot:
+  title: Pivot Grab
+  image: https://ultimateframedata.com/hitboxes/chrom/ChromPivotGrab.gif
+  fields:
+
+grabstanding:
+  title: Standing Gif
+  image: https://ultimateframedata.com/hitboxes/chrom/CHromGrab.gif
+  fields:
+
+jab:
+  title: Jab 1
+  image: https://ultimateframedata.com/hitboxes/chrom/ChromJab.gif
+  fields:
+
+ledgeattack:
+  title: Ledge Attack
+  fields:
+
+nair:
+  title: Neutral Air
+  image: https://ultimateframedata.com/hitboxes/chrom/ChromNAir.gif
+  fields:
+
+oos:
+  title: Out of Shield Options
+  fields:
+
+nspecial:
+  title: Flare Blade
+  image: https://ultimateframedata.com/hitboxes/chrom/ChromFlareBlade.gif
+  fields:
+
+nspecial2:
+  title: Flare Blade (Max)
+  image: https://ultimateframedata.com/hitboxes/chrom/ChromFlareBladeMax.gif
+  fields:
+    
+pummel:
+  title: Pummel
+  image: https://ultimateframedata.com/hitboxes/chrom/ChromPummel.gif
+  fields:
+
+roll:
+  title: Rolls
+  fields:
+
+dspecial:
+  title: Counter
+  image: https://ultimateframedata.com/hitboxes/chrom/ChromCounter.gif
+  fields:
+
+dspecial2:
+  title: Counter Attack
+  image: https://ultimateframedata.com/hitboxes/chrom/ChromCounterHit.gif
+  fields:
+    
+
+spotdodge:
+  title: Spot Dodge
+  fields:
+
+sspecial:
+  title: Double Edged Dance Hit 1
+  image: https://ultimateframedata.com/hitboxes/chrom/ChromDoubleEdgedDance1.gif
+  fields:
+
+sspecial2:
+  title: DED Hit 2 Neutral
+  image: https://ultimateframedata.com/hitboxes/chrom/ChromDoubleEdgedDance2.gif
+  fields:
+
+sspecial3:
+  title: DED Hit 3 Neutral
+  image: https://ultimateframedata.com/hitboxes/chrom/ChromDoubleEdgedDance3.gif
+  fields:
+
+sspecial4:
+  title: DED Hit 4 Neutral
+  image: https://ultimateframedata.com/hitboxes/chrom/ChromDoubleEdgedDance4.gif
+  fields:
+
+sspecial5:
+  title: DED Hit 2 Up
+  image: https://ultimateframedata.com/hitboxes/chrom/ChromDoubleEdgedDance2Up.gif
+  fields:
+
+sspecial6:
+  title: DED Hit 3 Up
+  image: https://ultimateframedata.com/hitboxes/chrom/ChromDoubleEdgedDance3Up.gif
+  fields:
+
+sspecial7:
+  title: DED Hit 4 Up
+  image: https://ultimateframedata.com/hitboxes/chrom/ChromDoubleEdgedDance4Up.gif
+  fields:
+
+sspecial8:
+  title: DED Hit 3 Down
+  image: https://ultimateframedata.com/hitboxes/chrom/ChromDoubleEdgedDance3Down.gif
+  fields:
+
+sspecial9:
+  title: DED Hit 4 Down
+  image: https://ultimateframedata.com/hitboxes/chrom/ChromDoubleEdgedDance4Down.gif
+  fields:
+
+staunt:
+  title: Side Taunt
+  image: staunt.gif
+  fields:
+
+tripattack:
+  title: Trip Getup Attack
+  fields:
+
+uair:
+  title: Up Air
+  image: https://ultimateframedata.com/hitboxes/chrom/ChromUAir.gif
+  fields:
+
+uspecial:
+  title: Soaring Slash (Rising)
+  image: https://ultimateframedata.com/hitboxes/chrom/ChromSoaringSlash.gif
+  fields:
+
+uspecial2:
+  title: Soaring Slash (Falling)
+  image: https://ultimateframedata.com/hitboxes/chrom/ChromSoaringSlashDescent.gif
+  fields:
+
+uspecial3:
+  title: Soaring Slash (Landing)
+  image: https://ultimateframedata.com/hitboxes/chrom/ChromSoaringSlashLanding.gif
+  fields:
+
+usmash:
+  title: Up Smash
+  image: https://ultimateframedata.com/hitboxes/chrom/ChromUSmash.gif
+  fields:
+
+utaunt:
+  title: Up Taunt
+  image: utaunt.gif
+  fields:
+
+uthrow:
+  title: Up Throw
+  image: https://ultimateframedata.com/hitboxes/chrom/ChromUThrow.gif
+  fields:
+
+utilt:
+  title: Up Tilt
+  image: https://ultimateframedata.com/hitboxes/chrom/ChromUTilt.gif
+  fields:

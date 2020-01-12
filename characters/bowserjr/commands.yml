@@ -1,0 +1,230 @@
+bowserjr:
+  title: Bowser Jr
+  image: UPLOAD
+  fields:
+
+airdodge:
+  title: Airdodge
+  fields:
+
+bair:
+  title: Back Air
+  image: https://ultimateframedata.com/hitboxes/bowser_jr/BowserJrBAir.gif
+  fields:
+
+bthrow:
+  title: Back Throw
+  image: https://ultimateframedata.com/hitboxes/bowser_jr/BowserJrBThrow.gif
+  fields:
+
+dair:
+  title: Down Air
+  image: https://ultimateframedata.com/hitboxes/bowser_jr/BowserJrDAir.gif
+  fields:
+
+dair2:
+  title: Down Air (Landing)
+  image: https://ultimateframedata.com/hitboxes/bowser_jr/BowserJrDAirLanding.gif
+  fields:
+
+dashattack:
+  title: Dash Attack
+  image: https://ultimateframedata.com/hitboxes/bowser_jr/BowserJrDashAttack.gif
+  fields:
+
+dsmash:
+  title: Down Smash
+  image: https://ultimateframedata.com/hitboxes/bowser_jr/BowserJrDSmash.gif
+  fields:
+
+dtaunt:
+  title: Down Taunt
+
+dthrow:
+  title: Down Throw
+  image: https://ultimateframedata.com/hitboxes/bowser_jr/BowserJrDThrow.gif
+  fields:
+
+dtilt:
+  title: Down Tilt
+  image: https://ultimateframedata.com/hitboxes/bowser_jr/BowserJrDTilt.gif
+  fields:
+
+fair:
+  title: Forward Air
+  image: https://ultimateframedata.com/hitboxes/bowser_jr/BowserJrFAir.gif
+  fields:
+
+fair2:
+  title: Forward Air (Landing)
+  image: https://ultimateframedata.com/hitboxes/bowser_jr/BowserJrFAirLanding.gif
+  fields:
+
+fsmash:
+  title: Forward Smash
+  image: https://ultimateframedata.com/hitboxes/bowser_jr/BowserJrFSmash.gif
+  fields:
+
+fsmash2:
+  title: Forward Smash Down
+  image: https://ultimateframedata.com/hitboxes/bowser_jr/BowserJrFSmashDown.gif
+  fields:
+
+fsmash3:
+  title: Forward Smash Up
+  image: https://ultimateframedata.com/hitboxes/bowser_jr/BowserJrFSmashUp.gif
+  fields:
+
+fthrow:
+  title: Forward Throw
+  image: https://ultimateframedata.com/hitboxes/bowser_jr/BowserJrFThrow.gif
+  fields:
+
+ftilt:
+  title: Forward Tilt
+  image: https://ultimateframedata.com/hitboxes/bowser_jr/BowserJrFTilt.gif
+  fields:
+
+ftilt2:
+  title: Forward Tilt Down
+  image: https://ultimateframedata.com/hitboxes/bowser_jr/BowserJrFTiltDown.gif
+  fields:
+
+ftilt3:
+  title: Forward Tilt Up
+  image: https://ultimateframedata.com/hitboxes/bowser_jr/BowserJrFTiltUp.gif
+  fields:
+
+getupattack: 
+  title: Getup Attack
+  fields:
+
+grabdash:
+  title: Dash Grab
+  image: https://ultimateframedata.com/hitboxes/bowser_jr/BowserJrDashGrab.gif
+  fields:
+
+grabpivot:
+  title: Pivot Grab
+  image: https://ultimateframedata.com/hitboxes/bowser_jr/BowserJrPivotGrab.gif
+  fields:
+
+grabstanding:
+  title: Standing Gif
+  image: https://ultimateframedata.com/hitboxes/bowser_jr/BowserJrGrab.gif
+  fields:
+
+jab:
+  title: Jab 1
+  image: https://ultimateframedata.com/hitboxes/bowser_jr/BowserJrJab1.gif
+  fields:
+
+jab2:
+  title: Jab 2
+  image: https://ultimateframedata.com/hitboxes/bowser_jr/BowserJrJab2.gif
+  fields:
+
+jabfinisher:
+  title: Rapid Jab Finisher
+  image: https://ultimateframedata.com/hitboxes/bowser_jr/BowserJrJabRapidEnd.gif
+  fields:
+
+ledgeattack:
+  title: Ledge Attack
+  fields:
+
+nair:
+  title: Neutral Air
+  image: https://ultimateframedata.com/hitboxes/bowser_jr/BowserJrNAir.gif
+  fields:
+
+oos:
+  title: Out of Shield Options
+  fields:
+
+nspecial:
+  title: Clown Cannon
+  image: https://ultimateframedata.com/hitboxes/bowser_jr/BowserJrClownCannon.gif
+  fields:
+
+pummel:
+  title: Pummel
+  image: https://ultimateframedata.com/hitboxes/bowser_jr/BowserJrPummel.gif
+  fields:
+
+rapidjab:
+  title: Rapid Jab
+  image: https://ultimateframedata.com/hitboxes/bowser_jr/BowserJrJabRapid.gif
+  fields:
+
+roll:
+  title: Rolls
+  fields:
+
+dspecial:
+  title: Mechakoopa
+  fields:
+
+spotdodge:
+  title: Spot Dodge
+  fields:
+
+sspecial:
+  title: Clown Kart Dash (Ground)
+  image: https://ultimateframedata.com/hitboxes/bowser_jr/BowserJrClownKartDashG.gif
+  fields:
+
+sspecial:
+  title: Clown Kart Dash (Air)
+  image: https://ultimateframedata.com/hitboxes/bowser_jr/BowserJrClownKartDashA.gif
+  fields:
+
+sspecial3:
+  title: Clown Kart Spinout
+  image: https://ultimateframedata.com/hitboxes/bowser_jr/BowserJrClownKartDashSpinout.gif
+  fields:
+
+staunt:
+  title: Side Taunt
+
+tripattack:
+  title: Trip Getup Attack
+  fields:
+
+uair:
+  title: Up Air
+  image: https://ultimateframedata.com/hitboxes/bowser_jr/BowserJrUAir.gif
+  fields:
+
+uspecial:
+  title: Abandon Ship
+  image: https://ultimateframedata.com/hitboxes/bowser_jr/BowserJrAbandonShip.gif
+  fields:
+
+uspecial2:
+  title: Abandon Ship (Explosion)
+  image: https://ultimateframedata.com/hitboxes/bowser_jr/BowserJrAbandonShipExplosion.png
+  fields:
+
+uspecial3:
+  title: Abandon Ship (Hammer)
+  image: https://ultimateframedata.com/hitboxes/bowser_jr/BowserJrAbandonShipHammer.gif
+  fields:
+
+usmash:
+  title: Up Smash
+  image: https://ultimateframedata.com/hitboxes/bowser_jr/BowserJrUSmash.gif
+  fields:
+
+utaunt:
+  title: Up Taunt
+
+uthrow:
+  title: Up Throw
+  image: https://ultimateframedata.com/hitboxes/bowser_jr/BowserJrUThrow.gif
+  fields:
+
+utilt:
+  title: Up Tilt
+  image: https://ultimateframedata.com/hitboxes/bowser_jr/BowserJrUTilt.gif
+  fields:

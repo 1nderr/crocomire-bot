@@ -1,15 +1,11 @@
-ridley:
-  - ridley
-
 jab:
   - jab1
-  - jabone
 
 jab2:
-  - jabtwo
+  - jab2
 
 jab3:
-  - jabthree
+  - jab3
 
 rapidjab:
   - multijab
@@ -22,6 +18,10 @@ rapidjab:
   - jabmultiplehitjab
 
 jabfinisher:
+  - jabend
+  - rapidjabend
+  - multiend
+  - multijabend
   - jabfinish
   - finish
   - finisher
@@ -37,9 +37,6 @@ jabfinisher:
   - multifinish
   - rapidfinish
   - rapidfinisher
-
-parry:
-  - parry
 
 fair:
   - forwardair
@@ -79,6 +76,16 @@ ftilt:
   - forwardtilt
   - forwardstilt
 
+ftilt2:
+  - forwardtiltdown
+  - forwardstiltdown
+  - ftiltdown
+
+ftilt3:
+  - forwardtiltup
+  - forwardstiltup
+  - ftiltup
+
 dtilt:
   - downtilt
   - downwardtilt
@@ -89,48 +96,42 @@ utilt:
   - upwardtilt
   - upwardstilt
 
-dash:
-  - dashattack
+dashattack:
+  - dash
   - da
 
-neutralb:
-  - plasma
+nspecial:
   - neutralspecial
-  - nspecial
+  - neutralb
   - nb
   - b
-  - plasmabreath
 
-sideb:
+sspecial:
   - sidespecial
-  - sspecial
+  - sideb
   - sidewayspecial
   - sidewaysspecial
-  - rush
-  - spacepiraterush
-  - spr
   - sb
 
-upb:
-  - upspecial
+uspecial:
+  - upb
   - upwardb
   - upwardsb
   - upwardspecial
   - upwardsspecial
-  - wingblitz
   - recovery
   - ub
-  - uspecial
-  - wb
+  - upspecial
 
-downb:
+dspecial:
   - downspecial
   - downwardb
   - downwardsb
   - downwardspecial
   - downwardsspecial
-  - skewer
-  - dspecial
+  - downb
+  - db
+
 
 fsmash:
   - forwardsmash
@@ -139,6 +140,24 @@ fsmash:
   - sidewayssmash
   - sidewaysmash
   - ssmash
+
+fsmash2:
+  - forwardsmashdown
+  - forwardssmashdown
+  - sidesmashdown
+  - sidewayssmashdown
+  - sidewaysmashdown
+  - ssmashdown
+  - fsmashdown
+
+fsmash3:
+  - forwardsmashup
+  - forwardssmashup
+  - sidesmashup
+  - sidewayssmashup
+  - sidewaysmashup
+  - ssmashup
+  - fsmashup
 
 dsmash:
   - downsmash
@@ -150,15 +169,18 @@ usmash:
   - upwardsmash
   - upwardssmash
 
-standinggrab:
+grabstanding:
   - grab
   - sgrab
+  - standinggrab
 
-dashgrab:
+grabdash:
   - dgrab
+  - dashgrab
 
-pivotgrab:
+grabpivot:
   - pgrab
+  - pivotgrab
 
 pummel:
   - pummel
@@ -216,8 +238,8 @@ airdodge:
 oos:
   - outofshield
 
-getup:
-  - getupattack
+getupattack:
+  - getup
   - getupatk
 
 ledgeattack:
@@ -235,3 +257,13 @@ tripattack:
   - tripgetupattack
   - tripgetupatk
   - tripatk
+
+input:
+  - inputs 
+  - commands
+  - commandinput
+  - command
+  - commandinputs 
+  - cmd 
+  - in 
+  - cmdin 

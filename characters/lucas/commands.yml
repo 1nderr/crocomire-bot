@@ -1,0 +1,201 @@
+lucas:
+  title: Lucas
+  image: hurtbox.png
+  fields:
+
+airdodge:
+  title: Airdodge
+  fields:
+
+bair:
+  title: Back Air
+  image: https://ultimateframedata.com/hitboxes/lucas/LucasBAir.gif
+  fields:
+
+bthrow:
+  title: Back Throw
+  image: https://ultimateframedata.com/hitboxes/lucas/LucasBThrow.gif
+  fields:
+
+dair:
+  title: Down Air
+  image: https://ultimateframedata.com/hitboxes/lucas/LucasDAir.gif
+  fields:
+
+dashattack:
+  title: Dash Attack
+  image: https://ultimateframedata.com/hitboxes/lucas/LucasDashAttack.gif
+  fields:
+
+dsmash:
+  title: Down Smash
+  image: https://ultimateframedata.com/hitboxes/lucas/LucasDSmash.gif
+  fields:
+
+dtaunt:
+  title: Down Taunt
+
+dthrow:
+  title: Down Throw
+  image: https://ultimateframedata.com/hitboxes/lucas/LucasDThrow.gif
+  fields:
+
+dtilt:
+  title: Down Tilt 
+  image: https://ultimateframedata.com/hitboxes/lucas/LucasDTilt.gif
+  fields:
+
+fair:
+  title: Forward Air
+  image: https://ultimateframedata.com/hitboxes/lucas/LucasFAir.gif
+  fields:
+
+fsmash:
+  title: Forward Smash
+  image: https://ultimateframedata.com/hitboxes/lucas/LucasFSmash.gif
+  fields:
+    
+fthrow:
+  title: Forward Throw
+  image: https://ultimateframedata.com/hitboxes/lucas/LucasFThrow.gif
+  fields:
+
+ftilt:
+  title: Forward Tilt
+  image: https://ultimateframedata.com/hitboxes/lucas/LucasFTilt.gif
+  fields:
+
+ftilt2:
+  title: Forward Tilt Down
+  image: https://ultimateframedata.com/hitboxes/lucas/LucasFTiltDown.gif
+  fields:
+
+ftilt3:
+  title: Forward Tilt Up
+  image: https://ultimateframedata.com/hitboxes/lucas/LucasFTiltUp.gif
+  fields:
+
+getupattack: 
+  title: Getup Attack
+  fields:
+
+grabdash:
+  title: Dash Grab
+  fields:
+
+grabpivot:
+  title: Pivot Grab
+  fields:
+
+grabstanding:
+  title: Standing Gif
+  fields:
+
+jab:
+  title: Jab 1 
+  image: https://ultimateframedata.com/hitboxes/lucas/LucasJab1.gif
+  fields:
+
+jab2:
+  title: Jab 2
+  image: https://ultimateframedata.com/hitboxes/lucas/LucasJab2.gif
+  fields:
+
+jab3:
+  title: Jab 3
+  image: https://ultimateframedata.com/hitboxes/lucas/LucasJab3.gif
+  fields:   
+
+ledgeattack:
+  title: Ledge Attack
+  fields:
+
+nair:
+  title: Neutral Air
+  image: https://ultimateframedata.com/hitboxes/lucas/LucasNAir.gif
+  fields:
+
+oos:
+  title: Out of Shield Options
+  fields:
+  
+nspecial:
+  title: PK Freeze
+  image: https://ultimateframedata.com/hitboxes/lucas/LucasPKFreeze.png
+  fields:
+
+pummel:
+  title: Pummel
+  image: https://ultimateframedata.com/hitboxes/lucas/LucasPummel.gif
+  fields:
+
+roll:
+  title: Rolls
+  fields:
+
+dspecial:
+  title: PSI Magnet
+  image: https://ultimateframedata.com/hitboxes/lucas/LucasPSIMagnet.gif
+  fields:
+
+spotdodge:
+  title: Spot Dodge
+  fields:
+
+sspecial:
+  title: PK Fire (Burst)
+  image: https://ultimateframedata.com/hitboxes/lucas/LucasPKFireBurst.png
+  fields:
+
+sspecial2:
+  title: PK Fire (Ground)
+  image: https://ultimateframedata.com/hitboxes/lucas/LucasPKFireG.gif
+  fields:
+
+sspecial3:
+  title: PK Fire (Air)
+  image: https://ultimateframedata.com/hitboxes/lucas/LucasPKFireA.gif
+  fields:
+
+staunt:
+  title: Side Taunt
+
+tripattack:
+  title: Trip Getup Attack
+  fields:
+
+uair:
+  title: Up Air
+  image: https://ultimateframedata.com/hitboxes/lucas/LucasUAir.gif
+  fields:
+
+uspecial:
+  title: PK Thunder
+  fields:
+
+uspecial2:
+  title: PK Thunder 2
+  image: https://ultimateframedata.com/hitboxes/lucas/LucasPKThunder2.gif
+  fields:
+
+usmash:
+  title: Up Smash
+  image: https://ultimateframedata.com/hitboxes/lucas/LucasUSmash.gif
+  fields:
+
+utaunt:
+  title: Up Taunt
+
+uthrow:
+  title: Up Throw
+  image: https://ultimateframedata.com/hitboxes/lucas/LucasUThrow.gif
+  fields:
+
+utilt:
+  title: Up Tilt 
+  image: https://ultimateframedata.com/hitboxes/lucas/LucasUTilt.gif
+  fields:
+
+zair:
+  title: Zair 
+  fields:

@@ -5,174 +5,102 @@ from random import choice, seed
 from yaml import safe_load as yamlLoad
 
 prefix = "?"
-imgPath = "Images/"
-memePath = "Memes/"
+charPath = "characters/%s/commands.yml"
 crocEmote = "<:Crocomire:583880666970718224>"
-reactEmote = "🔴"
 embedColor = 10170673
-creditsMsg = "Credits: Hitboxes by EyeDonutz | Icon by Gekigami | Bot by 1nder"
-moveError = "Bruh I don't recognize the move \"%s\" %s"
-reactMsg = "Press %s within the next 60s to see the %s. (Sender Only)"
-reactTime = 60.0
-
-# Dictionary with a "main" move name as the key and synonyms for the move as the values.
-# Keeps the move name consistent while allowing for multiple ways to refer to a move. Example: nair = neutral air
-synData = yamlLoad(open("synonyms.yml"))
-
-# Dictionary with command name as the key and the command attributes (title, text, image, etc.) as the values.
-cmdData = yamlLoad(open("commands.yml"))
-
-# Lists of commands by response type.
-imgCmds = cmdData["cmds"]["img"]
-embedCmds = cmdData["cmds"]["embed"]
-textCmds = cmdData["cmds"]["text"]
-allCmds = imgCmds + embedCmds + textCmds
+moveError1 = "The move **%s** does not exist."
+moveError2 = "This character does not have the move **%s**."
+charError1 = "The character **%s** doesn't exist."
+charError2 = "The character **%s** has no data yet."
+hBoxError = "**%s** does not have a hitbox graphic."
+statError = "**%s** does not have stats yet"
+matchMsg = "There are multiple hitboxes for this move. React with the hitbox you would like (Sender Only):\n```%s```"
+nums = ['1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣', '9️⃣']
 
 client = discord.Client()
-tokenFile = open("token", "r")
+tokenFile = open("test", "r")
 token = tokenFile.read().strip()
 tokenFile.close()
 
-
 # Takes a move and translates it based on the synonyms dictionary.
 # Returns "Invalid Move" if the move does not exist and returns the root move name if the move is a synonym.
-def TranslateMove(move):
-    moveList = list(synData.keys())
-    if move in moveList:
-        return move
+def Translate(og, synFile):
+    synData = yamlLoad(open(synFile))
 
-    for i in moveList:
-        if move in synData[i]:
+    synList = list(synData.keys())
+    if og in synList:
+        return og
+
+    for i in synList:
+        if og in synData[i]:
             return i
 
-    return "Invalid Move"
-
-
-# Generates an embedded message to send to the user.
-async def GetEmbed(cmd, move):
-    if cmd == "viz":
-        embed, attach = CreateImageEmbed(move)
-        embed.set_footer(text=reactMsg % (reactEmote, "stats"))
-    elif cmd == "stats":
-        embed, attach = CreateTextEmbed(move, True)
-        embed.set_footer(text=reactMsg % (reactEmote, "hitbox"))
-    elif cmd in embedCmds:
-        embed, attach = CreateTextEmbed(cmd, False)
-    elif cmd in imgCmds:
-        embed, attach = CreateImageEmbed(cmd)
-    return embed, attach
+    return "Invalid"
 
 
 # Takes in an embed and option for inline or stacked embed text.
 # Returns an embeded message object with the given command's text and thumbnail.
-def CreateTextEmbed(cmd, inline):
-    title = "__" + cmdData[cmd]["title"] + "__"
-    fields = cmdData[cmd]["fields"]
+def CreateTextEmbed(cmdData, cmd, inline):
+    title = "__" + cmdData["title"] + "__"
+
+    fields = cmdData["fields"]
+    if not fields:
+        return False
+
     embed = discord.Embed(title=title, color=embedColor)
 
     for i in fields.keys():
         embed.add_field(name=i, value=fields[i], inline=inline)
 
-    if len(fields.keys()) % 3 != 0 and cmd not in embedCmds:
+    if len(fields.keys()) % 3 != 0 and cmd == "stats":
         embed.add_field(name="‏‏‎‏‏‎ ‎", value="‏‏‎‏‏‎ ‎", inline=inline)
-
-    filename = imgPath + cmdData[cmd]["image"]
-    #f = CreateEmbedAttachment(embed, filename, "thumbnail")
-    f = None
-    return embed, f
+    return embed
 
 
 # Takes in a cmd name.
 # Returns an embed object and image file.
-def CreateImageEmbed(cmd):
-    embed = discord.Embed(color=embedColor)
-
-    if cmd == "meme":
-        seed()
-        img = memePath + choice(listdir(memePath))
-    else:
-        img = imgPath + cmdData[cmd]["image"]
-
-        if cmd == "muchart":
-            survey = cmdData[cmd]["link"]
-            embed.add_field(name="Vote Here:", value=survey, inline=False)
-
-    f = CreateEmbedAttachment(embed, img, "image")
-    return embed, f
-
-
-# Takes an embed, file name, and option to declare the attachment as a thumbnail or image.
-# Returns a file object that can be attached to an embedded message.
-def CreateEmbedAttachment(embed, filename, attachType):
-    # This assures the image is uploaded as a gif file.
-    imgURL = "attachment://" + "img.gif"
-
-    # This sets the url of the image the message will use.
-    if attachType == "thumbnail":
-        embed.set_thumbnail(url=imgURL)
-    elif attachType == "image":
-        embed.set_image(url=imgURL)
-
-    f = discord.File(filename, "img.gif")
-    return f
-
-
-# Sends an embedded message based on the user's request.
-async def SendEmbed(cmd, embed, attach, req):
-    if cmd == "help":
-        embed.set_footer(text=creditsMsg)
-        resp = await req.author.send(embed=embed, file=attach)
-    else:
-        resp = await req.channel.send(embed=embed, file=attach)
-    return resp
+def CreateImageEmbed(cmdData):
+    try:
+        imgURL = cmdData["image"]
+    except KeyError:
+        return False
+    embed = discord.Embed(title=cmdData["title"] ,color=embedColor)
+    embed.set_image(url=imgURL)
+    return embed
 
 
 # Waits for a reaction on stats or viz and then sends the opposite command if the message is reacted to.
-async def WaitForReaction(cmd, move, resp, req):
-    await resp.add_reaction(reactEmote)
-
+async def WaitForReaction(req, resp):
     try:
         # Checks if the reaction to a message matches the indicated emoji.
         def CheckReaction(reaction, user):
-            return str(reaction.emoji) == reactEmote and user == req.author
+            e = str(reaction.emoji)
+            return e in nums and user == req.author
 
         # This loop prevents a bug where if you did two stats cmds and reacted to one of them, 
         # it would send the follow up message to both messages instead of the one that was reacted to.
         while True:
-            await client.wait_for('reaction_add', timeout=reactTime, check=CheckReaction)
+            await client.wait_for('reaction_add', timeout=120.0, check=CheckReaction)
 
             # Updates the response sent earlier with the newly added reactions.
             resp = await req.channel.fetch_message(resp.id)
 
-            # Makes sure the response being reacted to isn't some other message from before.
-            if resp.reactions[0].count > 1:
-                if cmd == "stats":
-                    embed, attach = CreateImageEmbed(move)
-                elif cmd == "viz":
-                    embed, attach = CreateTextEmbed(move, True)
+            for r in resp.reactions:
+                users = await r.users().flatten()
+                if r.count > 1 and req.author in users:
+                    n = nums.index(r.emoji)
+                    return n
 
-                await req.channel.send(embed=embed, file=attach)
-                break
-        
     except TimeoutError:
-        return
+        return -1
 
-
-# Sets the bots status on start up.
-@client.event
-async def on_ready():
-    await client.change_presence(status=discord.Status.do_not_disturb, activity=discord.Game(name="Bruh, Type %shelp" % prefix))
-
+    return -1
 
 @client.event
 async def on_message(req):
-    # x = False
-    # for r in req.author.roles:
-    #     if r.id == 585552258976972860:
-    #         x = True
-
-    # if x == False:
-    #     return
+    textCmds = []
+    imgCmds = []
+    embedCmds = []
 
     if req.author == client.user:
         return
@@ -185,29 +113,99 @@ async def on_message(req):
     if msg[0][0] != prefix:
         return
 
+    # Checks cmd type.
     cmd = msg[0][1:].lower()
-    if cmd not in allCmds:
-        return
 
-    # Parses the move name.
-    move = None
-    if cmd == "stats" or cmd == "viz":
-        move = "".join(msg[1:]).lower()
-        temp = move
-        move = TranslateMove(move)
-        if move == "Invalid Move":
-            await req.channel.send(moveError % (temp, crocEmote))
+    if cmd == "viz" or cmd == "stats":
+        # Parses the character name.
+        char = msg[1].lower()
+        tempChar = char
+        char = Translate(char, "charSynonyms.yml")
+        if char == "Invalid":
+            await req.channel.send(charError1 % tempChar)
             return
+
+        # Dictionary with command name as the key and the command attributes (title, text, image, etc.) as the values.
+        cmdData = yamlLoad(open(charPath % char))
+
+        if cmdData == None:
+            await req.channel.send(charError2 % char)
+            return
+
+        # Parses the move name.
+        move = char
+        if len(msg) > 2:
+            move = "".join(msg[2:]).lower()
+            if move not in cmdData.keys():
+                tempMove = move
+                move = Translate(move, "moveSynonyms.yml")
+                if move == "Invalid":
+                    await req.channel.send(moveError1 % tempMove)
+                    return
+
+        if move not in list(cmdData.keys()):
+            await req.channel.send(moveError2 % tempMove)
+            return
+
+        # Checks if the move has multiple hitboxes
+        matching = [i for i in cmdData.keys() if move in i]
+        actualMatching = []
+        if len(matching) > 1:
+            s = ""
+
+            for i in range(len(matching)):
+                try:
+                    m = cmdData[matching[i]]["image"]
+                    actualMatching.append(matching[i])
+                except KeyError:
+                    continue
+                m = cmdData[matching[i]]["title"]
+                s += ("\n %d. %s" % (i+1 ,m))
+
+            if not actualMatching:
+                await req.channel.send(hBoxError % move)
+                return
+
+            resp = await req.channel.send(matchMsg % s)
+
+            for i in range(len(actualMatching)):
+                await resp.add_reaction(nums[i])
+
+            n = await WaitForReaction(req, resp)
+            if n == -1:
+                return
+
+            move = actualMatching[n]
+
+            await resp.delete()
+    else:
+        # Dictionary with command name as the key and the command attributes (title, text, image, etc.) as the values.
+        cmdData = yamlLoad(open("commands.yml"))
+
+        # Lists of commands by response type.
+        imgCmds = cmdData["cmds"]["img"]
+        embedCmds = cmdData["cmds"]["embed"]
+        textCmds = cmdData["cmds"]["text"]
 
     # Sends the message response.
     if cmd in textCmds:
         await req.channel.send(cmdData[cmd]["text"])
+        return
+    # elif cmd in imgCmds:
+    # elif cmd in embedCmds:
+    # elif cmd == "help":
+    elif cmd == "viz":
+        embed = CreateImageEmbed(cmdData[move])
+        if embed == False:
+            await req.channel.send(hBoxError % cmdData[move]["title"])
+            return
+    elif cmd == "stats":
+        embed = CreateTextEmbed(cmdData[move], cmd, True)
+        if embed == False:
+            await req.channel.send(statError % cmdData[move]["title"])
+            return
     else:
-        embed, attach = await GetEmbed(cmd, move)
-        resp = await SendEmbed(cmd, embed, attach, req)
-
-        # Adds reaction to stats or viz message.
-        if cmd == "stats" or cmd == "viz":
-            await WaitForReaction(cmd, move, resp, req)
+        return
+    await req.channel.send(embed=embed)
 
 client.run(token)

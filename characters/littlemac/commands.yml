@@ -1,0 +1,236 @@
+littlemac:
+  title: Little Mac
+  image: hurtbox.png
+  fields:
+
+airdodge:
+  title: Airdodge
+  fields:
+
+bair:
+  title: Back Air
+  image: https://ultimateframedata.com/hitboxes/little_mac/LittleMacBAir.gif
+  fields:
+
+bthrow:
+  title: Back Throw
+  image: https://ultimateframedata.com/hitboxes/little_mac/LittleMacBThrow.gif
+  fields:
+
+dair:
+  title: Down Air
+  image: https://ultimateframedata.com/hitboxes/little_mac/LittleMacDAir.gif
+  fields:
+
+dashattack:
+  title: Dash Attack
+  image: https://ultimateframedata.com/hitboxes/little_mac/LittleMacDashAttack.gif
+  fields:
+
+dsmash:
+  title: Down Smash
+  image: https://ultimateframedata.com/hitboxes/little_mac/LittleMacDSmash.gif
+  fields:
+
+dtaunt:
+  title: Down Taunt
+
+dthrow:
+  title: Down Throw
+  image: https://ultimateframedata.com/hitboxes/little_mac/LittleMacDThrow.gif
+  fields:
+
+dtilt:
+  title: Down Tilt 
+  image: https://ultimateframedata.com/hitboxes/little_mac/LittleMacDTilt.gif
+  fields:
+
+fair:
+  title: Forward Air
+  image: https://ultimateframedata.com/hitboxes/little_mac/LittleMacFAir.gif
+  fields:
+
+fsmash:
+  title: Forward Smash
+  image: https://ultimateframedata.com/hitboxes/little_mac/LittleMacFSmash.gif
+  fields:
+
+fsmash2:
+  title: Forward Smash Down
+  image: https://ultimateframedata.com/hitboxes/little_mac/LittleMacFSmashDown.gif
+  fields:
+
+fsmash3:
+  title: Forward Smash Up
+  image: https://ultimateframedata.com/hitboxes/little_mac/LittleMacFSmashUp.gif
+  fields:
+    
+fthrow:
+  title: Forward Throw
+  image: https://ultimateframedata.com/hitboxes/little_mac/LittleMacFThrow.gif
+  fields:
+
+ftilt:
+  title: Forward Tilt
+  image: https://ultimateframedata.com/hitboxes/little_mac/LittleMacFTilt.gif
+  fields:
+
+getupattack: 
+  title: Getup Attack
+  fields:
+
+grabdash:
+  title: Dash Grab
+  image: https://ultimateframedata.com/hitboxes/little_mac/LittleMacDashGrab.gif
+  fields:
+
+grabpivot:
+  title: Pivot Grab
+  image: https://ultimateframedata.com/hitboxes/little_mac/LittleMacPivotGrab.gif
+  fields:
+
+grabstanding:
+  title: Standing Gif
+  image: https://ultimateframedata.com/hitboxes/little_mac/LittleMacGrab.gif
+  fields:
+
+jab:
+  title: Jab 1 
+  image: https://ultimateframedata.com/hitboxes/little_mac/LittleMacJab1.gif
+  fields:
+
+jab2:
+  title: Jab 2
+  image: https://ultimateframedata.com/hitboxes/little_mac/LittleMacJab2.gif
+  fields:
+
+jab3:
+  title: Jab 3
+  image: https://ultimateframedata.com/hitboxes/little_mac/LittleMacJab3.gif
+  fields:
+
+jabfinisher:
+  title: Rapid Jab Finish
+  image: https://ultimateframedata.com/hitboxes/little_mac/LittleMacJabRapidEnd.gif
+  fields:
+
+rapidjab:
+  title: Rapid Jab
+  image: https://ultimateframedata.com/hitboxes/little_mac/LittleMacJabRapid.gif
+  fields:    
+
+ledgeattack:
+  title: Ledge Attack
+  fields:
+
+nair:
+  title: Neutral Air
+  image: https://ultimateframedata.com/hitboxes/little_mac/LittleMacNAir.gif
+  fields:
+
+oos:
+  title: Out of Shield Options
+  fields:
+  
+nspecial:
+  title: Straight Lunge (Ground)
+  image: https://ultimateframedata.com/hitboxes/little_mac/LittleMacStraightLungeG.gif
+  fields:
+
+nspecial2:
+  title: Straight Lunge (Air)
+  image: https://ultimateframedata.com/hitboxes/little_mac/LittleMacStraightLungeA.gif
+  fields:
+
+nspecial3:
+  title: Straight Lunge, Max Charge (Ground)
+  image: https://ultimateframedata.com/hitboxes/little_mac/LittleMacStraightLungeMaxG.gif
+  fields:
+
+nspecial4:
+  title: Straight Lunge, Max Charge (Air)
+  image: https://ultimateframedata.com/hitboxes/little_mac/LittleMacStraightLungeMaxA.gif
+  fields:
+
+nspecial5:
+  title: KO Punch (Ground)
+  image: https://ultimateframedata.com/hitboxes/little_mac/LittleMacKOPunchG.gif
+  fields:
+
+nspecial6:
+  title: KO Punch (Air)
+  image: https://ultimateframedata.com/hitboxes/little_mac/LittleMacKOPunchA.gif
+  fields:
+
+pummel:
+  title: Pummel
+  image: https://ultimateframedata.com/hitboxes/little_mac/LittleMacPummel.gif
+  fields:
+
+roll:
+  title: Rolls
+  fields:
+
+dspecial:
+  title: Slip Counter
+  image: https://ultimateframedata.com/hitboxes/little_mac/LittleMacSlipCounter.gif
+  fields:
+
+dspecial2:
+  title: Slip Counter Attack (Ground)
+  image: https://ultimateframedata.com/hitboxes/little_mac/LittleMacSlipCounterHitG.gif
+  fields:
+
+dspecial3:
+  title: Slip Counter Attack (Air)
+  image: https://ultimateframedata.com/hitboxes/little_mac/LittleMacSlipCounterHitA.gif
+  fields:
+
+spotdodge:
+  title: Spot Dodge
+  fields:
+
+sspecial:
+  title: Jolt Haymaker
+  image: https://ultimateframedata.com/hitboxes/little_mac/LittleMacJoltHaymakerG.gif
+  fields:
+
+sspecial2:
+  title: Jolt Haymaker (Air)
+  image: https://ultimateframedata.com/hitboxes/little_mac/LittleMacJoltHaymakerA.gif
+  fields:
+
+staunt:
+  title: Side Taunt
+
+tripattack:
+  title: Trip Getup Attack
+  fields:
+
+uair:
+  title: Up Air
+  image: https://ultimateframedata.com/hitboxes/little_mac/LittleMacUAir.gif
+  fields:
+
+uspecial:
+  title: Rising Uppercut
+  image: https://ultimateframedata.com/hitboxes/little_mac/LittleMacRisingUppercut.gif
+  fields:
+
+usmash:
+  title: Up Smash
+  image: https://ultimateframedata.com/hitboxes/little_mac/LittleMacUSmash.gif
+  fields:
+
+utaunt:
+  title: Up Taunt
+
+uthrow:
+  title: Up Throw
+  image: https://ultimateframedata.com/hitboxes/little_mac/LittleMacUThrow.gif
+  fields:
+
+utilt:
+  title: Up Tilt 
+  image: https://ultimateframedata.com/hitboxes/little_mac/LittleMacUTilt.gif
+  fields:

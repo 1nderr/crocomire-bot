@@ -1,0 +1,229 @@
+kirby:
+  title: Kirby
+  image: hurtbox.png
+  fields:
+
+airdodge:
+  title: Airdodge
+  fields:
+
+bair:
+  title: Back Air
+  image: https://ultimateframedata.com/hitboxes/kirby/KirbyBAir.gif
+  fields:
+
+bthrow:
+  title: Back Throw
+  image: https://ultimateframedata.com/hitboxes/kirby/KirbyBThrow.gif
+
+dair:
+  title: Down Air
+  image: https://ultimateframedata.com/hitboxes/kirby/KirbyDAir.gif
+  fields:
+
+dashattack:
+  title: Dash Attack
+  image: https://ultimateframedata.com/hitboxes/kirby/KirbyDashAttack.gif
+  fields:
+
+dsmash:
+  title: Down Smash
+  image: https://ultimateframedata.com/hitboxes/kirby/KirbyDSmash.gif
+  fields:
+
+dtaunt:
+  title: Down Taunt
+
+dthrow:
+  title: Down Throw
+  image: https://ultimateframedata.com/hitboxes/kirby/KirbyDThrow.gif
+  fields:
+
+dtilt:
+  title: Down Tilt 
+  image: https://ultimateframedata.com/hitboxes/kirby/KirbyDTilt.gif
+  fields:
+
+fair:
+  title: Forward Air
+  image: https://ultimateframedata.com/hitboxes/kirby/KirbyFAir.gif
+  fields:
+
+fsmash:
+  title: Forward Smash
+  image: https://ultimateframedata.com/hitboxes/kirby/KirbyFSmash.gif
+  fields:
+
+fsmash2:
+  title: Forward Smash Down
+  image: https://ultimateframedata.com/hitboxes/kirby/KirbyFSmashDown.gif
+  fields:
+
+fsmash3:
+  title: Forward Smash Up
+  image: https://ultimateframedata.com/hitboxes/kirby/KirbyFSmashUp.gif
+  fields:
+    
+fthrow:
+  title: Forward Throw
+  image: https://ultimateframedata.com/hitboxes/kirby/KirbyFThrow.gif
+  fields:
+
+ftilt:
+  title: Forward Tilt
+  image: https://ultimateframedata.com/hitboxes/kirby/KirbyFTilt.gif
+  fields:
+
+ftilt2:
+  title: Forward Tilt Down
+  image: https://ultimateframedata.com/hitboxes/kirby/KirbyFTiltDown.gif
+  fields:
+
+ftilt3:
+  title: Forward Tilt Up
+  image: https://ultimateframedata.com/hitboxes/kirby/KirbyFTiltUp.gif
+  fields:
+
+getupattack: 
+  title: Getup Attack
+  fields:
+
+grabdash:
+  title: Dash Grab
+  image: https://ultimateframedata.com/hitboxes/kirby/KirbyDashGrab.gif
+  fields:
+
+grabpivot:
+  title: Pivot Grab
+  image: https://ultimateframedata.com/hitboxes/kirby/KirbyPivotGrab.gif
+  fields:
+
+grabstanding:
+  title: Standing Gif
+  image: https://ultimateframedata.com/hitboxes/kirby/KirbyGrab.gif
+  fields:
+
+jab:
+  title: Jab 1 
+  image: https://ultimateframedata.com/hitboxes/kirby/KirbyJab1.gif
+  fields:
+
+jab2:
+  title: Jab 2
+  image: https://ultimateframedata.com/hitboxes/kirby/KirbyJab2.gif
+  fields:
+
+jabfinisher:
+  title: Rapid Jab Finish
+  image: https://ultimateframedata.com/hitboxes/kirby/KirbyJabRapidEnd.gif
+  fields:
+
+rapidjab:
+  title: Rapid Jab
+  image: https://ultimateframedata.com/hitboxes/kirby/KirbyJabRapid.gif
+  fields:
+
+ledgeattack:
+  title: Ledge Attack
+  fields:
+
+nair:
+  title: Neutral Air
+  image: https://ultimateframedata.com/hitboxes/kirby/KirbyNAir.gif
+  fields:
+
+oos:
+  title: Out of Shield Options
+  fields:
+  
+nspecial:
+  title: Inhale (Start)
+  image: https://ultimateframedata.com/hitboxes/kirby/KirbyInhaleStar.gif
+  fields:
+
+nspecial2:
+  title: Inhale (Suck)
+  image: https://ultimateframedata.com/hitboxes/kirby/KirbyInhale.gif
+  fields:
+
+nspecial3:
+  title: Inhale (Copy/Spit)
+  fields:
+
+pummel:
+  title: Pummel
+  image: https://ultimateframedata.com/hitboxes/kirby/KirbyPummel.gif
+  fields:
+
+roll:
+  title: Rolls
+  fields:
+
+dspecial:
+  title: Stone (Ground)
+  image: https://ultimateframedata.com/hitboxes/kirby/KirbyStone.png
+  fields:
+
+dspecial2:
+  title: Stone (Air)
+  image: https://ultimateframedata.com/hitboxes/kirby/KirbyStoneLanding.png
+  fields:
+
+spotdodge:
+  title: Spot Dodge
+  fields:
+
+sspecial:
+  title: Hammer (Ground)
+  image: https://ultimateframedata.com/hitboxes/kirby/KirbyHammerFlipG.gif
+  fields:
+
+sspecial2:
+  title: Hammer Full Charge (Ground)
+  image: https://ultimateframedata.com/hitboxes/kirby/KirbyHammerFlipGMax.gif
+  fields:
+
+sspecial3:
+  title: Hammer (Air)
+  image: https://ultimateframedata.com/hitboxes/kirby/KirbyHammerFlipA.gif
+  fields:
+
+sspecial4:
+  title: Hammer Full Charge (Air)
+  image: https://ultimateframedata.com/hitboxes/kirby/KirbyHammerFlipAMax.gif
+  fields:
+
+staunt:
+  title: Side Taunt
+
+tripattack:
+  title: Trip Getup Attack
+  fields:
+
+uair:
+  title: Up Air
+  image: https://ultimateframedata.com/hitboxes/kirby/KirbyUAir.gif
+  fields:
+
+uspecial:
+  title: Final Cutter
+  image: https://ultimateframedata.com/hitboxes/kirby/KirbyFinalCutter.gif
+  fields:
+        
+usmash:
+  title: Up Smash
+  image: https://ultimateframedata.com/hitboxes/kirby/KirbyUSmash.gif
+  fields:
+
+utaunt:
+  title: Up Taunt
+
+uthrow:
+  title: Up Throw
+  image: https://ultimateframedata.com/hitboxes/kirby/KirbyUThrow.gif
+  fields:
+
+utilt:
+  title: Up Tilt 
+  image: https://ultimateframedata.com/hitboxes/kirby/KirbyUTilt.gif
+  fields:

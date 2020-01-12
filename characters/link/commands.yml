@@ -1,0 +1,185 @@
+link:
+  title: Link
+  image: hurtbox.png
+  fields:
+
+airdodge:
+  title: Airdodge
+  fields:
+
+bair:
+  title: Back Air
+  image: https://ultimateframedata.com/hitboxes/link/LinkBAir.gif
+  fields:
+
+bthrow:
+  title: Back Throw
+  image: https://ultimateframedata.com/hitboxes/link/LinkBThrow.gif
+  fields:
+
+dair:
+  title: Down Air
+  image: https://ultimateframedata.com/hitboxes/link/LinkDAir.gif
+  fields:
+
+dashattack:
+  title: Dash Attack
+  image: https://ultimateframedata.com/hitboxes/link/LinkDashAttack.gif
+  fields:
+
+dsmash:
+  title: Down Smash
+  image: https://ultimateframedata.com/hitboxes/link/LinkDSmash.gif
+  fields:
+
+dtaunt:
+  title: Down Taunt
+
+dthrow:
+  title: Down Throw
+  image: https://ultimateframedata.com/hitboxes/link/LinkDThrow.gif
+  fields:
+
+dtilt:
+  title: Down Tilt 
+  image: https://ultimateframedata.com/hitboxes/link/LinkDTilt.gif
+  fields:
+
+fair:
+  title: Forward Air
+  image: https://ultimateframedata.com/hitboxes/link/LinkFAir.gif
+  fields:
+
+fsmash:
+  title: Forward Smash 1
+  image: https://ultimateframedata.com/hitboxes/link/LinkFSmash1.gif
+  fields:
+
+fsmash2:
+  title: Forward Smash 2
+  image: https://ultimateframedata.com/hitboxes/link/LinkFSmash2.gif
+  fields:
+    
+fthrow:
+  title: Forward Throw
+  image: https://ultimateframedata.com/hitboxes/link/LinkFThrow.gif
+  fields:
+
+ftilt:
+  title: Forward Tilt
+  image: https://ultimateframedata.com/hitboxes/link/LinkFTilt.gif
+  fields:
+
+getupattack: 
+  title: Getup Attack
+  fields:
+
+grabdash:
+  title: Dash Grab
+  image: https://ultimateframedata.com/hitboxes/link/LinkDashGrab.gif
+  fields:
+
+grabpivot:
+  title: Pivot Grab
+  image: https://ultimateframedata.com/hitboxes/link/LinkPivotGrab.gif
+  fields:
+
+grabstanding:
+  title: Standing Gif
+  image: https://ultimateframedata.com/hitboxes/link/LinkGrab.gif
+  fields:
+
+jab:
+  title: Jab 1 
+  image: https://ultimateframedata.com/hitboxes/link/LinkJab1.gif
+  fields:
+
+jab2:
+  title: Jab 2
+  image: https://ultimateframedata.com/hitboxes/link/LinkJab2.gif
+  fields:
+
+jab3:
+  title: Jab 3
+  image: https://ultimateframedata.com/hitboxes/link/LinkJab3.gif
+  fields:
+
+ledgeattack:
+  title: Ledge Attack
+  fields:
+
+nair:
+  title: Neutral Air
+  image: https://ultimateframedata.com/hitboxes/link/LinkNAir.gif
+  fields:
+
+oos:
+  title: Out of Shield Options
+  fields:
+  
+nspecial:
+  title: Hero's Bow
+  image: https://ultimateframedata.com/hitboxes/link/LinkArrow.png
+  fields:
+
+pummel:
+  title: Pummel
+  image: https://ultimateframedata.com/hitboxes/link/LinkPummel.gif
+  fields:
+
+roll:
+  title: Rolls
+  fields:
+
+dspecial:
+  title: Remote Bomb
+  fields:
+
+spotdodge:
+  title: Spot Dodge
+  fields:
+
+sspecial:
+  title: Boomerang
+  image: https://ultimateframedata.com/hitboxes/link/LinkBoomerang.png
+  fields:
+
+staunt:
+  title: Side Taunt
+
+tripattack:
+  title: Trip Getup Attack
+  fields:
+
+uair:
+  title: Up Air
+  image: https://ultimateframedata.com/hitboxes/link/LinkUAir.gif
+  fields:
+
+uspecial:
+  title: Spin Attack
+  image: https://ultimateframedata.com/hitboxes/link/LinkSpinAttackG.gif
+  fields:
+     
+uspecial2:
+  title: Spin Attack (Air)
+  image: https://ultimateframedata.com/hitboxes/link/LinkSpinAttackA.gif
+  fields:
+
+usmash:
+  title: Up Smash
+  image: https://ultimateframedata.com/hitboxes/link/LinkUSmash.gif
+  fields:
+
+utaunt:
+  title: Up Taunt
+
+uthrow:
+  title: Up Throw
+  image: https://ultimateframedata.com/hitboxes/link/LinkUThrow.gif
+  fields:
+
+utilt:
+  title: Up Tilt 
+  image: https://ultimateframedata.com/hitboxes/link/LinkUTilt.gif
+  fields:

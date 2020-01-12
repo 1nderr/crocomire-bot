@@ -1,0 +1,218 @@
+diddykong:
+  title: Diddy Kong
+  image: hurtbox.png
+  fields:
+
+airdodge:
+  title: Airdodge
+  fields:
+
+bair:
+  title: Back Air
+  image: https://ultimateframedata.com/hitboxes/diddy_kong/DiddyKongBAir.gif
+  fields:
+
+bthrow:
+  title: Back Throw
+  image: https://ultimateframedata.com/hitboxes/diddy_kong/DiddyKongBThrow.gif
+  fields:
+
+dair:
+  title: Down Air
+  image: https://ultimateframedata.com/hitboxes/diddy_kong/DiddyKongDAir.gif
+  fields:
+
+dashattack:
+  title: Dash Attack
+  image: https://ultimateframedata.com/hitboxes/diddy_kong/DiddyKongDashAttack.gif
+  fields:
+
+dsmash:
+  title: Down Smash
+  image: https://ultimateframedata.com/hitboxes/diddy_kong/DiddyKongDSmash.gif
+  fields:
+
+dtaunt:
+  title: Down Taunt
+
+dthrow:
+  title: Down Throw
+  image: https://ultimateframedata.com/hitboxes/diddy_kong/DiddyKongDThrow.gif
+  fields:
+
+dtilt:
+  title: Down Tilt
+  image: https://ultimateframedata.com/hitboxes/diddy_kong/DiddyKongDTilt.gif
+  fields:
+
+fair:
+  title: Forward Air
+  image: https://ultimateframedata.com/hitboxes/diddy_kong/DiddyKongFAir.gif
+  fields:
+
+fsmash:
+  title: Forward Smash
+  image: https://ultimateframedata.com/hitboxes/diddy_kong/DiddyKongFSmash.gif
+  fields:
+
+fthrow:
+  title: Forward Throw
+  image: https://ultimateframedata.com/hitboxes/diddy_kong/DiddyKongFThrow.gif
+  fields:
+
+ftilt:
+  title: Forward Tilt
+  image: https://ultimateframedata.com/hitboxes/diddy_kong/DiddyKongFTilt.gif
+  fields:
+
+ftilt2:
+  title: Forward Tilt Down
+  image: https://ultimateframedata.com/hitboxes/diddy_kong/DiddyKongFTiltDown.gif
+  fields:
+
+ftilt3:
+  title: Forward Tilt Up 
+  image: https://ultimateframedata.com/hitboxes/diddy_kong/DiddyKongFTiltUp.gif
+  fields:
+
+getupattack: 
+  title: Getup Attack
+  fields:
+
+grabdash:
+  title: Dash Grab
+  image: https://ultimateframedata.com/hitboxes/diddy_kong/DiddyKongDashGrab.gif
+  fields:
+
+grabpivot:
+  title: Pivot Grab
+  image: https://ultimateframedata.com/hitboxes/diddy_kong/DiddyKongPivotGrab.gif
+  fields:
+
+grabstanding:
+  title: Standing Gif
+  image: https://ultimateframedata.com/hitboxes/diddy_kong/DiddyKongGrab.gif
+  fields:
+
+jab:
+  title: Jab 1
+  image: https://ultimateframedata.com/hitboxes/diddy_kong/DiddyKongJab1.gif
+  fields:
+
+jab2:
+  title: Jab 2
+  image: https://ultimateframedata.com/hitboxes/diddy_kong/DiddyKongJab2.gif
+  fields:
+
+jab3:
+  title: Jab 3
+  image: https://ultimateframedata.com/hitboxes/diddy_kong/DiddyKongJab3.gif
+  fields:
+
+ledgeattack:
+  title: Ledge Attack
+  fields:
+
+nair:
+  title: Neutral Air
+  image: https://ultimateframedata.com/hitboxes/diddy_kong/DiddyKongNAir.gif
+  fields:
+
+oos:
+  title: Out of Shield Options
+  fields:
+
+nspecial:
+  title: Peanut Popgun
+  fields:
+
+nspecial2:
+  title: Peanut Popgun (Misfire)
+  image: https://ultimateframedata.com/hitboxes/diddy_kong/DiddyKongPeanutPopgunBoom.gif
+  fields:
+
+pummel:
+  title: Pummel
+  image: https://ultimateframedata.com/hitboxes/diddy_kong/DiddyKongPummel.gif
+  fields:
+
+roll:
+  title: Rolls
+  fields:
+
+dspecial:
+  title: Banana Peel
+  fields:
+
+spotdodge:
+  title: Spot Dodge
+  fields:
+
+sspecial:
+  title: Monkey Flip
+  image: https://ultimateframedata.com/hitboxes/diddy_kong/DiddyKongMonkeyFlip.gif
+  fields:
+
+sspecial2:
+  title: Monkey Flip Attack
+  image: https://ultimateframedata.com/hitboxes/diddy_kong/DiddyKongMonkeyFlipKick.gif
+  fields:
+
+sspecial3:
+  title: Monkey Flip Grab Success
+  image: https://ultimateframedata.com/hitboxes/diddy_kong/DiddyKongMonkeyFlipStick.gif
+  fields:
+
+sspecial4:
+  title: Monkey Flip Grab Attack
+  image: https://ultimateframedata.com/hitboxes/diddy_kong/DiddyKongMonkeyFlipStickAttack.gif
+  fields:
+
+sspecial5:
+  title: Monkey Flip Grab Jump
+  fields:
+
+staunt:
+  title: Side Taunt
+
+tripattack:
+  title: Trip Getup Attack
+  fields:
+
+uair:
+  title: Up Air
+  image: https://ultimateframedata.com/hitboxes/diddy_kong/DiddyKongUAir.gif
+  fields:
+
+uspecial:
+  title: Rocketbarrel Boost (Diddy)
+  image: https://ultimateframedata.com/hitboxes/diddy_kong/DiddyKongRocketBarrels.gif
+  fields:
+
+uspecial2:
+  title: Rocketbarrel Boost (Jetpack)
+  image: https://ultimateframedata.com/hitboxes/diddy_kong/DiddyKongRocketBarrels.png
+  fields: 
+
+uspecial3:
+  title: Rocketbarrel Boost (Explosion)
+  image: https://ultimateframedata.com/hitboxes/diddy_kong/DiddyKongRocketBarrelsExplosion.png
+  fields: 
+
+usmash:
+  title: Up Smash
+  image: https://ultimateframedata.com/hitboxes/diddy_kong/DiddyKongUSmash.gif
+  fields:
+
+utaunt:
+  title: Up Taunt
+
+uthrow:
+  title: Up Throw
+  image: https://ultimateframedata.com/hitboxes/diddy_kong/DiddyKongUThrow.gif
+  fields:
+
+utilt:
+  title: Up Tilt
+  image: https://ultimateframedata.com/hitboxes/diddy_kong/DiddyKongUTilt.gif
+  fields:
