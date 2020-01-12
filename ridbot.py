@@ -1,11 +1,10 @@
 import discord
 from asyncio import TimeoutError
-from os import listdir
 from random import choice, seed
 from yaml import safe_load as yamlLoad
 
 prefix = "?"
-charPath = "../SmashStats/characters/%s.yml"
+charPath = "characters/%s.yml"
 crocEmote = "<:Crocomire:583880666970718224>"
 embedColor = 10170673
 moveError1 = "The move **%s** does not exist bruh %s"
@@ -15,6 +14,7 @@ hBoxError = "**%s** does not have a hitbox graphic bruh %s"
 statError = "**%s** does not have stats yet bruh %s"
 matchMsg = "There are multiple hitboxes for this move bruh %s. React with the hitbox you would like (Sender Only):\n```%s```"
 nums = ['1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣', '9️⃣']
+smashPath = "../SmashStats/"
 
 client = discord.Client()
 tokenFile = open("token", "r")
@@ -133,13 +133,13 @@ async def on_message(req):
         # Parses the character name.
         char = msg[1].lower()
         tempChar = char
-        char = Translate(char, "charSynonyms.yml")
+        char = Translate(char, smashPath + "charSynonyms.yml")
         if char == "Invalid":
             await req.channel.send(charError1 % (tempChar, crocEmote))
             return
 
         # Dictionary with command name as the key and the command attributes (title, text, image, etc.) as the values.
-        cmdData = yamlLoad(open(charPath % char))
+        cmdData = yamlLoad(open(smashPath + (charPath % char)))
 
         if cmdData == None:
             await req.channel.send(charError2 % (char, crocEmote))
@@ -151,7 +151,7 @@ async def on_message(req):
             move = "".join(msg[2:]).lower()
             if move not in cmdData.keys():
                 tempMove = move
-                move = Translate(move, "moveSynonyms.yml")
+                move = Translate(move, smashPath + "moveSynonyms.yml")
                 if move == "Invalid":
                     await req.channel.send(moveError1 % (tempMove, crocEmote))
                     return
