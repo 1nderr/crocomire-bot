@@ -13,7 +13,7 @@ charError2 = "The character **%s** has no data yet bruh %s"
 hBoxError = "**%s** does not have a hitbox graphic bruh %s"
 statError = "**%s** does not have stats yet bruh %s"
 matchMsg = "There are multiple hitboxes for this move bruh %s. React with the hitbox you would like (Sender Only):\n```%s```"
-nums = ['1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣', '9️⃣']
+nums = ['1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣', '9️⃣', '🔟']
 smashPath = "../SmashStats/"
 
 client = discord.Client()
@@ -117,6 +117,11 @@ async def on_ready():
 async def on_message(req):
     if req.author == client.user:
         return
+
+    # if str(req.content) == "memes..." and str(req.author) == "1nder":
+    #     while True:
+    #         sasd = input("> ")
+    #         await req.channel.send(sasd)
 
     # Parses the message for the command.
     msg = req.content.split()
