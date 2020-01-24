@@ -23,6 +23,8 @@ tokenFile.close()
 
 # Takes a move and translates it based on the synonyms dictionary.
 # Returns "Invalid Move" if the move does not exist and returns the root move name if the move is a synonym.
+
+
 def Translate(og, synFile):
     synData = yamlLoad(open(synFile))
 
@@ -63,7 +65,7 @@ def CreateImageEmbed(cmdData):
         imgURL = cmdData["image"]
     except KeyError:
         return False
-    embed = discord.Embed(title=cmdData["title"] ,color=embedColor)
+    embed = discord.Embed(title=cmdData["title"], color=embedColor)
     embed.set_image(url=imgURL)
     return embed
 
@@ -87,7 +89,7 @@ async def WaitForReaction(req, resp):
             e = str(reaction.emoji)
             return e in nums and user == req.author
 
-        # This loop prevents a bug where if you did two stats cmds and reacted to one of them, 
+        # This loop prevents a bug where if you did two stats cmds and reacted to one of them,
         # it would send the follow up message to both messages instead of the one that was reacted to.
         while True:
             await client.wait_for('reaction_add', timeout=120.0, check=CheckReaction)
@@ -158,6 +160,10 @@ async def on_message(req):
                 tempMove = move
                 move = Translate(move, smashPath + "moveSynonyms.yml")
                 if move == "Invalid":
+                    for i in cmdData.keys():
+                        if "names" in cmdData[i].keys() and tempMove in cmdData[i]["names"]:
+                            move = i
+                if move == "Invalid":
                     await req.channel.send(moveError1 % (tempMove, crocEmote))
                     return
 
@@ -176,10 +182,10 @@ async def on_message(req):
                     b += 1
                     continue
                 m = cmdData[matching[i]]["title"]
-                s += ("\n %d. %s" % (i+1-b ,m))
+                s += ("\n %d. %s" % (i+1-b, m))
 
             if not actualMatching:
-                await req.channel.send(hBoxError % (move, crocEmote))
+                await req.channel.send(hBoxError % (cmdData[move]["title"], crocEmote))
                 return
             elif len(actualMatching) == 1:
                 move = actualMatching[0]
