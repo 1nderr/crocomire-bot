@@ -118,7 +118,7 @@ async def on_message(req):
     if req.author == client.user:
         return
 
-    # if str(req.content) == "memes..." and str(req.author) == "1nder":
+    # if str(req.content) == "ok." and str(req.author) == "Periodmancer":
     #     while True:
     #         sasd = input("> ")
     #         await req.channel.send(sasd)
