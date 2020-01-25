@@ -5,14 +5,12 @@ from yaml import safe_load as yamlLoad
 
 prefix = "?"
 charPath = "characters/%s.yml"
-crocEmote = "<:Crocomire:583880666970718224>"
 embedColor = 10170673
-moveError1 = "The move **%s** does not exist bruh %s"
-charError1 = "The character **%s** doesn't exist bruh %s (Character names can't have spaces)"
-charError2 = "The character **%s** has no data yet bruh %s"
-hBoxError = "**%s** does not have a hitbox gif yet bruh %s"
-statError = "**%s** does not have stats yet bruh %s"
-matchMsg = "There are multiple hitboxes for this move bruh %s. React with the hitbox you would like (Sender Only):\n```%s```"
+moveError = "The move **%s** does not exist bruh <:Crocomire:583880666970718224>"
+charError = "The character **%s** doesn't exist bruh <:Crocomire:583880666970718224>"
+hBoxError = "**%s** does not have a hitbox gif yet bruh <:Crocomire:583880666970718224>"
+statError = "**%s** does not have stats yet bruh <:Crocomire:583880666970718224>"
+matchMsg = "There are multiple hitboxes for this move bruh <:Crocomire:583880666970718224>. React with the hitbox you would like (Sender Only):\n```%s```"
 nums = ['1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣', '9️⃣', '🔟']
 smashPath = "../SmashStats/"
 
@@ -21,11 +19,13 @@ tokenFile = open("token", "r")
 token = tokenFile.read().strip()
 tokenFile.close()
 
-# Takes a move and translates it based on the synonyms dictionary.
-# Returns "Invalid Move" if the move does not exist and returns the root move name if the move is a synonym.
 
-
+# Takes a move/char and translates it based on the synonyms yaml.
+# Returns False if the move/char does not exist and returns the root move/char name if the move/char is a synonym.
 def Translate(og, synFile):
+    # Dictionary with a "main" move/char name as the key and synonyms for the move/char as the values.
+    # Keeps the move/char name consistent while allowing for multiple ways to refer to a move/char.
+    # Example: nair = neutral air, bayonetta = bayo.
     synData = yamlLoad(open(synFile))
 
     synList = list(synData.keys())
@@ -36,7 +36,71 @@ def Translate(og, synFile):
         if og in synData[i]:
             return i
 
-    return "Invalid"
+    return False
+
+
+# Takes in a string that could be a character name.
+# Returns the data for the character. Returns False if the given character does not exist or has no data.
+def GetCharacter(char):
+    char = Translate(char, smashPath + "charSynonyms.yml")
+    if not char:
+        return False
+
+    # Dictionary with command name as the key and the command attributes (title, text, image, etc.) as the values.
+    charData = yamlLoad(open(smashPath + charPath % char))
+
+    if charData == None:
+        return False
+
+    return charData
+
+
+# Takes in a move name and a character's move data.
+# Returns the move in a specific format. Returns False if the move was not found.
+def GetMove(ogMove, charData):
+    move = Translate(ogMove, smashPath + "moveSynonyms.yml")
+    if not move:
+        for i in charData.keys():
+            if "names" in charData[i].keys() and ogMove in charData[i]["names"]:
+                move = i
+    return move
+
+
+# Takes in a move name and a character's move data.
+# Returns a list of moves that match the move name.
+def GetMatchingMoves(moves, charData):
+    matching = []
+
+    for i in moves:
+        if "image" in charData[i]:
+            matching.append(i)
+
+    return matching
+
+
+# Takes in a list of moves, a character's move data, and the original request.
+# Sends a message to the user asking them to pick the move from the list.
+# Returns the move that the user picked.
+async def ParseMoveSelection(movesList, charData, req):
+    msg = ""
+    c = 0
+
+    for i in movesList:
+        c += 1
+        moveName = charData[i]["title"]
+        msg += ("\n %d. %s" % (c, moveName))
+
+    resp = await req.channel.send(matchMsg % msg)
+
+    for i in range(len(movesList)):
+        await resp.add_reaction(nums[i])
+
+    n = await WaitForReaction(req, resp)
+    await resp.delete()
+
+    if n == -1:
+        return False
+    return movesList[n]
 
 
 # Takes in an embed and option for inline or stacked embed text.
@@ -58,8 +122,8 @@ def CreateTextEmbed(cmdData, cmd, inline):
     return embed
 
 
-# Takes in a cmd name.
-# Returns an embed object
+# Takes in a command/character's data.
+# Returns an embed object with an image link.
 def CreateImageEmbed(cmdData):
     try:
         imgURL = cmdData["image"]
@@ -81,7 +145,9 @@ def CreateMemeEmbed():
     return embed
 
 
-# Waits for a reaction on stats or viz and then sends the opposite command if the message is reacted to.
+# Takes in the original request, and the response the bot sent.
+# Returns a number based on the emoji they picked for the move selected.
+# Returns -1 if the user picks nothing.
 async def WaitForReaction(req, resp):
     try:
         # Checks if the reaction to a message matches the indicated emoji.
@@ -112,6 +178,10 @@ async def WaitForReaction(req, resp):
 # Sets the bots status on start up.
 @client.event
 async def on_ready():
+    servers = list(client.guilds)
+    for s in servers:
+        print(s.name)
+    print(len(servers))
     await client.change_presence(status=discord.Status.do_not_disturb, activity=discord.Game(name="Bruh, Type %shelp" % prefix))
 
 
@@ -133,82 +203,50 @@ async def on_message(req):
     if msg[0][0] != prefix:
         return
 
-    # Checks cmd type.
     cmd = msg[0][1:].lower()
 
-    if cmd == "viz" or cmd == "stats":
-        # Parses the character name.
+    if cmd == "viz" or cmd == "vis" or cmd == "stats":
+       # Gets character's move data
         char = msg[1].lower()
-        tempChar = char
-        char = Translate(char, smashPath + "charSynonyms.yml")
-        if char == "Invalid":
-            await req.channel.send(charError1 % (tempChar, crocEmote))
-            return
-
-        # Dictionary with command name as the key and the command attributes (title, text, image, etc.) as the values.
-        cmdData = yamlLoad(open(smashPath + (charPath % char)))
-
-        if cmdData == None:
-            await req.channel.send(charError2 % (char, crocEmote))
+        cmdData = GetCharacter(char)
+        if not cmdData:
+            await req.channel.send(charError % char)
             return
 
         # Parses the move name.
-        move = char
         if len(msg) > 2:
             move = "".join(msg[2:]).lower()
+            tempMove = move
+
             if move not in cmdData.keys():
-                tempMove = move
-                move = Translate(move, smashPath + "moveSynonyms.yml")
-                if move == "Invalid":
-                    for i in cmdData.keys():
-                        if "names" in cmdData[i].keys() and tempMove in cmdData[i]["names"]:
-                            move = i
-                if move == "Invalid":
-                    await req.channel.send(moveError1 % (tempMove, crocEmote))
-                    return
+                move = GetMove(move, cmdData)
 
-        # Checks if the move has multiple hitboxes
-        matching = [i for i in cmdData.keys() if move in i]
-        actualMatching = []
-        if len(matching) > 1:
-            s = ""
-            b = 0
-
-            for i in range(len(matching)):
-                try:
-                    m = cmdData[matching[i]]["image"]
-                    actualMatching.append(matching[i])
-                except KeyError:
-                    b += 1
-                    continue
-                m = cmdData[matching[i]]["title"]
-                s += ("\n %d. %s" % (i+1-b, m))
-
-            if not actualMatching:
-                await req.channel.send(hBoxError % (cmdData[move]["title"], crocEmote))
+            if not move:
+                await req.channel.send(moveError % tempMove)
                 return
-            elif len(actualMatching) == 1:
-                move = actualMatching[0]
-            else:
-                resp = await req.channel.send(matchMsg % (crocEmote, s))
 
-                for i in range(len(actualMatching)):
-                    await resp.add_reaction(nums[i])
-
-                n = await WaitForReaction(req, resp)
-                if n == -1:
+            # Checks if the move has multiple hitboxes
+            matching = [i for i in cmdData.keys() if move in i]
+            if len(matching) > 1:
+                moves = GetMatchingMoves(matching, cmdData)
+                if not moves:
+                    await req.channel.send(hBoxError % cmdData[move]["title"])
                     return
-
-                move = actualMatching[n]
-
-                await resp.delete()
+                elif len(moves) == 1:
+                    move = moves[0]
+                else:
+                    move = await ParseMoveSelection(moves, cmdData, req)
+                    if not move:
+                        return
+        else:
+            move = char
     else:
         # Dictionary with command name as the key and the command attributes (title, text, image, etc.) as the values.
         cmdData = yamlLoad(open("commands.yml"))
 
     # Sends the message response.
     if cmd == "bruh":
-        await req.channel.send("Bruh %s" % crocEmote)
+        await req.channel.send("Bruh <:Crocomire:583880666970718224>")
         return
     elif cmd == "meme":
         embed = CreateMemeEmbed()
@@ -220,12 +258,12 @@ async def on_message(req):
     elif cmd == "viz":
         embed = CreateImageEmbed(cmdData[move])
         if embed == False:
-            await req.channel.send(hBoxError % (cmdData[move]["title"], crocEmote))
+            await req.channel.send(hBoxError % cmdData[move]["title"])
             return
     elif cmd == "stats":
         embed = CreateTextEmbed(cmdData[move], cmd, True)
         if embed == False:
-            await req.channel.send(statError % (cmdData[move]["title"], crocEmote))
+            await req.channel.send(statError % cmdData[move]["title"])
             return
     else:
         return
