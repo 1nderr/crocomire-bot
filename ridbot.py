@@ -15,7 +15,7 @@ nums = ['1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️�
 smashPath = "../SmashStats/"
 
 client = discord.Client()
-tokenFile = open("token", "r")
+tokenFile = open("test", "r")
 token = tokenFile.read().strip()
 tokenFile.close()
 
@@ -204,18 +204,25 @@ async def on_message(req):
         return
 
     cmd = msg[0][1:].lower()
-
+    moveIndex = 2
     if cmd == "viz" or cmd == "vis" or cmd == "stats":
-       # Gets character's move data
-        char = msg[1].lower()
-        cmdData = GetCharacter(char)
+        # Gets character's move data.
+        for i in range(2, len(msg[1:]) + 1):
+            char = ''.join(e for e in "".join(
+                msg[1:i]) if e.isalnum()).lower()
+            cmdData = GetCharacter(char)
+            if cmdData:
+                moveIndex = i
+                break
+
         if not cmdData:
             await req.channel.send(charError % char)
             return
 
         # Parses the move name.
         if len(msg) > 2:
-            move = "".join(msg[2:]).lower()
+            move = ''.join(e for e in "".join(
+                msg[moveIndex:]) if e.isalnum()).lower().lower()
             tempMove = move
 
             if move not in cmdData.keys():
