@@ -205,22 +205,23 @@ async def on_message(req):
 
     cmd = msg[0][1:].lower()
     moveIndex = 2
+    cmdData = {}
     if cmd == "viz" or cmd == "vis" or cmd == "stats":
         # Gets character's move data.
-        for i in range(2, len(msg[1:]) + 1):
+        for i in range(2, len(msg[1:]) + 2):
             char = ''.join(e for e in "".join(
                 msg[1:i]) if e.isalnum()).lower()
-            cmdData = GetCharacter(char)
-            if cmdData:
+            temp = GetCharacter(char)
+            if temp:
+                cmdData = temp
                 moveIndex = i
-                break
 
         if not cmdData:
             await req.channel.send(charError % char)
             return
 
         # Parses the move name.
-        if len(msg) > 2:
+        if len(msg) > moveIndex:
             move = ''.join(e for e in "".join(
                 msg[moveIndex:]) if e.isalnum()).lower().lower()
             tempMove = move
