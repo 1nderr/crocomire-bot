@@ -15,7 +15,7 @@ nums = ['1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️�
 smashPath = "../SmashStats/"
 
 client = discord.Client()
-tokenFile = open("test", "r")
+tokenFile = open("token", "r")
 token = tokenFile.read().strip()
 tokenFile.close()
 
@@ -26,6 +26,7 @@ def Translate(og, synFile):
     # Dictionary with a "main" move/char name as the key and synonyms for the move/char as the values.
     # Keeps the move/char name consistent while allowing for multiple ways to refer to a move/char.
     # Example: nair = neutral air, bayonetta = bayo.
+
     synData = yamlLoad(open(synFile))
 
     synList = list(synData.keys())
@@ -210,7 +211,7 @@ async def on_message(req):
         # Gets character's move data.
         for i in range(2, len(msg[1:]) + 2):
             char = ''.join(e for e in "".join(
-                msg[1:i]) if e.isalnum()).lower()
+                msg[1:i]) if e.isalpha()).lower()
             temp = GetCharacter(char)
             if temp:
                 cmdData = temp
@@ -223,7 +224,7 @@ async def on_message(req):
         # Parses the move name.
         if len(msg) > moveIndex:
             move = ''.join(e for e in "".join(
-                msg[moveIndex:]) if e.isalnum()).lower().lower()
+                msg[moveIndex:]) if e.isalpha()).lower().lower()
             tempMove = move
 
             if move not in cmdData.keys():
