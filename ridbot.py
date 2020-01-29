@@ -7,7 +7,7 @@ prefix = "?"
 charPath = "characters/%s.yml"
 embedColor = 10170673
 moveError = "The move **%s** does not exist bruh <:Crocomire:583880666970718224>"
-charError = "The character **%s** doesn't exist bruh <:Crocomire:583880666970718224>"
+charError = "That character doesn't exist bruh <:Crocomire:583880666970718224>"
 hBoxError = "**%s** does not have a hitbox gif yet bruh <:Crocomire:583880666970718224>"
 statError = "**%s** does not have stats yet bruh <:Crocomire:583880666970718224>"
 matchMsg = "There are multiple hitboxes for this move bruh <:Crocomire:583880666970718224>. React with the hitbox you would like (Sender Only):\n```%s```"
@@ -15,7 +15,7 @@ nums = ['1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️�
 smashPath = "../SmashStats/"
 
 client = discord.Client()
-tokenFile = open("token", "r")
+tokenFile = open("test", "r")
 token = tokenFile.read().strip()
 tokenFile.close()
 
@@ -211,14 +211,14 @@ async def on_message(req):
         # Gets character's move data.
         for i in range(2, len(msg[1:]) + 2):
             char = ''.join(e for e in "".join(
-                msg[1:i]) if e.isalpha()).lower()
+                msg[1:i]) if e.isalnum()).lower()
             temp = GetCharacter(char)
             if temp:
                 cmdData = temp
                 moveIndex = i
 
         if not cmdData:
-            await req.channel.send(charError % char)
+            await req.channel.send(charError % msg[1])
             return
 
         # Parses the move name.
