@@ -15,7 +15,7 @@ nums = ['1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️�
 smashPath = "../SmashStats/"
 
 client = discord.Client()
-tokenFile = open("test", "r")
+tokenFile = open("token", "r")
 token = tokenFile.read().strip()
 tokenFile.close()
 
@@ -255,7 +255,7 @@ async def on_message(req):
 
     # Sends the message response.
     if cmd == "bruh":
-        await req.channel.send("Bruh <:Crocomire:583880666970718224>")
+        await req.channel.send("Bruh, Dedede clobbered that there Ridley <:PenguinRidley:562160021161508884>")
         return
     elif cmd == "meme":
         embed = CreateMemeEmbed()
