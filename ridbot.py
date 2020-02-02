@@ -43,7 +43,7 @@ def Translate(og, synFile):
 # Takes in a string that could be a character name.
 # Returns the data for the character. Returns False if the given character does not exist or has no data.
 def GetCharacter(char):
-    char = Translate(char, smashPath + "charSynonyms.yml")
+    char = Translate(char, smashPath + "synonyms/characters.yml")
     if not char:
         return False
 
@@ -59,7 +59,7 @@ def GetCharacter(char):
 # Takes in a move name and a character's move data.
 # Returns the move in a specific format. Returns False if the move was not found.
 def GetMove(ogMove, charData):
-    move = Translate(ogMove, smashPath + "moveSynonyms.yml")
+    move = Translate(ogMove, smashPath + "synonyms/moves.yml")
     if not move:
         for i in charData.keys():
             if "names" in charData[i].keys() and ogMove in charData[i]["names"]:
