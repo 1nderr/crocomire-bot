@@ -15,7 +15,7 @@ nums = ['1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️�
 smashPath = "../SmashStats/"
 
 client = discord.Client()
-tokenFile = open("token", "r")
+tokenFile = open("test", "r")
 token = tokenFile.read().strip()
 tokenFile.close()
 
@@ -259,6 +259,8 @@ async def on_message(req):
         return
     elif cmd == "meme":
         embed = CreateMemeEmbed()
+    elif cmd == "dab" or "nud3":
+        embed = CreateImageEmbed(cmdData[cmd])
     elif cmd in cmdData.keys():
         embed = CreateTextEmbed(cmdData[cmd], cmd, False)
         if cmd == "help":
