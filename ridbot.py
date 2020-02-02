@@ -257,12 +257,9 @@ async def on_message(req):
     if cmd == "bruh":
         await req.channel.send("Bruh, Dedede clobbered that there Ridley <:PenguinRidley:562160021161508884>")
         return
-    elif cmd == "mori":
-        await req.channel.send("https://cdn.discordapp.com/attachments/600471466152296469/673403944545943572/mori.gif")
-        return
     elif cmd == "meme":
         embed = CreateMemeEmbed()
-    elif cmd == "dab" or "nud3":
+    elif cmd == "dab" or cmd == "nud3":
         embed = CreateImageEmbed(cmdData[cmd])
     elif cmd in cmdData.keys():
         embed = CreateTextEmbed(cmdData[cmd], cmd, False)
