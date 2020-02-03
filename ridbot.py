@@ -201,6 +201,10 @@ async def on_message(req):
     if not msg:
         return
 
+    if "inder" in req.content.lower():
+        await req.channel.send("Bruh, its Wonder not Inder you frick.")
+        return
+
     if msg[0][0] != prefix:
         return
 
