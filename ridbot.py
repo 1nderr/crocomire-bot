@@ -202,8 +202,10 @@ async def on_message(req):
         return
 
     if "inder" in req.content.lower():
-        await req.channel.send("Bruh, its Wonder not Inder you frick.")
-        return
+        for i in msg:
+            if "".join(i.lower()) == "inder":
+                await req.channel.send("Bruh, its Wonder not Inder you frick.")
+                return
 
     if msg[0][0] != prefix:
         return
