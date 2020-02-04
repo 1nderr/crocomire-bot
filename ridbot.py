@@ -201,12 +201,6 @@ async def on_message(req):
     if not msg:
         return
 
-    if "inder" in req.content.lower():
-        for i in msg:
-            if "".join(i.lower()) == "inder":
-                await req.channel.send("Bruh, its Wonder not Inder you frick.")
-                return
-
     if msg[0][0] != prefix:
         return
 
@@ -261,12 +255,10 @@ async def on_message(req):
 
     # Sends the message response.
     if cmd == "bruh":
-        await req.channel.send("Bruh, Dedede clobbered that there Ridley <:PenguinRidley:562160021161508884>")
+        await req.channel.send("Bruh <:Crocomire:583880666970718224>")
         return
     elif cmd == "meme":
         embed = CreateMemeEmbed()
-    elif cmd == "dab" or cmd == "nud3":
-        embed = CreateImageEmbed(cmdData[cmd])
     elif cmd in cmdData.keys():
         embed = CreateTextEmbed(cmdData[cmd], cmd, False)
         if cmd == "help":
