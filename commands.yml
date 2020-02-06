@@ -1,20 +1,28 @@
+commands:
+  - changes
+  - levels
+  - docs
+  - vods
+  - op
+  - social
+  - montage
+
 changes:
-  title: Recent Ridley Changes
+  title: Recent Ridley Changes (7.0.0)
+  image: https://cdn.discordapp.com/emojis/562472805120344074.png?v=1
   fields:
-    Up Smash: Hitbox duration increased from 12-16 to 12-17 and KBG increased 76 to 78. Can also hit more characters in the front.
-    Bair: Damage increased from 15 to 16.
-    Dair: Can no longer stall in the air.
-    Uair: Hitbox size increased.
-    Wing Blitz: Start up decreased on all directions by 3 frames. The travel speed was also increased.
-    Space Pirate Rush: Throw knock back increased from 83 to 90. It kills around 20% earlier now. Also, jump cancel FAF decreased from 41 > 38 (air and ground).
+    Shield 1: Made a part of the wing briefly invincible after activating/deactivating shield.
+    Shield 2: Changed his posture while shielding to reduce vulnerability to a shield stab.
 
 levels:
   title: Ridleycord Mario Maker 2 Levels
+  image: https://assets1.ignimgs.com/2019/02/21/super-mario-maker-2---button-v2-1550784835813.jpg
   fields:
     Level Spreadsheet: https://docs.google.com/spreadsheets/d/1lSQUpZnJ0WKFmnLqvlNNWp3qxuWZuSHlYb0Sctwneuk/edit#gid=0
 
 help:
   title: Crocomire Bot Commands
+  image: https://cdn.discordapp.com/attachments/599442348866273283/674808243402571806/croc.png
   fields:
     Prefix: "?"
     docs: Links the Ridleycord resources, lab, and guide docs.
@@ -26,12 +34,11 @@ help:
     montage: Links the Ridleycord Montage.
     op: Links the Ridleycord anime opening.
     social: Links the Ridleycord social media.
-    stats [character] [move]: Displays an embedded message with a given move's stats. (Including Ridley's stats and taunts)
-    viz [character] [move]: Displays an image of a given move. (Including taunts)
     vods: Links tournament and JMU vods.
 
 docs:
   title: Ridleycord Documentation
+  image: https://cdn.discordapp.com/attachments/456149892298047489/647833882690846800/img.gif
   fields:
     Ultimate Ridley Resource Doc: https://docs.google.com/document/d/1DFeQrzvIgG6XaRa4fw2hULfGLmlLuIRpkZ2hY8FMsW8/edit
     Ridley Master Lab Doc: https://docs.google.com/spreadsheets/d/1dnxndTKxjMVKTl0v8YYUnY1X80lgOOFK17OAw2BwVpI/edit?usp=sharing
@@ -39,22 +46,26 @@ docs:
 
 vods:
   title: Ridley Vods
+  image: https://cdn.discordapp.com/attachments/456260916720173057/642517530459766785/img.gif
   fields:
     Tournament VODs: https://www.youtube.com/playlist?list=PL7Ejy0uNwbLPkbY79HJwH--6kbkPL6Z9F
     Crew Battle VODs: https://www.youtube.com/playlist?list=PLssLy8lTPzI65HcUX_K_6ox9sOtjv79Na
 
 op:
   title: Ridleycord Anime Opening
+  image: https://cdn.discordapp.com/attachments/642932733693394954/643937784050089985/img.gif
   fields:
     Streamable: https://streamable.com/zj6gz
 
 social:
   title: Ridleycord Social Media
+  image: https://cdn.discordapp.com/attachments/456260916720173057/635340467558547456/img.gif
   fields:
     Twitter: https://twitter.com/RidleyDiscord
     YouTube: https://www.youtube.com/channel/UCPTi_HYm1_96rpIVgXQEeEA
 
 montage:
   title: Ridleycord Montage
+  image: https://cdn.discordapp.com/attachments/599442348866273283/674809185216626688/unknown.png
   fields:
     Emperors of the Cosmos Vol. 1: https://www.youtube.com/watch?v=EbDdAB2TyRw
