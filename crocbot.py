@@ -3,7 +3,7 @@ from discord.ext import commands
 from yaml import safe_load
 
 from secret import token
-from crocbot import embeds, memes
+from crocomire import embeds, memes
 
 prefix = "?"
 croc_emote = "<:Crocomire:583880666970718224>"
