@@ -7,7 +7,7 @@ from crocomire import embeds, memes
 
 prefix = "?"
 croc_emote = "<:Crocomire:583880666970718224>"
-status_msg: str = "Bruh, Type ?help"
+status_msg: str = "Bruh, Type ?info"
 cmd_data: dict = safe_load(open("commands.yml"))
 
 bot: commands.Bot = commands.Bot(
@@ -16,7 +16,7 @@ bot: commands.Bot = commands.Bot(
     activity=Game(status_msg))
 
 
-@bot.command(name="help")
+@bot.command(name="info")
 async def send_help(ctx: commands.Context):
     """
     Async function that dms the help text.
@@ -24,7 +24,7 @@ async def send_help(ctx: commands.Context):
     :param ctx: `commands.Context`
     :return: `None`
     """
-    embed = embeds.create_text_embed(cmd_data["help"])
+    embed = embeds.create_text_embed(cmd_data["info"])
     await ctx.author.send(embed=embed)
     await ctx.send(
         "{} Bruh, I sent you a DM {}".format(ctx.author.mention, croc_emote))
