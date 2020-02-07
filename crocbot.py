@@ -7,9 +7,8 @@ from crocomire import embeds, memes, boost
 
 prefix: str = "?"
 croc_emote: str = "<:Crocomire:583880666970718224>"
-boost_emote: str = "<:boost_icon:585954005956558848>"
 status_msg: str = "Bruh, Type ?info"
-top10_msg: str = "{0} __**Top 10 Ridleycord Boosters**__ {0}```{1}```"
+top10_msg: str = "**Top 10 Ridleycord Boosters**```{}```"
 cmd_data: dict = safe_load(open("commands.yml"))
 
 bot: commands.Bot = commands.Bot(
@@ -83,6 +82,6 @@ async def send_leaderboard(ctx: commands.Context):
         s += "{}. {: <28} {}\n".format(c, b[0:len(b) - 5], boosters[b])
         c += 1
 
-    await ctx.send(top10_msg.format(boost_emote, s))
+    await ctx.send(top10_msg.format(s))
 
 bot.run(token)
