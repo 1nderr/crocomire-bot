@@ -26,6 +26,7 @@ info:
   fields:
     Prefix: "?"
     docs: Links the Ridleycord resources, lab, and guide docs.
+    boosters: Gets the top 10 longest boosters for the server.
     bruh: Says Bruh.
     changes: Displays Ridley's latest changes. (See more patches in the In-Depth Ridley Guide)
     help: Sends the user a list of commands.

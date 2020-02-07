@@ -3,11 +3,13 @@ from discord.ext import commands
 from yaml import safe_load
 
 from secret import token
-from crocomire import embeds, memes
+from crocomire import embeds, memes, boost
 
-prefix = "?"
-croc_emote = "<:Crocomire:583880666970718224>"
+prefix: str = "?"
+croc_emote: str = "<:Crocomire:583880666970718224>"
+boost_emote: str = "<:boost_icon:585954005956558848>"
 status_msg: str = "Bruh, Type ?info"
+top10_msg: str = "{0} __**Top 10 Ridleycord Boosters**__ {0}```{1}```"
 cmd_data: dict = safe_load(open("commands.yml"))
 
 bot: commands.Bot = commands.Bot(
@@ -64,5 +66,23 @@ async def send_bruh(ctx: commands.Context):
     """
     await ctx.send("Bruh {}".format(croc_emote))
 
+
+@bot.command(name="boosters")
+async def send_leaderboard(ctx: commands.Context):
+    """
+    Async function that sends the booster leaderboard.
+
+    :param ctx: `commands.Context`
+    :return: `None`
+    """
+    boosters: dict = boost.get_boosters(ctx)
+    c: int = 1
+    s: str = ""
+
+    for b in list(boosters.keys())[::-1]:
+        s += "{}. {: <28} {}\n".format(c, b[0:len(b) - 5], boosters[b])
+        c += 1
+
+    await ctx.send(top10_msg.format(boost_emote, s))
 
 bot.run(token)
