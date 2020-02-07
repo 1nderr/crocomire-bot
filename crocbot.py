@@ -82,7 +82,7 @@ async def send_leaderboard(ctx: commands.Context):
     c: int = 1
     s: str = ""
 
-    for b in list(boosters.keys())[::-1]:
+    for b in list(boosters.keys())[:len(boosters.keys()) - 11:-1]:
         s += "{}. {: <28} {}\n".format(c, b[0:len(b) - 5], boosters[b])
         c += 1
 

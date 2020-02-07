@@ -20,7 +20,8 @@ def get_boosters(ctx: commands.Context):
         ranks[str(b)] = (today - b.premium_since).total_seconds()
 
     ranks = {k: v for k, v in sorted(ranks.items(), key=lambda item: item[1])}
-    for r in list(ranks.keys())[0:10]:
+    for r in list(ranks.keys())[:len(ranks.keys()) - 11:-1]:
+        print(r)
         ranks[r] = timedelta(seconds=ranks[r])
 
     return ranks
