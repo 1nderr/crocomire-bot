@@ -75,6 +75,9 @@ async def send_leaderboard(ctx: commands.Context):
     :return: `None`
     """
     boosters: dict = boost.get_boosters(ctx)
+    if len(boosters) == 0:
+        await ctx.send("No one boosted this server Bruh {}".format(croc_emote))
+        return
     c: int = 1
     s: str = ""
 
