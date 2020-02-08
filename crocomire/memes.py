@@ -11,7 +11,7 @@ def create_meme_embed():
     :return: `Embed`
     """
     seed()
-    embed = Embed(color=embed_color)
+    embed: Embed = Embed(color=embed_color)
     with open("memes", "r") as f:
         embed.set_image(url=choice(f.readlines()))
     return embed

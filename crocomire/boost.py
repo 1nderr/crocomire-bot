@@ -21,7 +21,6 @@ def get_boosters(ctx: commands.Context):
 
     ranks = {k: v for k, v in sorted(ranks.items(), key=lambda item: item[1])}
     for r in list(ranks.keys())[:len(ranks.keys()) - 11:-1]:
-        print(r)
         ranks[r] = timedelta(seconds=ranks[r])
 
     return ranks

@@ -1,4 +1,4 @@
-from discord import Game
+from discord import Game, Embed
 from discord.ext import commands
 from yaml import safe_load
 
@@ -27,7 +27,7 @@ async def send_help(ctx: commands.Context):
     :param ctx: `commands.Context`
     :return: `None`
     """
-    embed = embeds.create_text_embed(cmd_data["info"])
+    embed: Embed = embeds.create_text_embed(cmd_data["info"])
     await ctx.author.send(embed=embed)
     await ctx.send("{} Bruh, I sent you a DM {}".format(ctx.author.mention, croc_emote))
 
@@ -40,7 +40,7 @@ async def send_text_embed(ctx: commands.Context):
     :param ctx: `commands.Context`
     :return: `None`
     """
-    embed = embeds.create_text_embed(cmd_data[ctx.message.content[1:]])
+    embed: Embed = embeds.create_text_embed(cmd_data[ctx.message.content[1:]])
     await ctx.send(embed=embed)
 
 
@@ -52,7 +52,7 @@ async def send_meme(ctx: commands.Context):
     :param ctx: `commands.Context`
     :return: `None`
     """
-    embed = memes.create_meme_embed()
+    embed: Embed = memes.create_meme_embed()
     await ctx.send(embed=embed)
 
 
@@ -121,5 +121,18 @@ async def remove_role_error(ctx: commands.Context, error: commands.CommandError)
     """
     if isinstance(error, commands.MissingPermissions):
         await ctx.send(role_error.format(ctx.author.mention, croc_emote))
+
+
+@bot.command(name="mori")
+async def send_mori(ctx: commands.Context):
+    """
+    Async function that sends Mori's special image.
+
+    :param ctx: `commands.Context`
+    :return: `None`
+    """
+    embed: Embed = embeds.create_image_embed(
+        "https://cdn.discordapp.com/attachments/456260916720173057/675522898471026718/670408231658717206.png")
+    await ctx.send(embed=embed)
 
 bot.run(token)
