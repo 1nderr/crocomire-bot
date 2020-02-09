@@ -135,4 +135,17 @@ async def send_mori(ctx: commands.Context):
         "https://cdn.discordapp.com/attachments/456260916720173057/675522898471026718/670408231658717206.png")
     await ctx.send(embed=embed)
 
+
+@bot.command(name="ches")
+async def send_ches(ctx: commands.Context):
+    """
+    Async function that sends Chesnaught's special image.
+
+    :param ctx: `commands.Context`
+    :return: `None`
+    """
+    embed: Embed = embeds.create_image_embed(
+        "https://cdn.discordapp.com/attachments/567534605091995648/675751591340408838/20200208_111432.gif")
+    await ctx.send(embed=embed)
+
 bot.run(token)
