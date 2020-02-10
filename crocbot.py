@@ -148,4 +148,15 @@ async def send_ches(ctx: commands.Context):
         "https://cdn.discordapp.com/attachments/567534605091995648/675751591340408838/20200208_111432.gif")
     await ctx.send(embed=embed)
 
+
+@bot.command(name="mimic")
+async def send_mimic(ctx: commands.Context):
+    """
+    Async function that sends Mimic's special message.
+
+    :param ctx: `commands.Context`
+    :return: `None`
+    """
+    await ctx.send("Fuck GameStop Mario.")
+
 bot.run(token)
