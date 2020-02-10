@@ -1,9 +1,11 @@
+from random import choice, seed
+
 from discord import Game, Embed
 from discord.ext import commands
 from yaml import safe_load
 
 from secret import token
-from crocomire import embeds, memes, boost, roles
+from crocomire import embeds, boost, roles
 
 prefix: str = "?"
 croc_emote: str = "<:Crocomire:583880666970718224>"
@@ -52,7 +54,9 @@ async def send_meme(ctx: commands.Context):
     :param ctx: `commands.Context`
     :return: `None`
     """
-    embed: Embed = memes.create_meme_embed()
+    seed()
+    with open("memes", "r") as f:
+        embed: Embed = embeds.create_image_embed(choice(f.readlines()))
     await ctx.send(embed=embed)
 
 
