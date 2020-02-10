@@ -1,11 +1,12 @@
 from random import choice, seed
+from re import sub
 
 from discord import Game, Embed
 from discord.ext import commands
 from yaml import safe_load
 
 from secret import token
-from crocomire import embeds, boost, roles
+from crocomire import embeds, boost, roles, translate
 
 prefix: str = "?"
 croc_emote: str = "<:Crocomire:583880666970718224>"
@@ -43,6 +44,31 @@ async def send_text_embed(ctx: commands.Context):
     :return: `None`
     """
     embed: Embed = embeds.create_text_embed(cmd_data[ctx.message.content[1:]])
+    await ctx.send(embed=embed)
+
+
+@bot.command(name="mu")
+async def send_mu(ctx: commands.Context):
+    """
+    Async function that sends the MU summary for the given character.
+
+    :param ctx: `commands.Context`
+    :param char: `str`
+    :return: `None`
+    """
+    if len(ctx.message.content.split()) == 1:
+        await ctx.send("Bruh, that's not right. You didn't give a character name {}".format(croc_emote))
+        return
+
+    char: str = "".join(ctx.message.content.split()[1:])
+    char = sub(r"[^\w\d]|[_\-]", "", char)
+    char = translate.translate(char, "characters.yml")
+
+    if len(char) == 0:
+        await ctx.send("That character does not exist Bruh {}".format(croc_emote))
+        return
+
+    embed: Embed = embeds.create_mu_embed(char)
     await ctx.send(embed=embed)
 
 
