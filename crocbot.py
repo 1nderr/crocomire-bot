@@ -159,4 +159,19 @@ async def send_mimic(ctx: commands.Context):
     """
     await ctx.send("Fuck GameStop Mario.")
 
+
+@bot.command(name="zector")
+async def send_zector(ctx: commands.Context):
+    """
+    Async function that sends Zectors's special message.
+
+    :param ctx: `commands.Context`
+    :return: `None`
+    """
+    if ctx.message.author == "Zector":
+        await ctx.send("Zector you frickin suck lmaooooo")
+        return
+    await ctx.send("You are a nice person bruh :)")
+
+
 bot.run(token)
