@@ -68,33 +68,13 @@ async def send_mu(ctx: commands.Context):
         await ctx.send("That character does not exist Bruh {}".format(croc_emote))
         return
 
-    embed: Embed = embeds.create_mu_embed(char)
+    try:
+        embed: Embed = embeds.create_mu_embed(char)
+    except KeyError:
+        await ctx.send("That character does not have data *yet* Bruh {}".format(croc_emote))
+        return
+
     await ctx.send(embed=embed)
-
-
-@bot.command(name="meme")
-async def send_meme(ctx: commands.Context):
-    """
-    Async function that sends a random meme.
-
-    :param ctx: `commands.Context`
-    :return: `None`
-    """
-    seed()
-    with open("memes", "r") as f:
-        embed: Embed = embeds.create_image_embed(choice(f.readlines()))
-    await ctx.send(embed=embed)
-
-
-@bot.command(name="bruh")
-async def send_bruh(ctx: commands.Context):
-    """
-    Async function that sends the bruh message.
-
-    :param ctx: `commands.Context`
-    :return: `None`
-    """
-    await ctx.send("Bruh {}".format(croc_emote))
 
 
 @bot.command(name="boosters")
@@ -190,18 +170,28 @@ async def send_mimic(ctx: commands.Context):
     await ctx.send("Fuck GameStop Mario.")
 
 
-@bot.command(name="zector")
-async def send_zector(ctx: commands.Context):
+@bot.command(name="meme")
+async def send_meme(ctx: commands.Context):
     """
-    Async function that sends Zectors's special message.
+    Async function that sends a random meme.
 
     :param ctx: `commands.Context`
     :return: `None`
     """
-    if ctx.message.author == "Zector":
-        await ctx.send("Zector you frickin suck lmaooooo")
-        return
-    await ctx.send("You are a nice person bruh :)")
+    seed()
+    with open("memes", "r") as f:
+        embed: Embed = embeds.create_image_embed(choice(f.readlines()))
+    await ctx.send(embed=embed)
 
+
+@bot.command(name="bruh")
+async def send_bruh(ctx: commands.Context):
+    """
+    Async function that sends the bruh message.
+
+    :param ctx: `commands.Context`
+    :return: `None`
+    """
+    await ctx.send("Bruh {}".format(croc_emote))
 
 bot.run(token)

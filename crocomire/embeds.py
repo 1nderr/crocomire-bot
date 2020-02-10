@@ -39,7 +39,11 @@ def create_mu_embed(char: str):
     :param char: `str`
     :return: `Embed`
     """
-    mu_data: dict = safe_load(open("mus.yml"))[char]
+    try:
+        mu_data: dict = safe_load(open("mus.yml"))[char]
+    except KeyError:
+        raise KeyError("Character not found.")
+
     title: str = "__" + mu_data["title"] + "__"
     desc: str = "[Click here for more matchup tips.]({})".format(
         mu_data["link"])
