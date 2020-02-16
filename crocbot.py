@@ -10,6 +10,7 @@ from crocomire import embeds, boost, roles, translate
 
 prefix: str = "?"
 croc_emote: str = "<:Crocomire:583880666970718224>"
+lul_emote: str = "<:RidLul:562495276141510667>"
 status_msg: str = "Bruh, Type ?info"
 top10_msg: str = "**Top 10 Ridleycord Boosters**```{}```"
 role_msg: str = "I removed the role **{}** from these users Bruh {}:\n```{}```"
@@ -188,6 +189,18 @@ async def send_mimic(ctx: commands.Context):
     """
     await ctx.send("Fuck GameStop Mario.")
     await update_leaderboard(ctx)
+
+
+@bot.command(name="boost")
+async def send_funny_boost(ctx: commands.Context):
+    """
+    Async function that sends a booster only msg.
+
+    :param ctx: `commands.Context`
+    :return: `None`
+    """
+    if ctx.author in ctx.guild.premium_subscribers:
+        await ctx.send("What's up booster bruh {}. Imagine not being a booster {}".format(croc_emote, lul_emote))
 
 
 @bot.command(name="meme")
