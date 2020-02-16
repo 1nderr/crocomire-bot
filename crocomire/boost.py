@@ -24,3 +24,20 @@ def get_boosters(ctx: commands.Context):
         ranks[r] = timedelta(seconds=ranks[r])
 
     return ranks
+
+
+def build_leaderboard(boosters: dict):
+    """
+    Build the leaderboard message.
+
+    :param boosters: `dict`
+    :return: `str`
+    """
+    c: int = 1
+    s: str = ""
+
+    for b in list(boosters.keys())[:len(boosters.keys()) - 11:-1]:
+        s += "{:}. {: <28} {}\n".format(c, b[0:len(b) - 5], boosters[b])
+        c += 1
+
+    return s
