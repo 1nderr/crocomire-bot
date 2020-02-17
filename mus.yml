@@ -1,12 +1,53 @@
+mrgameandwatch:
+  title: Ridley vs Mr. Game & Watch
+  overview: This MU is a test of patience for Ridley. Mr. Game & Watch has amazing defensive options with an amazing advantage state and pretty decent tools to get out of disadvantage but weak approach options. Neutral is a game of footises / outspacing with moves such as Ftilt/Dtilt/Nair. Keep your calm, play campy, and you should be fine.
+  criticaltips:
+    - Kill confirms to look out for are Chef>Ftilt, Drag down Nair>Ftilt/Dtilt.
+    - Bucket confirms to look out for are Nair/Jab 1/Up B/Fair/Utilt/Dthrow.
+    - Do not shield Fair as it's super safe on block, instead throw out a hitbox.
+    - Usmash has full body invincibility on frames 21-25.
+    - Up B is invincible on frames 5-13.
+    - G&W's Dtilt only hits grounded opponents.
+    - G&W Lacks a reliable kill throw so shield is good at higher %s.
+    - You can partially fill bucket to make G&W unable to tank a full stream.
+    - Ridley can Up B through chef.
+    - Utilt Uair % = FH Uair 73-77% | FH DJ (78-88%)
+  combos:
+    - Sweetspot Nair -> grab -> (x1 pummel) -> d-throw -> dash -> sourspot nair -> Up Angled f-tilt (48.5%)
+  counterpicks: Kalos, T&C
+  bans: Yoshi's Story, Battlefield
+  image: https://vignette.wikia.nocookie.net/ssb/images/8/8c/Mr._Game_%26_Watch_-_Super_Smash_Bros._Ultimate.png/revision/latest?cb=20180612205002
+  link: https://docs.google.com/document/d/12hvAdoIZJvSPZbsx9NX4bxadupXLE2gM4JDNrSogkTo/edit#heading=h.nmzbkzazs7ca
+
 ness:
   title: Ridley vs Ness
   overview: This MU is more annoying than anything else. Ness has better air mobility and frame data, but you have better ground mobility and range. Neutral is an intense dance of baiting whiffs and staying out of Ness' range. This is decided mostly by keeping advantage. Don't rush in and watch out for Ness' tricks!
   criticaltips:
     - Beat Yo-Yo at ledge by holding down during Wing Blitz.
-    - Nair/Fair are good for getting rid of PK Thunder.
-    - Use plasma to force Ness to recover low (if he uses down special).
+    - Hit the PK Thunder lightning ball with nair/fair to get rid of it.
+    - You can often punish Ness for absorbing plasma offstage with a fair/nair.
+    - Release plasma early to feint an edgeguard and trick Ness into down b.
+  combos:
     - Utilt Uair %s = FH 86-89% | FH DJ 90-100%
+    - Mid (grab -> (pummel x2) -> d-throw -> nair -> turnaround u-tilt -> b-air) (49.9%).
+    - Sweetspot Nair -> grab -> d-throw -> dash -> sourspot nair -> turnaround u-tilt -> b-air (57.7%).
   counterpicks: Lylat
   bans: Smashville
   image: https://vignette.wikia.nocookie.net/characterprofile/images/8/82/Ness_SSBU.png/revision/latest/scale-to-width-down/340?cb=20180617111739
   link: https://docs.google.com/document/d/12hvAdoIZJvSPZbsx9NX4bxadupXLE2gM4JDNrSogkTo/edit#heading=h.arw6872htqt4
+
+ridley:
+  title: Ridley vs Purple Charizard
+  overview: You've made a grave mistake, there's no turning back now. Never has a character been so perfectly designed to hard counter themself. The results screen means nothing, if there's no style there's no true winner.
+  criticaltips:
+    - Nair the most.
+    - Don't nair the least.
+    - Always Ftilt out of SPR mash release, unless they also Ftilt - Then you use Dtilt.
+    - Down taunt everytime you put them offstage to trick that stupid ledge camping Ridley to actually use a getup already I SWEAR TO GOD I CANT HIT THIS GUY PLEASE JUST LET ME TRAP YOU
+    - Utilt Uair kill %s = FH (92-99%) | FH DJ (100-107%)
+  combos:
+    - Mid (grab -> (pummel x2) -> d-throw -> inch forward -> u-tilt -> u-tilt -> full hop f-air -> f-air) (73.7%).
+  counterpicks: NORFAIR WITH VS RIDLEY MUSIC
+  bans: BAN HERO FROM COMPETITIVE RULESETS!!!!
+  image: https://www.smashbros.com/assets_v2/img/fighter/ridley/main2.png
+  link: https://docs.google.com/document/d/12hvAdoIZJvSPZbsx9NX4bxadupXLE2gM4JDNrSogkTo/edit#heading=h.x67rhpfwc5t5
