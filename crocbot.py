@@ -229,4 +229,15 @@ async def send_bruh(ctx: commands.Context):
     await ctx.send("Bruh {}".format(croc_emote))
     await update_leaderboard(ctx)
 
+
+@bot.command(name="cringe")
+@commands.is_owner()
+async def send_anti_cringe(ctx: commands.Context, user: str):
+    """
+    Async function that sends anti cringe message.
+
+    :param ctx: `commands.Context`
+    :return: `None`
+    """
+    await ctx.send("{}, you just posted cringe. Please stop Bruh {}".format(user, croc_emote))
 bot.run(token)
