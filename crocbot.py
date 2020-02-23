@@ -11,6 +11,7 @@ from crocomire import embeds, boost, roles, translate
 prefix: str = "?"
 croc_emote: str = "<:Crocomire:583880666970718224>"
 lul_emote: str = "<:RidLul:562495276141510667>"
+dab_emote: str = "<:RidDab:562492164664197120>"
 status_msg: str = "Bruh, Type ?info"
 top10_msg: str = "**Top 10 Ridleycord Boosters**```{}```"
 role_msg: str = "I removed the role **{}** from these users Bruh {}:\n```{}```"
@@ -201,6 +202,8 @@ async def send_funny_boost(ctx: commands.Context):
     """
     if ctx.author in ctx.guild.premium_subscribers:
         await ctx.send("What's up booster bruh {}. Imagine not being a booster {}".format(croc_emote, lul_emote))
+    else:
+        await ctx.message.add_reaction(dab_emote)
 
 
 @bot.command(name="meme")
@@ -229,15 +232,4 @@ async def send_bruh(ctx: commands.Context):
     await ctx.send("Bruh {}".format(croc_emote))
     await update_leaderboard(ctx)
 
-
-@bot.command(name="cringe")
-@commands.is_owner()
-async def send_anti_cringe(ctx: commands.Context, user: str):
-    """
-    Async function that sends anti cringe message.
-
-    :param ctx: `commands.Context`
-    :return: `None`
-    """
-    await ctx.send("{}, you just posted cringe. Please stop Bruh {}".format(user, croc_emote))
 bot.run(token)
