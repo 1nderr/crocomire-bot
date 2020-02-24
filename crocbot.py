@@ -9,13 +9,14 @@ from secret import token
 from crocomire import embeds, boost, roles, translate
 
 prefix: str = "?"
-croc_emote: str = "<:Crocomire:583880666970718224>"
+#croc_emote: str = "<:Crocomire:583880666970718224>"
+croc_emote: str = "<:TheLord:679836173379567655>"
 lul_emote: str = "<:RidLul:562495276141510667>"
 dab_emote: str = "<:RidDab:562492164664197120>"
-status_msg: str = "Bruh, Type ?info"
+status_msg: str = "Lesser Being, Type ?info"
 top10_msg: str = "**Top 10 Ridleycord Boosters**```{}```"
-role_msg: str = "I removed the role **{}** from these users Bruh {}:\n```{}```"
-role_error: str = "{} you need the permission **Administrator** to remove the role Bruh {}"
+role_msg: str = "I removed the role **{}** from these users Lesser Being {}:\n```{}```"
+role_error: str = "{} you need the permission **Administrator** to remove the role Lesser Being {}"
 cmd_data: dict = safe_load(open("commands.yml"))
 booster_chan_id: int = 675826799317483538
 board_id: int = 675834739516637244
@@ -50,7 +51,7 @@ async def send_help(ctx: commands.Context):
     """
     embed: Embed = embeds.create_text_embed(cmd_data["info"])
     await ctx.author.send(embed=embed)
-    await ctx.send("{} Bruh, I sent you a DM {}".format(ctx.author.mention, croc_emote))
+    await ctx.send("{} Lesser Being, I sent you a DM {}".format(ctx.author.mention, croc_emote))
     await update_leaderboard(ctx)
 
 
@@ -77,7 +78,7 @@ async def send_mu(ctx: commands.Context):
     :return: `None`
     """
     if len(ctx.message.content.split()) == 1:
-        await ctx.send("Bruh, that's not right. You didn't give a character name {}".format(croc_emote))
+        await ctx.send("Lesser Being, that's not right. You didn't give a character name {}".format(croc_emote))
         return
 
     char: str = "".join(ctx.message.content.split()[1:])
@@ -85,13 +86,13 @@ async def send_mu(ctx: commands.Context):
     char = translate.translate(char, "characters.yml")
 
     if len(char) == 0:
-        await ctx.send("That character does not exist Bruh {}".format(croc_emote))
+        await ctx.send("That character does not exist Lesser Being {}".format(croc_emote))
         return
 
     try:
         embed: Embed = embeds.create_mu_embed(char)
     except KeyError:
-        await ctx.send("That character does not have data *yet* Bruh {}".format(croc_emote))
+        await ctx.send("That character does not have data *yet* Lesser Being {}".format(croc_emote))
         return
 
     await ctx.send(embed=embed)
@@ -108,7 +109,7 @@ async def send_leaderboard(ctx: commands.Context):
     """
     boosters: dict = boost.get_boosters(ctx)
     if len(boosters) == 0:
-        await ctx.send("No one boosted this server Bruh {}".format(croc_emote))
+        await ctx.send("No one boosted this server Lesser Being {}".format(croc_emote))
         return
 
     msg: str = boost.build_leaderboard(boosters)
@@ -127,12 +128,12 @@ async def remove_role(ctx: commands.Context):
     :return: `None`
     """
     if "jmu" not in "".join(ctx.message.content.split()[1:]).lower():
-        await ctx.send("That is not a JMU role Bruh {}".format(croc_emote))
+        await ctx.send("That is not a JMU role Lesser Being {}".format(croc_emote))
         return
 
     role_name, members = await roles.remove_all_roles(ctx)
     if len(members) == 0:
-        await ctx.send("No one had the role **{}** Bruh {}".format(role_name, croc_emote))
+        await ctx.send("No one had the role **{}** Lesser Being {}".format(role_name, croc_emote))
         return
 
     await ctx.send(role_msg.format(role_name, croc_emote, members))
@@ -201,7 +202,7 @@ async def send_funny_boost(ctx: commands.Context):
     :return: `None`
     """
     if ctx.author in ctx.guild.premium_subscribers:
-        await ctx.send("What's up booster bruh {}. Imagine not being a booster {}".format(croc_emote, lul_emote))
+        await ctx.send("What's up booster Lesser Being {}. Imagine not being a booster {}".format(croc_emote, lul_emote))
     else:
         await ctx.message.add_reaction(dab_emote)
 
@@ -229,7 +230,7 @@ async def send_bruh(ctx: commands.Context):
     :param ctx: `commands.Context`
     :return: `None`
     """
-    await ctx.send("Bruh {}".format(croc_emote))
+    await ctx.send("Lesser Being {}".format(croc_emote))
     await update_leaderboard(ctx)
 
 bot.run(token)
