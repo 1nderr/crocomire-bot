@@ -9,7 +9,7 @@ from secret import token
 from crocomire import embeds, boost, roles, translate
 
 prefix: str = "?"
-#croc_emote: str = "<:Crocomire:583880666970718224>"
+# croc_emote: str = "<:Crocomire:583880666970718224>"
 croc_emote: str = "<:TheLord:679836173379567655>"
 lul_emote: str = "<:RidLul:562495276141510667>"
 dab_emote: str = "<:RidDab:562492164664197120>"

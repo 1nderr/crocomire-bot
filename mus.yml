@@ -1,3 +1,4 @@
+# ’
 mrgameandwatch:
   title: Ridley vs Mr. Game & Watch
   overview: This MU is a test of patience for Ridley. Mr. Game & Watch has amazing defensive options with an amazing advantage state and pretty decent tools to get out of disadvantage but weak approach options. Neutral is a game of footises / outspacing with moves such as Ftilt/Dtilt/Nair. Keep your calm, play campy, and you should be fine.
@@ -44,3 +45,23 @@ ridley:
   bans: BAN HERO FROM COMPETITIVE RULESETS!!!!
   image: https://www.smashbros.com/assets_v2/img/fighter/ridley/main2.png
   link: https://docs.google.com/document/d/12hvAdoIZJvSPZbsx9NX4bxadupXLE2gM4JDNrSogkTo/edit#heading=h.x67rhpfwc5t5
+
+yoshi:
+  title: Ridley vs Yoshi
+  overview: Neutral consists of stuffing-out Yoshi's approaches and overextensions with superior hitboxes and clever positioning to set up punishes. Hang slightly back, shield deliberately, then follow up with low-commitment options like f-tilt and nair to rack up chip damage or gain stage control, and finish stocks with movement callouts, ledge pressure, or edgeguards.
+  criticaltips:
+    - Yoshi DJ armor is from frame 1 - 44, ending at the apex of the jump.
+    - Ridley's non-jab grounded attacks all break it past 86% with no rage.
+    - Ridley's aerial attacks all break it past 105% with no rage.
+    - Ftilt and nair beat every hitbox Yoshi has except tongue grabs.
+    - Ridley's only safe-on-shield attacks are spaced f-tilt/d-tilt.
+    - All of Yoshi's aerials can cross up shield when at full airspeed.
+    - Save jumps for a fastfall starter for recovery or timing mixups.
+    - Fair spike to upair/upsmash - 116%, 92%.
+    - Dtilt to d/fsmash - 114% (109% w/jab lock), 78% (73% w/jab lock).
+    - Dtilt or Jab1>Jab2 at ledge into run-off fair spike - 55% (all stages).
+    - Utilt Uair %s = FH 91 - 96%, FH DJ 97 - 103%
+  counterpicks: Kalos, Lylat
+  bans: Battlefield, Yoshi's Story
+  image: https://vignette.wikia.nocookie.net/yoshi/images/8/8d/Yoshi_SSBU.png/revision/latest/scale-to-width-down/340?cb=20180628045711
+  link: https://docs.google.com/document/d/12hvAdoIZJvSPZbsx9NX4bxadupXLE2gM4JDNrSogkTo/edit#heading=h.yvgydmt2zypv
