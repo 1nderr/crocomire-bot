@@ -217,6 +217,8 @@ async def send_meme(ctx: commands.Context):
     seed()
     with open("memes", "r") as f:
         embed: Embed = embeds.create_image_embed(choice(f.readlines()))
+    embed.add_field(name="Album Link",
+                    value="https://imgur.com/gallery/LpuE5j1")
     await ctx.send(embed=embed)
     await update_leaderboard(ctx)
 
