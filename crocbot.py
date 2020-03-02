@@ -223,6 +223,20 @@ async def send_meme(ctx: commands.Context):
     await update_leaderboard(ctx)
 
 
+@bot.command(name="sprmash")
+async def send_spr(ctx: commands.Context):
+    """
+    Async function that sends spr percents img.
+
+    :param ctx: `commands.Context`
+    :return: `None`
+    """
+    embed: Embed = embeds.create_image_embed(
+        "https://cdn.discordapp.com/attachments/683550953739124737/684159265874640943/SPR_Mashout_s.png")
+    await ctx.send(embed=embed)
+    await update_leaderboard(ctx)
+
+
 @bot.command(name="bruh")
 async def send_bruh(ctx: commands.Context):
     """
