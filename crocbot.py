@@ -249,15 +249,15 @@ async def send_bruh(ctx: commands.Context):
     await update_leaderboard(ctx)
 
 
-@bot.command(name="tabs")
+@bot.command(name="urboria")
 async def send_1nder(ctx: commands.Context):
     """
-    Async function that sends the tabs message.
+    Async function that sends the urboria message.
 
     :param ctx: `commands.Context`
     :return: `None`
     """
-    await ctx.send("Bruh, tabs won the Swedish Fish contest POG {}".format(croc_emote))
+    await ctx.send("Bruh, Urboria is the best Ridley at his school POG {}".format(croc_emote))
     await update_leaderboard(ctx)
 
 
