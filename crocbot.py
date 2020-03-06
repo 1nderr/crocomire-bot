@@ -88,9 +88,8 @@ async def send_mu(ctx: commands.Context):
         await ctx.send("That character does not exist Bruh {}".format(croc_emote))
         return
 
-    try:
-        embed: Embed = embeds.create_mu_embed(char)
-    except KeyError:
+    embed: Embed = embeds.create_mu_embed(char)
+    if embed is None:
         await ctx.send("That character does not have data *yet* Bruh {}".format(croc_emote))
         return
 
@@ -247,18 +246,5 @@ async def send_bruh(ctx: commands.Context):
     """
     await ctx.send("Bruh {}".format(croc_emote))
     await update_leaderboard(ctx)
-
-
-@bot.command(name="urboria")
-async def send_1nder(ctx: commands.Context):
-    """
-    Async function that sends the urboria message.
-
-    :param ctx: `commands.Context`
-    :return: `None`
-    """
-    await ctx.send("Bruh, Urboria is the best Ridley at his school POG {}".format(croc_emote))
-    await update_leaderboard(ctx)
-
 
 bot.run(token)
