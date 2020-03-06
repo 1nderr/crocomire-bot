@@ -1,12 +1,13 @@
 from random import choice, seed
 from re import sub
+from sqlite3 import Connection
 
 from discord import Game, Embed, Message, TextChannel
 from discord.ext import commands
 from yaml import safe_load
 
 from secret import token
-from crocomire import embeds, boost, roles, translate
+from crocomire import embeds, boost, roles, database
 
 prefix: str = "?"
 croc_emote: str = "<:Crocomire:583880666970718224>"
@@ -82,7 +83,8 @@ async def send_mu(ctx: commands.Context):
 
     char: str = "".join(ctx.message.content.split()[1:])
     char = sub(r"[^\w\d]|[_\-]", "", char)
-    char = translate.translate(char, "characters.yml")
+    syn_db: Connection = database.connect_to_synonyms_db()
+    char = database.select_char(char, syn_db)
 
     if len(char) == 0:
         await ctx.send("That character does not exist Bruh {}".format(croc_emote))

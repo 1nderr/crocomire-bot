@@ -1,7 +1,9 @@
-from discord import Embed
-from crocomire import database
 from sqlite3 import Connection
 from typing import List
+
+from discord import Embed
+
+from crocomire import database
 
 embed_color = 10170673
 
