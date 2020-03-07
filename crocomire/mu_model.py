@@ -11,13 +11,13 @@ class Matchup:
         :param name: `str` code name of the character
         """
         self.name = name
-        self.title = ""
-        self.overview = ""
+        self.title = "MISSING"
+        self.overview = "MISSING"
         self.criticaltips = []
-        self.counterpicks = ""
-        self.bans = ""
-        self.image = ""
-        self.doclink = ""
+        self.counterpicks = "MISSING"
+        self.bans = "MISSING"
+        self.image = "MISSING"
+        self.doclink = "MISSING"
 
     def set_title(self, t: str):
         """

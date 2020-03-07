@@ -1,5 +1,5 @@
 from random import choice, seed
-from re import sub
+from typing import List
 from sqlite3 import Connection
 
 from discord import Game, Embed, Message, TextChannel
@@ -7,7 +7,7 @@ from discord.ext import commands
 from yaml import safe_load
 
 from secret import token
-from crocomire import embeds, boost, roles, database, mu
+from crocomire import embeds, boost, roles, mu, database
 from crocomire.mu_model import Matchup
 
 prefix: str = "?"
@@ -81,10 +81,8 @@ async def send_mu(ctx: commands.Context):
         await ctx.send("Bruh, that's not right. You didn't give a character name {}".format(croc_emote))
         return
 
-    char: str = "".join(ctx.message.content.split()[1:])
-    char = sub(r"[^\w\d]|[_\-]", "", char)
-    syn_db: Connection = database.connect_to_synonyms_db()
-    char = database.select_char(char, syn_db)
+    msg: str = "".join(ctx.message.content.split()[1:])
+    char: str = mu.translate_char(msg)
 
     if len(char) == 0:
         await ctx.send("That character does not exist Bruh {}".format(croc_emote))
@@ -109,7 +107,24 @@ async def add_mu(ctx: commands.Context):
     :param ctx: `commands.Context`
     :return: `None`
     """
-    matchup: Matchup = mu.add_mu(ctx.message)
+    msg: Message = ctx.message.content
+    if len(msg.split()) == 1:
+        await ctx.send("Bruh, that's not right. You didn't give a character name {}".format(croc_emote))
+        return
+
+    mu_sections: List = msg.split("\n")
+    char: str = "".join(mu_sections[0].split()[1:])
+    char = mu.translate_char(char)
+    if len(char) == 0:
+        await ctx.send("That character does not exist Bruh {}".format(croc_emote))
+        return
+
+    mu_db: Connection = database.connect_to_mu_db()
+    if len(database.select_mu_data(char, mu_db)) != 0:
+        await ctx.send("That character already has MU data Bruh {}".format(croc_emote))
+        return
+
+    matchup = mu.add_matchup(char, mu_sections)
     if matchup is None:
         await ctx.send("The MU was not added Bruh {}".format(croc_emote))
         return
@@ -117,25 +132,6 @@ async def add_mu(ctx: commands.Context):
     embed: Embed = embeds.create_mu_embed(matchup)
     await ctx.send(embed=embed)
     await ctx.send("The MU was added successfully Bruh {}".format(croc_emote))
-
-
-@bot.command(name="boosters")
-async def send_leaderboard(ctx: commands.Context):
-    """
-    Async function that sends the booster leaderboard.
-
-    :param ctx: `commands.Context`
-    :return: `None`
-    """
-    boosters: dict = boost.get_boosters(ctx)
-    if len(boosters) == 0:
-        await ctx.send("No one boosted this server Bruh {}".format(croc_emote))
-        return
-
-    msg: str = boost.build_leaderboard(boosters)
-
-    await ctx.send(top10_msg.format(msg))
-    await update_leaderboard(ctx)
 
 
 @bot.command(name="removerole")
@@ -160,57 +156,22 @@ async def remove_role(ctx: commands.Context):
     await update_leaderboard(ctx)
 
 
-@remove_role.error
-@add_mu.error
-async def cmd_error(ctx: commands.Context, error: commands.CommandError):
+@bot.command(name="boosters")
+async def send_leaderboard(ctx: commands.Context):
     """
-    Async function to send a message if a user is missing permissions.
-
-    :param ctx: `Context` original user message's context
-    :param error: `commands.CommandError` the error invoked by the user
-    :return: `None`
-    """
-    if isinstance(error, commands.MissingPermissions):
-        await ctx.send(admin_error.format(ctx.author.mention, croc_emote))
-
-
-@bot.command(name="mori")
-async def send_mori(ctx: commands.Context):
-    """
-    Async function that sends Mori's special image.
+    Async function that sends the booster leaderboard.
 
     :param ctx: `commands.Context`
     :return: `None`
     """
-    embed: Embed = embeds.create_image_embed(
-        "https://cdn.discordapp.com/attachments/456260916720173057/675522898471026718/670408231658717206.png")
-    await ctx.send(embed=embed)
-    await update_leaderboard(ctx)
+    boosters: dict = boost.get_boosters(ctx)
+    if len(boosters) == 0:
+        await ctx.send("No one boosted this server Bruh {}".format(croc_emote))
+        return
 
+    msg: str = boost.build_leaderboard(boosters)
 
-@bot.command(name="ches")
-async def send_ches(ctx: commands.Context):
-    """
-    Async function that sends Chesnaught's special image.
-
-    :param ctx: `commands.Context`
-    :return: `None`
-    """
-    embed: Embed = embeds.create_image_embed(
-        "https://cdn.discordapp.com/attachments/567534605091995648/675751591340408838/20200208_111432.gif")
-    await ctx.send(embed=embed)
-    await update_leaderboard(ctx)
-
-
-@bot.command(name="mimic")
-async def send_mimic(ctx: commands.Context):
-    """
-    Async function that sends Mimic's special message.
-
-    :param ctx: `commands.Context`
-    :return: `None`
-    """
-    await ctx.send("Fuck GameStop Mario.")
+    await ctx.send(top10_msg.format(msg))
     await update_leaderboard(ctx)
 
 
@@ -269,5 +230,60 @@ async def send_bruh(ctx: commands.Context):
     """
     await ctx.send("Bruh {}".format(croc_emote))
     await update_leaderboard(ctx)
+
+
+@bot.command(name="mori")
+async def send_mori(ctx: commands.Context):
+    """
+    Async function that sends Mori's special image.
+
+    :param ctx: `commands.Context`
+    :return: `None`
+    """
+    embed: Embed = embeds.create_image_embed(
+        "https://cdn.discordapp.com/attachments/456260916720173057/675522898471026718/670408231658717206.png")
+    await ctx.send(embed=embed)
+    await update_leaderboard(ctx)
+
+
+@bot.command(name="ches")
+async def send_ches(ctx: commands.Context):
+    """
+    Async function that sends Chesnaught's special image.
+
+    :param ctx: `commands.Context`
+    :return: `None`
+    """
+    embed: Embed = embeds.create_image_embed(
+        "https://cdn.discordapp.com/attachments/567534605091995648/675751591340408838/20200208_111432.gif")
+    await ctx.send(embed=embed)
+    await update_leaderboard(ctx)
+
+
+@bot.command(name="mimic")
+async def send_mimic(ctx: commands.Context):
+    """
+    Async function that sends Mimic's special message.
+
+    :param ctx: `commands.Context`
+    :return: `None`
+    """
+    await ctx.send("Fuck GameStop Mario.")
+    await update_leaderboard(ctx)
+
+
+@remove_role.error
+@add_mu.error
+async def cmd_error(ctx: commands.Context, error: commands.CommandError):
+    """
+    Async function to send a message if a user is missing permissions.
+
+    :param ctx: `Context` original user message's context
+    :param error: `commands.CommandError` the error invoked by the user
+    :return: `None`
+    """
+    if isinstance(error, commands.MissingPermissions):
+        await ctx.send(admin_error.format(ctx.author.mention, croc_emote))
+
 
 bot.run(token)
