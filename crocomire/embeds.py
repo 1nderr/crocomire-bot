@@ -43,11 +43,8 @@ def create_mu_embed(mu: Matchup):
     desc: str = "[Click here for more matchup tips.]({})".format(mu.doclink)
     tips: str = ""
 
-    if len(mu.criticaltips) != 0:
-        for t in mu.criticaltips:
-            tips += "• {}\n".format(t)
-    else:
-        tips = "MISSING"
+    for t in mu.criticaltips:
+        tips += "• {}\n".format(t)
 
     embed: Embed = Embed(title=title, color=embed_color, description=desc)
     if mu.image != "MISSING":

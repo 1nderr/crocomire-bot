@@ -75,5 +75,10 @@ def add_matchup(char_name: str, mu_sections: List) -> Matchup:
         elif section_name == "DOC":
             mu.set_doclink(section_text)
 
-    mu.set_criticaltips(tips)
+    if len(tips) == 0:
+        mu.set_criticaltips(["MISSING"])
+    else:
+        mu.set_criticaltips(tips)
+    mu_db: Connection = database.connect_to_mu_db()
+    database.insert_mu_data(mu, mu_db)
     return mu
