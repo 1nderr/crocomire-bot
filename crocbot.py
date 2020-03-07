@@ -81,7 +81,7 @@ async def send_mu(ctx: commands.Context):
         await ctx.send("Bruh, that's not right. You didn't give a character name {}".format(croc_emote))
         return
 
-    msg: str = "".join(ctx.message.content.split()[1:])
+    msg: str = "".join(ctx.message.content.split()[1:]).lower()
     char: str = mu.translate_char(msg)
 
     if len(char) == 0:
@@ -113,7 +113,7 @@ async def add_mu(ctx: commands.Context):
         return
 
     mu_sections: List = msg.split("\n")
-    char: str = "".join(mu_sections[0].split()[1:])
+    char: str = "".join(mu_sections[0].split()[1:]).lower()
     char = mu.translate_char(char)
     if len(char) == 0:
         await ctx.send("That character does not exist Bruh {}".format(croc_emote))
