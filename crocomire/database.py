@@ -1,5 +1,6 @@
 from sqlite3 import connect, Connection, Cursor
 from typing import List
+from crocomire.mu_model import Matchup
 
 
 def connect_to_synonyms_db() -> Connection:
@@ -55,7 +56,7 @@ def select_char(char_name: str, db: Connection) -> str:
     return rows[0][0]
 
 
-def select_mu_data(char_name: str, db: Connection) -> tuple:
+def select_mu_data(char_name: str, db: Connection) -> Matchup:
     """
     Get the character's mu data.
 
@@ -78,4 +79,4 @@ def select_mu_data(char_name: str, db: Connection) -> tuple:
     if len(rows) == 0:
         return []
 
-    return rows[0][1:12]
+    return rows[0][1:9]

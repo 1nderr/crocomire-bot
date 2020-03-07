@@ -7,7 +7,8 @@ from discord.ext import commands
 from yaml import safe_load
 
 from secret import token
-from crocomire import embeds, boost, roles, database
+from crocomire import embeds, boost, roles, database, mu
+from crocomire.mu_model import Matchup
 
 prefix: str = "?"
 croc_emote: str = "<:Crocomire:583880666970718224>"
@@ -90,11 +91,12 @@ async def send_mu(ctx: commands.Context):
         await ctx.send("That character does not exist Bruh {}".format(croc_emote))
         return
 
-    embed: Embed = embeds.create_mu_embed(char)
-    if embed is None:
+    matchup: Matchup = mu.get_matchup(char)
+    if matchup is None:
         await ctx.send("That character does not have data *yet* Bruh {}".format(croc_emote))
         return
 
+    embed: Embed = embeds.create_mu_embed(matchup)
     await ctx.send(embed=embed)
     await update_leaderboard(ctx)
 
@@ -219,7 +221,7 @@ async def send_meme(ctx: commands.Context):
     with open("memes", "r") as f:
         embed: Embed = embeds.create_image_embed(choice(f.readlines()))
     embed.add_field(name="Album Link",
-                    value="https://imgur.com/gallery/LpuE5j1")
+                    value="https://imgur.com/a/LpuE5j1?grid")
     await ctx.send(embed=embed)
     await update_leaderboard(ctx)
 
