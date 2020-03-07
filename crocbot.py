@@ -17,7 +17,7 @@ dab_emote: str = "<:RidDab:562492164664197120>"
 status_msg: str = "Bruh, Type ?info"
 top10_msg: str = "**Top 10 Ridleycord Boosters**```{}```"
 role_msg: str = "I removed the role **{}** from these users Bruh {}:\n```{}```"
-role_error: str = "{} you need the permission **Administrator** to remove the role Bruh {}"
+admin_error: str = "{} you need the permission **Administrator** to remove the role Bruh {}"
 cmd_data: dict = safe_load(open("commands.yml"))
 booster_chan_id: int = 675826799317483538
 board_id: int = 675834739516637244
@@ -75,7 +75,6 @@ async def send_mu(ctx: commands.Context):
     Async function that sends the MU summary for the given character.
 
     :param ctx: `commands.Context`
-    :param char: `str`
     :return: `None`
     """
     if len(ctx.message.content.split()) == 1:
@@ -99,6 +98,25 @@ async def send_mu(ctx: commands.Context):
     embed: Embed = embeds.create_mu_embed(matchup)
     await ctx.send(embed=embed)
     await update_leaderboard(ctx)
+
+
+@bot.command(name="addmu")
+@commands.has_permissions(administrator=True)
+async def add_mu(ctx: commands.Context):
+    """
+    Async function that adds the MU summary for the given character.
+
+    :param ctx: `commands.Context`
+    :return: `None`
+    """
+    matchup: Matchup = mu.add_mu(ctx.message)
+    if matchup is None:
+        await ctx.send("The MU was not added Bruh {}".format(croc_emote))
+        return
+
+    embed: Embed = embeds.create_mu_embed(matchup)
+    await ctx.send(embed=embed)
+    await ctx.send("The MU was added successfully Bruh {}".format(croc_emote))
 
 
 @bot.command(name="boosters")
@@ -143,7 +161,8 @@ async def remove_role(ctx: commands.Context):
 
 
 @remove_role.error
-async def remove_role_error(ctx: commands.Context, error: commands.CommandError):
+@add_mu.error
+async def cmd_error(ctx: commands.Context, error: commands.CommandError):
     """
     Async function to send a message if a user is missing permissions.
 
@@ -152,7 +171,7 @@ async def remove_role_error(ctx: commands.Context, error: commands.CommandError)
     :return: `None`
     """
     if isinstance(error, commands.MissingPermissions):
-        await ctx.send(role_error.format(ctx.author.mention, croc_emote))
+        await ctx.send(admin_error.format(ctx.author.mention, croc_emote))
 
 
 @bot.command(name="mori")
