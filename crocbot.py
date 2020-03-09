@@ -125,13 +125,41 @@ async def add_mu(ctx: commands.Context):
         return
 
     matchup = mu.add_matchup(char, mu_sections)
-    if matchup is None:
-        await ctx.send("The MU was not added Bruh {}".format(croc_emote))
-        return
-
     embed: Embed = embeds.create_mu_embed(matchup)
     await ctx.send(embed=embed)
     await ctx.send("The MU was added successfully Bruh {}".format(croc_emote))
+
+
+@bot.command(name="updatemu")
+@commands.has_permissions(administrator=True)
+async def update_mu(ctx: commands.Context):
+    """
+    Async function that updates the MU summary for the given character.
+
+    :param ctx: `commands.Context`
+    :return: `None`
+    """
+    msg: Message = ctx.message.content
+    if len(msg.split()) == 1:
+        await ctx.send("Bruh, that's not right. You didn't give a character name {}".format(croc_emote))
+        return
+
+    mu_sections: List = msg.split("\n")
+    char: str = "".join(mu_sections[0].split()[1:]).lower()
+    char = mu.translate_char(char)
+    if len(char) == 0:
+        await ctx.send("That character does not exist Bruh {}".format(croc_emote))
+        return
+
+    mu_db: Connection = database.connect_to_mu_db()
+    if len(database.select_mu_data(char, mu_db)) == 0:
+        await ctx.send("That character does not have MU data to update Bruh {}".format(croc_emote))
+        return
+
+    matchup = mu.update_matchup(char, mu_sections)
+    embed: Embed = embeds.create_mu_embed(matchup)
+    await ctx.send(embed=embed)
+    await ctx.send("The MU was updated successfully Bruh {}".format(croc_emote))
 
 
 @bot.command(name="removerole")

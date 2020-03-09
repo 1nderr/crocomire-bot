@@ -1,6 +1,6 @@
 from typing import List
 from sqlite3 import Connection
-from re import sub
+from re import sub, search, Match
 
 from crocomire.mu_model import Matchup
 from crocomire import database
@@ -50,7 +50,7 @@ def add_matchup(char_name: str, mu_sections: List) -> Matchup:
 
     :param msg: `str`
     :param mu_sections: `List`
-    :return: `Matchup`, `None` if not found
+    :return: `Matchup`
     """
     # TODO: Check if URLs are valid
     mu: Matchup = Matchup(char_name)
@@ -81,4 +81,48 @@ def add_matchup(char_name: str, mu_sections: List) -> Matchup:
         mu.set_criticaltips(tips)
     mu_db: Connection = database.connect_to_mu_db()
     database.insert_mu_data(mu, mu_db)
+    return mu
+
+
+def update_matchup(char_name: str, mu_sections: List) -> Matchup:
+    """
+    Add a matchup from the given message.
+
+    :param msg: `str`
+    :param mu_sections: `List`
+    :return: `Matchup`
+    """
+    # TODO: Check if URLs are valid
+    mu: Matchup = get_matchup(char_name)
+
+    for m in mu_sections[1:]:
+        section_name: str = m.split("=", 1)[0]
+        section_text: str = m.split("=", 1)[1]
+
+        if section_name == "TITLE":
+            mu.set_title(section_text)
+        elif section_name == "OVERVIEW":
+            mu.set_overview(section_text)
+        elif section_name[0:3] == "TIP":
+            tips: List = mu.criticaltips
+            n_match: Match = search(r'\d+$', section_name)
+            if n_match is not None:
+                n: int = int(section_name[n_match.start():n_match.end()]) - 1
+                if n + 1 > len(tips):
+                    tips.append(section_text)
+                    mu.set_criticaltips(tips)
+                elif n >= 0:
+                    tips[n] = section_text
+                    mu.set_criticaltips(tips)
+        elif section_name == "COUNTERS":
+            mu.set_counterpicks(section_text)
+        elif section_name == "BANS":
+            mu.set_bans(section_text)
+        elif section_name == "IMAGE":
+            mu.set_image(section_text)
+        elif section_name == "DOC":
+            mu.set_doclink(section_text)
+
+    mu_db: Connection = database.connect_to_mu_db()
+    database.update_mu_data(mu, mu_db)
     return mu

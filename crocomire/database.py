@@ -92,3 +92,18 @@ def insert_mu_data(mu: Matchup, db: Connection) -> Matchup:
             """, (mu.name, mu.title, mu.overview, "\n".join(mu.criticaltips),
                   mu.counterpicks, mu.bans, mu.image, mu.doclink))
     db.commit()
+
+
+def update_mu_data(mu: Matchup, db: Connection) -> Matchup:
+    """Update the given mu data."""
+    db.execute("""
+            UPDATE
+                matchups
+            SET
+                title=?, overview=?, criticaltips=?,
+                counterpicks=?, bans=?, image=?, doclink=?
+            WHERE
+                name=?
+            """, (mu.title, mu.overview, "\n".join(mu.criticaltips),
+                  mu.counterpicks, mu.bans, mu.image, mu.doclink, mu.name))
+    db.commit()
