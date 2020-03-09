@@ -2,7 +2,7 @@ from random import choice, seed
 from typing import List
 from sqlite3 import Connection
 
-from discord import Game, Embed, Message
+from discord import Game, Embed
 from discord.ext import commands
 from yaml import safe_load
 
@@ -70,12 +70,13 @@ async def send_mu(ctx: commands.Context):
     :param ctx: `commands.Context`
     :return: `None`
     """
-    if len(ctx.message.content.split()) == 1:
+    msg: str = ctx.message.content
+    if len(msg.split()) == 1:
         await ctx.send("Bruh, that's not right. You didn't give a character name {}".format(croc_emote))
         return
 
-    msg: str = "".join(ctx.message.content.split()[1:]).lower()
-    char: str = mu.translate_char(msg)
+    char: str = "".join(msg.split()[1:]).lower()
+    char = mu.translate_char(char)
 
     if len(char) == 0:
         await ctx.send("That character does not exist Bruh {}".format(croc_emote))
@@ -99,7 +100,7 @@ async def add_mu(ctx: commands.Context):
     :param ctx: `commands.Context`
     :return: `None`
     """
-    msg: Message = ctx.message.content
+    msg: str = ctx.message.content
     if len(msg.split()) == 1:
         await ctx.send("Bruh, that's not right. You didn't give a character name {}".format(croc_emote))
         return
@@ -113,45 +114,12 @@ async def add_mu(ctx: commands.Context):
 
     mu_db: Connection = database.connect_to_mu_db()
     if len(database.select_mu_data(char, mu_db)) != 0:
-        await ctx.send("That character already has MU data Bruh {}".format(croc_emote))
-        return
+        matchup = mu.update_matchup(char, mu_sections)
+    else:
+        matchup = mu.add_matchup(char, mu_sections)
 
-    matchup = mu.add_matchup(char, mu_sections)
     embed: Embed = embeds.create_mu_embed(matchup)
     await ctx.send(embed=embed)
-    await ctx.send("The MU was added successfully Bruh {}".format(croc_emote))
-
-
-@bot.command(name="updatemu")
-@commands.has_permissions(administrator=True)
-async def update_mu(ctx: commands.Context):
-    """
-    Async function that updates the MU summary for the given character.
-
-    :param ctx: `commands.Context`
-    :return: `None`
-    """
-    msg: Message = ctx.message.content
-    if len(msg.split()) == 1:
-        await ctx.send("Bruh, that's not right. You didn't give a character name {}".format(croc_emote))
-        return
-
-    mu_sections: List = msg.split("\n")
-    char: str = "".join(mu_sections[0].split()[1:]).lower()
-    char = mu.translate_char(char)
-    if len(char) == 0:
-        await ctx.send("That character does not exist Bruh {}".format(croc_emote))
-        return
-
-    mu_db: Connection = database.connect_to_mu_db()
-    if len(database.select_mu_data(char, mu_db)) == 0:
-        await ctx.send("That character does not have MU data to update Bruh {}".format(croc_emote))
-        return
-
-    matchup = mu.update_matchup(char, mu_sections)
-    embed: Embed = embeds.create_mu_embed(matchup)
-    await ctx.send(embed=embed)
-    await ctx.send("The MU was updated successfully Bruh {}".format(croc_emote))
 
 
 @bot.command(name="removerole")
