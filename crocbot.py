@@ -2,7 +2,7 @@ from random import choice, seed
 from typing import List
 from sqlite3 import Connection
 
-from discord import Game, Embed, Message, TextChannel
+from discord import Game, Embed, Message
 from discord.ext import commands
 from yaml import safe_load
 
@@ -19,27 +19,11 @@ top10_msg: str = "**Top 10 Ridleycord Boosters**```{}```"
 role_msg: str = "I removed the role **{}** from these users Bruh {}:\n```{}```"
 admin_error: str = "{} you need the permission **Administrator** to use that command Bruh {}"
 cmd_data: dict = safe_load(open("commands.yml"))
-booster_chan_id: int = 675826799317483538
-board_id: int = 675834739516637244
 
 bot: commands.Bot = commands.Bot(
     command_prefix=prefix,
     help_command=None,
     activity=Game(status_msg))
-
-
-async def update_leaderboard(ctx: commands.Context):
-    """
-    Async function that updates the booster leaderboard in the booster rewards channel.
-
-    :param ctx: `commands.Context`
-    :return: `None`
-    """
-    boosters: dict = boost.get_boosters(ctx)
-    booster_chan: TextChannel = ctx.guild.get_channel(booster_chan_id)
-    oldBoard: Message = await booster_chan.fetch_message(board_id)
-    newBoard: str = boost.build_leaderboard(boosters)
-    await oldBoard.edit(content=top10_msg.format(newBoard))
 
 
 @bot.command(name="info")
@@ -53,7 +37,6 @@ async def send_help(ctx: commands.Context):
     embed: Embed = embeds.create_text_embed(cmd_data["info"])
     await ctx.author.send(embed=embed)
     await ctx.send("{} Bruh, I sent you a DM {}".format(ctx.author.mention, croc_emote))
-    await update_leaderboard(ctx)
 
 
 @bot.command(aliases=cmd_data["commands"])
@@ -66,7 +49,6 @@ async def send_text_embed(ctx: commands.Context):
     """
     embed: Embed = embeds.create_text_embed(cmd_data[ctx.message.content[1:]])
     await ctx.send(embed=embed)
-    await update_leaderboard(ctx)
 
 
 @bot.command(name="mu")
@@ -95,7 +77,6 @@ async def send_mu(ctx: commands.Context):
 
     embed: Embed = embeds.create_mu_embed(matchup)
     await ctx.send(embed=embed)
-    await update_leaderboard(ctx)
 
 
 @bot.command(name="addmu")
@@ -181,7 +162,6 @@ async def remove_role(ctx: commands.Context):
         return
 
     await ctx.send(role_msg.format(role_name, croc_emote, members))
-    await update_leaderboard(ctx)
 
 
 @bot.command(name="boosters")
@@ -200,7 +180,7 @@ async def send_leaderboard(ctx: commands.Context):
     msg: str = boost.build_leaderboard(boosters)
 
     await ctx.send(top10_msg.format(msg))
-    await update_leaderboard(ctx)
+    await boost.update_leaderboard(ctx)
 
 
 @bot.command(name="boost")
@@ -215,6 +195,7 @@ async def send_funny_boost(ctx: commands.Context):
         await ctx.send("What's up booster Bruh {}. Imagine not being a booster {}".format(croc_emote, lul_emote))
     else:
         await ctx.message.add_reaction(dab_emote)
+    await boost.update_leaderboard(ctx)
 
 
 @bot.command(name="meme")
@@ -231,7 +212,6 @@ async def send_meme(ctx: commands.Context):
     embed.add_field(name="Album Link",
                     value="https://imgur.com/a/LpuE5j1?grid")
     await ctx.send(embed=embed)
-    await update_leaderboard(ctx)
 
 
 @bot.command(name="sprmash")
@@ -245,7 +225,6 @@ async def send_spr(ctx: commands.Context):
     embed: Embed = embeds.create_image_embed(
         "https://cdn.discordapp.com/attachments/683550953739124737/684159265874640943/SPR_Mashout_s.png")
     await ctx.send(embed=embed)
-    await update_leaderboard(ctx)
 
 
 @bot.command(name="bruh")
@@ -257,7 +236,6 @@ async def send_bruh(ctx: commands.Context):
     :return: `None`
     """
     await ctx.send("Bruh {}".format(croc_emote))
-    await update_leaderboard(ctx)
 
 
 @bot.command(name="mori")
@@ -271,7 +249,6 @@ async def send_mori(ctx: commands.Context):
     embed: Embed = embeds.create_image_embed(
         "https://cdn.discordapp.com/attachments/456260916720173057/675522898471026718/670408231658717206.png")
     await ctx.send(embed=embed)
-    await update_leaderboard(ctx)
 
 
 @bot.command(name="ches")
@@ -285,7 +262,6 @@ async def send_ches(ctx: commands.Context):
     embed: Embed = embeds.create_image_embed(
         "https://cdn.discordapp.com/attachments/567534605091995648/675751591340408838/20200208_111432.gif")
     await ctx.send(embed=embed)
-    await update_leaderboard(ctx)
 
 
 @bot.command(name="mimic")
@@ -297,7 +273,6 @@ async def send_mimic(ctx: commands.Context):
     :return: `None`
     """
     await ctx.send("Fuck GameStop Mario.")
-    await update_leaderboard(ctx)
 
 
 @remove_role.error

@@ -1,8 +1,26 @@
 from typing import List
 from datetime import datetime, timedelta
 
-from discord import Member
+from discord import Member, TextChannel, Message
 from discord.ext import commands
+
+booster_chan_id: int = 675826799317483538
+board_id: int = 675834739516637244
+top10_msg: str = "**Top 10 Ridleycord Boosters**```{}```"
+
+
+async def update_leaderboard(ctx: commands.Context):
+    """
+    Async function that updates the booster leaderboard in the booster rewards channel.
+
+    :param ctx: `commands.Context`
+    :return: `None`
+    """
+    boosters: dict = get_boosters(ctx)
+    booster_chan: TextChannel = ctx.guild.get_channel(booster_chan_id)
+    oldBoard: Message = await booster_chan.fetch_message(board_id)
+    newBoard: str = build_leaderboard(boosters)
+    await oldBoard.edit(content=top10_msg.format(newBoard))
 
 
 def get_boosters(ctx: commands.Context):
