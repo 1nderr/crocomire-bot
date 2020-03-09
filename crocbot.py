@@ -19,6 +19,10 @@ top10_msg: str = "**Top 10 Ridleycord Boosters**```{}```"
 role_msg: str = "I removed the role **{}** from these users Bruh {}:\n```{}```"
 admin_error: str = "{} you need the permission **Administrator** to use that command Bruh {}"
 cmd_data: dict = safe_load(open("commands.yml"))
+embed_cmds: List = list(cmd_data["embed"].keys())
+text_cmds: List = list(cmd_data["text"].keys())
+image_cmds: List = list(cmd_data["image"].keys())
+custom_cmds: List = embed_cmds + text_cmds + image_cmds
 
 bot: commands.Bot = commands.Bot(
     command_prefix=prefix,
@@ -39,16 +43,23 @@ async def send_help(ctx: commands.Context):
     await ctx.send("{} Bruh, I sent you a DM {}".format(ctx.author.mention, croc_emote))
 
 
-@bot.command(aliases=cmd_data["commands"])
-async def send_text_embed(ctx: commands.Context):
+@bot.command(aliases=custom_cmds)
+async def send_custom_cmd(ctx: commands.Context):
     """
-    Async function that sends a command message from commands.yml.
+    Async function that sends a custom command from commands.yml.
 
     :param ctx: `commands.Context`
     :return: `None`
     """
-    embed: Embed = embeds.create_text_embed(cmd_data[ctx.message.content[1:]])
-    await ctx.send(embed=embed)
+    cmd: str = ctx.message.content[1:]
+    if cmd in text_cmds:
+        await ctx.send(cmd_data["text"][cmd])
+    elif cmd in embed_cmds:
+        embed: Embed = embeds.create_text_embed(cmd_data["embed"][cmd])
+        await ctx.send(embed=embed)
+    elif cmd in image_cmds:
+        embed: Embed = embeds.create_image_embed(cmd_data["image"][cmd])
+        await ctx.send(embed=embed)
 
 
 @bot.command(name="mu")
@@ -178,7 +189,6 @@ async def send_leaderboard(ctx: commands.Context):
         return
 
     msg: str = boost.build_leaderboard(boosters)
-
     await ctx.send(top10_msg.format(msg))
     await boost.update_leaderboard(ctx)
 
@@ -212,67 +222,6 @@ async def send_meme(ctx: commands.Context):
     embed.add_field(name="Album Link",
                     value="https://imgur.com/a/LpuE5j1?grid")
     await ctx.send(embed=embed)
-
-
-@bot.command(name="sprmash")
-async def send_spr(ctx: commands.Context):
-    """
-    Async function that sends spr percents img.
-
-    :param ctx: `commands.Context`
-    :return: `None`
-    """
-    embed: Embed = embeds.create_image_embed(
-        "https://cdn.discordapp.com/attachments/683550953739124737/684159265874640943/SPR_Mashout_s.png")
-    await ctx.send(embed=embed)
-
-
-@bot.command(name="bruh")
-async def send_bruh(ctx: commands.Context):
-    """
-    Async function that sends the bruh message.
-
-    :param ctx: `commands.Context`
-    :return: `None`
-    """
-    await ctx.send("Bruh {}".format(croc_emote))
-
-
-@bot.command(name="mori")
-async def send_mori(ctx: commands.Context):
-    """
-    Async function that sends Mori's special image.
-
-    :param ctx: `commands.Context`
-    :return: `None`
-    """
-    embed: Embed = embeds.create_image_embed(
-        "https://cdn.discordapp.com/attachments/456260916720173057/675522898471026718/670408231658717206.png")
-    await ctx.send(embed=embed)
-
-
-@bot.command(name="ches")
-async def send_ches(ctx: commands.Context):
-    """
-    Async function that sends Chesnaught's special image.
-
-    :param ctx: `commands.Context`
-    :return: `None`
-    """
-    embed: Embed = embeds.create_image_embed(
-        "https://cdn.discordapp.com/attachments/567534605091995648/675751591340408838/20200208_111432.gif")
-    await ctx.send(embed=embed)
-
-
-@bot.command(name="mimic")
-async def send_mimic(ctx: commands.Context):
-    """
-    Async function that sends Mimic's special message.
-
-    :param ctx: `commands.Context`
-    :return: `None`
-    """
-    await ctx.send("Fuck GameStop Mario.")
 
 
 @remove_role.error

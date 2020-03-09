@@ -1,25 +1,3 @@
-commands:
-  - changes
-  - levels
-  - docs
-  - vods
-  - op
-  - social
-  - montage
-
-changes:
-  title: Recent Ridley Changes (7.0.0)
-  image: https://cdn.discordapp.com/emojis/562472805120344074.png?v=1
-  fields:
-    Shield 1: Made a part of the wing briefly invincible after activating/deactivating shield.
-    Shield 2: Changed his posture while shielding to reduce vulnerability to a shield stab.
-
-levels:
-  title: Ridleycord Mario Maker 2 Levels
-  image: https://assets1.ignimgs.com/2019/02/21/super-mario-maker-2---button-v2-1550784835813.jpg
-  fields:
-    Level Spreadsheet: https://docs.google.com/spreadsheets/d/1lSQUpZnJ0WKFmnLqvlNNWp3qxuWZuSHlYb0Sctwneuk/edit#gid=0
-
 info:
   title: Crocomire Bot Commands
   image: https://cdn.discordapp.com/attachments/599442348866273283/674808243402571806/croc.png
@@ -38,36 +16,59 @@ info:
     social: Links the Ridleycord social media.
     vods: Links tournament and JMU vods.
 
-docs:
-  title: Ridleycord Documentation
-  image: https://cdn.discordapp.com/attachments/456149892298047489/647833882690846800/img.gif
-  fields:
-    Ultimate Ridley Resource Doc: https://docs.google.com/document/d/1DFeQrzvIgG6XaRa4fw2hULfGLmlLuIRpkZ2hY8FMsW8/edit
-    Ridley Master Lab Doc: https://docs.google.com/spreadsheets/d/1dnxndTKxjMVKTl0v8YYUnY1X80lgOOFK17OAw2BwVpI/edit?usp=sharing
-    An in-Depth Guide to Ridley: https://docs.google.com/document/d/1GTCGcJzEWrv4REbv3PfwiWmceZU8NbZhoJCgmb-JAs8/edit?usp=sharing
+text:
+  bruh: Bruh <:Crocomire:583880666970718224>
+  mimic: Fuck GameStop Mario.
+  
+image:
+  sprmash: https://cdn.discordapp.com/attachments/683550953739124737/684159265874640943/SPR_Mashout_s.png
+  mori: https://cdn.discordapp.com/attachments/456260916720173057/675522898471026718/670408231658717206.png
+  ches: https://cdn.discordapp.com/attachments/567534605091995648/675751591340408838/20200208_111432.gif
 
-vods:
-  title: Ridley Vods
-  image: https://cdn.discordapp.com/attachments/456260916720173057/642517530459766785/img.gif
-  fields:
-    Tournament VODs: https://www.youtube.com/playlist?list=PL7Ejy0uNwbLPkbY79HJwH--6kbkPL6Z9F
-    Crew Battle VODs: https://www.youtube.com/playlist?list=PLssLy8lTPzI65HcUX_K_6ox9sOtjv79Na
+embed:
+  changes:
+    title: Recent Ridley Changes (7.0.0)
+    image: https://cdn.discordapp.com/emojis/562472805120344074.png?v=1
+    fields:
+      Shield 1: Made a part of the wing briefly invincible after activating/deactivating shield.
+      Shield 2: Changed his posture while shielding to reduce vulnerability to a shield stab.
 
-op:
-  title: Ridleycord Anime Opening
-  image: https://cdn.discordapp.com/attachments/642932733693394954/643937784050089985/img.gif
-  fields:
-    Streamable: https://streamable.com/zj6gz
+  levels:
+    title: Ridleycord Mario Maker 2 Levels
+    image: https://assets1.ignimgs.com/2019/02/21/super-mario-maker-2---button-v2-1550784835813.jpg
+    fields:
+      Level Spreadsheet: https://docs.google.com/spreadsheets/d/1lSQUpZnJ0WKFmnLqvlNNWp3qxuWZuSHlYb0Sctwneuk/edit#gid=0
 
-social:
-  title: Ridleycord Social Media
-  image: https://cdn.discordapp.com/attachments/456260916720173057/635340467558547456/img.gif
-  fields:
-    Twitter: https://twitter.com/RidleyDiscord
-    YouTube: https://www.youtube.com/channel/UCPTi_HYm1_96rpIVgXQEeEA
+  docs:
+    title: Ridleycord Documentation
+    image: https://cdn.discordapp.com/attachments/456149892298047489/647833882690846800/img.gif
+    fields:
+      Ultimate Ridley Resource Doc: https://docs.google.com/document/d/1DFeQrzvIgG6XaRa4fw2hULfGLmlLuIRpkZ2hY8FMsW8/edit
+      Ridley Master Lab Doc: https://docs.google.com/spreadsheets/d/1dnxndTKxjMVKTl0v8YYUnY1X80lgOOFK17OAw2BwVpI/edit?usp=sharing
+      An in-Depth Guide to Ridley: https://docs.google.com/document/d/1GTCGcJzEWrv4REbv3PfwiWmceZU8NbZhoJCgmb-JAs8/edit?usp=sharing
 
-montage:
-  title: Ridleycord Montage
-  image: https://cdn.discordapp.com/attachments/599442348866273283/674809185216626688/unknown.png
-  fields:
-    Emperors of the Cosmos Vol. 1: https://www.youtube.com/watch?v=EbDdAB2TyRw
+  vods:
+    title: Ridley Vods
+    image: https://cdn.discordapp.com/attachments/456260916720173057/642517530459766785/img.gif
+    fields:
+      Tournament VODs: https://www.youtube.com/playlist?list=PL7Ejy0uNwbLPkbY79HJwH--6kbkPL6Z9F
+      Crew Battle VODs: https://www.youtube.com/playlist?list=PLssLy8lTPzI65HcUX_K_6ox9sOtjv79Na
+
+  op:
+    title: Ridleycord Anime Opening
+    image: https://cdn.discordapp.com/attachments/642932733693394954/643937784050089985/img.gif
+    fields:
+      Streamable: https://streamable.com/zj6gz
+
+  social:
+    title: Ridleycord Social Media
+    image: https://cdn.discordapp.com/attachments/456260916720173057/635340467558547456/img.gif
+    fields:
+      Twitter: https://twitter.com/RidleyDiscord
+      YouTube: https://www.youtube.com/channel/UCPTi_HYm1_96rpIVgXQEeEA
+
+  montage:
+    title: Ridleycord Montage
+    image: https://cdn.discordapp.com/attachments/599442348866273283/674809185216626688/unknown.png
+    fields:
+      Emperors of the Cosmos Vol. 1: https://www.youtube.com/watch?v=EbDdAB2TyRw
