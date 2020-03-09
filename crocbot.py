@@ -205,5 +205,4 @@ async def cmd_error(ctx: commands.Context, error: commands.CommandError):
     if isinstance(error, commands.MissingPermissions):
         await ctx.send(admin_error.format(ctx.author.mention, croc_emote))
 
-
 bot.run(token)

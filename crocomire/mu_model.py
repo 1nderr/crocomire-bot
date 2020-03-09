@@ -37,11 +37,42 @@ class Matchup:
 
     def set_criticaltips(self, tips: List):
         """
-        Set the on critical tips of the matchup.
+        Set the critical tips of the matchup.
 
         :param tips: `List`
         """
         self.criticaltips = tips
+
+    def add_criticaltip(self, t: str):
+        """
+        Append the given tip to the matchup's tips.
+
+        :param t: `str`
+        """
+        if self.criticaltips == ["MISSING"]:
+            self.criticaltips[0] = t
+        else:
+            self.criticaltips.append(t)
+
+    def replace_criticaltip(self, t: str, i: int):
+        """
+        Replace the tip at the given index.
+
+        :param t: `str`
+        :param i: `int`
+        """
+        if self.criticaltips == ["MISSING"]:
+            self.criticaltips[0] = t
+        else:
+            self.criticaltips[i] = t
+
+    def remove_criticaltip(self, i: int):
+        """
+        Remove the tip at the given index.
+
+        :param i: `int`
+        """
+        self.criticaltips.pop(i)
 
     def set_counterpicks(self, c: str):
         """
