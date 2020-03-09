@@ -4,17 +4,22 @@ info:
   fields:
     Prefix: "?"
     docs: Links the Ridleycord resources, lab, and guide docs.
+    boost: Sends a special message if you are a server booster.
     boosters: Gets the top 10 longest boosters for the server.
     bruh: Says Bruh.
     changes: Displays Ridley's latest changes. (See more patches in the In-Depth Ridley Guide)
-    help: Sends the user a list of commands.
+    info: Sends the user a list of commands.
     levels: Links the Ridleycord Mario Maker 2 level spreadsheet.
     meme: Sends a random Ridleycord meme.
     montage: Links the Ridleycord Montage.
     mu [character]: Sends a summary of the characters MU write up.
     op: Links the Ridleycord anime opening.
     social: Links the Ridleycord social media.
+    sprmash: Sends an image of Ridley's SPR mash percents.
     vods: Links tournament and JMU vods.
+    ches: Sends Chesnaught's top 3 booster command.
+    mori: Sends Mori's top 3 booster command.
+    mimic: Sends Mimic's top 3 booster command.
 
 text:
   bruh: Bruh <:Crocomire:583880666970718224>

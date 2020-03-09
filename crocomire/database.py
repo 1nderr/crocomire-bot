@@ -83,7 +83,12 @@ def select_mu_data(char_name: str, db: Connection) -> Matchup:
 
 
 def insert_mu_data(mu: Matchup, db: Connection) -> Matchup:
-    """Insert the given mu data."""
+    """
+    Insert the character's mu data.
+
+    :param mu: `Matchup`
+    :param db: `Connection`
+    """
     db.execute("""
             INSERT INTO
                 matchups
@@ -95,7 +100,12 @@ def insert_mu_data(mu: Matchup, db: Connection) -> Matchup:
 
 
 def update_mu_data(mu: Matchup, db: Connection) -> Matchup:
-    """Update the given mu data."""
+    """
+    Update the character's mu data.
+
+    :param mu: `Matchup`
+    :param db: `Connection`
+    """
     db.execute("""
             UPDATE
                 matchups
@@ -106,4 +116,22 @@ def update_mu_data(mu: Matchup, db: Connection) -> Matchup:
                 name=?
             """, (mu.title, mu.overview, "\n".join(mu.criticaltips),
                   mu.counterpicks, mu.bans, mu.image, mu.doclink, mu.name))
+    db.commit()
+
+
+def remove_mu_data(char_name: str, db: Connection) -> Matchup:
+    """
+    Get the character's mu data.
+
+    :param char_name: `str`
+    :param db: `Connection`
+    """
+    db.execute("""
+            DELETE
+            FROM
+                matchups
+            WHERE
+                matchups.name = ?
+            """, (char_name,))
+
     db.commit()

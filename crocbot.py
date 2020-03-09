@@ -122,6 +122,36 @@ async def add_mu(ctx: commands.Context):
     await ctx.send(embed=embed)
 
 
+@bot.command(name="removemu")
+@commands.has_permissions(administrator=True)
+async def remove_mu(ctx: commands.Context):
+    """
+    Async function that removes the MU summary for the given character.
+
+    :param ctx: `commands.Context`
+    :return: `None`
+    """
+    msg: str = ctx.message.content
+    if len(msg.split()) == 1:
+        await ctx.send("Bruh, that's not right. You didn't give a character name {}".format(croc_emote))
+        return
+
+    char: str = "".join(msg.split()[1:]).lower()
+    char = mu.translate_char(char)
+
+    if len(char) == 0:
+        await ctx.send("That character does not exist Bruh {}".format(croc_emote))
+        return
+
+    mu_db: Connection = database.connect_to_mu_db()
+    if len(database.select_mu_data(char, mu_db)) == 0:
+        await ctx.send("That character does not have any mu data Bruh {}".format(croc_emote))
+        return
+
+    database.remove_mu_data(char, mu_db)
+    await ctx.send("I removed the MU write up for **{}** Bruh {}".format(char, croc_emote))
+
+
 @bot.command(name="removerole")
 @commands.has_permissions(administrator=True)
 async def remove_role(ctx: commands.Context):
