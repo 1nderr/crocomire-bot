@@ -27,6 +27,13 @@ def select_all_embed_cmds(db: Connection) -> List:
     return [row[0] for row in rows]
 
 
+def select_all_custom_cmds(db: Connection) -> List:
+    c: Cursor = db.cursor()
+    c = db.execute("SELECT name FROM all_commands WHERE category='Custom'")
+    rows: List = c.fetchall()
+    return [row[0] for row in rows]
+
+
 def select_all_categories(db: Connection) -> List:
     c: Cursor = db.cursor()
     c = db.execute("SELECT category FROM all_commands")
@@ -95,3 +102,33 @@ def select_embed_fields(cmd_id: int, db: Connection) -> dict:
         fields[row[0]] = row[1]
 
     return fields
+
+
+def insert_text_cmd(cmd: str, text: str, db: Connection):
+    db.execute("""
+        INSERT INTO
+            all_commands (name, type, category)
+        VALUES
+            (?, 'text', 'Custom')
+    """, (cmd,))
+    db.commit()
+
+    c: Cursor = db.cursor()
+    c = db.execute("SELECT id FROM all_commands WHERE name=?", (cmd,))
+    cmd_id: int = c.fetchall()[0][0]
+
+    db.execute("""
+        INSERT INTO
+            text_commands (cmd_id, text)
+        VALUES
+            (?, ?)
+    """, (cmd_id, text))
+    db.commit()
+
+
+def update_text_cmd(cmd: str, text: str, db: Connection):
+    c: Cursor = db.cursor()
+    c = db.execute("SELECT id FROM all_commands WHERE name=?", (cmd,))
+    cmd_id: int = c.fetchall()[0][0]
+    db.execute("UPDATE text_commands SET text=? WHERE cmd_id=?", (text, cmd_id))
+    db.commit()

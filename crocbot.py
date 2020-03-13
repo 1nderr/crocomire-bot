@@ -20,6 +20,7 @@ remove_mu_msg: str = "I removed the MU write up for **{}** Bruh {}"
 role_msg: str = "I removed the role **{}** from these users Bruh {}:\n```{}```"
 boost_msg: str = "What's up booster Bruh {}. Imagine not being a booster {}"
 top10_msg: str = "**Top 10 Ridleycord Boosters**```{}```"
+add_cmd_msg: str = "Bruh, I {} the **?{}** command {}"
 
 admin_error: str = "{} you need the permission **Administrator** to use that command Bruh {}"
 bad_cmd_error: str = "Bruh, that command does not exist {}"
@@ -29,6 +30,10 @@ no_data_error: str = "That character does not have any MU data Bruh {}"
 bad_role_error: str = "That is not a JMU role Bruh {}"
 no_role_error: str = "No one had the role **{}** Bruh {}"
 no_boost_error: str = "No one boosted this server Bruh {}"
+add_cmd_fmt_err: str = "Bruh, that's not right. The format is `?addcmd <type> <name> <text>` {}"
+custom_cmd_error: str = "Bruh, you cannot update that command {}"
+invalid_type_err: str = "Bruh, that is not a valid command type. Try `text` or `embed` {}"
+no_info_error: str = "Bruh, I do not have info on custom commands {}"
 
 bot: commands.Bot = commands.Bot(
     command_prefix=prefix,
@@ -42,6 +47,9 @@ async def send_help(ctx: commands.Context, *args):
     if len(args) == 0:
         embedModel: EmbedModel = info.get_full_info()
         embedModel.set_thumbnail(bot.user.avatar_url)
+    elif args[0] in cmd_database.select_all_custom_cmds(cmd_db):
+        await ctx.send(no_info_error.format(croc_emote))
+        return
     elif args[0] in cmd_database.select_all_cmds(cmd_db):
         embedModel: EmbedModel = info.get_cmd_info(args[0])
     else:
@@ -165,6 +173,32 @@ async def send_funny_boost(ctx: commands.Context):
     else:
         await ctx.message.add_reaction(dab_emote)
     await boost.update_leaderboard(ctx)
+
+
+@bot.command(name="addcommand", aliases=["addcmd"])
+@commands.has_permissions(administrator=True)
+async def add_cmd(ctx: commands.Context, *args):
+    cmd_db: Connection = cmd_database.connect_to_cmd_db()
+    if len(args) < 3:
+        await ctx.send(add_cmd_fmt_err.format(croc_emote))
+
+    if args[0] == "text":
+        name: str = args[1]
+        text: str = " ".join(args[2:])
+        if name not in cmd_database.select_all_cmds(cmd_db):
+            cmd_database.insert_text_cmd(name, text, cmd_db)
+            await ctx.send(add_cmd_msg.format("created", name, croc_emote))
+        elif name in cmd_database.select_all_custom_cmds(cmd_db):
+            cmd_database.update_text_cmd(name, text, cmd_db)
+            await ctx.send(add_cmd_msg.format("updated", name, croc_emote))
+        else:
+            await ctx.send(custom_cmd_error.format(croc_emote))
+            return
+
+        text: str = cmd_database.select_text_cmd(name, cmd_db)
+        await ctx.send(text)
+    else:
+        await ctx.send(invalid_type_err.format(croc_emote))
 
 
 @remove_role.error
