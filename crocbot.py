@@ -58,7 +58,7 @@ async def send_embed(ctx: commands.Context):
     textEmbed.set_fields(embedData[5])
 
     if cmd == "meme":
-        with open("memes", "r") as f:
+        with open("databases/memes", "r") as f:
             seed()
             meme = choice(f.readlines())
             textEmbed.set_image(meme)
