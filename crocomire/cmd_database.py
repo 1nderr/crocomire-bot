@@ -6,30 +6,77 @@ def connect_to_cmd_db() -> Connection:
     return connect("databases/commands.db")
 
 
-def select_all_text_cmds(db: Connection) -> List:
+def select_all_cmds(db: Connection) -> List:
     c: Cursor = db.cursor()
-    c = db.execute("SELECT name FROM text_commands")
+    c = db.execute("SELECT name FROM all_commands")
     rows: List = c.fetchall()
     return [row[0] for row in rows]
 
 
-def select_text_cmd(cmd: str, db: Connection) -> str:
+def select_all_text_cmds(db: Connection) -> List:
     c: Cursor = db.cursor()
-    c = db.execute("SELECT text FROM text_commands WHERE name=?", (cmd,))
+    c = db.execute("SELECT name FROM all_commands WHERE type='text'")
     rows: List = c.fetchall()
-    return rows[0][0]
+    return [row[0] for row in rows]
 
 
 def select_all_embed_cmds(db: Connection) -> List:
     c: Cursor = db.cursor()
-    c = db.execute("SELECT name FROM embed_commands")
+    c = db.execute("SELECT name FROM all_commands WHERE type='embed'")
     rows: List = c.fetchall()
     return [row[0] for row in rows]
 
 
+def select_all_categories(db: Connection) -> List:
+    c: Cursor = db.cursor()
+    c = db.execute("SELECT category FROM all_commands")
+    rows: List = c.fetchall()
+    return [row[0] for row in rows]
+
+
+def select_cmds_in_category(category: str, db: Connection) -> List:
+    c: Cursor = db.cursor()
+    c = db.execute(
+        "SELECT name FROM all_commands WHERE category=?", (category,))
+    rows: List = c.fetchall()
+    return [row[0] for row in rows]
+
+
+def select_cmd_info(cmd: str, db: Connection) -> tuple:
+    c: Cursor = db.cursor()
+    c = db.execute(
+        "SELECT description, usage, example FROM all_commands WHERE name=?", (cmd,))
+    rows: List = c.fetchall()
+    return rows[0]
+
+
+def select_text_cmd(cmd: str, db: Connection) -> str:
+    c: Cursor = db.cursor()
+    c = db.execute("""
+        SELECT
+            id, cmd_id, name, text
+        FROM
+            all_commands, text_commands
+        WHERE
+            id = cmd_id
+        AND
+            name = ?
+    """, (cmd,))
+    return c.fetchall()[0][-1]
+
+
 def select_embed_cmd(cmd: str, db: Connection) -> List:
     c: Cursor = db.cursor()
-    c = db.execute("SELECT * FROM embed_commands WHERE name=?", (cmd,))
+    c = db.execute("""
+        SELECT
+            id, cmd_id, title, embed_commands.description, footer, thumbnail, image
+        FROM
+            all_commands, embed_commands
+        WHERE
+            id = cmd_id
+        AND
+            name = ?
+    """, (cmd,))
     rows: List = c.fetchall()
     fields: dict = select_embed_fields(rows[0][0], db)
     embedData: List = list(rows[0][2:])
@@ -48,33 +95,3 @@ def select_embed_fields(cmd_id: int, db: Connection) -> dict:
         fields[row[0]] = row[1]
 
     return fields
-
-
-def select_all_cmds(db: Connection) -> List:
-    c: Cursor = db.cursor()
-    c = db.execute("SELECT name FROM help")
-    rows: List = c.fetchall()
-    return [row[0] for row in rows]
-
-
-def select_all_cmds_types(db: Connection) -> dict:
-    c: Cursor = db.cursor()
-    c = db.execute("SELECT name, type FROM help")
-    rows: List = c.fetchall()
-    cmds: dict = {}
-
-    for row in rows:
-        if row[1] not in cmds.keys():
-            cmds[row[1]] = [row[0]]
-        else:
-            cmds[row[1]].append(row[0])
-
-    return cmds
-
-
-def select_cmd_help(cmd: str, db: Connection) -> tuple:
-    c: Cursor = db.cursor()
-    c = db.execute(
-        "SELECT help_msg, usage, example FROM help WHERE name=?", (cmd,))
-    rows: List = c.fetchall()
-    return rows[0]

@@ -37,7 +37,7 @@ def select_char(char_name: str, db: Connection) -> str:
     return rows[0][0]
 
 
-def select_mu_data(char_name: str, db: Connection) -> Matchup:
+def select_mu_data(char_name: str, db: Connection) -> tuple:
     c: Cursor = db.cursor()
     c = db.execute("""
             SELECT

@@ -15,7 +15,7 @@ def translate_char(char: str) -> str:
 
 def get_matchup(char_name: str) -> Matchup:
     mu_db: Connection = mu_database.connect_to_mu_db()
-    mu_data: List = mu_database.select_mu_data(char_name, mu_db)
+    mu_data: tuple = mu_database.select_mu_data(char_name, mu_db)
 
     if len(mu_data) == 0:
         return None

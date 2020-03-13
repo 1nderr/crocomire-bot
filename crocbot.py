@@ -111,6 +111,7 @@ async def send_mu(ctx: commands.Context):
 @commands.has_permissions(administrator=True)
 async def add_mu(ctx: commands.Context):
     msg: str = ctx.message.content
+    # TODO: Show list of chars done
     if len(msg.split()) == 1:
         await ctx.send(no_name_error.format(croc_emote))
         return

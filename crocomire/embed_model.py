@@ -25,3 +25,6 @@ class EmbedModel:
 
     def set_fields(self, f: dict):
         self.fields = f
+
+    def add_field(self, n: str, v: str):
+        self.fields[n] = v
