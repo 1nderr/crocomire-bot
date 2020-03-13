@@ -1,24 +1,36 @@
 from discord import Embed
 from crocomire.mu_model import Matchup
+from crocomire.embed_model import TextEmbed
 
 embed_color = 10170673
 
 
-def create_text_embed(cmd_data: dict):
-    title: str = "__" + cmd_data["title"] + "__"
-    fields: dict = cmd_data["fields"]
-    embed: Embed = Embed(title=title, color=embed_color)
-    embed.set_thumbnail(url=cmd_data["image"])
+def create_embed(textEmbed: TextEmbed):
+    title = ""
+    embed: Embed = Embed()
 
-    for i in fields.keys():
-        embed.add_field(name=i, value=fields[i], inline=False)
+    if textEmbed.title is not None:
+        title = "__" + textEmbed.title + "__"
 
-    return embed
+    if textEmbed.description is not None:
+        embed = Embed(title=title, color=embed_color,
+                      description=textEmbed.description)
+    else:
+        embed: Embed = Embed(title=title, color=embed_color)
 
+    if textEmbed.footer is not None:
+        embed.set_footer(text=textEmbed.footer)
 
-def create_image_embed(img_url: str):
-    embed: Embed = Embed(color=embed_color)
-    embed.set_image(url=img_url)
+    if textEmbed.thumbnail is not None:
+        embed.set_thumbnail(url=textEmbed.thumbnail)
+
+    if textEmbed.image is not None:
+        embed.set_image(url=textEmbed.image)
+
+    if textEmbed.fields is not None:
+        for i in textEmbed.fields.keys():
+            embed.add_field(name=i, value=textEmbed.fields[i], inline=False)
+
     return embed
 
 

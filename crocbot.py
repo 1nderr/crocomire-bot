@@ -9,6 +9,7 @@ from yaml import safe_load
 from secret import token
 from crocomire import embeds, boost, roles, mu, mu_database, cmd_database
 from crocomire.mu_model import Matchup
+from crocomire.embed_model import TextEmbed
 
 prefix: str = "?"
 croc_emote: str = "<:Crocomire:583880666970718224>"
@@ -31,30 +32,37 @@ bot: commands.Bot = commands.Bot(
 async def send_text(ctx: commands.Context):
     cmd: str = ctx.message.content[1:]
     msg: str = cmd_database.select_text_cmd(cmd, cmd_db)
-
-    if len(msg) == 0:
-        return
-
     await ctx.send(msg)
 
 
-@bot.command(aliases=cmd_database.select_all_image_cmds(cmd_db))
-async def send_image(ctx: commands.Context):
+@bot.command(aliases=cmd_database.select_all_embed_cmds(cmd_db))
+async def send_embed(ctx: commands.Context):
     cmd: str = ctx.message.content[1:]
-    img: str = cmd_database.select_image_cmd(cmd, cmd_db)
+    embedData: List = cmd_database.select_embed_cmd(cmd, cmd_db)
+    textEmbed: TextEmbed = TextEmbed(cmd)
+    textEmbed.set_title(embedData[0])
+    textEmbed.set_description(embedData[1])
+    textEmbed.set_footer(embedData[2])
+    textEmbed.set_thumbnail(embedData[3])
+    textEmbed.set_fields(embedData[5])
 
-    if len(img) == 0:
-        return
+    if cmd == "meme":
+        with open("memes", "r") as f:
+            seed()
+            meme = choice(f.readlines())
+            textEmbed.set_image(meme)
+    else:
+        textEmbed.set_image(embedData[4])
 
-    embed: Embed = embeds.create_image_embed(img)
+    embed: Embed = embeds.create_embed(textEmbed)
     await ctx.send(embed=embed)
 
 
-@bot.command(name="info")
-async def send_help(ctx: commands.Context):
-    embed: Embed = embeds.create_text_embed(cmd_data["info"])
-    await ctx.author.send(embed=embed)
-    await ctx.send("{} Bruh, I sent you a DM {}".format(ctx.author.mention, croc_emote))
+# @bot.command(name="info")
+# async def send_help(ctx: commands.Context):
+#     embed: Embed = embeds.create_text_embed(cmd_data["info"])
+#     await ctx.author.send(embed=embed)
+#     await ctx.send("{} Bruh, I sent you a DM {}".format(ctx.author.mention, croc_emote))
 
 
 @bot.command(name="mu")
@@ -163,16 +171,6 @@ async def send_funny_boost(ctx: commands.Context):
     else:
         await ctx.message.add_reaction(dab_emote)
     await boost.update_leaderboard(ctx)
-
-
-@bot.command(name="meme")
-async def send_meme(ctx: commands.Context):
-    seed()
-    with open("memes", "r") as f:
-        embed: Embed = embeds.create_image_embed(choice(f.readlines()))
-    embed.add_field(name="Album Link",
-                    value="https://imgur.com/a/LpuE5j1?grid")
-    await ctx.send(embed=embed)
 
 
 @remove_role.error
