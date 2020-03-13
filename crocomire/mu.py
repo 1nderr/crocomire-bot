@@ -3,31 +3,19 @@ from sqlite3 import Connection
 from re import sub, search, Match
 
 from crocomire.mu_model import Matchup
-from crocomire import database
+from crocomire import mu_database
 
 
 def translate_char(char: str) -> str:
-    """
-    Get the given character's code name.
-
-    :param char: `str`
-    :return: `str`, "" if not found
-    """
     char: str = sub(r"[^\w\d]|[_\-]", "", char)
-    syn_db: Connection = database.connect_to_synonyms_db()
-    char = database.select_char(char, syn_db)
+    syn_db: Connection = mu_database.connect_to_synonyms_db()
+    char = mu_database.select_char(char, syn_db)
     return char
 
 
 def get_matchup(char_name: str) -> Matchup:
-    """
-    Get the Matchup data object.
-
-    :param char_name: `str`
-    :return: `Matchup`, `None` if not found
-    """
-    mu_db: Connection = database.connect_to_mu_db()
-    mu_data: List = database.select_mu_data(char_name, mu_db)
+    mu_db: Connection = mu_database.connect_to_mu_db()
+    mu_data: List = mu_database.select_mu_data(char_name, mu_db)
 
     if len(mu_data) == 0:
         return None
@@ -45,45 +33,26 @@ def get_matchup(char_name: str) -> Matchup:
 
 
 def add_matchup(char_name: str, mu_sections: List) -> Matchup:
-    """
-    Add a matchup from the given message.
-
-    :param msg: `str`
-    :param mu_sections: `List`
-    :return: `Matchup`
-    """
     # TODO: Check if URLs are valid
     mu: Matchup = Matchup(char_name)
     mu = parse_mu_msg(mu, mu_sections)
-    mu_db: Connection = database.connect_to_mu_db()
-    database.insert_mu_data(mu, mu_db)
+    mu_db: Connection = mu_database.connect_to_mu_db()
+    mu_database.insert_mu_data(mu, mu_db)
     return mu
 
 
 def update_matchup(char_name: str, mu_sections: List) -> Matchup:
-    """
-    Add a matchup from the given message.
-
-    :param msg: `str`
-    :param mu_sections: `List`
-    :return: `Matchup`
-    """
     # TODO: Check if URLs are valid
     mu: Matchup = get_matchup(char_name)
     mu = parse_mu_msg(mu, mu_sections)
-    mu_db: Connection = database.connect_to_mu_db()
-    database.update_mu_data(mu, mu_db)
+    mu_db: Connection = mu_database.connect_to_mu_db()
+    mu_database.update_mu_data(mu, mu_db)
     return mu
+
+# TODO: remove_matchup()
 
 
 def parse_mu_msg(mu: Matchup, mu_sections: List):
-    """
-    Parse the give mu sections and sets them in the given Matchup.
-
-    :param mu: `Matchup`
-    :param mu_sections: `List`
-    :return: `Matchup`
-    """
     del_count: int = 0
     for m in mu_sections[1:]:
         section_name: str = m.split("=", 1)[0]

@@ -7,7 +7,7 @@ from discord.ext import commands
 from yaml import safe_load
 
 from secret import token
-from crocomire import embeds, boost, roles, mu, database
+from crocomire import embeds, boost, roles, mu, mu_database, cmd_database
 from crocomire.mu_model import Matchup
 
 prefix: str = "?"
@@ -19,10 +19,7 @@ top10_msg: str = "**Top 10 Ridleycord Boosters**```{}```"
 role_msg: str = "I removed the role **{}** from these users Bruh {}:\n```{}```"
 admin_error: str = "{} you need the permission **Administrator** to use that command Bruh {}"
 cmd_data: dict = safe_load(open("commands.yml"))
-embed_cmds: List = list(cmd_data["embed"].keys())
-text_cmds: List = list(cmd_data["text"].keys())
-image_cmds: List = list(cmd_data["image"].keys())
-custom_cmds: List = embed_cmds + text_cmds + image_cmds
+cmd_db: Connection = cmd_database.connect_to_cmd_db()
 
 bot: commands.Bot = commands.Bot(
     command_prefix=prefix,
@@ -30,46 +27,38 @@ bot: commands.Bot = commands.Bot(
     activity=Game(status_msg))
 
 
+@bot.command(aliases=cmd_database.select_all_text_cmds(cmd_db))
+async def send_text(ctx: commands.Context):
+    cmd: str = ctx.message.content[1:]
+    msg: str = cmd_database.select_text_cmd(cmd, cmd_db)
+
+    if len(msg) == 0:
+        return
+
+    await ctx.send(msg)
+
+
+@bot.command(aliases=cmd_database.select_all_image_cmds(cmd_db))
+async def send_image(ctx: commands.Context):
+    cmd: str = ctx.message.content[1:]
+    img: str = cmd_database.select_image_cmd(cmd, cmd_db)
+
+    if len(img) == 0:
+        return
+
+    embed: Embed = embeds.create_image_embed(img)
+    await ctx.send(embed=embed)
+
+
 @bot.command(name="info")
 async def send_help(ctx: commands.Context):
-    """
-    Async function that dms the help text.
-
-    :param ctx: `commands.Context`
-    :return: `None`
-    """
     embed: Embed = embeds.create_text_embed(cmd_data["info"])
     await ctx.author.send(embed=embed)
     await ctx.send("{} Bruh, I sent you a DM {}".format(ctx.author.mention, croc_emote))
 
 
-@bot.command(aliases=custom_cmds)
-async def send_custom_cmd(ctx: commands.Context):
-    """
-    Async function that sends a custom command from commands.yml.
-
-    :param ctx: `commands.Context`
-    :return: `None`
-    """
-    cmd: str = ctx.message.content[1:]
-    if cmd in text_cmds:
-        await ctx.send(cmd_data["text"][cmd])
-    elif cmd in embed_cmds:
-        embed: Embed = embeds.create_text_embed(cmd_data["embed"][cmd])
-        await ctx.send(embed=embed)
-    elif cmd in image_cmds:
-        embed: Embed = embeds.create_image_embed(cmd_data["image"][cmd])
-        await ctx.send(embed=embed)
-
-
 @bot.command(name="mu")
 async def send_mu(ctx: commands.Context):
-    """
-    Async function that sends the MU summary for the given character.
-
-    :param ctx: `commands.Context`
-    :return: `None`
-    """
     msg: str = ctx.message.content
     if len(msg.split()) == 1:
         await ctx.send("Bruh, that's not right. You didn't give a character name {}".format(croc_emote))
@@ -94,12 +83,6 @@ async def send_mu(ctx: commands.Context):
 @bot.command(name="addmu")
 @commands.has_permissions(administrator=True)
 async def add_mu(ctx: commands.Context):
-    """
-    Async function that adds the MU summary for the given character.
-
-    :param ctx: `commands.Context`
-    :return: `None`
-    """
     msg: str = ctx.message.content
     if len(msg.split()) == 1:
         await ctx.send("Bruh, that's not right. You didn't give a character name {}".format(croc_emote))
@@ -112,8 +95,8 @@ async def add_mu(ctx: commands.Context):
         await ctx.send("That character does not exist Bruh {}".format(croc_emote))
         return
 
-    mu_db: Connection = database.connect_to_mu_db()
-    if len(database.select_mu_data(char, mu_db)) != 0:
+    mu_db: Connection = mu_database.connect_to_mu_db()
+    if len(mu_database.select_mu_data(char, mu_db)) != 0:
         matchup = mu.update_matchup(char, mu_sections)
     else:
         matchup = mu.add_matchup(char, mu_sections)
@@ -125,12 +108,6 @@ async def add_mu(ctx: commands.Context):
 @bot.command(name="removemu")
 @commands.has_permissions(administrator=True)
 async def remove_mu(ctx: commands.Context):
-    """
-    Async function that removes the MU summary for the given character.
-
-    :param ctx: `commands.Context`
-    :return: `None`
-    """
     msg: str = ctx.message.content
     if len(msg.split()) == 1:
         await ctx.send("Bruh, that's not right. You didn't give a character name {}".format(croc_emote))
@@ -143,24 +120,18 @@ async def remove_mu(ctx: commands.Context):
         await ctx.send("That character does not exist Bruh {}".format(croc_emote))
         return
 
-    mu_db: Connection = database.connect_to_mu_db()
-    if len(database.select_mu_data(char, mu_db)) == 0:
+    mu_db: Connection = mu_database.connect_to_mu_db()
+    if len(mu_database.select_mu_data(char, mu_db)) == 0:
         await ctx.send("That character does not have any mu data Bruh {}".format(croc_emote))
         return
 
-    database.remove_mu_data(char, mu_db)
+    mu_database.remove_mu_data(char, mu_db)
     await ctx.send("I removed the MU write up for **{}** Bruh {}".format(char, croc_emote))
 
 
 @bot.command(name="removerole")
 @commands.has_permissions(administrator=True)
 async def remove_role(ctx: commands.Context):
-    """
-    Async function that removes the given role from all users.
-
-    :param ctx: `commands.Context`
-    :return: `None`
-    """
     if "jmu" not in "".join(ctx.message.content.split()[1:]).lower():
         await ctx.send("That is not a JMU role Bruh {}".format(croc_emote))
         return
@@ -175,12 +146,6 @@ async def remove_role(ctx: commands.Context):
 
 @bot.command(name="boosters")
 async def send_leaderboard(ctx: commands.Context):
-    """
-    Async function that sends the booster leaderboard.
-
-    :param ctx: `commands.Context`
-    :return: `None`
-    """
     boosters: dict = boost.get_boosters(ctx)
     if len(boosters) == 0:
         await ctx.send("No one boosted this server Bruh {}".format(croc_emote))
@@ -193,12 +158,6 @@ async def send_leaderboard(ctx: commands.Context):
 
 @bot.command(name="boost")
 async def send_funny_boost(ctx: commands.Context):
-    """
-    Async function that sends a booster only msg.
-
-    :param ctx: `commands.Context`
-    :return: `None`
-    """
     if ctx.author in ctx.guild.premium_subscribers:
         await ctx.send("What's up booster Bruh {}. Imagine not being a booster {}".format(croc_emote, lul_emote))
     else:
@@ -208,12 +167,6 @@ async def send_funny_boost(ctx: commands.Context):
 
 @bot.command(name="meme")
 async def send_meme(ctx: commands.Context):
-    """
-    Async function that sends a random meme.
-
-    :param ctx: `commands.Context`
-    :return: `None`
-    """
     seed()
     with open("memes", "r") as f:
         embed: Embed = embeds.create_image_embed(choice(f.readlines()))
@@ -225,13 +178,6 @@ async def send_meme(ctx: commands.Context):
 @remove_role.error
 @add_mu.error
 async def cmd_error(ctx: commands.Context, error: commands.CommandError):
-    """
-    Async function to send a message if a user is missing permissions.
-
-    :param ctx: `Context` original user message's context
-    :param error: `commands.CommandError` the error invoked by the user
-    :return: `None`
-    """
     if isinstance(error, commands.MissingPermissions):
         await ctx.send(admin_error.format(ctx.author.mention, croc_emote))
 

@@ -10,12 +10,6 @@ top10_msg: str = "**Top 10 Ridleycord Boosters**```{}```"
 
 
 async def update_leaderboard(ctx: commands.Context):
-    """
-    Async function that updates the booster leaderboard in the booster rewards channel.
-
-    :param ctx: `commands.Context`
-    :return: `None`
-    """
     boosters: dict = get_boosters(ctx)
     booster_chan: TextChannel = ctx.guild.get_channel(booster_chan_id)
     oldBoard: Message = await booster_chan.fetch_message(board_id)
@@ -24,12 +18,6 @@ async def update_leaderboard(ctx: commands.Context):
 
 
 def get_boosters(ctx: commands.Context):
-    """
-    Get the boosters sorted by time since they boosted.
-
-    :param ctx: `commands.Context`
-    :return: `dict`
-    """
     today: datetime = datetime.today()
     boosters: List[Member] = ctx.guild.premium_subscribers
     ranks: dict = {}
@@ -45,12 +33,6 @@ def get_boosters(ctx: commands.Context):
 
 
 def build_leaderboard(boosters: dict):
-    """
-    Build the leaderboard message.
-
-    :param boosters: `dict`
-    :return: `str`
-    """
     c: int = 1
     s: str = ""
 

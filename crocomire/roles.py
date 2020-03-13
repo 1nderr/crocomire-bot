@@ -5,12 +5,6 @@ from discord.ext import commands
 
 
 async def remove_all_roles(ctx: commands.Context):
-    """
-    Async function that removes the given role from all users.
-
-    :param ctx: `commands.Context`
-    :return: `str`, `str`
-    """
     role: Role = None
     users: str = ""
     role_name: str = "".join(ctx.message.content.split()[1:]).lower()

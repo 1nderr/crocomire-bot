@@ -4,33 +4,14 @@ from crocomire.mu_model import Matchup
 
 
 def connect_to_synonyms_db() -> Connection:
-    """
-    Connect to the synonyms database.
-
-    :return: `Connection`
-    """
-    conn: Connection = connect("databases/synonyms.db")
-    return conn
+    return connect("databases/synonyms.db")
 
 
 def connect_to_mu_db() -> Connection:
-    """
-    Connect to the synonyms database.
-
-    :return: `Connection`
-    """
-    conn: Connection = connect("databases/mu.db")
-    return conn
+    return connect("databases/mu.db")
 
 
 def select_char(char_name: str, db: Connection) -> str:
-    """
-    Get the code name of the given character name.
-
-    :param move_name: `str`
-    :param db: `Connection`
-    :return: `str` "" if not found
-    """
     c: Cursor = db.cursor()
     c = db.execute("SELECT name FROM characters where name=?", (char_name,))
     rows: List = c.fetchall()
@@ -57,13 +38,6 @@ def select_char(char_name: str, db: Connection) -> str:
 
 
 def select_mu_data(char_name: str, db: Connection) -> Matchup:
-    """
-    Get the character's mu data.
-
-    :param char_name: `str`
-    :param db: `Connection`
-    :return: `List[str]` [] if not found.
-    """
     c: Cursor = db.cursor()
     c = db.execute("""
             SELECT
@@ -82,13 +56,7 @@ def select_mu_data(char_name: str, db: Connection) -> Matchup:
     return rows[0][1:9]
 
 
-def insert_mu_data(mu: Matchup, db: Connection) -> Matchup:
-    """
-    Insert the character's mu data.
-
-    :param mu: `Matchup`
-    :param db: `Connection`
-    """
+def insert_mu_data(mu: Matchup, db: Connection):
     db.execute("""
             INSERT INTO
                 matchups
@@ -99,13 +67,7 @@ def insert_mu_data(mu: Matchup, db: Connection) -> Matchup:
     db.commit()
 
 
-def update_mu_data(mu: Matchup, db: Connection) -> Matchup:
-    """
-    Update the character's mu data.
-
-    :param mu: `Matchup`
-    :param db: `Connection`
-    """
+def update_mu_data(mu: Matchup, db: Connection):
     db.execute("""
             UPDATE
                 matchups
@@ -119,13 +81,7 @@ def update_mu_data(mu: Matchup, db: Connection) -> Matchup:
     db.commit()
 
 
-def remove_mu_data(char_name: str, db: Connection) -> Matchup:
-    """
-    Get the character's mu data.
-
-    :param char_name: `str`
-    :param db: `Connection`
-    """
+def remove_mu_data(char_name: str, db: Connection):
     db.execute("""
             DELETE
             FROM

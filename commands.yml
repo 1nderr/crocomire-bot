@@ -21,15 +21,6 @@ info:
     mori: Sends Mori's top 3 booster command.
     mimic: Sends Mimic's top 3 booster command.
 
-text:
-  bruh: Bruh <:Crocomire:583880666970718224>
-  mimic: Fuck GameStop Mario.
-  
-image:
-  sprmash: https://cdn.discordapp.com/attachments/683550953739124737/684159265874640943/SPR_Mashout_s.png
-  mori: https://cdn.discordapp.com/attachments/456260916720173057/675522898471026718/670408231658717206.png
-  ches: https://cdn.discordapp.com/attachments/567534605091995648/675751591340408838/20200208_111432.gif
-
 embed:
   changes:
     title: Recent Ridley Changes (7.0.0)
