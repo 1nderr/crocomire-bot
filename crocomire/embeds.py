@@ -6,17 +6,8 @@ embed_color = 10170673
 
 
 def create_embed(embedModel: EmbedModel):
-    title = ""
-    embed: Embed = Embed()
-
-    if embedModel.title is not None:
-        title = "__" + embedModel.title + "__"
-
-    if embedModel.description is not None:
-        embed = Embed(title=title, color=embed_color,
-                      description=embedModel.description)
-    else:
-        embed: Embed = Embed(title=title, color=embed_color)
+    embed: Embed = Embed(title=embedModel.title,
+                         color=embed_color, description=embedModel.description)
 
     if embedModel.footer is not None:
         embed.set_footer(text=embedModel.footer)
@@ -35,14 +26,13 @@ def create_embed(embedModel: EmbedModel):
 
 
 def create_mu_embed(mu: Matchup):
-    title: str = "__" + mu.title + "__"
     desc: str = "[Click here for more matchup tips.]({})".format(mu.doclink)
     tips: str = ""
 
     for t in mu.criticaltips:
         tips += "• {}\n".format(t)
 
-    embed: Embed = Embed(title=title, color=embed_color, description=desc)
+    embed: Embed = Embed(title=mu.title, color=embed_color, description=desc)
     if mu.image != "MISSING":
         embed.set_thumbnail(url=mu.image)
 
