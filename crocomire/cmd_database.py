@@ -50,7 +50,14 @@ def select_embed_fields(cmd_id: int, db: Connection) -> dict:
     return fields
 
 
-def select_all_cmds(db: Connection) -> dict:
+def select_all_cmds(db: Connection) -> List:
+    c: Cursor = db.cursor()
+    c = db.execute("SELECT name FROM help")
+    rows: List = c.fetchall()
+    return [row[0] for row in rows]
+
+
+def select_all_cmds_types(db: Connection) -> dict:
     c: Cursor = db.cursor()
     c = db.execute("SELECT name, type FROM help")
     rows: List = c.fetchall()
@@ -65,7 +72,7 @@ def select_all_cmds(db: Connection) -> dict:
     return cmds
 
 
-def select_help(cmd: str, db: Connection) -> str:
+def select_cmd_help(cmd: str, db: Connection) -> tuple:
     c: Cursor = db.cursor()
     c = db.execute(
         "SELECT help_msg, usage, example FROM help WHERE name=?", (cmd,))

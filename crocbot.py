@@ -23,6 +23,7 @@ boost_msg: str = "What's up booster Bruh {}. Imagine not being a booster {}"
 top10_msg: str = "**Top 10 Ridleycord Boosters**```{}```"
 
 admin_error: str = "{} you need the permission **Administrator** to use that command Bruh {}"
+bad_cmd_error: str = "Bruh, that command does not exist {}"
 no_name_error: str = "Bruh, that's not right. You didn't give a character name {}"
 no_char_error: str = "That character does not exist Bruh {}"
 no_data_error: str = "That character does not have any MU data Bruh {}"
@@ -69,10 +70,10 @@ async def send_embed(ctx: commands.Context):
 
 
 @bot.command(name="info")
-async def send_help(ctx: commands.Context, *args: List):
+async def send_help(ctx: commands.Context, *args):
     textEmbed: TextEmbed = TextEmbed("info")
     if len(args) == 0:
-        cmds: List = cmd_database.select_all_cmds(cmd_db)
+        cmds: dict = cmd_database.select_all_cmds_types(cmd_db)
         textEmbed.set_title("Commands List")
         textEmbed.set_description("`?info <command>` for more info.")
         textEmbed.set_thumbnail(bot.user.avatar_url)
@@ -84,10 +85,23 @@ async def send_help(ctx: commands.Context, *args: List):
             cmds[cmd_type] = ", ".join(sorted(cmds[cmd_type]))
 
         textEmbed.set_fields(cmds)
+    elif args[0] in cmd_database.select_all_cmds(cmd_db):
+        cmd: str = args[0]
+        cmdHelp: tuple = cmd_database.select_cmd_help(cmd, cmd_db)
+        textEmbed.set_title("Command Usage: ?{}".format(cmd))
+        textEmbed.set_description(cmdHelp[0])
+        usageFields: dict = {"Usage": "`{}`".format(cmdHelp[1])}
+
+        if cmdHelp[2] is not None:
+            usageFields["Example"] = "`{}`".format(cmdHelp[2])
+
+        textEmbed.set_fields(usageFields)
+    else:
+        await ctx.send(bad_cmd_error.format(croc_emote))
+        return
 
     embed: Embed = embeds.create_embed(textEmbed)
-    await ctx.author.send(embed=embed)
-    await ctx.send("{} Bruh, I sent you a DM {}".format(ctx.author.mention, croc_emote))
+    await ctx.send(embed=embed)
 
 
 @bot.command(name="mu")
