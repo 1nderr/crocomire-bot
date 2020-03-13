@@ -6,7 +6,7 @@ from discord import Game, Embed
 from discord.ext import commands
 
 from secret import token
-from crocomire import embeds, boost, roles, mu, mu_database, cmd_database
+from crocomire import embeds, boost, roles, mu, mu_database, cmd_database, info
 from crocomire.mu_model import Matchup
 from crocomire.embed_model import EmbedModel
 
@@ -71,31 +71,11 @@ async def send_embed(ctx: commands.Context):
 
 @bot.command(name="info")
 async def send_help(ctx: commands.Context, *args):
-    embedModel: EmbedModel = EmbedModel("info")
     if len(args) == 0:
-        cmds: dict = cmd_database.select_all_cmds_types(cmd_db)
-        embedModel.set_title("Commands List")
-        embedModel.set_description("`?info <command>` for more info.")
+        embedModel: EmbedModel = info.get_full_info()
         embedModel.set_thumbnail(bot.user.avatar_url)
-        embedModel.set_footer("By: 1nder")
-
-        for cmd_type in cmds.keys():
-            for i, c in enumerate(cmds[cmd_type]):
-                cmds[cmd_type][i] = "`{}`".format(c)
-            cmds[cmd_type] = ", ".join(sorted(cmds[cmd_type]))
-
-        embedModel.set_fields(cmds)
     elif args[0] in cmd_database.select_all_cmds(cmd_db):
-        cmd: str = args[0]
-        cmdHelp: tuple = cmd_database.select_cmd_help(cmd, cmd_db)
-        embedModel.set_title("Command Usage: ?{}".format(cmd))
-        embedModel.set_description(cmdHelp[0])
-        usageFields: dict = {"Usage": "`{}`".format(cmdHelp[1])}
-
-        if cmdHelp[2] is not None:
-            usageFields["Example"] = "`{}`".format(cmdHelp[2])
-
-        embedModel.set_fields(usageFields)
+        embedModel: EmbedModel = info.get_cmd_info(args[0])
     else:
         await ctx.send(bad_cmd_error.format(croc_emote))
         return
