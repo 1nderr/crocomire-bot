@@ -139,7 +139,6 @@ async def add_mu(ctx: commands.Context):
 
 @bot.command(name="removemu")
 @commands.has_permissions(administrator=True)
-@commands.is_owner()
 async def remove_mu(ctx: commands.Context):
     msg: str = ctx.message.content
     if len(msg.split()) == 1:
@@ -166,7 +165,6 @@ async def remove_mu(ctx: commands.Context):
 
 @bot.command(name="removerole")
 @commands.has_permissions(administrator=True)
-@commands.is_owner()
 async def remove_role(ctx: commands.Context):
     if "jmu" not in "".join(ctx.message.content.split()[1:]).lower():
         await ctx.send(bad_role_error.format(croc_emote))
@@ -203,6 +201,7 @@ async def send_funny_boost(ctx: commands.Context):
 
 @remove_role.error
 @add_mu.error
+@remove_mu.error
 async def cmd_error(ctx: commands.Context, error: commands.CommandError):
     if isinstance(error, commands.MissingPermissions):
         await ctx.send(admin_error.format(ctx.author.mention, croc_emote))
