@@ -41,10 +41,33 @@ def select_embed_fields(cmd_id: int, db: Connection) -> dict:
     c: Cursor = db.cursor()
     c = db.execute(
         "SELECT name, value FROM embed_fields WHERE embed_id=?", (cmd_id,))
-
     rows: List = c.fetchall()
     fields: dict = {}
+
     for row in rows:
         fields[row[0]] = row[1]
 
     return fields
+
+
+def select_all_cmds(db: Connection) -> dict:
+    c: Cursor = db.cursor()
+    c = db.execute("SELECT name, type FROM help")
+    rows: List = c.fetchall()
+    cmds: dict = {}
+
+    for row in rows:
+        if row[1] not in cmds.keys():
+            cmds[row[1]] = [row[0]]
+        else:
+            cmds[row[1]].append(row[0])
+
+    return cmds
+
+
+def select_help(cmd: str, db: Connection) -> str:
+    c: Cursor = db.cursor()
+    c = db.execute(
+        "SELECT help_msg, usage, example FROM help WHERE name=?", (cmd,))
+    rows: List = c.fetchall()
+    return rows[0]

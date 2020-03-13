@@ -4,7 +4,6 @@ from sqlite3 import Connection
 
 from discord import Game, Embed
 from discord.ext import commands
-from yaml import safe_load
 
 from secret import token
 from crocomire import embeds, boost, roles, mu, mu_database, cmd_database
@@ -31,7 +30,6 @@ bad_role_error: str = "That is not a JMU role Bruh {}"
 no_role_error: str = "No one had the role **{}** Bruh {}"
 no_boost_error: str = "No one boosted this server Bruh {}"
 
-cmd_data: dict = safe_load(open("commands.yml"))
 cmd_db: Connection = cmd_database.connect_to_cmd_db()
 
 bot: commands.Bot = commands.Bot(
@@ -70,11 +68,26 @@ async def send_embed(ctx: commands.Context):
     await ctx.send(embed=embed)
 
 
-# @bot.command(name="info")
-# async def send_help(ctx: commands.Context):
-#     embed: Embed = embeds.create_text_embed(cmd_data["info"])
-#     await ctx.author.send(embed=embed)
-#     await ctx.send("{} Bruh, I sent you a DM {}".format(ctx.author.mention, croc_emote))
+@bot.command(name="info")
+async def send_help(ctx: commands.Context, *args: List):
+    textEmbed: TextEmbed = TextEmbed("info")
+    if len(args) == 0:
+        cmds: List = cmd_database.select_all_cmds(cmd_db)
+        textEmbed.set_title("Commands List")
+        textEmbed.set_description("`?info <command>` for more info.")
+        textEmbed.set_thumbnail(bot.user.avatar_url)
+        textEmbed.set_footer("By: 1nder")
+
+        for cmd_type in cmds.keys():
+            for i, c in enumerate(cmds[cmd_type]):
+                cmds[cmd_type][i] = "`{}`".format(c)
+            cmds[cmd_type] = ", ".join(sorted(cmds[cmd_type]))
+
+        textEmbed.set_fields(cmds)
+
+    embed: Embed = embeds.create_embed(textEmbed)
+    await ctx.author.send(embed=embed)
+    await ctx.send("{} Bruh, I sent you a DM {}".format(ctx.author.mention, croc_emote))
 
 
 @bot.command(name="mu")
