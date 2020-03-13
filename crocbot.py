@@ -221,6 +221,8 @@ async def remove_cmd(ctx: commands.Context, *args):
 @remove_role.error
 @add_mu.error
 @remove_mu.error
+@add_cmd.error
+@remove_cmd.error
 async def cmd_error(ctx: commands.Context, error: commands.CommandError):
     if isinstance(error, commands.MissingPermissions):
         await ctx.send(admin_error.format(ctx.author.mention, croc_emote))
