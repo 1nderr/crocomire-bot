@@ -1,4 +1,4 @@
-class TextEmbed:
+class EmbedModel:
     def __init__(self, name: str):
         self.name = name
         self.title = None

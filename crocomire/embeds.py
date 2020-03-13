@@ -1,35 +1,35 @@
 from discord import Embed
 from crocomire.mu_model import Matchup
-from crocomire.embed_model import TextEmbed
+from crocomire.embed_model import EmbedModel
 
 embed_color = 10170673
 
 
-def create_embed(textEmbed: TextEmbed):
+def create_embed(embedModel: EmbedModel):
     title = ""
     embed: Embed = Embed()
 
-    if textEmbed.title is not None:
-        title = "__" + textEmbed.title + "__"
+    if embedModel.title is not None:
+        title = "__" + embedModel.title + "__"
 
-    if textEmbed.description is not None:
+    if embedModel.description is not None:
         embed = Embed(title=title, color=embed_color,
-                      description=textEmbed.description)
+                      description=embedModel.description)
     else:
         embed: Embed = Embed(title=title, color=embed_color)
 
-    if textEmbed.footer is not None:
-        embed.set_footer(text=textEmbed.footer)
+    if embedModel.footer is not None:
+        embed.set_footer(text=embedModel.footer)
 
-    if textEmbed.thumbnail is not None:
-        embed.set_thumbnail(url=textEmbed.thumbnail)
+    if embedModel.thumbnail is not None:
+        embed.set_thumbnail(url=embedModel.thumbnail)
 
-    if textEmbed.image is not None:
-        embed.set_image(url=textEmbed.image)
+    if embedModel.image is not None:
+        embed.set_image(url=embedModel.image)
 
-    if textEmbed.fields is not None:
-        for i in textEmbed.fields.keys():
-            embed.add_field(name=i, value=textEmbed.fields[i], inline=False)
+    if embedModel.fields is not None:
+        for i in embedModel.fields.keys():
+            embed.add_field(name=i, value=embedModel.fields[i], inline=False)
 
     return embed
 

@@ -8,7 +8,7 @@ from discord.ext import commands
 from secret import token
 from crocomire import embeds, boost, roles, mu, mu_database, cmd_database
 from crocomire.mu_model import Matchup
-from crocomire.embed_model import TextEmbed
+from crocomire.embed_model import EmbedModel
 
 prefix: str = "?"
 status_msg: str = "Bruh, Type ?info"
@@ -50,57 +50,57 @@ async def send_text(ctx: commands.Context):
 async def send_embed(ctx: commands.Context):
     cmd: str = ctx.message.content[1:]
     embedData: List = cmd_database.select_embed_cmd(cmd, cmd_db)
-    textEmbed: TextEmbed = TextEmbed(cmd)
-    textEmbed.set_title(embedData[0])
-    textEmbed.set_description(embedData[1])
-    textEmbed.set_footer(embedData[2])
-    textEmbed.set_thumbnail(embedData[3])
-    textEmbed.set_fields(embedData[5])
+    embedModel: EmbedModel = EmbedModel(cmd)
+    embedModel.set_title(embedData[0])
+    embedModel.set_description(embedData[1])
+    embedModel.set_footer(embedData[2])
+    embedModel.set_thumbnail(embedData[3])
+    embedModel.set_fields(embedData[5])
 
     if cmd == "meme":
         with open("databases/memes", "r") as f:
             seed()
             meme = choice(f.readlines())
-            textEmbed.set_image(meme)
+            embedModel.set_image(meme)
     else:
-        textEmbed.set_image(embedData[4])
+        embedModel.set_image(embedData[4])
 
-    embed: Embed = embeds.create_embed(textEmbed)
+    embed: Embed = embeds.create_embed(embedModel)
     await ctx.send(embed=embed)
 
 
 @bot.command(name="info")
 async def send_help(ctx: commands.Context, *args):
-    textEmbed: TextEmbed = TextEmbed("info")
+    embedModel: EmbedModel = EmbedModel("info")
     if len(args) == 0:
         cmds: dict = cmd_database.select_all_cmds_types(cmd_db)
-        textEmbed.set_title("Commands List")
-        textEmbed.set_description("`?info <command>` for more info.")
-        textEmbed.set_thumbnail(bot.user.avatar_url)
-        textEmbed.set_footer("By: 1nder")
+        embedModel.set_title("Commands List")
+        embedModel.set_description("`?info <command>` for more info.")
+        embedModel.set_thumbnail(bot.user.avatar_url)
+        embedModel.set_footer("By: 1nder")
 
         for cmd_type in cmds.keys():
             for i, c in enumerate(cmds[cmd_type]):
                 cmds[cmd_type][i] = "`{}`".format(c)
             cmds[cmd_type] = ", ".join(sorted(cmds[cmd_type]))
 
-        textEmbed.set_fields(cmds)
+        embedModel.set_fields(cmds)
     elif args[0] in cmd_database.select_all_cmds(cmd_db):
         cmd: str = args[0]
         cmdHelp: tuple = cmd_database.select_cmd_help(cmd, cmd_db)
-        textEmbed.set_title("Command Usage: ?{}".format(cmd))
-        textEmbed.set_description(cmdHelp[0])
+        embedModel.set_title("Command Usage: ?{}".format(cmd))
+        embedModel.set_description(cmdHelp[0])
         usageFields: dict = {"Usage": "`{}`".format(cmdHelp[1])}
 
         if cmdHelp[2] is not None:
             usageFields["Example"] = "`{}`".format(cmdHelp[2])
 
-        textEmbed.set_fields(usageFields)
+        embedModel.set_fields(usageFields)
     else:
         await ctx.send(bad_cmd_error.format(croc_emote))
         return
 
-    embed: Embed = embeds.create_embed(textEmbed)
+    embed: Embed = embeds.create_embed(embedModel)
     await ctx.send(embed=embed)
 
 
