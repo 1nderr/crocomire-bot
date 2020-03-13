@@ -20,7 +20,7 @@ remove_mu_msg: str = "I removed the MU write up for **{}** Bruh {}"
 role_msg: str = "I removed the role **{}** from these users Bruh {}:\n```{}```"
 boost_msg: str = "What's up booster Bruh {}. Imagine not being a booster {}"
 top10_msg: str = "**Top 10 Ridleycord Boosters**```{}```"
-add_cmd_msg: str = "Bruh, I {} the **?{}** command {}"
+cmd_msg: str = "Bruh, I {} the **?{}** command {}"
 
 admin_error: str = "{} you need the permission **Administrator** to use that command Bruh {}"
 bad_cmd_error: str = "Bruh, that command does not exist {}"
@@ -34,6 +34,8 @@ add_cmd_fmt_err: str = "Bruh, that's not right. The format is `?addcmd <type> <n
 custom_cmd_error: str = "Bruh, you cannot update that command {}"
 invalid_type_err: str = "Bruh, that is not a valid command type. Try `text` or `embed` {}"
 no_info_error: str = "Bruh, I do not have info on custom commands {}"
+rm_cmd_fmt_err: str = "Bruh, that's not right. You didn't give the command name {}"
+no_remove_error: str = "Bruh, you cannot remove that command {}"
 
 bot: commands.Bot = commands.Bot(
     command_prefix=prefix,
@@ -187,10 +189,10 @@ async def add_cmd(ctx: commands.Context, *args):
         text: str = " ".join(args[2:])
         if name not in cmd_database.select_all_cmds(cmd_db):
             cmd_database.insert_text_cmd(name, text, cmd_db)
-            await ctx.send(add_cmd_msg.format("created", name, croc_emote))
+            await ctx.send(cmd_msg.format("created", name, croc_emote))
         elif name in cmd_database.select_all_custom_cmds(cmd_db):
             cmd_database.update_text_cmd(name, text, cmd_db)
-            await ctx.send(add_cmd_msg.format("updated", name, croc_emote))
+            await ctx.send(cmd_msg.format("updated", name, croc_emote))
         else:
             await ctx.send(custom_cmd_error.format(croc_emote))
             return
@@ -199,6 +201,21 @@ async def add_cmd(ctx: commands.Context, *args):
         await ctx.send(text)
     else:
         await ctx.send(invalid_type_err.format(croc_emote))
+
+
+@bot.command(name="removecommand", aliases=["removecmd"])
+@commands.has_permissions(administrator=True)
+async def remove_cmd(ctx: commands.Context, *args):
+    cmd_db: Connection = cmd_database.connect_to_cmd_db()
+    if len(args) == 0:
+        await ctx.send(rm_cmd_fmt_err.format(croc_emote))
+    else:
+        cmd: str = args[0]
+        if cmd in cmd_database.select_all_custom_cmds(cmd_db):
+            cmd_database.remove_text_data(cmd, cmd_db)
+            await ctx.send(cmd_msg.format("removed", cmd, croc_emote))
+        else:
+            await ctx.send(no_remove_error.format(croc_emote))
 
 
 @remove_role.error
