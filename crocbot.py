@@ -12,13 +12,25 @@ from crocomire.mu_model import Matchup
 from crocomire.embed_model import TextEmbed
 
 prefix: str = "?"
+status_msg: str = "Bruh, Type ?info"
+
 croc_emote: str = "<:Crocomire:583880666970718224>"
 lul_emote: str = "<:RidLul:562495276141510667>"
 dab_emote: str = "<:RidDab:562492164664197120>"
-status_msg: str = "Bruh, Type ?info"
-top10_msg: str = "**Top 10 Ridleycord Boosters**```{}```"
+
+remove_mu_msg: str = "I removed the MU write up for **{}** Bruh {}"
 role_msg: str = "I removed the role **{}** from these users Bruh {}:\n```{}```"
+boost_msg: str = "What's up booster Bruh {}. Imagine not being a booster {}"
+top10_msg: str = "**Top 10 Ridleycord Boosters**```{}```"
+
 admin_error: str = "{} you need the permission **Administrator** to use that command Bruh {}"
+no_name_error: str = "Bruh, that's not right. You didn't give a character name {}"
+no_char_error: str = "That character does not exist Bruh {}"
+no_data_error: str = "That character does not have any MU data Bruh {}"
+bad_role_error: str = "That is not a JMU role Bruh {}"
+no_role_error: str = "No one had the role **{}** Bruh {}"
+no_boost_error: str = "No one boosted this server Bruh {}"
+
 cmd_data: dict = safe_load(open("commands.yml"))
 cmd_db: Connection = cmd_database.connect_to_cmd_db()
 
@@ -69,19 +81,19 @@ async def send_embed(ctx: commands.Context):
 async def send_mu(ctx: commands.Context):
     msg: str = ctx.message.content
     if len(msg.split()) == 1:
-        await ctx.send("Bruh, that's not right. You didn't give a character name {}".format(croc_emote))
+        await ctx.send(no_name_error.format(croc_emote))
         return
 
     char: str = "".join(msg.split()[1:]).lower()
     char = mu.translate_char(char)
 
     if len(char) == 0:
-        await ctx.send("That character does not exist Bruh {}".format(croc_emote))
+        await ctx.send(no_char_error.format(croc_emote))
         return
 
     matchup: Matchup = mu.get_matchup(char)
     if matchup is None:
-        await ctx.send("That character does not have data *yet* Bruh {}".format(croc_emote))
+        await ctx.send(no_data_error.format(croc_emote))
         return
 
     embed: Embed = embeds.create_mu_embed(matchup)
@@ -93,14 +105,14 @@ async def send_mu(ctx: commands.Context):
 async def add_mu(ctx: commands.Context):
     msg: str = ctx.message.content
     if len(msg.split()) == 1:
-        await ctx.send("Bruh, that's not right. You didn't give a character name {}".format(croc_emote))
+        await ctx.send(no_name_error.format(croc_emote))
         return
 
     mu_sections: List = msg.split("\n")
     char: str = "".join(mu_sections[0].split()[1:]).lower()
     char = mu.translate_char(char)
     if len(char) == 0:
-        await ctx.send("That character does not exist Bruh {}".format(croc_emote))
+        await ctx.send(no_char_error.format(croc_emote))
         return
 
     mu_db: Connection = mu_database.connect_to_mu_db()
@@ -118,35 +130,35 @@ async def add_mu(ctx: commands.Context):
 async def remove_mu(ctx: commands.Context):
     msg: str = ctx.message.content
     if len(msg.split()) == 1:
-        await ctx.send("Bruh, that's not right. You didn't give a character name {}".format(croc_emote))
+        await ctx.send(no_name_error.format(croc_emote))
         return
 
     char: str = "".join(msg.split()[1:]).lower()
     char = mu.translate_char(char)
 
     if len(char) == 0:
-        await ctx.send("That character does not exist Bruh {}".format(croc_emote))
+        await ctx.send(no_char_error.format(croc_emote))
         return
 
     mu_db: Connection = mu_database.connect_to_mu_db()
     if len(mu_database.select_mu_data(char, mu_db)) == 0:
-        await ctx.send("That character does not have any mu data Bruh {}".format(croc_emote))
+        await ctx.send(no_data_error.format(croc_emote))
         return
 
     mu_database.remove_mu_data(char, mu_db)
-    await ctx.send("I removed the MU write up for **{}** Bruh {}".format(char, croc_emote))
+    await ctx.send(remove_mu_msg.format(char, croc_emote))
 
 
 @bot.command(name="removerole")
 @commands.has_permissions(administrator=True)
 async def remove_role(ctx: commands.Context):
     if "jmu" not in "".join(ctx.message.content.split()[1:]).lower():
-        await ctx.send("That is not a JMU role Bruh {}".format(croc_emote))
+        await ctx.send(bad_role_error.format(croc_emote))
         return
 
     role_name, members = await roles.remove_all_roles(ctx)
     if len(members) == 0:
-        await ctx.send("No one had the role **{}** Bruh {}".format(role_name, croc_emote))
+        await ctx.send(no_role_error.format(role_name, croc_emote))
         return
 
     await ctx.send(role_msg.format(role_name, croc_emote, members))
@@ -156,7 +168,7 @@ async def remove_role(ctx: commands.Context):
 async def send_leaderboard(ctx: commands.Context):
     boosters: dict = boost.get_boosters(ctx)
     if len(boosters) == 0:
-        await ctx.send("No one boosted this server Bruh {}".format(croc_emote))
+        await ctx.send(no_boost_error.format(croc_emote))
         return
 
     msg: str = boost.build_leaderboard(boosters)
@@ -167,7 +179,7 @@ async def send_leaderboard(ctx: commands.Context):
 @bot.command(name="boost")
 async def send_funny_boost(ctx: commands.Context):
     if ctx.author in ctx.guild.premium_subscribers:
-        await ctx.send("What's up booster Bruh {}. Imagine not being a booster {}".format(croc_emote, lul_emote))
+        await ctx.send(boost_msg.format(croc_emote, lul_emote))
     else:
         await ctx.message.add_reaction(dab_emote)
     await boost.update_leaderboard(ctx)
