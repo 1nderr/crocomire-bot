@@ -88,7 +88,9 @@ async def send_help(ctx: commands.Context, *args):
 async def send_mu(ctx: commands.Context):
     msg: str = ctx.message.content
     if len(msg.split()) == 1:
-        await ctx.send(no_name_error.format(croc_emote))
+        embedModel: EmbedModel = mu.get_all_chars()
+        embed: Embed = embeds.create_embed(embedModel)
+        await ctx.send(embed=embed)
         return
 
     char: str = "".join(msg.split()[1:]).lower()
@@ -111,9 +113,10 @@ async def send_mu(ctx: commands.Context):
 @commands.has_permissions(administrator=True)
 async def add_mu(ctx: commands.Context):
     msg: str = ctx.message.content
-    # TODO: Show list of chars done
     if len(msg.split()) == 1:
-        await ctx.send(no_name_error.format(croc_emote))
+        embedModel: EmbedModel = mu.get_all_chars()
+        embed: Embed = embeds.create_embed(embedModel)
+        await ctx.send(embed=embed)
         return
 
     mu_sections: List = msg.split("\n")
@@ -138,7 +141,9 @@ async def add_mu(ctx: commands.Context):
 async def remove_mu(ctx: commands.Context):
     msg: str = ctx.message.content
     if len(msg.split()) == 1:
-        await ctx.send(no_name_error.format(croc_emote))
+        embedModel: EmbedModel = mu.get_all_chars()
+        embed: Embed = embeds.create_embed(embedModel)
+        await ctx.send(embed=embed)
         return
 
     char: str = "".join(msg.split()[1:]).lower()
@@ -198,5 +203,6 @@ async def send_funny_boost(ctx: commands.Context):
 async def cmd_error(ctx: commands.Context, error: commands.CommandError):
     if isinstance(error, commands.MissingPermissions):
         await ctx.send(admin_error.format(ctx.author.mention, croc_emote))
+
 
 bot.run(token)

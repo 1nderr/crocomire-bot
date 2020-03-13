@@ -11,6 +11,13 @@ def connect_to_mu_db() -> Connection:
     return connect("databases/mu.db")
 
 
+def select_all_chars(db: Connection) -> List:
+    c: Cursor = db.cursor()
+    c = db.execute("SELECT name FROM matchups")
+    rows: List = c.fetchall()
+    return [row[0] for row in rows]
+
+
 def select_char(char_name: str, db: Connection) -> str:
     c: Cursor = db.cursor()
     c = db.execute("SELECT name FROM characters where name=?", (char_name,))

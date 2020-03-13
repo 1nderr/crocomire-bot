@@ -31,6 +31,9 @@ def get_cmd_info(cmd: str):
     embedModel.add_field("Usage", "`{}`".format(cmdHelp[1]))
 
     if cmdHelp[2] is not None:
-        embedModel.add_field("Example", "`{}`".format(cmdHelp[2]))
+        examples: List = cmdHelp[2].split(",")
+        for i, e in enumerate(examples):
+            examples[i] = "`{}`".format(e)
+        embedModel.add_field("Example", "\n".join(examples))
 
     return embedModel
