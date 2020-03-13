@@ -1,4 +1,9 @@
+from typing import List
+from sqlite3 import Connection
+from random import choice, seed
+
 from discord import Embed
+from crocomire import cmd_database
 from crocomire.mu_model import Matchup
 from crocomire.embed_model import EmbedModel
 
@@ -41,3 +46,22 @@ def create_mu_embed(mu: Matchup):
     embed.add_field(name="Counter-Picks", value=mu.counterpicks, inline=True)
     embed.add_field(name="Bans", value=mu.bans, inline=True)
     return embed
+
+
+def get_embed_model(cmd: str):
+    cmd_db: Connection = cmd_database.connect_to_cmd_db()
+    embedData: List = cmd_database.select_embed_cmd(cmd, cmd_db)
+    embedModel: EmbedModel = EmbedModel(cmd)
+    embedModel.set_title(embedData[0])
+    embedModel.set_description(embedData[1])
+    embedModel.set_footer(embedData[2])
+    embedModel.set_thumbnail(embedData[3])
+    embedModel.set_fields(embedData[5])
+
+    if cmd == "meme":
+        with open("databases/memes", "r") as f:
+            seed()
+            meme = choice(f.readlines())
+            embedModel.set_image(meme)
+
+    return embedModel

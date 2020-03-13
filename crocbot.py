@@ -1,8 +1,7 @@
-from random import choice, seed
 from typing import List
 from sqlite3 import Connection
 
-from discord import Game, Embed
+from discord import Game, Embed, Message
 from discord.ext import commands
 
 from secret import token
@@ -31,46 +30,15 @@ bad_role_error: str = "That is not a JMU role Bruh {}"
 no_role_error: str = "No one had the role **{}** Bruh {}"
 no_boost_error: str = "No one boosted this server Bruh {}"
 
-cmd_db: Connection = cmd_database.connect_to_cmd_db()
-
 bot: commands.Bot = commands.Bot(
     command_prefix=prefix,
     help_command=None,
     activity=Game(status_msg))
 
 
-@bot.command(aliases=cmd_database.select_all_text_cmds(cmd_db))
-async def send_text(ctx: commands.Context):
-    cmd: str = ctx.message.content[1:]
-    msg: str = cmd_database.select_text_cmd(cmd, cmd_db)
-    await ctx.send(msg)
-
-
-@bot.command(aliases=cmd_database.select_all_embed_cmds(cmd_db))
-async def send_embed(ctx: commands.Context):
-    cmd: str = ctx.message.content[1:]
-    embedData: List = cmd_database.select_embed_cmd(cmd, cmd_db)
-    embedModel: EmbedModel = EmbedModel(cmd)
-    embedModel.set_title(embedData[0])
-    embedModel.set_description(embedData[1])
-    embedModel.set_footer(embedData[2])
-    embedModel.set_thumbnail(embedData[3])
-    embedModel.set_fields(embedData[5])
-
-    if cmd == "meme":
-        with open("databases/memes", "r") as f:
-            seed()
-            meme = choice(f.readlines())
-            embedModel.set_image(meme)
-    else:
-        embedModel.set_image(embedData[4])
-
-    embed: Embed = embeds.create_embed(embedModel)
-    await ctx.send(embed=embed)
-
-
 @bot.command(name="info")
 async def send_help(ctx: commands.Context, *args):
+    cmd_db: Connection = cmd_database.connect_to_cmd_db()
     if len(args) == 0:
         embedModel: EmbedModel = info.get_full_info()
         embedModel.set_thumbnail(bot.user.avatar_url)
@@ -205,6 +173,29 @@ async def send_funny_boost(ctx: commands.Context):
 async def cmd_error(ctx: commands.Context, error: commands.CommandError):
     if isinstance(error, commands.MissingPermissions):
         await ctx.send(admin_error.format(ctx.author.mention, croc_emote))
+
+
+@bot.event
+async def on_message(msg: Message):
+    if bot.user == msg.author:
+        return
+
+    cmd: str = msg.content.split()[0][1:]
+    cmd_db: Connection = cmd_database.connect_to_cmd_db()
+    text_cmds: List = cmd_database.select_all_text_cmds(cmd_db)
+    embed_cmds: List = cmd_database.select_all_embed_cmds(cmd_db)
+
+    if cmd in text_cmds:
+        text: str = cmd_database.select_text_cmd(cmd, cmd_db)
+        await msg.channel.send(text)
+        return
+    elif cmd in embed_cmds:
+        embedModel: EmbedModel = embeds.get_embed_model(cmd)
+        embed: Embed = embeds.create_embed(embedModel)
+        await msg.channel.send(embed=embed)
+        return
+
+    await bot.process_commands(msg)
 
 
 bot.run(token)
