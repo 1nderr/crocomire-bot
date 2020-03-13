@@ -10,7 +10,7 @@ from crocomire import mu_database
 def get_all_chars() -> EmbedModel:
     embedModel: EmbedModel = EmbedModel("chars")
     mu_db: Connection = mu_database.connect_to_mu_db()
-    chars: List = mu_database.select_all_chars(mu_db)
+    chars: List = sorted(mu_database.select_all_chars(mu_db))
 
     for i, c in enumerate(chars):
         chars[i] = "`{}`".format(c)
