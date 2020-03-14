@@ -11,6 +11,8 @@ from crocomire.embed_model import EmbedModel
 
 prefix: str = "?"
 status_msg: str = "Bruh, Type ?info"
+eggy_id: int = 257675080262352896
+wonder_id: int = 139148414507155457
 
 croc_emote: str = "<:Crocomire:583880666970718224>"
 lul_emote: str = "<:RidLul:562495276141510667>"
@@ -23,6 +25,7 @@ top10_msg: str = "**Top 10 Ridleycord Boosters**```{}```"
 cmd_msg: str = "Bruh, I {} the **?{}** command {}"
 
 admin_error: str = "{} you need the permission **Administrator** to use that command Bruh {}"
+owner_error: str = "{} only **Trexfan9 (Eggy)** and **1nder** can use that command Bruh {}"
 bad_cmd_error: str = "Bruh, that command does not exist {}"
 no_name_error: str = "Bruh, that's not right. You didn't give a character name {}"
 no_char_error: str = "That character does not exist Bruh {}"
@@ -41,6 +44,12 @@ bot: commands.Bot = commands.Bot(
     command_prefix=prefix,
     help_command=None,
     activity=Game(status_msg))
+
+
+def is_owner():
+    async def predicate(ctx):
+        return (ctx.author.id == eggy_id or ctx.author.id == wonder_id)
+    return commands.check(predicate)
 
 
 @bot.command(name="info")
@@ -88,8 +97,7 @@ async def send_mu(ctx: commands.Context):
 
 
 @bot.command(name="addmu")
-@commands.has_permissions(administrator=True)
-@commands.is_owner()
+@is_owner()
 async def add_mu(ctx: commands.Context):
     msg: str = ctx.message.content
     if len(msg.split()) == 1:
@@ -116,7 +124,7 @@ async def add_mu(ctx: commands.Context):
 
 
 @bot.command(name="removemu")
-@commands.has_permissions(administrator=True)
+@is_owner()
 async def remove_mu(ctx: commands.Context):
     msg: str = ctx.message.content
     if len(msg.split()) == 1:
@@ -165,7 +173,6 @@ async def send_leaderboard(ctx: commands.Context):
 
     msg: str = boost.build_leaderboard(boosters)
     await ctx.send(top10_msg.format(msg))
-    await boost.update_leaderboard(ctx)
 
 
 @bot.command(name="boost")
@@ -174,11 +181,10 @@ async def send_funny_boost(ctx: commands.Context):
         await ctx.send(boost_msg.format(croc_emote, lul_emote))
     else:
         await ctx.message.add_reaction(dab_emote)
-    await boost.update_leaderboard(ctx)
 
 
 @bot.command(name="addcommand", aliases=["addcmd"])
-@commands.has_permissions(administrator=True)
+@is_owner()
 async def add_cmd(ctx: commands.Context, *args):
     cmd_db: Connection = cmd_database.connect_to_cmd_db()
     if len(args) < 3:
@@ -204,7 +210,7 @@ async def add_cmd(ctx: commands.Context, *args):
 
 
 @bot.command(name="removecommand", aliases=["removecmd"])
-@commands.has_permissions(administrator=True)
+@is_owner()
 async def remove_cmd(ctx: commands.Context, *args):
     cmd_db: Connection = cmd_database.connect_to_cmd_db()
     if len(args) == 0:
@@ -226,6 +232,8 @@ async def remove_cmd(ctx: commands.Context, *args):
 async def cmd_error(ctx: commands.Context, error: commands.CommandError):
     if isinstance(error, commands.MissingPermissions):
         await ctx.send(admin_error.format(ctx.author.mention, croc_emote))
+    else:
+        await ctx.send(owner_error.format(ctx.author.mention, croc_emote))
 
 
 @bot.event
@@ -249,6 +257,7 @@ async def on_message(msg: Message):
         return
 
     await bot.process_commands(msg)
+    # await boost.update_leaderboard(ctx)
 
 
 bot.run(token)
