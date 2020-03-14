@@ -1,3 +1,8 @@
+# TODO: Move mu files to mu package
+# TODO: Move url to a more general package
+# TODO: Choose category after creating a command
+# TODO: Fix image cmds
+
 from typing import List
 from sqlite3 import Connection
 
