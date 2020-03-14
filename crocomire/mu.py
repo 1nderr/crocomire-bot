@@ -4,7 +4,7 @@ from re import sub, search, Match
 
 from crocomire.mu_model import Matchup
 from crocomire.embed_model import EmbedModel
-from crocomire import mu_database
+from crocomire import mu_database, url
 
 
 def get_all_chars() -> EmbedModel:
@@ -48,7 +48,6 @@ def get_matchup(char_name: str) -> Matchup:
 
 
 def add_matchup(char_name: str, mu_sections: List) -> Matchup:
-    # TODO: Check if URLs are valid
     mu: Matchup = Matchup(char_name)
     mu = parse_mu_msg(mu, mu_sections)
     mu_db: Connection = mu_database.connect_to_mu_db()
@@ -57,7 +56,6 @@ def add_matchup(char_name: str, mu_sections: List) -> Matchup:
 
 
 def update_matchup(char_name: str, mu_sections: List) -> Matchup:
-    # TODO: Check if URLs are valid
     mu: Matchup = get_matchup(char_name)
     mu = parse_mu_msg(mu, mu_sections)
     mu_db: Connection = mu_database.connect_to_mu_db()
@@ -79,9 +77,9 @@ def parse_mu_msg(mu: Matchup, mu_sections: List):
             mu.set_counterpicks(section_text)
         elif section_name == "BANS":
             mu.set_bans(section_text)
-        elif section_name == "IMAGE":
+        elif section_name == "IMAGE" and url.is_image(section_text):
             mu.set_image(section_text)
-        elif section_name == "DOC":
+        elif section_name == "DOC" and url.exists(section_text):
             mu.set_doclink(section_text)
         elif section_name[0:3] == "TIP":
             n_match: Match = search(r'\d+$', section_name)
