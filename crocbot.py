@@ -189,6 +189,7 @@ async def add_cmd(ctx: commands.Context, *args):
     cmd_db: Connection = cmd_database.connect_to_cmd_db()
     if len(args) < 3:
         await ctx.send(add_cmd_fmt_err.format(croc_emote))
+        return
 
     if args[0] == "text":
         name: str = args[1]
