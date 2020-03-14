@@ -1,8 +1,3 @@
-# TODO: Move mu files to mu package
-# TODO: Move url to a more general package
-# TODO: Choose category after creating a command
-# TODO: Fix image cmds
-
 from typing import List
 from sqlite3 import Connection
 
@@ -16,7 +11,7 @@ from crocomire.embed_model import EmbedModel
 
 prefix: str = "?"
 status_msg: str = "Bruh, Type ?info"
-owners: List = [257675080262352896, 139148414507155457]
+owners: List = [257675080262352896, 139148414507155457, 290964436527874058]
 
 croc_emote: str = "<:Crocomire:583880666970718224>"
 lul_emote: str = "<:RidLul:562495276141510667>"
