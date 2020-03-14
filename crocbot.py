@@ -5,7 +5,7 @@ from discord import Game, Embed, Message
 from discord.ext import commands
 
 from secret import token
-from crocomire import embeds, boost, roles, mu, mu_database, cmd_database, info, meme, url
+from crocomire import embeds, boost, roles, mu, mu_database, cmd_database, info, meme, url, errors
 from crocomire.mu_model import Matchup
 from crocomire.embed_model import EmbedModel
 
@@ -23,24 +23,6 @@ boost_msg: str = "What's up booster Bruh {}. Imagine not being a booster {}"
 top10_msg: str = "**Top 10 Ridleycord Boosters**```{}```"
 cmd_msg: str = "Bruh, I {} the **?{}** command {}"
 add_meme_msg: str = "Bruh, I added this new meme {}"
-
-admin_error: str = "{} you need the permission **Administrator** to use that command Bruh {}"
-owner_error: str = "{} only **Trexfan9 (Eggy)** and **1nder** can use that command Bruh {}"
-bad_cmd_error: str = "Bruh, that command does not exist {}"
-no_name_error: str = "Bruh, that's not right. You didn't give a character name {}"
-no_char_error: str = "That character does not exist Bruh {}"
-no_data_error: str = "That character does not have any MU data Bruh {}"
-bad_role_error: str = "That is not a JMU role Bruh {}"
-no_role_error: str = "No one had the role **{}** Bruh {}"
-no_boost_error: str = "No one boosted this server Bruh {}"
-add_cmd_fmt_err: str = "Bruh, that's not right. The format is `?addcmd <type> <name> <text>` {}"
-custom_cmd_error: str = "Bruh, you cannot update that command {}"
-invalid_type_err: str = "Bruh, that is not a valid command type. Try `text` or `embed` {}"
-no_info_error: str = "Bruh, I do not have info on custom commands {}"
-rm_cmd_fmt_err: str = "Bruh, that's not right. You didn't give the command name {}"
-no_remove_error: str = "Bruh, you cannot remove that command {}"
-no_meme_error: str = "Bruh, you did not provide a meme image link {}"
-no_img_url_err: str = "Bruh, that is not a valid image url {}"
 
 
 bot: commands.Bot = commands.Bot(
@@ -62,12 +44,12 @@ async def send_help(ctx: commands.Context, *args):
         embed_model: EmbedModel = info.get_full_info()
         embed_model.set_thumbnail(bot.user.avatar_url)
     elif args[0] in cmd_database.select_all_custom_cmds(cmd_db):
-        await ctx.send(no_info_error.format(croc_emote))
+        await ctx.send(errors.no_custom_info)
         return
     elif args[0] in cmd_database.select_all_cmds(cmd_db):
         embed_model: EmbedModel = info.get_cmd_info(args[0])
     else:
-        await ctx.send(bad_cmd_error.format(croc_emote))
+        await ctx.send(errors.invalid_cmd)
         return
 
     embed: Embed = embeds.create_embed(embed_model)
@@ -87,12 +69,12 @@ async def send_mu(ctx: commands.Context):
     char = mu.translate_char(char)
 
     if len(char) == 0:
-        await ctx.send(no_char_error.format(croc_emote))
+        await ctx.send(errors.no_char_exists)
         return
 
     matchup: Matchup = mu.get_matchup(char)
     if matchup is None:
-        await ctx.send(no_data_error.format(croc_emote))
+        await ctx.send(errors.no_mu_data)
         return
 
     embed: Embed = embeds.create_mu_embed(matchup)
@@ -113,7 +95,7 @@ async def add_mu(ctx: commands.Context):
     char: str = "".join(mu_sections[0].split()[1:]).lower()
     char = mu.translate_char(char)
     if len(char) == 0:
-        await ctx.send(no_char_error.format(croc_emote))
+        await ctx.send(errors.no_char_exists)
         return
 
     mu_db: Connection = mu_database.connect_to_mu_db()
@@ -140,12 +122,12 @@ async def remove_mu(ctx: commands.Context):
     char = mu.translate_char(char)
 
     if len(char) == 0:
-        await ctx.send(no_char_error.format(croc_emote))
+        await ctx.send(errors.no_char_exists)
         return
 
     mu_db: Connection = mu_database.connect_to_mu_db()
     if len(mu_database.select_mu_data(char, mu_db)) == 0:
-        await ctx.send(no_data_error.format(croc_emote))
+        await ctx.send(errors.no_mu_data)
         return
 
     mu_database.remove_mu_data(char, mu_db)
@@ -156,12 +138,12 @@ async def remove_mu(ctx: commands.Context):
 @commands.has_permissions(administrator=True)
 async def remove_role(ctx: commands.Context):
     if "jmu" not in "".join(ctx.message.content.split()[1:]).lower():
-        await ctx.send(bad_role_error.format(croc_emote))
+        await ctx.send(errors.not_jmu_role)
         return
 
     role_name, members = await roles.remove_all_roles(ctx)
     if len(members) == 0:
-        await ctx.send(no_role_error.format(role_name, croc_emote))
+        await ctx.send(errors.no_role.format(role_name))
         return
 
     await ctx.send(role_msg.format(role_name, croc_emote, members))
@@ -171,7 +153,7 @@ async def remove_role(ctx: commands.Context):
 async def send_leaderboard(ctx: commands.Context):
     boosters: dict = boost.get_boosters(ctx)
     if len(boosters) == 0:
-        await ctx.send(no_boost_error.format(croc_emote))
+        await ctx.send(errors.no_boosts)
         return
 
     msg: str = boost.build_leaderboard(boosters)
@@ -191,7 +173,7 @@ async def send_funny_boost(ctx: commands.Context):
 async def add_cmd(ctx: commands.Context, *args):
     cmd_db: Connection = cmd_database.connect_to_cmd_db()
     if len(args) < 3:
-        await ctx.send(add_cmd_fmt_err.format(croc_emote))
+        await ctx.send(errors.add_cmd_fmt)
         return
 
     if args[0] == "text":
@@ -204,13 +186,13 @@ async def add_cmd(ctx: commands.Context, *args):
             cmd_database.update_text_cmd(name, text, cmd_db)
             await ctx.send(cmd_msg.format("updated", name, croc_emote))
         else:
-            await ctx.send(custom_cmd_error.format(croc_emote))
+            await ctx.send(errors.no_update_cmd)
             return
 
         text: str = cmd_database.select_text_cmd(name, cmd_db)
         await ctx.send(text)
     else:
-        await ctx.send(invalid_type_err.format(croc_emote))
+        await ctx.send(errors.bad_cmd_type)
 
 
 @bot.command(name="removecommand", aliases=["removecmd"])
@@ -218,21 +200,21 @@ async def add_cmd(ctx: commands.Context, *args):
 async def remove_cmd(ctx: commands.Context, *args):
     cmd_db: Connection = cmd_database.connect_to_cmd_db()
     if len(args) == 0:
-        await ctx.send(rm_cmd_fmt_err.format(croc_emote))
+        await ctx.send(errors.rm_cmd_fmt)
     else:
         cmd: str = args[0]
         if cmd in cmd_database.select_all_custom_cmds(cmd_db):
             cmd_database.remove_text_data(cmd, cmd_db)
             await ctx.send(cmd_msg.format("removed", cmd, croc_emote))
         else:
-            await ctx.send(no_remove_error.format(croc_emote))
+            await ctx.send(errors.no_rm_cmd)
 
 
 @bot.command(name="addmeme")
 @is_owner()
 async def add_meme(ctx: commands.Context, *args):
     if len(args) == 0:
-        await ctx.send(no_meme_error.format(croc_emote))
+        await ctx.send(errors.no_meme_given)
     elif url.is_image(args[0]):
         meme.add_meme(args[0])
         embed_model: EmbedModel = EmbedModel("NewMeme")
@@ -241,7 +223,7 @@ async def add_meme(ctx: commands.Context, *args):
         await ctx.send(embed=embed)
         await ctx.send(add_meme_msg.format(croc_emote))
     else:
-        await ctx.send(no_img_url_err.format(croc_emote))
+        await ctx.send(errors.not_img_url)
 
 
 @remove_role.error
@@ -251,17 +233,14 @@ async def add_meme(ctx: commands.Context, *args):
 @remove_cmd.error
 async def cmd_error(ctx: commands.Context, error: commands.CommandError):
     if isinstance(error, commands.MissingPermissions):
-        await ctx.send(admin_error.format(ctx.author.mention, croc_emote))
+        await ctx.send(errors.not_admin.format(ctx.author.mention))
     else:
-        await ctx.send(owner_error.format(ctx.author.mention, croc_emote))
+        await ctx.send(errors.not_owner.format(ctx.author.mention, croc_emote))
 
 
 @bot.event
 async def on_message(msg: Message):
-    if bot.user == msg.author:
-        return
-
-    if msg.content[0] != prefix:
+    if bot.user == msg.author or msg.content[0] != prefix:
         return
 
     cmd: str = msg.content.split()[0][1:]
