@@ -242,6 +242,9 @@ async def on_message(msg: Message):
     if bot.user == msg.author:
         return
 
+    if msg.content[0] != prefix:
+        return
+
     cmd: str = msg.content.split()[0][1:]
     cmd_db: Connection = cmd_database.connect_to_cmd_db()
     text_cmds: List = cmd_database.select_all_text_cmds(cmd_db)
