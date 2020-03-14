@@ -5,7 +5,7 @@ from discord import Game, Embed, Message
 from discord.ext import commands
 
 from secret import token
-from crocomire import embeds, boost, roles, mu, mu_database, cmd_database, info, meme
+from crocomire import embeds, boost, roles, mu, mu_database, cmd_database, info, meme, url
 from crocomire.mu_model import Matchup
 from crocomire.embed_model import EmbedModel
 
@@ -40,6 +40,8 @@ no_info_error: str = "Bruh, I do not have info on custom commands {}"
 rm_cmd_fmt_err: str = "Bruh, that's not right. You didn't give the command name {}"
 no_remove_error: str = "Bruh, you cannot remove that command {}"
 no_meme_error: str = "Bruh, you did not provide a meme image link {}"
+no_img_url_err: str = "Bruh, that is not a valid image url {}"
+
 
 bot: commands.Bot = commands.Bot(
     command_prefix=prefix,
@@ -231,14 +233,15 @@ async def remove_cmd(ctx: commands.Context, *args):
 async def add_meme(ctx: commands.Context, *args):
     if len(args) == 0:
         await ctx.send(no_meme_error.format(croc_emote))
-    else:
-        # TODO: Check if link is valid
+    elif url.is_image(args[0]):
         meme.add_meme(args[0])
         embed_model: EmbedModel = EmbedModel("NewMeme")
         embed_model.set_image(args[0])
         embed: Embed = embeds.create_embed(embed_model)
         await ctx.send(embed=embed)
         await ctx.send(add_meme_msg.format(croc_emote))
+    else:
+        await ctx.send(no_img_url_err.format(croc_emote))
 
 
 @remove_role.error

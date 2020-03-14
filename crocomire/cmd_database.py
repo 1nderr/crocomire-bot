@@ -113,9 +113,7 @@ def insert_text_cmd(cmd: str, text: str, db: Connection):
     """, (cmd,))
     db.commit()
 
-    c: Cursor = db.cursor()
-    c = db.execute("SELECT id FROM all_commands WHERE name=?", (cmd,))
-    cmd_id: int = c.fetchall()[0][0]
+    cmd_id: int = select_cmd_id(cmd, db)
 
     db.execute("""
         INSERT INTO
@@ -127,19 +125,19 @@ def insert_text_cmd(cmd: str, text: str, db: Connection):
 
 
 def update_text_cmd(cmd: str, text: str, db: Connection):
-    c: Cursor = db.cursor()
-    c = db.execute("SELECT id FROM all_commands WHERE name=?", (cmd,))
-    cmd_id: int = c.fetchall()[0][0]
+    cmd_id: int = select_cmd_id(cmd, db)
     db.execute("UPDATE text_commands SET text=? WHERE cmd_id=?", (text, cmd_id))
     db.commit()
 
 
 def remove_text_data(cmd: str, db: Connection):
-    c: Cursor = db.cursor()
-    c = db.execute("SELECT id FROM all_commands WHERE name=?", (cmd,))
-    cmd_id: int = c.fetchall()[0][0]
+    cmd_id: int = select_cmd_id(cmd, db)
     db.execute("DELETE FROM all_commands WHERE id=?", (cmd_id,))
     db.execute("DELETE FROM text_commands WHERE cmd_id=?", (cmd_id,))
     db.commit()
 
-# TODO: Function for getting the id
+
+def select_cmd_id(cmd: str, db: Connection):
+    c: Cursor = db.cursor()
+    c = db.execute("SELECT id FROM all_commands WHERE name=?", (cmd,))
+    return c.fetchall()[0][0]

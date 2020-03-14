@@ -64,8 +64,6 @@ def update_matchup(char_name: str, mu_sections: List) -> Matchup:
     mu_database.update_mu_data(mu, mu_db)
     return mu
 
-# TODO: remove_matchup()
-
 
 def parse_mu_msg(mu: Matchup, mu_sections: List):
     del_count: int = 0
