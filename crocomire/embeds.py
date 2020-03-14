@@ -1,9 +1,8 @@
 from typing import List
 from sqlite3 import Connection
-from random import choice, seed
 
 from discord import Embed
-from crocomire import cmd_database
+from crocomire import cmd_database, meme
 from crocomire.mu_model import Matchup
 from crocomire.embed_model import EmbedModel
 
@@ -59,9 +58,6 @@ def get_embed_model(cmd: str):
     embedModel.set_fields(embedData[5])
 
     if cmd == "meme":
-        with open("databases/memes", "r") as f:
-            seed()
-            meme = choice(f.readlines())
-            embedModel.set_image(meme)
+        embedModel.set_image(meme.get_random_meme())
 
     return embedModel
