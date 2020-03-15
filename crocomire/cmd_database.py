@@ -1,5 +1,6 @@
 from sqlite3 import connect, Connection, Cursor
 from typing import List
+from crocomire.embed_model import EmbedModel
 
 
 def connect_to_cmd_db() -> Connection:
@@ -104,6 +105,12 @@ def select_embed_fields(cmd_id: int, db: Connection) -> dict:
     return fields
 
 
+def select_cmd_id(cmd: str, db: Connection):
+    c: Cursor = db.cursor()
+    c = db.execute("SELECT id FROM all_commands WHERE name=?", (cmd,))
+    return c.fetchall()[0][0]
+
+
 def insert_text_cmd(cmd: str, text: str, db: Connection):
     db.execute("""
         INSERT INTO
@@ -130,14 +137,69 @@ def update_text_cmd(cmd: str, text: str, db: Connection):
     db.commit()
 
 
-def remove_text_data(cmd: str, db: Connection):
+def remove_text_cmd(cmd: str, db: Connection):
     cmd_id: int = select_cmd_id(cmd, db)
     db.execute("DELETE FROM all_commands WHERE id=?", (cmd_id,))
     db.execute("DELETE FROM text_commands WHERE cmd_id=?", (cmd_id,))
     db.commit()
 
 
-def select_cmd_id(cmd: str, db: Connection):
-    c: Cursor = db.cursor()
-    c = db.execute("SELECT id FROM all_commands WHERE name=?", (cmd,))
-    return c.fetchall()[0][0]
+def insert_embed_cmd(embed: EmbedModel, db: Connection):
+    db.execute("""
+        INSERT INTO
+            all_commands (name, type, category)
+        VALUES
+            (?, 'embed', 'Custom')
+    """, (embed.name,))
+    db.commit()
+
+    cmd_id: int = select_cmd_id(embed.name, db)
+
+    db.execute("""
+        INSERT INTO
+            embed_commands (cmd_id, title, description, footer, thumbnail, image)
+        VALUES
+            (?, ?, ?, ?, ?, ?)
+    """, (cmd_id, embed.title, embed.description, embed.footer, embed.thumbnail, embed.image))
+    db.commit()
+
+    for f in embed.fields.keys():
+        db.execute("""
+            INSERT INTO
+                embed_fields (embed_id, name, value)
+            VALUES
+                (?, ?, ?)
+        """, (cmd_id, f, embed.fields[f]))
+    db.commit()
+
+
+def update_embed_cmd(embed: EmbedModel, db: Connection):
+    cmd_id: int = select_cmd_id(embed.name, db)
+    db.execute("""
+        UPDATE
+            embed_commands
+        SET
+            title=?, description=?, footer=?, thumbnail=?, image=?
+        WHERE
+            cmd_id=?
+    """, (embed.title, embed.description, embed.footer, embed.thumbnail, embed.image, cmd_id))
+    db.commit()
+
+    for f in embed.fields.keys():
+        db.execute("""
+            UPDATE
+                embed_fields
+            SET
+                name=?, value=?
+            WHERE
+                embed_id=?
+        """, (f, embed.fields[f], cmd_id))
+    db.commit()
+
+
+def remove_embed_cmd(cmd: str, db: Connection):
+    cmd_id: int = select_cmd_id(cmd, db)
+    db.execute("DELETE FROM all_commands WHERE id=?", (cmd_id,))
+    db.execute("DELETE FROM embed_commands WHERE cmd_id=?", (cmd_id,))
+    db.execute("DELETE FROM embed_fields WHERE embed_id=?", (cmd_id,))
+    db.commit()

@@ -1,3 +1,5 @@
+# TODO: Change addcmd help to text and image and change format
+
 from typing import List
 from sqlite3 import Connection
 
@@ -172,13 +174,28 @@ async def send_funny_boost(ctx: commands.Context):
 @is_owner()
 async def add_cmd(ctx: commands.Context, *args):
     cmd_db: Connection = cmd_database.connect_to_cmd_db()
-    if len(args) < 3:
+    if len(args) < 2:
         await ctx.send(errors.add_cmd_fmt)
         return
 
-    if args[0] == "text":
-        name: str = args[1]
-        text: str = " ".join(args[2:])
+    name: str = args[0]
+    text: str = " ".join(args[1:])
+    if url.is_image(text):
+        embed_model: EmbedModel = EmbedModel(name)
+        embed_model.set_image(text)
+        if name not in cmd_database.select_all_cmds(cmd_db):
+            cmd_database.insert_embed_cmd(embed_model, cmd_db)
+            await ctx.send(cmd_msg.format("created", name, croc_emote))
+        elif name in cmd_database.select_all_custom_cmds(cmd_db):
+            cmd_database.update_embed_cmd(embed_model, cmd_db)
+            await ctx.send(cmd_msg.format("updated", name, croc_emote))
+        else:
+            await ctx.send(errors.no_update_cmd)
+            return
+
+        embed: Embed = embeds.create_embed(embed_model)
+        await ctx.send(embed=embed)
+    else:
         if name not in cmd_database.select_all_cmds(cmd_db):
             cmd_database.insert_text_cmd(name, text, cmd_db)
             await ctx.send(cmd_msg.format("created", name, croc_emote))
@@ -191,8 +208,6 @@ async def add_cmd(ctx: commands.Context, *args):
 
         text: str = cmd_database.select_text_cmd(name, cmd_db)
         await ctx.send(text)
-    else:
-        await ctx.send(errors.bad_cmd_type)
 
 
 @bot.command(name="removecommand", aliases=["removecmd"])
@@ -204,7 +219,10 @@ async def remove_cmd(ctx: commands.Context, *args):
     else:
         cmd: str = args[0]
         if cmd in cmd_database.select_all_custom_cmds(cmd_db):
-            cmd_database.remove_text_data(cmd, cmd_db)
+            if cmd in cmd_database.select_all_text_cmds(cmd_db):
+                cmd_database.remove_text_cmd(cmd, cmd_db)
+            else:
+                cmd_database.remove_embed_cmd(cmd, cmd_db)
             await ctx.send(cmd_msg.format("removed", cmd, croc_emote))
         else:
             await ctx.send(errors.no_rm_cmd)
