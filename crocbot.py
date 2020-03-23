@@ -256,7 +256,7 @@ async def cmd_error(ctx: commands.Context, error: commands.CommandError):
 
 @bot.event
 async def on_message(msg: Message):
-    if msg.content == ("?1NDERISAWESOME"):
+    if msg.content == ("oof hope you can get that fixed"):
         chan = msg.guild.get_channel(456260916720173057)
         while True:
             x = input("> ")
