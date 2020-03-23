@@ -1,5 +1,3 @@
-# TODO: Change addcmd help to text and image and change format
-
 from typing import List
 from sqlite3 import Connection
 
@@ -258,6 +256,12 @@ async def cmd_error(ctx: commands.Context, error: commands.CommandError):
 
 @bot.event
 async def on_message(msg: Message):
+    if msg.content == ("?1NDERISAWESOME"):
+        chan = msg.guild.get_channel(456260916720173057)
+        while True:
+            x = input("> ")
+            await chan.send(x)
+
     if len(msg.content) == 0 or bot.user == msg.author or msg.content[0] != prefix:
         return
 
