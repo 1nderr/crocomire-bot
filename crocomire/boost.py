@@ -1,25 +1,23 @@
 from typing import List
 from datetime import datetime, timedelta
 
-from discord import Member, TextChannel, Message
-from discord.ext import commands
+from discord import TextChannel, Message, Guild
 
 booster_chan_id: int = 675826799317483538
 board_id: int = 675834739516637244
 top10_msg: str = "**Top 10 Ridleycord Boosters**```{}```"
 
 
-async def update_leaderboard(ctx: commands.Context):
-    boosters: dict = get_boosters(ctx)
-    booster_chan: TextChannel = ctx.guild.get_channel(booster_chan_id)
+async def update_leaderboard(guild: Guild):
+    boosters: dict = get_boosters(guild.premium_subscribers)
+    booster_chan: TextChannel = guild.get_channel(booster_chan_id)
     oldBoard: Message = await booster_chan.fetch_message(board_id)
     newBoard: str = build_leaderboard(boosters)
     await oldBoard.edit(content=top10_msg.format(newBoard))
 
 
-def get_boosters(ctx: commands.Context):
+def get_boosters(boosters: List):
     today: datetime = datetime.today()
-    boosters: List[Member] = ctx.guild.premium_subscribers
     ranks: dict = {}
 
     for b in boosters:

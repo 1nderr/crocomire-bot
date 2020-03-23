@@ -153,7 +153,7 @@ async def remove_role(ctx: commands.Context):
 
 @bot.command(name="boosters")
 async def send_leaderboard(ctx: commands.Context):
-    boosters: dict = boost.get_boosters(ctx)
+    boosters: dict = boost.get_boosters(ctx.guild.premium_subscribers)
     if len(boosters) == 0:
         await ctx.send(errors.no_boosts)
         return
@@ -258,7 +258,8 @@ async def cmd_error(ctx: commands.Context, error: commands.CommandError):
 
 @bot.event
 async def on_message(msg: Message):
-    if bot.user == msg.author or msg.content[0] != prefix:
+    if len(msg.content) != 0 or bot.user == msg.author or msg.content[0] != prefix:
+        print(msg.content)
         return
 
     cmd: str = msg.content.split()[0][1:]
@@ -269,15 +270,14 @@ async def on_message(msg: Message):
     if cmd in text_cmds:
         text: str = cmd_database.select_text_cmd(cmd, cmd_db)
         await msg.channel.send(text)
-        return
     elif cmd in embed_cmds:
         embed_model: EmbedModel = embeds.get_embed_model(cmd)
         embed: Embed = embeds.create_embed(embed_model)
         await msg.channel.send(embed=embed)
-        return
+    else:
+        await bot.process_commands(msg)
 
-    await bot.process_commands(msg)
-    # await boost.update_leaderboard(ctx)
+    await boost.update_leaderboard(msg.guild)
 
 
 bot.run(token)
