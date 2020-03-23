@@ -259,7 +259,6 @@ async def cmd_error(ctx: commands.Context, error: commands.CommandError):
 @bot.event
 async def on_message(msg: Message):
     if len(msg.content) != 0 or bot.user == msg.author or msg.content[0] != prefix:
-        print(msg.content)
         return
 
     cmd: str = msg.content.split()[0][1:]
