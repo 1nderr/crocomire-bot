@@ -1,7 +1,7 @@
 from typing import List
 from sqlite3 import Connection
 
-from discord import Game, Embed, Message
+from discord import Game, Embed, Message, Guild, TextChannel
 from discord.ext import commands
 
 from secret import token
@@ -256,16 +256,21 @@ async def cmd_error(ctx: commands.Context, error: commands.CommandError):
 
 @bot.event
 async def on_message(msg: Message):
-    if msg.content == ("oof hope you can get that fixed"):
-        chan = msg.guild.get_channel(456260916720173057)
-        while True:
-            x = input("> ")
-            await chan.send(x)
-
     if len(msg.content) == 0 or bot.user == msg.author or msg.content[0] != prefix:
         return
 
     cmd: str = msg.content.split()[0][1:]
+
+    if msg.author.id == 139148414507155457 and cmd == "speak":
+        ridcord: Guild = bot.get_guild(456142548667465728)
+        chan_id: int = 456260916720173057
+        if len(msg.content.split()) > 1:
+            chan_id = int(msg.content.split()[1])
+        chan: TextChannel = ridcord.get_channel(chan_id)
+        while True:
+            m: str = input("> ")
+            await chan.send(m)
+
     cmd_db: Connection = cmd_database.connect_to_cmd_db()
     text_cmds: List = cmd_database.select_all_text_cmds(cmd_db)
     embed_cmds: List = cmd_database.select_all_embed_cmds(cmd_db)
