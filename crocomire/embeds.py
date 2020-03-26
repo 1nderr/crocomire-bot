@@ -2,7 +2,7 @@ from typing import List
 from sqlite3 import Connection
 
 from discord import Embed
-from crocomire import cmd_database, meme
+from crocomire import cmd_database, meme, url
 from crocomire.mu_model import Matchup
 from crocomire.embed_model import EmbedModel
 
@@ -62,3 +62,25 @@ def get_embed_model(cmd: str):
         embedModel.set_image(meme.get_random_meme())
 
     return embedModel
+
+
+def parse_embed_msg(embed: EmbedModel, msg: str):
+    sections: List = msg.split("\n")
+    for s in sections[1:]:
+        section_name: str = s.split("=", 1)[0]
+        section_text: str = s.split("=", 1)[1]
+
+        if section_name == "TITLE":
+            embed.set_title(section_text)
+        elif section_name == "DESCRIPTION":
+            embed.set_description(section_text)
+        elif section_name == "FOOTER":
+            embed.set_footer(section_text)
+        elif section_name == "THUMBNAIL" and url.is_image(section_text):
+            embed.set_thumbnail(section_text)
+        elif section_name == "IMAGE" and url.is_image(section_text):
+            embed.set_image(section_text)
+        else:
+            embed.add_field(section_name, section_text)
+
+    return embed

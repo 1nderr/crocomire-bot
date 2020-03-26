@@ -178,11 +178,10 @@ async def add_cmd(ctx: commands.Context, *args):
         await ctx.send(errors.add_cmd_fmt)
         return
 
-    name: str = args[0]
-    text: str = " ".join(args[1:])
-    if url.is_image(text):
+    if args[0] == "embed":
+        name: str = args[1]
         embed_model: EmbedModel = EmbedModel(name)
-        embed_model.set_image(text)
+        embed_model = embeds.parse_embed_msg(embed_model, ctx.message.content)
         if name not in cmd_database.select_all_cmds(cmd_db):
             cmd_database.insert_embed_cmd(embed_model, cmd_db)
             await ctx.send(cmd_msg.format("created", name, croc_emote))
@@ -196,6 +195,11 @@ async def add_cmd(ctx: commands.Context, *args):
         embed: Embed = embeds.create_embed(embed_model)
         await ctx.send(embed=embed)
     else:
+        name: str = args[0]
+        text: str = " ".join(args[1:])
+        if name in cmd_database.select_all_embed_cmds(cmd_db):
+            await ctx.send(errors.wrong_cmd_type)
+            return
         if name not in cmd_database.select_all_cmds(cmd_db):
             cmd_database.insert_text_cmd(name, text, cmd_db)
             await ctx.send(cmd_msg.format("created", name, croc_emote))
@@ -283,7 +287,7 @@ async def cmd_error(ctx: commands.Context, error: commands.CommandError):
         await ctx.send(errors.not_owner.format(ctx.author.mention, croc_emote))
 
 
-def self_msg(msg: str):
+async def self_msg(msg: str):
     ridcord: Guild = bot.get_guild(rid_id)
     chan_id: int = lounge_id
 
