@@ -12,6 +12,8 @@ from crocomire.embed_model import EmbedModel
 prefix: str = "?"
 status_msg: str = "Bruh, Type ?info"
 owners: List = [257675080262352896, 139148414507155457, 290964436527874058]
+rid_id: int = 456142548667465728
+lounge_id: int = 456260916720173057
 
 croc_emote: str = "<:Crocomire:583880666970718224>"
 lul_emote: str = "<:RidLul:562495276141510667>"
@@ -242,34 +244,15 @@ async def add_meme(ctx: commands.Context, *args):
         await ctx.send(errors.not_img_url)
 
 
-@remove_role.error
-@add_mu.error
-@remove_mu.error
-@add_cmd.error
-@remove_cmd.error
-async def cmd_error(ctx: commands.Context, error: commands.CommandError):
-    if isinstance(error, commands.MissingPermissions):
-        await ctx.send(errors.not_admin.format(ctx.author.mention))
-    else:
-        await ctx.send(errors.not_owner.format(ctx.author.mention, croc_emote))
-
-
 @bot.event
 async def on_message(msg: Message):
     if len(msg.content) == 0 or bot.user == msg.author or msg.content[0] != prefix:
         return
 
     cmd: str = msg.content.split()[0][1:]
-
-    if msg.author.id == 139148414507155457 and cmd == "speak":
-        ridcord: Guild = bot.get_guild(456142548667465728)
-        chan_id: int = 456260916720173057
-        if len(msg.content.split()) > 1:
-            chan_id = int(msg.content.split()[1])
-        chan: TextChannel = ridcord.get_channel(chan_id)
-        while True:
-            m: str = input("> ")
-            await chan.send(m)
+    if msg.author.id == owners[1] and cmd == "speak":
+        self_msg(msg)
+        return
 
     cmd_db: Connection = cmd_database.connect_to_cmd_db()
     text_cmds: List = cmd_database.select_all_text_cmds(cmd_db)
@@ -286,6 +269,31 @@ async def on_message(msg: Message):
         await bot.process_commands(msg)
 
     await boost.update_leaderboard(msg.guild)
+
+
+@remove_role.error
+@add_mu.error
+@remove_mu.error
+@add_cmd.error
+@remove_cmd.error
+async def cmd_error(ctx: commands.Context, error: commands.CommandError):
+    if isinstance(error, commands.MissingPermissions):
+        await ctx.send(errors.not_admin.format(ctx.author.mention))
+    else:
+        await ctx.send(errors.not_owner.format(ctx.author.mention, croc_emote))
+
+
+def self_msg(msg: str):
+    ridcord: Guild = bot.get_guild(rid_id)
+    chan_id: int = lounge_id
+
+    if len(msg.content.split()) > 1:
+        chan_id = int(msg.content.split()[1])
+    chan: TextChannel = ridcord.get_channel(chan_id)
+
+    while True:
+        m: str = input("> ")
+        await chan.send(m)
 
 
 bot.run(token)
