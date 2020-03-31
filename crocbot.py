@@ -5,7 +5,7 @@ from discord import Game, Embed, Message, Guild, TextChannel
 from discord.ext import commands
 
 from secret import token
-from crocomire import embeds, boost, roles, mu, mu_database, cmd_database, info, meme, url, errors
+from crocomire import embeds, boost, roles, mu, mu_database, cmd_database, info, meme, url, errors, wholesome
 from crocomire.mu_model import Matchup
 from crocomire.embed_model import EmbedModel
 
@@ -258,20 +258,20 @@ async def on_message(msg: Message):
         self_msg(msg)
         return
 
-    cmd_db: Connection = cmd_database.connect_to_cmd_db()
-    text_cmds: List = cmd_database.select_all_text_cmds(cmd_db)
-    embed_cmds: List = cmd_database.select_all_embed_cmds(cmd_db)
+    # cmd_db: Connection = cmd_database.connect_to_cmd_db()
+    # text_cmds: List = cmd_database.select_all_text_cmds(cmd_db)
+    # embed_cmds: List = cmd_database.select_all_embed_cmds(cmd_db)
 
-    if cmd in text_cmds:
-        text: str = cmd_database.select_text_cmd(cmd, cmd_db)
-        await msg.channel.send(text)
-    elif cmd in embed_cmds:
-        embed_model: EmbedModel = embeds.get_embed_model(cmd)
-        embed: Embed = embeds.create_embed(embed_model)
-        await msg.channel.send(embed=embed)
-    else:
-        await bot.process_commands(msg)
-
+    # if cmd in text_cmds:
+    #     text: str = cmd_database.select_text_cmd(cmd, cmd_db)
+    #     await msg.channel.send(text)
+    # elif cmd in embed_cmds:
+    #     embed_model: EmbedModel = embeds.get_embed_model(cmd)
+    #     embed: Embed = embeds.create_embed(embed_model)
+    #     await msg.channel.send(embed=embed)
+    # else:
+    #     await bot.process_commands(msg)
+    await msg.channel.send(wholesome.give_compliment(msg.author.mention))
     await boost.update_leaderboard(msg.guild)
 
 
