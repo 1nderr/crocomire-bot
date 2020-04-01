@@ -10,7 +10,7 @@ from crocomire.mu_model import Matchup
 from crocomire.embed_model import EmbedModel
 
 prefix: str = "?"
-status_msg: str = "Tubes, Type ?tubes"
+status_msg: str = "Bruh, Type ?bruh"
 owners: List = [257675080262352896, 139148414507155457, 290964436527874058]
 rid_id: int = 456142548667465728
 lounge_id: int = 456260916720173057
@@ -258,26 +258,19 @@ async def on_message(msg: Message):
         self_msg(msg)
         return
 
-    # cmd_db: Connection = cmd_database.connect_to_cmd_db()
-    # text_cmds: List = cmd_database.select_all_text_cmds(cmd_db)
-    # embed_cmds: List = cmd_database.select_all_embed_cmds(cmd_db)
+    cmd_db: Connection = cmd_database.connect_to_cmd_db()
+    text_cmds: List = cmd_database.select_all_text_cmds(cmd_db)
+    embed_cmds: List = cmd_database.select_all_embed_cmds(cmd_db)
 
-    # if cmd in text_cmds:
-    #     text: str = cmd_database.select_text_cmd(cmd, cmd_db)
-    #     await msg.channel.send(text)
-    # elif cmd in embed_cmds:
-    #     embed_model: EmbedModel = embeds.get_embed_model(cmd)
-    #     embed: Embed = embeds.create_embed(embed_model)
-    #     await msg.channel.send(embed=embed)
-    # else:
-    #     await bot.process_commands(msg)
-    if cmd == "tubes":
-        cmd = "meme"
+    if cmd in text_cmds:
+        text: str = cmd_database.select_text_cmd(cmd, cmd_db)
+        await msg.channel.send(text)
+    elif cmd in embed_cmds:
         embed_model: EmbedModel = embeds.get_embed_model(cmd)
         embed: Embed = embeds.create_embed(embed_model)
         await msg.channel.send(embed=embed)
     else:
-        await msg.channel.send(wholesome.give_compliment(msg.author.mention))
+        await bot.process_commands(msg)
     await boost.update_leaderboard(msg.guild)
 
 
