@@ -10,7 +10,7 @@ from crocomire.mu_model import Matchup
 from crocomire.embed_model import EmbedModel
 
 prefix: str = "?"
-status_msg: str = "Bruh, Type ?info"
+status_msg: str = "Tubes, Type ?tubes"
 owners: List = [257675080262352896, 139148414507155457, 290964436527874058]
 rid_id: int = 456142548667465728
 lounge_id: int = 456260916720173057
