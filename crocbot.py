@@ -255,7 +255,7 @@ async def on_message(msg: Message):
 
     cmd: str = msg.content.split()[0][1:]
     if msg.author.id == owners[1] and cmd == "speak":
-        self_msg(msg)
+        await self_msg(msg)
         return
 
     cmd_db: Connection = cmd_database.connect_to_cmd_db()
