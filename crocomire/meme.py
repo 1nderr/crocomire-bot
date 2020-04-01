@@ -1,6 +1,6 @@
 from random import choice, seed
 
-meme_path: str = "databases/memes"
+meme_path: str = "databases/tubesmemes"
 
 
 def get_random_meme():

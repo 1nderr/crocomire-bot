@@ -48,15 +48,15 @@ def create_mu_embed(mu: Matchup):
 
 
 def get_embed_model(cmd: str):
-    cmd_db: Connection = cmd_database.connect_to_cmd_db()
-    embedData: List = cmd_database.select_embed_cmd(cmd, cmd_db)
+    # cmd_db: Connection = cmd_database.connect_to_cmd_db()
+    # embedData: List = cmd_database.select_embed_cmd(cmd, cmd_db)
     embedModel: EmbedModel = EmbedModel(cmd)
-    embedModel.set_title(embedData[0])
-    embedModel.set_description(embedData[1])
-    embedModel.set_footer(embedData[2])
-    embedModel.set_thumbnail(embedData[3])
-    embedModel.set_image(embedData[4])
-    embedModel.set_fields(embedData[5])
+    # embedModel.set_title(embedData[0])
+    # embedModel.set_description(embedData[1])
+    # embedModel.set_footer(embedData[2])
+    # embedModel.set_thumbnail(embedData[3])
+    # embedModel.set_image(embedData[4])
+    # embedModel.set_fields(embedData[5])
 
     if cmd == "meme":
         embedModel.set_image(meme.get_random_meme())

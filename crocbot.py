@@ -271,7 +271,13 @@ async def on_message(msg: Message):
     #     await msg.channel.send(embed=embed)
     # else:
     #     await bot.process_commands(msg)
-    await msg.channel.send(wholesome.give_compliment(msg.author.mention))
+    if cmd == "tubes":
+        cmd = "meme"
+        embed_model: EmbedModel = embeds.get_embed_model(cmd)
+        embed: Embed = embeds.create_embed(embed_model)
+        await msg.channel.send(embed=embed)
+    else:
+        await msg.channel.send(wholesome.give_compliment(msg.author.mention))
     await boost.update_leaderboard(msg.guild)
 
 
