@@ -60,6 +60,8 @@ def get_embed_model(cmd: str):
 
     if cmd == "meme":
         embedModel.set_image(meme.get_random_meme())
+    elif cmd == "tubes":
+        embedModel.set_image(meme.get_tubes_meme())
 
     return embedModel
 

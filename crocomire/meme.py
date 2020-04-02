@@ -1,6 +1,13 @@
 from random import choice, seed
 
 meme_path: str = "databases/memes"
+tubes_path: str = "databases/tubes"
+
+
+def get_tubes_meme():
+    with open(tubes_path, "r") as f:
+        seed()
+        return choice(f.readlines())
 
 
 def get_random_meme():

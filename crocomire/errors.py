@@ -17,3 +17,4 @@ wrong_cmd_type: str = "Bruh, this command is already an image/embed command. Ple
 no_meme_given: str = "Bruh, you did not provide a meme image link " + croc_emote
 not_img_url: str = "Bruh, that is not a valid image url " + croc_emote
 no_custom_info: str = "Bruh, I do not have info on custom commands " + croc_emote
+invalid_user: str = "{} Bruh, that is not a valid user " + croc_emote

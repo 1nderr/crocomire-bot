@@ -1,7 +1,7 @@
 from typing import List
 from sqlite3 import Connection
 
-from discord import Game, Embed, Message, Guild, TextChannel
+from discord import Game, Embed, Message, Guild, TextChannel, Member
 from discord.ext import commands
 
 from secret import token
@@ -248,6 +248,15 @@ async def add_meme(ctx: commands.Context, *args):
         await ctx.send(errors.not_img_url)
 
 
+@bot.command(name="compliment")
+async def give_compliment(ctx: commands.Context, user: Member = None):
+    if user:
+        c: str = wholesome.give_compliment(user)
+    else:
+        c: str = wholesome.give_compliment(ctx.author)
+    await ctx.send(c)
+
+
 @bot.event
 async def on_message(msg: Message):
     if len(msg.content) == 0 or bot.user == msg.author or msg.content[0] != prefix:
@@ -279,11 +288,17 @@ async def on_message(msg: Message):
 @remove_mu.error
 @add_cmd.error
 @remove_cmd.error
-async def cmd_error(ctx: commands.Context, error: commands.CommandError):
+async def perm_error(ctx: commands.Context, error: commands.CommandError):
     if isinstance(error, commands.MissingPermissions):
         await ctx.send(errors.not_admin.format(ctx.author.mention))
     else:
         await ctx.send(errors.not_owner.format(ctx.author.mention, croc_emote))
+
+
+@give_compliment.error
+async def compliment_error(ctx: commands.Context, error: commands.CommandError):
+    if isinstance(error, commands.BadArgument):
+        await ctx.send(errors.invalid_user.format(ctx.author.mention))
 
 
 async def self_msg(msg: str):
