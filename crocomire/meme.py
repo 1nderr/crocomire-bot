@@ -1,7 +1,7 @@
 from random import choice, seed
 
 meme_path: str = "databases/memes"
-tubes_path: str = "databases/tubes"
+tubes_path: str = "databases/tubesmemes"
 
 
 def get_tubes_meme():
