@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 from discord import TextChannel, Message, Guild
 
 booster_chan_id: int = 675826799317483538
-board_id: int = 675834739516637244
+board_id: int = 696531092957823020
 top10_msg: str = "**Top 10 Ridleycord Boosters**```{}```"
 
 
