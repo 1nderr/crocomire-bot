@@ -5,7 +5,7 @@ from discord import Game, Embed, Message, Guild, TextChannel, Member
 from discord.ext import commands
 
 from secret import token
-from crocomire import embeds, boost, roles, mu, mu_database, cmd_database, info, meme, url, errors, wholesome
+from crocomire import embeds, boost, roles, mu, mu_database, cmd_database, info, meme, url, errors, wholesome  # , tictactoe
 from crocomire.mu_model import Matchup
 from crocomire.embed_model import EmbedModel
 
@@ -257,6 +257,21 @@ async def give_compliment(ctx: commands.Context, user: Member = None):
     await ctx.send(c)
 
 
+@bot.command(name="alts")
+async def rank_alts(ctx: commands.Context):
+    ranks: str = await roles.get_alt_ranks(ctx)
+    await ctx.send(ranks)
+
+# @bot.command(name="ttt", aliases=["tictactoe"])
+# async def play_ttt(ctx: commands.Context, opponent: Member):
+#     if not opponent:
+#         await ctx.send(errors.no_user)
+#     elif opponent == ctx.author:
+#         await ctx.send(errors.no_self_ttt)
+#     else:
+#         await tictactoe.start(ctx.channel, ctx.author, opponent)
+
+
 @bot.event
 async def on_message(msg: Message):
     if len(msg.content) == 0 or bot.user == msg.author or msg.content[0] != prefix:
@@ -296,7 +311,7 @@ async def perm_error(ctx: commands.Context, error: commands.CommandError):
 
 
 @give_compliment.error
-async def compliment_error(ctx: commands.Context, error: commands.CommandError):
+async def argument_error(ctx: commands.Context, error: commands.CommandError):
     if isinstance(error, commands.BadArgument):
         await ctx.send(errors.invalid_user.format(ctx.author.mention))
 
