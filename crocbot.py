@@ -262,6 +262,11 @@ async def rank_alts(ctx: commands.Context):
     ranks: str = await roles.get_alt_ranks(ctx)
     await ctx.send(ranks)
 
+
+@bot.command(name="mash")
+async def send_mash(ctx: commands.Context):
+    await ctx.send(meme.generate_mash())
+
 # @bot.command(name="ttt", aliases=["tictactoe"])
 # async def play_ttt(ctx: commands.Context, opponent: Member):
 #     if not opponent:
