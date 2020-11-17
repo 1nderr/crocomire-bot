@@ -4,7 +4,7 @@ from re import sub, search, Match
 
 from crocomire.utils.mu_model import Matchup
 from crocomire.utils.embed_model import EmbedModel
-from crocomire import mu_database, url
+from crocomire.utils import mu_database, url
 
 
 def get_all_chars() -> EmbedModel:

@@ -1,6 +1,7 @@
 from typing import List
 from discord.ext import commands
-from discord import Role
+from discord import Role, Message
+from crocomire.utils import reactions
 
 
 class Roles(commands.Cog):
@@ -14,21 +15,7 @@ class Roles(commands.Cog):
             await ctx.send("That is not the JMU role.")
             return
 
-        role_name, members = await self.remove_all_roles(ctx)
-        if len(members) == 0:
-            await ctx.send("No one has that role.")
-            return
-
-        await ctx.send("I removed the role")
-
-    @commands.command(name="alts")
-    async def rank_alts(self, ctx: commands.Context):
-        ranks: str = await self.get_alt_ranks(ctx)
-        await ctx.send(ranks)
-
-    async def remove_all_roles(self, ctx: commands.Context):
         role: Role = None
-        users: str = ""
         role_name: str = "".join(ctx.message.content.split()[1:]).lower()
         roles: List[Role] = await ctx.guild.fetch_roles()
 
@@ -39,13 +26,24 @@ class Roles(commands.Cog):
                 break
 
         if role is None:
-            return role_name, users
+            await ctx.send("That role does not exist.")
+            return
 
-        for m in role.members:
-            await m.remove_roles(role)
-            users += str(m) + ", "
+        resp: Message = await ctx.send(
+            "Are you sure you want to remove the **{}** role from every user?".format(str(role)))
+        confirm: bool = await reactions.confirm(ctx, resp)
 
-        return str(role), users
+        if confirm:
+            for m in role.members:
+                await m.remove_roles(role)
+            await ctx.send("I removed the role")
+        else:
+            await ctx.send("The removal was cancelled.")
+
+    @commands.command(name="alts")
+    async def rank_alts(self, ctx: commands.Context):
+        ranks: str = await self.get_alt_ranks(ctx)
+        await ctx.send(ranks)
 
     async def get_alt_ranks(self, ctx: commands.Context):
         alts: dict = {"Default": 0, "Meta": 0, "Red": 0,

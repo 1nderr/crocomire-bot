@@ -2,7 +2,7 @@ from typing import List
 from sqlite3 import Connection
 
 from discord import Embed
-from crocomire import cmd_database, meme, url
+from crocomire.utils import cmd_database, url
 from crocomire.utils.mu_model import Matchup
 from crocomire.utils.embed_model import EmbedModel
 

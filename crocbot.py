@@ -1,5 +1,4 @@
 # TODO: Add Bruh error messages
-# TODO: Add "are you sure" to role removal
 
 from typing import List
 from sqlite3 import Connection
@@ -18,6 +17,10 @@ from crocomire.cogs.custom import CustomCommands
 from crocomire.cogs.fun import Fun
 from crocomire.cogs.help import Help
 from crocomire.cogs.roles import Roles
+
+croc_emote: str = "<:Crocomire:583880666970718224>"
+lul_emote: str = "<:RidLul:562495276141510667>"
+dab_emote: str = "<:RidDab:562492164664197120>"
 
 wonder_id: int = 139148414507155457
 prefix: str = "?"
