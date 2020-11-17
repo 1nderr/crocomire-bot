@@ -1,14 +1,57 @@
 from sqlite3 import connect, Connection, Cursor
 from typing import List
-from crocomire.mu_model import Matchup
+from os import path
+from crocomire.utils.mu_model import Matchup
+
+synonym_db_path: str = "databases/synonyms.db"
+mu_db_path: str = "databases/mu.db"
+
+
+def init_synonym_db() -> Connection:
+    db: Connection = connect(synonym_db_path)
+    db.execute("""
+        CREATE TABLE IF NOT EXISTS moves(
+        id int not NULL,
+        name char(256) NOT NULL,
+        PRIMARY KEY(id))""")
+    db.execute("""
+        CREATE TABLE IF NOT EXISTS move_synonyms(move_id int not NULL, synonym char(256) NOT NULL)""")
+    db.execute("""
+        CREATE TABLE IF NOT EXISTS characters (
+            id int not NULL,
+            name char(256) NOT NULL,
+            PRIMARY KEY (id));""")
+    db.execute("""
+        CREATE TABLE IF NOT EXISTS char_synonyms (char_id int not NULL, synonym char(256) NOT NULL);""")
+    return db
+
+
+def init_mu_db() -> Connection:
+    db: Connection = connect(mu_db_path)
+    db.execute("""
+        CREATE TABLE IF NOT EXISTS "matchups" (
+        "name"  TEXT,
+        "title" TEXT,
+        "overview"      TEXT,
+        "criticaltips"  TEXT,
+        "counterpicks"  TEXT,
+        "bans"  TEXT,
+        "image" TEXT,
+        "doclink"       TEXT
+    );""")
+    return db
 
 
 def connect_to_synonyms_db() -> Connection:
-    return connect("databases/synonyms.db")
+    if not path.exists(synonym_db_path):
+        open(synonym_db_path, "w+").close()
+    return init_synonym_db()
 
 
 def connect_to_mu_db() -> Connection:
-    return connect("databases/mu.db")
+    if not path.exists(mu_db_path):
+        open(mu_db_path, "w+").close()
+    return init_mu_db()
 
 
 def select_all_chars(db: Connection) -> List:

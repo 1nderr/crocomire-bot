@@ -3,8 +3,8 @@ from sqlite3 import Connection
 
 from discord import Embed
 from crocomire import cmd_database, meme, url
-from crocomire.mu_model import Matchup
-from crocomire.embed_model import EmbedModel
+from crocomire.utils.mu_model import Matchup
+from crocomire.utils.embed_model import EmbedModel
 
 embed_color = 10170673
 
@@ -57,12 +57,6 @@ def get_embed_model(cmd: str):
     embedModel.set_thumbnail(embedData[3])
     embedModel.set_image(embedData[4])
     embedModel.set_fields(embedData[5])
-
-    if cmd == "meme":
-        embedModel.set_image(meme.get_random_meme())
-    elif cmd == "tubes":
-        embedModel.set_image(meme.get_tubes_meme())
-
     return embedModel
 
 

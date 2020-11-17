@@ -2,8 +2,8 @@ from typing import List
 from sqlite3 import Connection
 from re import sub, search, Match
 
-from crocomire.mu_model import Matchup
-from crocomire.embed_model import EmbedModel
+from crocomire.utils.mu_model import Matchup
+from crocomire.utils.embed_model import EmbedModel
 from crocomire import mu_database, url
 
 
