@@ -1,5 +1,3 @@
-# TODO: Add Bruh error messages
-
 from typing import List
 from sqlite3 import Connection
 from os import path, mkdir
