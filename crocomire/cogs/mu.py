@@ -7,6 +7,8 @@ from discord import Embed
 from crocomire.utils import embeds, mu_helper, mu_database
 from crocomire.utils.embed_model import EmbedModel
 
+croc_emote: str = "<:Crocomire:583880666970718224>"
+
 
 class Matchup(commands.Cog):
     def __init__(self, bot):
@@ -25,12 +27,12 @@ class Matchup(commands.Cog):
         char = mu_helper.translate_char(char)
 
         if len(char) == 0:
-            await ctx.send("That character does not exist.")
+            await ctx.send("That character does not exist Bruh {}".format(croc_emote))
             return
 
         matchup: Matchup = mu_helper.get_matchup(char)
         if matchup is None:
-            await ctx.send("That character has no data.")
+            await ctx.send("That character has no data Bruh {}".format(croc_emote))
             return
 
         embed: Embed = embeds.create_mu_embed(matchup)
@@ -50,7 +52,7 @@ class Matchup(commands.Cog):
         char: str = "".join(mu_sections[0].split()[1:]).lower()
         char = mu_helper.translate_char(char)
         if len(char) == 0:
-            await ctx.send("That character does not exist.")
+            await ctx.send("That character does not exist Bruh {}".format(croc_emote))
             return
 
         mu_db: Connection = mu_database.connect_to_mu_db()
@@ -76,19 +78,19 @@ class Matchup(commands.Cog):
         char = mu_helper.translate_char(char)
 
         if len(char) == 0:
-            await ctx.send("That character does not exist.")
+            await ctx.send("That character does not exist Bruh {}".format(croc_emote))
             return
 
         mu_db: Connection = mu_database.connect_to_mu_db()
         if len(mu_database.select_mu_data(char, mu_db)) == 0:
-            await ctx.send("That character has no data.")
+            await ctx.send("That character has no data Bruh {}".format(croc_emote))
             return
 
         mu_database.remove_mu_data(char, mu_db)
-        await ctx.send("I removed that character's mu data.")
+        await ctx.send("I removed that character's mu data Bruh {}".format(croc_emote))
 
     @add_mu.error
     @remove_mu.error
     async def perm_error(self, ctx: commands.Context, error: commands.CommandError):
         if isinstance(error, commands.MissingPermissions):
-            await ctx.send("{} you do not have permission to do that!".format(ctx.author.mention))
+            await ctx.send("{} you do not have permission to do that Bruh {}".format(ctx.author.mention, croc_emote))

@@ -7,6 +7,8 @@ from discord.ext import commands
 from crocomire.utils.embed_model import EmbedModel
 from crocomire.utils import cmd_database, embeds
 
+croc_emote: str = "<:Crocomire:583880666970718224>"
+
 
 class Help(commands.Cog):
     def __init__(self, bot):
@@ -28,7 +30,7 @@ class Help(commands.Cog):
         elif args[0] in cmd_database.select_all_cmds(cmd_db):
             embed_model: EmbedModel = self.get_cmd_help(args[0])
         else:
-            await ctx.send("That command does not exist.")
+            await ctx.send("That command does not exist Bruh {}".format(croc_emote))
             return
 
         embed: Embed = embeds.create_embed(embed_model)

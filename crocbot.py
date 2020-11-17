@@ -18,9 +18,6 @@ from crocomire.cogs.fun import Fun
 from crocomire.cogs.help import Help
 from crocomire.cogs.roles import Roles
 
-croc_emote: str = "<:Crocomire:583880666970718224>"
-lul_emote: str = "<:RidLul:562495276141510667>"
-dab_emote: str = "<:RidDab:562492164664197120>"
 
 wonder_id: int = 139148414507155457
 prefix: str = "?"
@@ -63,6 +60,13 @@ async def on_message(msg: Message):
 
     # Processes the hardcoded bot commands if not a custom
     await bot.process_commands(msg)
+
+
+@bot.event
+async def on_command_error(ctx, error):
+    if isinstance(error, commands.CommandNotFound):
+        return
+    raise error
 
 
 async def self_msg(msg: str):

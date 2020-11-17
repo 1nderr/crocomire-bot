@@ -11,7 +11,7 @@ from crocomire.utils.embed_model import EmbedModel
 # TODO: this is literally a text file, will need a table for this some day
 meme_path: str = "databases/memes"
 tubes_path: str = "databases/tubes"
-add_meme_msg: str = "I added this new meme"
+croc_emote: str = "<:Crocomire:583880666970718224>"
 
 
 class Fun(commands.Cog):
@@ -29,9 +29,9 @@ class Fun(commands.Cog):
             embed_model.set_image(meme_link)
             embed: Embed = embeds.create_embed(embed_model)
             await ctx.send(embed=embed)
-            await ctx.send(add_meme_msg)
+            await ctx.send("I added this new meme Bruh {}".format(croc_emote))
         else:
-            await ctx.send("That is not a valid image url.")
+            await ctx.send("That is not a valid image url Bruh {}".format(croc_emote))
 
     # Sends a random meme from the memes file
     @commands.command(name="meme")
@@ -43,7 +43,7 @@ class Fun(commands.Cog):
             try:
                 meme: str = choice(f.readlines())
             except:
-                await ctx.send("There are no memes")
+                await ctx.send("There are no memes Bruh {}".format(croc_emote))
                 return
         model: EmbedModel = EmbedModel("meme")
         model.set_image(meme)
@@ -60,7 +60,7 @@ class Fun(commands.Cog):
             try:
                 meme: str = choice(f.readlines())
             except:
-                await ctx.send("There are no tubes")
+                await ctx.send("There are no tubes Bruh {}".format(croc_emote))
                 return
         model: EmbedModel = EmbedModel("tubes")
         model.set_image(meme)
@@ -74,6 +74,6 @@ class Fun(commands.Cog):
     @add_meme.error
     async def perm_error(self, ctx: commands.Context, error: commands.CommandError):
         if isinstance(error, commands.MissingPermissions):
-            await ctx.send("{} you do not have permission to do that!".format(ctx.author.mention))
+            await ctx.send("{} you do not have permission to do that Bruh {}".format(ctx.author.mention, croc_emote))
         elif isinstance(error, commands.MissingRequiredArgument):
             await ctx.send(error)

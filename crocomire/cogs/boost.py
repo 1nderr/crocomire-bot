@@ -5,9 +5,9 @@ from datetime import datetime, timedelta
 
 booster_chan_id: int = 675826799317483538
 board_id: int = 696531092957823020
-top10_msg: str = "**Top 10 Ridleycord Boosters**```{}```"
 dab_emote: str = "<:RidDab:562492164664197120>"
-boost_msg: str = "What's up booster Bruh. Imagine not being a booster"
+croc_emote: str = "<:Crocomire:583880666970718224>"
+lul_emote: str = "<:RidLul:562495276141510667>"
 
 
 class Boost(commands.Cog):
@@ -21,17 +21,17 @@ class Boost(commands.Cog):
     async def boostboard(self, ctx: commands.Context):
         boosters: dict = self.get_boosters(ctx)
         if len(boosters) == 0:
-            await ctx.send("This server has no boosts.")
+            await ctx.send("This server has no boosts Bruh {}.".format(croc_emote))
             return
 
         msg: str = self.build_leaderboard(boosters)
-        await ctx.send(top10_msg.format(msg))
+        await ctx.send(msg)
 
     # Special message for boosters only
     @commands.command(name="boost")
     async def boost_msg(self, ctx: commands.Context):
         if ctx.author in ctx.guild.premium_subscribers:
-            await ctx.send(boost_msg)
+            await ctx.send("What's up booster Bruh {}. Imagine not being a booster {}".format(croc_emote, lul_emote))
         else:
             await ctx.message.add_reaction(dab_emote)
 
@@ -42,7 +42,7 @@ class Boost(commands.Cog):
         booster_chan: TextChannel = guild.get_channel(booster_chan_id)
         oldBoard: Message = await booster_chan.fetch_message(board_id)
         newBoard: str = self.build_leaderboard(boosters)
-        await oldBoard.edit(content=top10_msg.format(newBoard))
+        await oldBoard.edit(content=newBoard)
 
     @update_board.before_loop
     async def before_update_board(self):
@@ -73,4 +73,4 @@ class Boost(commands.Cog):
             s += "{:}. {: <32} {}\n".format(c, b[0:len(b) - 5], boosters[b])
             c += 1
 
-        return s
+        return "**Top 10 Ridleycord Boosters**```{}```".format(s)

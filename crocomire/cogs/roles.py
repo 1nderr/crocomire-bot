@@ -3,6 +3,8 @@ from discord.ext import commands
 from discord import Role, Message
 from crocomire.utils import reactions
 
+croc_emote: str = "<:Crocomire:583880666970718224>"
+
 
 class Roles(commands.Cog):
     def __init__(self, bot):
@@ -12,7 +14,7 @@ class Roles(commands.Cog):
     @commands.has_permissions(administrator=True)
     async def remove_role(self, ctx: commands.Context):
         if "jmu" not in "".join(ctx.message.content.split()[1:]).lower():
-            await ctx.send("That is not the JMU role.")
+            await ctx.send("That is not the JMU role Bruh {}".format(croc_emote))
             return
 
         role: Role = None
@@ -26,19 +28,19 @@ class Roles(commands.Cog):
                 break
 
         if role is None:
-            await ctx.send("That role does not exist.")
+            await ctx.send("That role does not exist Bruh {}".format(croc_emote))
             return
 
         resp: Message = await ctx.send(
-            "Are you sure you want to remove the **{}** role from every user?".format(str(role)))
+            "Are you sure you want to remove the **{}** role from every user Bruh {}".format(str(role), croc_emote))
         confirm: bool = await reactions.confirm(ctx, resp)
 
         if confirm:
             for m in role.members:
                 await m.remove_roles(role)
-            await ctx.send("I removed the role")
+            await ctx.send("I removed the **{}** role Bruh {}".format(str(role), croc_emote))
         else:
-            await ctx.send("The removal was cancelled.")
+            await ctx.send("The removal was cancelled Bruh {}".format(croc_emote))
 
     @commands.command(name="alts")
     async def rank_alts(self, ctx: commands.Context):
