@@ -10,7 +10,7 @@ from crocomire.utils.embed_model import EmbedModel
 
 # TODO: this is literally a text file, will need a table for this some day
 meme_path: str = "databases/memes"
-tubes_path: str = "databases/tubes"
+tubes_path: str = "databases/tubesmemes"
 croc_emote: str = "<:Crocomire:583880666970718224>"
 
 
@@ -52,7 +52,7 @@ class Fun(commands.Cog):
 
     # Sends a random meme from the tubes memes file
     @commands.command(name="tubes")
-    async def send_meme(self, ctx: commands.Context):
+    async def send_tubes(self, ctx: commands.Context):
         if not path.exists(tubes_path):
             open(tubes_path, "w+")
         with open(tubes_path, "r") as f:
