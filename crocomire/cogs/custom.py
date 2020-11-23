@@ -42,6 +42,7 @@ class CustomCommands(commands.Cog):
                 await ctx.send("You cannot update that command Bruh {}".format(croc_emote))
                 return
 
+            embed_model = embeds.get_embed_model(name)
             embed: Embed = embeds.create_embed(embed_model)
             await ctx.send(embed=embed)
         else:
