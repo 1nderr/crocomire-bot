@@ -19,7 +19,7 @@ class Boost(commands.Cog):
     # top ten longest boosters
     @commands.command(name="boosters")
     async def boostboard(self, ctx: commands.Context):
-        boosters: dict = self.get_boosters(ctx)
+        boosters: dict = self.get_boosters(ctx.guild)
         if len(boosters) == 0:
             await ctx.send("This server has no boosts Bruh {}.".format(croc_emote))
             return
@@ -38,7 +38,7 @@ class Boost(commands.Cog):
     @tasks.loop(hours=1)
     async def update_board(self):
         guild: Guild = self.bot.get_guild(456142548667465728)
-        boosters: dict = self.get_boosters(guild.premium_subscribers)
+        boosters: dict = self.get_boosters(guild)
         booster_chan: TextChannel = guild.get_channel(booster_chan_id)
         oldBoard: Message = await booster_chan.fetch_message(board_id)
         newBoard: str = self.build_leaderboard(boosters)
@@ -49,9 +49,9 @@ class Boost(commands.Cog):
         await self.bot.wait_until_ready()
 
     # Returns a dictionary of users ordered by boost time
-    def get_boosters(self, ctx: commands.Context) -> dict:
+    def get_boosters(self, guild: Guild) -> dict:
         today: datetime = datetime.today()
-        boosters: List[Member] = ctx.guild.premium_subscribers
+        boosters: List[Member] = guild.premium_subscribers
         ranks: dict = {}
 
         for b in boosters:
