@@ -69,7 +69,10 @@ class Fun(commands.Cog):
 
     @commands.command(name="mash")
     async def send_mash(self, ctx: commands.Context):
-        await ctx.send("".join([choice(list(ascii_letters)) for i in range(randint(30, 76))]))
+        s = "".join([choice(list(ascii_letters))
+                     for i in range(randint(30, 76))])
+        s += '''\n\nERROR - CORRUPTED DATA\n. . . 50% OF DATA UNREADABLE\nEND OF LOG'''
+        await ctx.send(s)
 
     @add_meme.error
     async def perm_error(self, ctx: commands.Context, error: commands.CommandError):
