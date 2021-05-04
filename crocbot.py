@@ -7,7 +7,7 @@ from discord.ext import commands
 
 from secret import token
 from crocomire.utils.embed_model import EmbedModel
-from crocomire.utils import embeds, cmd_database
+from crocomire.utils import embeds, cmd_database, url
 
 from crocomire.cogs.boost import Boost
 from crocomire.cogs.mu import Matchup
@@ -33,7 +33,21 @@ bot: commands.Bot = commands.Bot(
 # This method is to check if a command is a custom added command
 # or one that is built into the bot.
 async def on_message(msg: Message):
-    if bot.user == msg.author or len(msg.content) == 0 or msg.content[0] != prefix:
+    if bot.user == msg.author or len(msg.content) == 0:
+        return
+
+    if msg.content[0] != prefix:
+        if url.exists(msg.content):
+            embed_fail = True
+            roles = ["Alpha Pirate", "Gamma Pirate",
+                     "Zeta Pirate", "Delta Pirate",
+                     "Omega Pirate"]
+            for role in msg.author.roles:
+                if role.name in roles:
+                    embed_fail = False
+                    break
+            if embed_fail:
+                await msg.channel.send("epic embed fail")
         return
 
     cmd: str = msg.content.split()[0][1:]
