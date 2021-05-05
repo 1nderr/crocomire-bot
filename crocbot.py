@@ -38,6 +38,9 @@ async def on_message(msg: Message):
     if bot.user == msg.author or len(msg.content) == 0 or msg.author.bot:
         return
 
+    if msg.content == "how":
+        await msg.channel.send("(how)")
+
     if msg.content[0] != prefix and url.exists(msg.content) and msg.channel.id not in img_chans:
         embed_fail = True
         roles = ["Alpha Pirate", "Gamma Pirate",
