@@ -18,6 +18,7 @@ from crocomire.cogs.roles import Roles
 
 
 wonder_id: int = 139148414507155457
+lounge_id: int = 456260916720173057
 prefix: str = "?"
 status_msg: str = "Type ?info"
 intents = Intents.default()
@@ -79,7 +80,10 @@ async def on_command_error(ctx, error):
 
 @bot.event
 async def on_member_join(member):
-    await member.send("new fren!")
+    ridcord: Guild = bot.get_guild(456142548667465728)
+    chan_id: int = 456260916720173057
+    chan: TextChannel = ridcord.get_channel(chan_id)
+    await chan.send("new fren!")
 
 
 async def self_msg(msg: str):
