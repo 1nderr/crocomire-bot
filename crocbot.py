@@ -18,8 +18,6 @@ from crocomire.cogs.roles import Roles
 
 
 wonder_id: int = 139148414507155457
-img_chans: List[int] = [456254056977924106, 628739256503762954,
-                        456578084485988363, 456149873507565568]
 prefix: str = "?"
 status_msg: str = "Type ?info"
 intents = Intents.default()
@@ -38,20 +36,14 @@ async def on_message(msg: Message):
     if bot.user == msg.author or len(msg.content) == 0 or msg.author.bot:
         return
 
+    if msg.author.id == 633712382660837396:
+        return
+
     if msg.content == "how":
         await msg.channel.send("(how)")
+        return
 
-    if msg.content[0] != prefix and url.exists(msg.content) and msg.channel.id not in img_chans:
-        embed_fail = True
-        roles = ["Alpha Pirate", "Gamma Pirate",
-                 "Zeta Pirate", "Delta Pirate",
-                 "Omega Pirate"]
-        for role in msg.author.roles:
-            if role.name in roles:
-                embed_fail = False
-                break
-        if embed_fail:
-            await msg.channel.send("epic embed fail")
+    if msg.content[0] != prefix:
         return
 
     cmd: str = msg.content.split()[0][1:]
