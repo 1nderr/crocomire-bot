@@ -85,6 +85,11 @@ async def on_command_error(ctx, error):
     raise error
 
 
+@bot.event
+async def on_member_join(member):
+    await member.send("new fren!")
+
+
 async def self_msg(msg: str):
     ridcord: Guild = bot.get_guild(456142548667465728)
     chan_id: int = 456260916720173057
