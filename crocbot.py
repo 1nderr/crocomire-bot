@@ -79,7 +79,9 @@ async def on_command_error(ctx, error):
 
 
 @bot.event
-async def on_member_join(member):
+async def on_member_join(ctx, member):
+    if member.guild.id != 456142548667465728:
+        return
     ridcord: Guild = bot.get_guild(456142548667465728)
     chan_id: int = 456260916720173057
     chan: TextChannel = ridcord.get_channel(chan_id)
