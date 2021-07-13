@@ -43,6 +43,9 @@ async def on_message(msg: Message):
     if msg.content == "how":
         await msg.channel.send("(how)")
         return
+    elif msg.content == "wer":
+        await msg.channel.send("Hör auf, über wer zu posten! Ich bin es leid, es zu sehen! Meine Freunde auf TikTok schicken mir Memes, auf Discord sind es verdammte Memes! Ich war auf einem Server, oder? Und alle Kanäle sind nur wer Zeug. Ich zeigte meiner Freundin meine Champion-Unterwäsche und das Logo, drehte es um und sagte: 'Hey, Baby, wenn die Unterwäsche Unterwer!' Haha, ding ding ding ding ding ding, ding-ding-ding! Ich sah mir verdammt noch mal einen Mülleimer an und sagte: 'Das ist ein bisschen traurig!' Ich schaue auf meinen Penis, denke an den Helm eines Astronauten und sage: 'Penis? Eher Pen-wer!' Aaaaaaargh!")
+        return
 
     if msg.content[0] != prefix:
         return
