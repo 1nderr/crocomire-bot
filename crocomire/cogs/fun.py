@@ -1,12 +1,12 @@
-from random import randint, seed, choice
-from string import ascii_letters
 from os import path
-
-from discord import Embed
-from discord.ext import commands
+from random import choice, randint, seed
+from string import ascii_letters
 
 from crocomire.utils import embeds, url
 from crocomire.utils.embed_model import EmbedModel
+from discord import Embed
+from discord.ext import commands
+from requests import get
 
 # TODO: this is literally a text file, will need a table for this some day
 meme_path: str = "databases/memes"
@@ -71,8 +71,13 @@ class Fun(commands.Cog):
     async def send_mash(self, ctx: commands.Context):
         s = "".join([choice(list(ascii_letters))
                      for i in range(randint(30, 76))])
-        s += '''\n\nERROR - CORRUPTED DATA\n. . . 50% OF DATA UNREADABLE\nEND OF LOG'''
         await ctx.send(s)
+
+    @commands.command(name="fact")
+    async def send_fact(self, ctx: commands.Context):
+        fact: dict = get(
+            "https://uselessfacts.jsph.pl/random.json?language=en")
+        await ctx.send(fact.json()["text"])
 
     @add_meme.error
     async def perm_error(self, ctx: commands.Context, error: commands.CommandError):
