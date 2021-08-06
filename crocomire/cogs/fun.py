@@ -79,6 +79,10 @@ class Fun(commands.Cog):
             "https://uselessfacts.jsph.pl/random.json?language=en")
         await ctx.send(fact.json()["text"])
 
+    @commands.command(name="power")
+    async def send_power(self, ctx: commands.Context):
+        await ctx.send("**%s power stats:**\nHP: %d\nATK: %d \nFUNNY: %d\n" % (ctx.author.name, randint(0, 100), randint(0, 100), 0))
+
     @add_meme.error
     async def perm_error(self, ctx: commands.Context, error: commands.CommandError):
         if isinstance(error, commands.MissingPermissions):

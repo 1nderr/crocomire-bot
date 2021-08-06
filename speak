@@ -1,4 +1,0 @@
-#!/bin/bash
-
-ps ax | grep crocbot.py | awk {'print $1'} | xargs kill -9
-python3 crocbot.py

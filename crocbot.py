@@ -1,6 +1,7 @@
 from typing import List
 from sqlite3 import Connection
 from os import path, mkdir
+import time
 
 from discord import Game, Embed, Message, Intents, Guild, TextChannel
 from discord.ext import commands
@@ -17,8 +18,6 @@ from crocomire.cogs.help import Help
 from crocomire.cogs.roles import Roles
 
 
-wonder_id: int = 139148414507155457
-lounge_id: int = 456260916720173057
 prefix: str = "?"
 status_msg: str = "Type ?info"
 intents = Intents.default()
@@ -35,16 +34,6 @@ bot: commands.Bot = commands.Bot(
 # or one that is built into the bot.
 async def on_message(msg: Message):
     if bot.user == msg.author or len(msg.content) == 0 or msg.author.bot:
-        return
-
-    if msg.author.id == 633712382660837396:
-        return
-
-    if msg.content == "how":
-        await msg.channel.send("(how)")
-        return
-    elif msg.content == "wer":
-        await msg.channel.send("Hör auf, über wer zu posten! Ich bin es leid, es zu sehen! Meine Freunde auf TikTok schicken mir Memes, auf Discord sind es verdammte Memes! Ich war auf einem Server, oder? Und alle Kanäle sind nur wer Zeug. Ich zeigte meiner Freundin meine Champion-Unterwäsche und das Logo, drehte es um und sagte: 'Hey, Baby, wenn die Unterwäsche Unterwer!' Haha, ding ding ding ding ding ding, ding-ding-ding! Ich sah mir verdammt noch mal einen Mülleimer an und sagte: 'Das ist ein bisschen traurig!' Ich schaue auf meinen Penis, denke an den Helm eines Astronauten und sage: 'Penis? Eher Pen-wer!' Aaaaaaargh!")
         return
 
     if msg.content[0] != prefix:
@@ -82,26 +71,15 @@ async def on_command_error(ctx, error):
 
 
 @bot.event
-async def on_member_join(ctx, member):
+async def on_member_join(member):
     if member.guild.id != 456142548667465728:
         return
     ridcord: Guild = bot.get_guild(456142548667465728)
     chan_id: int = 456260916720173057
     chan: TextChannel = ridcord.get_channel(chan_id)
-    await chan.send("new fren!")
-
-
-async def self_msg(msg: str):
-    ridcord: Guild = bot.get_guild(456142548667465728)
-    chan_id: int = 456260916720173057
-
-    if len(msg.content.split()) > 1:
-        chan_id = int(msg.content.split()[1])
-    chan: TextChannel = ridcord.get_channel(chan_id)
-
-    while True:
-        m: str = input("> ")
-        await chan.send(m)
+    time.sleep(5)
+    croc_emote: str = "<:Crocomire:583880666970718224>"
+    await chan.send("new bruh {}".format(croc_emote))
 
 
 if not path.exists("./databases"):
