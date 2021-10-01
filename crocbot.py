@@ -40,10 +40,6 @@ async def on_message(msg: Message):
         return
 
     cmd: str = msg.content.split()[0][1:]
-    if msg.author.id == wonder_id and cmd == "speak":
-        await self_msg(msg)
-        return
-
     cmd_db: Connection = cmd_database.connect_to_cmd_db()
     text_cmds: List = cmd_database.select_all_text_cmds(cmd_db)
     embed_cmds: List = cmd_database.select_all_embed_cmds(cmd_db)
@@ -79,7 +75,7 @@ async def on_member_join(member):
     chan: TextChannel = ridcord.get_channel(chan_id)
     time.sleep(5)
     croc_emote: str = "<:Crocomire:583880666970718224>"
-    await chan.send("new bruh {}".format(croc_emote))
+    await chan.send("{} new bruh {}".format(member.mention, croc_emote))
 
 
 if not path.exists("./databases"):
