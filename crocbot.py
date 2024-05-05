@@ -2,6 +2,7 @@ from typing import List
 from sqlite3 import Connection
 from os import path, mkdir
 import time
+import asyncio
 
 from discord import Game, Embed, Message, Intents, Guild, TextChannel
 from discord.ext import commands
@@ -20,7 +21,7 @@ from crocomire.cogs.roles import Roles
 
 prefix: str = "?"
 status_msg: str = "Type ?info"
-intents = Intents.default()
+intents = Intents.all()
 intents.members = True
 bot: commands.Bot = commands.Bot(
     command_prefix=prefix,
@@ -69,10 +70,14 @@ async def on_command_error(ctx, error):
 if not path.exists("./databases"):
     mkdir("./databases")
 
-bot.add_cog(Boost(bot))
-bot.add_cog(CustomCommands(bot))
-bot.add_cog(Fun(bot))
-bot.add_cog(Help(bot))
-bot.add_cog(Matchup(bot))
-bot.add_cog(Roles(bot))
-bot.run(token)
+async def main():
+    async with bot:
+        await bot.add_cog(Boost(bot))
+        await bot.add_cog(CustomCommands(bot))
+        await bot.add_cog(Fun(bot))
+        await bot.add_cog(Help(bot))
+        await bot.add_cog(Matchup(bot))
+        await bot.add_cog(Roles(bot))
+        await bot.start(token)
+
+asyncio.run(main())
