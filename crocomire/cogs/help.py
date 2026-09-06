@@ -21,7 +21,7 @@ class Help(commands.Cog):
         # If no parameter, send a list of all commands
         if len(args) == 0:
             embed_model: EmbedModel = self.get_all_cmds()
-            embed_model.set_thumbnail(self.bot.user.avatar_url)
+            embed_model.set_thumbnail(self.bot.user.display_avatar.url)
         # If the command is a custom command, there is no info about it
         elif args[0] in cmd_database.select_all_custom_cmds(cmd_db):
             await ctx.send("I cannot help with custom commands.")
