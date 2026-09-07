@@ -1,4 +1,4 @@
-# CrocomireBot
+# crocomire-bot
 
 This is a Discord bot written in Python for the Ridleycord server. It holds Smash Ultimate matchup notes,
 keeps track of the server's boosters, posts memes, and lets admins add their own commands without touching
