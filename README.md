@@ -4,7 +4,7 @@ This is a Discord bot written in Python for the Ridleycord server. It holds Smas
 keeps track of the server's boosters, posts memes, and lets admins add their own commands without touching
 the code. The data is stored in SQLite databases. Every command starts with `?`.
 
-![](https://github.com/is386/crocomire-bot/blob/master/demo.png?raw=true)
+![](https://github.com/1nderr/crocomire-bot/blob/master/demo.png?raw=true)
 
 ## Features
 
