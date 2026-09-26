@@ -65,7 +65,8 @@ token = "PASTE_YOUR_BOT_TOKEN_HERE"
 - `discord.py`
 - `requests`
 
-To use the `requirements.txt` file, just run `pip3 install -r requirements.txt`.
+The dependencies are managed with [uv](https://docs.astral.sh/uv/). Run `uv sync` to install them, and
+`uv run crocbot.py` to run the bot without Docker.
 
 ## Build
 

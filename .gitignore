@@ -5,3 +5,4 @@ __pycache__
 mu.db
 commands.db
 memes
+.venv
