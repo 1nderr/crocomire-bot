@@ -74,4 +74,4 @@ The dependencies are managed with [uv](https://docs.astral.sh/uv/). Run `uv sync
 
 ## Run
 
-`docker run --rm -d crocbot`
+`docker run -d --restart unless-stopped --name crocbot crocbot`
